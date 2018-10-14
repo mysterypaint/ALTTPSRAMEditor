@@ -13,12 +13,14 @@ namespace ALTTPSRAMEditor
 {
     public partial class Form1 : Form
     {
+        const int srm_size = 8 * 1024;
+        const int srm_randomizer_size = 16 * 1024;
+        const int srm_randomizer_size_2 = 32 * 1024;
         const int slot1 = 0xF00;
         const int slot2 = 0x1400;
         const int slot3 = 0x1900;
         const int mempointer = 0x1FFE;
         public int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
-        public FileStream f_in;
 
         public Form1()
         {
@@ -41,33 +43,31 @@ namespace ALTTPSRAMEditor
                 fname = fd1.FileName;
 
                 try
-                {   // Open the text file using a File Stream.
-                    using (f_in = new FileStream(fname, FileMode.Open))
+                {   // Open the text file using a File Stream
+
+                    byte[] bytes = File.ReadAllBytes(fname);
+                    long fileSize = new System.IO.FileInfo(fname).Length;
+                    if (fileSize == srm_randomizer_size || fileSize == srm_randomizer_size_2)
+                        MessageBox.Show("Invalid SRAM File. (Randomizer saves aren't supported. Maybe one day...?)");
+                    else if (fileSize == srm_size)
                     {
                         Console.WriteLine("Opened " + fname);
+                        SRAM sdat = new SRAM(bytes);
+                        radioFile1.Enabled = true;
+                        radioFile2.Enabled = true;
+                        radioFile3.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid SRAM File.");
                     }
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("The file could not be read:" + e.Message);
+                    MessageBox.Show("The file could not be read:\n" + e.Message);
                 }
-
-                
             }
 
-        }
-
-        private String HexBlock(int start, int end)
-        {
-            BinaryReader br = new BinaryReader(File.OpenRead(f_in));
-            
-            String str = null;
-            for (int i = start; i <= end; i++)
-            {
-                br.BaseStream.Position = i;
-                str = br.ReadByte().ToString("X2");
-            }
-            return str;
         }
 
         private void SaveSRM()
