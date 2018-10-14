@@ -69,6 +69,11 @@ namespace ALTTPSRAMEditor
 
         }
 
+        private void UpdateFilename(String str)
+        {
+            fileNameBox.Text = str;
+        }
+
         private void SaveSRM()
         {
             if (fname.Equals("") || fname.Equals(null))
