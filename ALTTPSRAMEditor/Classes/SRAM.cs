@@ -43,6 +43,26 @@ namespace ALTTPSRAMEditor
             GenerateSaveSlot(slot3m, slot3m + 0x500, 6);
         }
 
+        public SaveSlot GetSaveSlot(int slot)
+        {
+            switch (slot)
+            {
+                default:
+                case 1:
+                    return savslot1;
+                case 2:
+                    return savslot2;
+                case 3:
+                    return savslot3;
+                case 4:
+                    return savslot1m;
+                case 5:
+                    return savslot2m;
+                case 6:
+                    return savslot3m;
+            }
+        }
+
         private void GenerateSaveSlot(int start, int end, int thisSlot)
         {
             byte[] in_dat = new byte[0x500];
@@ -107,13 +127,31 @@ namespace ALTTPSRAMEditor
             {
                 default:
                 case 1:
-                    slotData = savslot1.GetData();
+                    if (!savslot1.IsEmpty())
+                        slotData = savslot1.GetData();
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("Save slot 1 is empty. Copying from Mirror Data instead.");
+                        slotData = savslot1m.GetData();
+                    }
                     break;
                 case 2:
-                    slotData = savslot2.GetData();
+                    if (!savslot2.IsEmpty())
+                        slotData = savslot2.GetData();
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("Save slot 2 is empty. Copying from Mirror Data instead.");
+                        slotData = savslot2m.GetData();
+                    }
                     break;
                 case 3:
-                    slotData = savslot3.GetData();
+                    if (!savslot3.IsEmpty())
+                        slotData = savslot3.GetData();
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("Save slot 3 is empty. Copying from Mirror Data instead.");
+                        slotData = savslot3m.GetData();
+                    }
                     break;
             }
             copyData = slotData;
@@ -161,7 +199,7 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        public byte[] GetSaveData()
+        public byte[] MergeSaveData()
         {
             // Combine all of the SaveSlot data and overwrite the SRAM object's data variable, then return it.
             MakeSave();

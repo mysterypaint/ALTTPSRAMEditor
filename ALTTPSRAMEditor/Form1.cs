@@ -55,6 +55,7 @@ namespace ALTTPSRAMEditor
                         radioFile3.Enabled = true;
                         buttonCopy.Enabled = true;
                         buttonErase.Enabled = true;
+                        updatePlayerName(1);
                     }
                     else
                     {
@@ -81,7 +82,7 @@ namespace ALTTPSRAMEditor
                 helperText.Text = "Load a file first!";
                 return; // Abort saving if there isn't a valid file open.
             }
-            byte[] outputData = sdat.GetSaveData();
+            byte[] outputData = sdat.MergeSaveData();
             File.WriteAllBytes(fname, outputData);
             helperText.Text = "Saved file at " + fname;
             sdat.ClearCopyData();
@@ -131,11 +132,6 @@ namespace ALTTPSRAMEditor
         {
             String tool_credits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
             MessageBox.Show(tool_credits);
-        }
-
-        private void radioFile1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonCopy_Click(object sender, EventArgs e)
@@ -193,6 +189,77 @@ namespace ALTTPSRAMEditor
                 sdat.EraseFile(selFile);
                 helperText.Text = "Erased File " + selFile + ".";
             }
+        }
+
+        private void radioFile1_CheckedChanged(object sender, EventArgs e)
+        {
+            updatePlayerName(1);
+        }
+
+        private void radioFile2_CheckedChanged(object sender, EventArgs e)
+        {
+            updatePlayerName(2);
+        }
+
+        private void radioFile3_CheckedChanged(object sender, EventArgs e)
+        {
+            updatePlayerName(3);
+        }
+
+        private void updatePlayerName(int slot)
+        {
+            SaveSlot savslot;
+            switch (slot)
+            {
+                default:
+                case 1:
+                    savslot = sdat.GetSaveSlot(1);
+                    break;
+                case 2:
+                    savslot = sdat.GetSaveSlot(2);
+                    break;
+                case 3:
+                    savslot = sdat.GetSaveSlot(3);
+                    break;
+            }
+
+            if (!savslot.IsEmpty())
+            {
+                String playerName = savslot.GetPlayerName();
+                fileNameBox.Text = playerName;
+                fileNameBox.Enabled = true;
+            }
+            else
+            {
+                fileNameBox.Enabled = false;
+            }
+        }
+
+        private void buttonApplyChanges_Click(object sender, EventArgs e)
+        {
+            buttonWrite.Enabled = false;
+
+            // Determine which file we're editing, and then load its data.
+            SaveSlot savslot;
+            int slot = 1;
+            if (radioFile2.Checked)
+            {
+                slot = 2;
+                savslot = sdat.GetSaveSlot(2);
+            }
+            else if (radioFile3.Checked)
+            {
+                slot = 3;
+                savslot = sdat.GetSaveSlot(3);
+            }
+            else
+                savslot = sdat.GetSaveSlot(1);
+
+            // Cap the player name to 6 characters because of in-game limitations; Store it to the save data.
+            savslot.SetPlayerName(fileNameBox.Text.Substring(0,6));
+            
+            // Update the playerName textbox to emphasize the 6 character limit.
+            updatePlayerName(slot);
         }
     }
 }
