@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ALTTPSRAMEditor
 {
     public partial class Form1 : Form
     {
+        const int slot1 = 0xF00;
+        const int slot2 = 0x1400;
+        const int slot3 = 0x1900;
+        const int mempointer = 0x1FFE;
+        public int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
+        public FileStream f_in;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,19 +33,46 @@ namespace ALTTPSRAMEditor
         private void OpenSRM()
         {
             OpenFileDialog fd1 = new OpenFileDialog();
-            fd1.Filter = "SRAM|*.srm"; // Filter to show .srm files only.
+            fd1.Filter = "SRAM|*.srm|All Files|*.*"; // Filter to show .srm files only.
             String fname = "";
 
             if (fd1.ShowDialog().Equals(DialogResult.OK))
             { // Prompt the user to open a file, then check if a valid file was opened.
                 fname = fd1.FileName;
-                MessageBox.Show(fname);
+
+                try
+                {   // Open the text file using a File Stream.
+                    using (f_in = new FileStream(fname, FileMode.Open))
+                    {
+                        Console.WriteLine("Opened " + fname);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("The file could not be read:" + e.Message);
+                }
+
+                
             }
+
+        }
+
+        private String HexBlock(int start, int end)
+        {
+            BinaryReader br = new BinaryReader(File.OpenRead(f_in));
+            
+            String str = null;
+            for (int i = start; i <= end; i++)
+            {
+                br.BaseStream.Position = i;
+                str = br.ReadByte().ToString("X2");
+            }
+            return str;
         }
 
         private void SaveSRM()
         {
-            MessageBox.Show("Adam");
+            MessageBox.Show("teeeest");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
