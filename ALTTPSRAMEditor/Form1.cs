@@ -16,11 +16,8 @@ namespace ALTTPSRAMEditor
         const int srm_size = 8 * 1024;
         const int srm_randomizer_size = 16 * 1024;
         const int srm_randomizer_size_2 = 32 * 1024;
-        const int slot1 = 0xF00;
-        const int slot2 = 0x1400;
-        const int slot3 = 0x1900;
-        const int mempointer = 0x1FFE;
-        public int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
+        static SRAM sdat;
+        static String fname = "";
 
         public Form1()
         {
@@ -36,7 +33,6 @@ namespace ALTTPSRAMEditor
         {
             OpenFileDialog fd1 = new OpenFileDialog();
             fd1.Filter = "SRAM|*.srm|All Files|*.*"; // Filter to show .srm files only.
-            String fname = "";
 
             if (fd1.ShowDialog().Equals(DialogResult.OK))
             { // Prompt the user to open a file, then check if a valid file was opened.
@@ -52,10 +48,13 @@ namespace ALTTPSRAMEditor
                     else if (fileSize == srm_size)
                     {
                         Console.WriteLine("Opened " + fname);
-                        SRAM sdat = new SRAM(bytes);
+                        helperText.Text = "Opened " + fname;
+                        sdat = new SRAM(bytes);
                         radioFile1.Enabled = true;
                         radioFile2.Enabled = true;
                         radioFile3.Enabled = true;
+                        buttonCopy.Enabled = true;
+                        buttonErase.Enabled = true;
                     }
                     else
                     {
@@ -72,7 +71,16 @@ namespace ALTTPSRAMEditor
 
         private void SaveSRM()
         {
-            MessageBox.Show("teeeest");
+            if (fname.Equals("") || fname.Equals(null))
+            {
+                helperText.Text = "Load a file first!";
+                return; // Abort saving if there isn't a valid file open.
+            }
+            byte[] outputData = sdat.GetSaveData();
+            File.WriteAllBytes(fname, outputData);
+            helperText.Text = "Saved file at " + fname;
+            sdat.ClearCopyData();
+            buttonWrite.Enabled = false;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,6 +126,68 @@ namespace ALTTPSRAMEditor
         {
             String tool_credits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
             MessageBox.Show(tool_credits);
+        }
+
+        private void radioFile1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCopy_Click(object sender, EventArgs e)
+        {
+            if (radioFile1.Checked)
+            {
+                sdat.CopyFile(1);
+                helperText.Text = "Copied File 1!";
+            }
+            else if (radioFile2.Checked)
+            {
+                sdat.CopyFile(2);
+                helperText.Text = "Copied File 2!";
+            }
+            else if (radioFile3.Checked)
+            {
+                sdat.CopyFile(3);
+                helperText.Text = "Copied File 3!";
+            }
+            buttonWrite.Enabled = true;
+        }
+
+        private void buttonWrite_Click(object sender, EventArgs e)
+        {
+            if (radioFile1.Checked)
+            {
+                sdat.WriteFile(1);
+                helperText.Text = "Wrote to File 1!";
+            }
+            else if (radioFile2.Checked)
+            {
+                sdat.WriteFile(2);
+                helperText.Text = "Wrote to File 2!";
+            }
+            else if (radioFile3.Checked)
+            {
+                sdat.WriteFile(3);
+                helperText.Text = "Wrote to File 3!";
+            }
+        }
+
+        private void buttonErase_Click(object sender, EventArgs e)
+        {
+            int selFile = 1;
+            if (radioFile1.Checked)
+                selFile = 1;
+            else if (radioFile2.Checked)
+                selFile = 2;
+            else if (radioFile3.Checked)
+                selFile = 3;
+
+                DialogResult dialogResult = MessageBox.Show("You are about to PERMANENTLY ERASE File " + selFile + "! Are you sure you want to erase it? There is no undo!", "Erase File " + selFile + "?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                sdat.EraseFile(selFile);
+                helperText.Text = "Erased File " + selFile + ".";
+            }
         }
     }
 }
