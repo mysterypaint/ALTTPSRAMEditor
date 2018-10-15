@@ -10,6 +10,7 @@ namespace ALTTPSRAMEditor
     {
         private byte[] data;
         private String playerName = "";
+        private UInt16 total_checksum = 0;
 
         public SaveSlot(byte[] data_in)
         {
@@ -116,8 +117,25 @@ namespace ALTTPSRAMEditor
             return data;
         }
 
+        public void ValidateSave()
+        {
+            // This function sums up every 16-bit value in the save slot, except for the final one
+            // And then it writes the calculated checksum to the final two bytes (in little-endian order)
+            // Before it writes that value it calculates, it does this(roughly, not literally): UInt16 total = 0x5A5A - checksum
+            UInt16 checksum = 0;
+            for (int i = 0; i < 0x4fe; i += 2)
+            {
+                checksum += (UInt16) ((data[i + 1] << 8) | data[i]);
+            }
+            total_checksum = (UInt16) (0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
+            
+            data[0x4FE] = (byte) (total_checksum & 0xff);
+            data[0x4FF] = (byte) (total_checksum >> 8);
+        }
+
         public bool IsEmpty()
         {
+            return false;
             for (int i = 0x1; i < 0x500; i++)
             {
                 if (data[i] != 0x0)
@@ -145,5 +163,9 @@ namespace ALTTPSRAMEditor
         {
             Array.Clear(data, 0, data.Length);
         }
+    }
+
+    internal class UInt8
+    {
     }
 }

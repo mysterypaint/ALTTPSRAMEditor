@@ -54,39 +54,69 @@
             this.labelDeathsPostGame = new System.Windows.Forms.Label();
             this.checkedListBoxDungeonItems = new System.Windows.Forms.CheckedListBox();
             this.labelInventory = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelArrows = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButtonWArrows = new System.Windows.Forms.RadioButton();
             this.pictureBow = new System.Windows.Forms.PictureBox();
-            this.radioButtonBowNone = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButtonRedBoomerang = new System.Windows.Forms.RadioButton();
-            this.radioButtonBlueBoomerang = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.radioButtonNoBoomerang = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.labelBombs = new System.Windows.Forms.Label();
             this.labelDungeonKeys = new System.Windows.Forms.Label();
             this.textBoxDungeonKeys = new System.Windows.Forms.TextBox();
             this.labelRupees = new System.Windows.Forms.Label();
             this.numericUpDownRupeeCounter = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownArrows = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownBombs = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanelInventory = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox23 = new System.Windows.Forms.PictureBox();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBow)).BeginInit();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrows)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombs)).BeginInit();
+            this.tableLayoutPanelInventory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -355,183 +385,38 @@
             this.labelInventory.TabIndex = 17;
             this.labelInventory.Text = "Inventory";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.2F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.8F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox3, 3, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(331, 49);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.0241F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.97591F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(606, 373);
-            this.tableLayoutPanel1.TabIndex = 18;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.numericUpDownArrows);
-            this.groupBox1.Controls.Add(this.labelArrows);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButtonWArrows);
-            this.groupBox1.Controls.Add(this.pictureBow);
-            this.groupBox1.Controls.Add(this.radioButtonBowNone);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(137, 97);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bow";
-            // 
-            // labelArrows
-            // 
-            this.labelArrows.AutoSize = true;
-            this.labelArrows.Location = new System.Drawing.Point(83, 74);
-            this.labelArrows.Name = "labelArrows";
-            this.labelArrows.Size = new System.Drawing.Size(35, 13);
-            this.labelArrows.TabIndex = 26;
-            this.labelArrows.Text = "Count";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(33, 52);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(104, 17);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Bow w/S.Arrows";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonWArrows
-            // 
-            this.radioButtonWArrows.AutoSize = true;
-            this.radioButtonWArrows.Location = new System.Drawing.Point(33, 36);
-            this.radioButtonWArrows.Name = "radioButtonWArrows";
-            this.radioButtonWArrows.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonWArrows.TabIndex = 3;
-            this.radioButtonWArrows.TabStop = true;
-            this.radioButtonWArrows.Text = "Bow w/Arrows";
-            this.radioButtonWArrows.UseVisualStyleBackColor = true;
-            // 
             // pictureBow
             // 
-            this.pictureBow.Image = global::ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
+            this.pictureBow.Image = global::ALTTPSRAMEditor.Properties.Resources.Bow;
             this.pictureBow.ImageLocation = "";
             this.pictureBow.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
-            this.pictureBow.Location = new System.Drawing.Point(6, 19);
+            this.pictureBow.Location = new System.Drawing.Point(3, 3);
             this.pictureBow.Name = "pictureBow";
-            this.pictureBow.Size = new System.Drawing.Size(21, 17);
+            this.pictureBow.Size = new System.Drawing.Size(16, 16);
             this.pictureBow.TabIndex = 0;
             this.pictureBow.TabStop = false;
-            // 
-            // radioButtonBowNone
-            // 
-            this.radioButtonBowNone.AutoSize = true;
-            this.radioButtonBowNone.Location = new System.Drawing.Point(33, 19);
-            this.radioButtonBowNone.Name = "radioButtonBowNone";
-            this.radioButtonBowNone.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonBowNone.TabIndex = 2;
-            this.radioButtonBowNone.TabStop = true;
-            this.radioButtonBowNone.Text = "None";
-            this.radioButtonBowNone.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radioButtonRedBoomerang);
-            this.groupBox2.Controls.Add(this.radioButtonBlueBoomerang);
-            this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Controls.Add(this.radioButtonNoBoomerang);
-            this.groupBox2.Location = new System.Drawing.Point(146, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(100, 82);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Boomerang";
-            // 
-            // radioButtonRedBoomerang
-            // 
-            this.radioButtonRedBoomerang.AutoSize = true;
-            this.radioButtonRedBoomerang.Location = new System.Drawing.Point(33, 52);
-            this.radioButtonRedBoomerang.Name = "radioButtonRedBoomerang";
-            this.radioButtonRedBoomerang.Size = new System.Drawing.Size(45, 17);
-            this.radioButtonRedBoomerang.TabIndex = 4;
-            this.radioButtonRedBoomerang.TabStop = true;
-            this.radioButtonRedBoomerang.Text = "Red";
-            this.radioButtonRedBoomerang.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBlueBoomerang
-            // 
-            this.radioButtonBlueBoomerang.AutoSize = true;
-            this.radioButtonBlueBoomerang.Location = new System.Drawing.Point(33, 36);
-            this.radioButtonBlueBoomerang.Name = "radioButtonBlueBoomerang";
-            this.radioButtonBlueBoomerang.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonBlueBoomerang.TabIndex = 3;
-            this.radioButtonBlueBoomerang.TabStop = true;
-            this.radioButtonBlueBoomerang.Text = "Blue";
-            this.radioButtonBlueBoomerang.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
             this.pictureBox1.ImageLocation = "";
             this.pictureBox1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 17);
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // radioButtonNoBoomerang
-            // 
-            this.radioButtonNoBoomerang.AutoSize = true;
-            this.radioButtonNoBoomerang.Location = new System.Drawing.Point(33, 19);
-            this.radioButtonNoBoomerang.Name = "radioButtonNoBoomerang";
-            this.radioButtonNoBoomerang.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonNoBoomerang.TabIndex = 2;
-            this.radioButtonNoBoomerang.TabStop = true;
-            this.radioButtonNoBoomerang.Text = "None";
-            this.radioButtonNoBoomerang.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.numericUpDownBombs);
-            this.groupBox3.Controls.Add(this.pictureBox2);
-            this.groupBox3.Controls.Add(this.labelBombs);
-            this.groupBox3.Location = new System.Drawing.Point(354, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(196, 97);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Bombs";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBox2.ImageLocation = "";
             this.pictureBox2.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 19);
+            this.pictureBox2.Location = new System.Drawing.Point(78, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(21, 17);
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
-            // 
-            // labelBombs
-            // 
-            this.labelBombs.AutoSize = true;
-            this.labelBombs.Location = new System.Drawing.Point(63, 42);
-            this.labelBombs.Name = "labelBombs";
-            this.labelBombs.Size = new System.Drawing.Size(35, 13);
-            this.labelBombs.TabIndex = 24;
-            this.labelBombs.Text = "Count";
             // 
             // labelDungeonKeys
             // 
@@ -570,29 +455,318 @@
             this.numericUpDownRupeeCounter.Size = new System.Drawing.Size(51, 20);
             this.numericUpDownRupeeCounter.TabIndex = 23;
             // 
-            // numericUpDownArrows
+            // tableLayoutPanelInventory
             // 
-            this.numericUpDownArrows.Location = new System.Drawing.Point(33, 71);
-            this.numericUpDownArrows.Maximum = new decimal(new int[] {
-            70,
-            0,
-            0,
-            0});
-            this.numericUpDownArrows.Name = "numericUpDownArrows";
-            this.numericUpDownArrows.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDownArrows.TabIndex = 24;
+            this.tableLayoutPanelInventory.BackColor = System.Drawing.SystemColors.ControlText;
+            this.tableLayoutPanelInventory.ColumnCount = 5;
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox23, 3, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox22, 2, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox21, 1, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox20, 0, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox4, 4, 0);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBow, 0, 0);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox2, 3, 0);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox1, 1, 0);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox3, 2, 0);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox5, 0, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox6, 1, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox7, 2, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox8, 3, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox9, 4, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox10, 0, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox11, 1, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox12, 2, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox13, 3, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox14, 4, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox15, 0, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox16, 1, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox17, 2, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox18, 3, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox19, 4, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox26, 4, 5);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox24, 3, 5);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox25, 2, 5);
+            this.tableLayoutPanelInventory.Location = new System.Drawing.Point(331, 50);
+            this.tableLayoutPanelInventory.Name = "tableLayoutPanelInventory";
+            this.tableLayoutPanelInventory.RowCount = 6;
+            this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.Size = new System.Drawing.Size(163, 164);
+            this.tableLayoutPanelInventory.TabIndex = 0;
             // 
-            // numericUpDownBombs
+            // pictureBox3
             // 
-            this.numericUpDownBombs.Location = new System.Drawing.Point(6, 40);
-            this.numericUpDownBombs.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.numericUpDownBombs.Name = "numericUpDownBombs";
-            this.numericUpDownBombs.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDownBombs.TabIndex = 27;
+            this.pictureBox3.Image = global::ALTTPSRAMEditor.Properties.Resources.Hookshot;
+            this.pictureBox3.ImageLocation = "";
+            this.pictureBox3.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
+            this.pictureBox3.Location = new System.Drawing.Point(53, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::ALTTPSRAMEditor.Properties.Resources.Mushroom;
+            this.pictureBox4.ImageLocation = "";
+            this.pictureBox4.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox4.Location = new System.Drawing.Point(103, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox4.TabIndex = 7;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::ALTTPSRAMEditor.Properties.Resources.Fire_Rod;
+            this.pictureBox5.ImageLocation = "";
+            this.pictureBox5.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox5.Location = new System.Drawing.Point(3, 28);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox5.TabIndex = 8;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::ALTTPSRAMEditor.Properties.Resources.Ice_Rod;
+            this.pictureBox6.ImageLocation = "";
+            this.pictureBox6.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox6.Location = new System.Drawing.Point(28, 28);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox6.TabIndex = 9;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::ALTTPSRAMEditor.Properties.Resources.Bombos;
+            this.pictureBox7.ImageLocation = "";
+            this.pictureBox7.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox7.Location = new System.Drawing.Point(53, 28);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox7.TabIndex = 10;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::ALTTPSRAMEditor.Properties.Resources.Ether;
+            this.pictureBox8.ImageLocation = "";
+            this.pictureBox8.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox8.Location = new System.Drawing.Point(78, 28);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox8.TabIndex = 11;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::ALTTPSRAMEditor.Properties.Resources.Quake;
+            this.pictureBox9.ImageLocation = "";
+            this.pictureBox9.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox9.Location = new System.Drawing.Point(103, 28);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox9.TabIndex = 12;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = global::ALTTPSRAMEditor.Properties.Resources.Lamp;
+            this.pictureBox10.ImageLocation = "";
+            this.pictureBox10.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox10.Location = new System.Drawing.Point(3, 53);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox10.TabIndex = 13;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::ALTTPSRAMEditor.Properties.Resources.Magic_Hammer;
+            this.pictureBox11.ImageLocation = "";
+            this.pictureBox11.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox11.Location = new System.Drawing.Point(28, 53);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox11.TabIndex = 14;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::ALTTPSRAMEditor.Properties.Resources.Shovel;
+            this.pictureBox12.ImageLocation = "";
+            this.pictureBox12.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox12.Location = new System.Drawing.Point(53, 53);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox12.TabIndex = 15;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = global::ALTTPSRAMEditor.Properties.Resources.Bug_Catching_Net;
+            this.pictureBox13.ImageLocation = "";
+            this.pictureBox13.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox13.Location = new System.Drawing.Point(78, 53);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox13.TabIndex = 16;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Image = global::ALTTPSRAMEditor.Properties.Resources.Book_of_Mudora;
+            this.pictureBox14.ImageLocation = "";
+            this.pictureBox14.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox14.Location = new System.Drawing.Point(103, 53);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox14.TabIndex = 17;
+            this.pictureBox14.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Image = global::ALTTPSRAMEditor.Properties.Resources.Bottle;
+            this.pictureBox15.ImageLocation = "";
+            this.pictureBox15.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox15.Location = new System.Drawing.Point(3, 78);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox15.TabIndex = 18;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Image = global::ALTTPSRAMEditor.Properties.Resources.Cane_of_Somaria;
+            this.pictureBox16.ImageLocation = "";
+            this.pictureBox16.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox16.Location = new System.Drawing.Point(28, 78);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox16.TabIndex = 19;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.Image = global::ALTTPSRAMEditor.Properties.Resources.Cane_of_Byrna;
+            this.pictureBox17.ImageLocation = "";
+            this.pictureBox17.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox17.Location = new System.Drawing.Point(53, 78);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox17.TabIndex = 20;
+            this.pictureBox17.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.Image = global::ALTTPSRAMEditor.Properties.Resources.Magic_Cape;
+            this.pictureBox18.ImageLocation = "";
+            this.pictureBox18.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox18.Location = new System.Drawing.Point(78, 78);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox18.TabIndex = 21;
+            this.pictureBox18.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.Image = global::ALTTPSRAMEditor.Properties.Resources.Magic_Mirror;
+            this.pictureBox19.ImageLocation = "";
+            this.pictureBox19.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox19.Location = new System.Drawing.Point(103, 78);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox19.TabIndex = 22;
+            this.pictureBox19.TabStop = false;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Image = global::ALTTPSRAMEditor.Properties.Resources.Pegasus_Boots;
+            this.pictureBox20.ImageLocation = "";
+            this.pictureBox20.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox20.Location = new System.Drawing.Point(3, 103);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox20.TabIndex = 23;
+            this.pictureBox20.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.Image = global::ALTTPSRAMEditor.Properties.Resources.Power_Glove;
+            this.pictureBox21.ImageLocation = "";
+            this.pictureBox21.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox21.Location = new System.Drawing.Point(28, 103);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox21.TabIndex = 24;
+            this.pictureBox21.TabStop = false;
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.Image = global::ALTTPSRAMEditor.Properties.Resources.Zora_s_Flippers;
+            this.pictureBox22.ImageLocation = "";
+            this.pictureBox22.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox22.Location = new System.Drawing.Point(53, 103);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox22.TabIndex = 25;
+            this.pictureBox22.TabStop = false;
+            // 
+            // pictureBox23
+            // 
+            this.pictureBox23.Image = global::ALTTPSRAMEditor.Properties.Resources.Moon_Pearl;
+            this.pictureBox23.ImageLocation = "";
+            this.pictureBox23.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox23.Location = new System.Drawing.Point(78, 103);
+            this.pictureBox23.Name = "pictureBox23";
+            this.pictureBox23.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox23.TabIndex = 26;
+            this.pictureBox23.TabStop = false;
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.Image = global::ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+            this.pictureBox25.ImageLocation = "";
+            this.pictureBox25.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox25.Location = new System.Drawing.Point(53, 128);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox25.TabIndex = 28;
+            this.pictureBox25.TabStop = false;
+            // 
+            // pictureBox24
+            // 
+            this.pictureBox24.Image = global::ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+            this.pictureBox24.ImageLocation = "";
+            this.pictureBox24.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox24.Location = new System.Drawing.Point(78, 128);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox24.TabIndex = 29;
+            this.pictureBox24.TabStop = false;
+            // 
+            // pictureBox26
+            // 
+            this.pictureBox26.Image = global::ALTTPSRAMEditor.Properties.Resources.Green_Tunic;
+            this.pictureBox26.ImageLocation = "";
+            this.pictureBox26.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBox26.Location = new System.Drawing.Point(103, 128);
+            this.pictureBox26.Name = "pictureBox26";
+            this.pictureBox26.Size = new System.Drawing.Size(27, 24);
+            this.pictureBox26.TabIndex = 30;
+            this.pictureBox26.TabStop = false;
             // 
             // Form1
             // 
@@ -600,11 +774,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(949, 465);
+            this.Controls.Add(this.tableLayoutPanelInventory);
             this.Controls.Add(this.numericUpDownRupeeCounter);
             this.Controls.Add(this.labelRupees);
             this.Controls.Add(this.labelDungeonKeys);
             this.Controls.Add(this.textBoxDungeonKeys);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.labelInventory);
             this.Controls.Add(this.checkedListBoxDungeonItems);
             this.Controls.Add(this.labelDeathsPostGame);
@@ -631,19 +805,35 @@
             this.menuStrip1.PerformLayout();
             this.groupFileSelect.ResumeLayout(false);
             this.groupFileSelect.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBow)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrows)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombs)).EndInit();
+            this.tableLayoutPanelInventory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -677,27 +867,38 @@
         private System.Windows.Forms.Label labelDeathsPostGame;
         private System.Windows.Forms.CheckedListBox checkedListBoxDungeonItems;
         private System.Windows.Forms.Label labelInventory;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBow;
-        private System.Windows.Forms.RadioButton radioButtonBowNone;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButtonWArrows;
         private System.Windows.Forms.Label labelDungeonKeys;
         private System.Windows.Forms.TextBox textBoxDungeonKeys;
         private System.Windows.Forms.Label labelRupees;
-        private System.Windows.Forms.Label labelBombs;
-        private System.Windows.Forms.Label labelArrows;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButtonRedBoomerang;
-        private System.Windows.Forms.RadioButton radioButtonBlueBoomerang;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.RadioButton radioButtonNoBoomerang;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.NumericUpDown numericUpDownRupeeCounter;
-        private System.Windows.Forms.NumericUpDown numericUpDownArrows;
-        private System.Windows.Forms.NumericUpDown numericUpDownBombs;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelInventory;
+        private System.Windows.Forms.PictureBox pictureBox23;
+        private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.PictureBox pictureBox16;
+        private System.Windows.Forms.PictureBox pictureBox17;
+        private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.PictureBox pictureBox26;
+        private System.Windows.Forms.PictureBox pictureBox24;
+        private System.Windows.Forms.PictureBox pictureBox25;
     }
 }
 

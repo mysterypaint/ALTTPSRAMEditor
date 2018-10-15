@@ -13,7 +13,7 @@ namespace ALTTPSRAMEditor
 {
     public partial class Form1 : Form
     {
-        const int srm_size = 8 * 1024;
+        const int srm_size = 0x2000;
         const int srm_randomizer_size = 16 * 1024;
         const int srm_randomizer_size_2 = 32 * 1024;
         static SRAM sdat;
@@ -85,7 +85,6 @@ namespace ALTTPSRAMEditor
             byte[] outputData = sdat.MergeSaveData();
             File.WriteAllBytes(fname, outputData);
             helperText.Text = "Saved file at " + fname;
-            sdat.ClearCopyData();
             buttonWrite.Enabled = false;
         }
 
