@@ -15,11 +15,11 @@ namespace ALTTPSRAMEditor
 
         public SaveSlot(byte[] data_in)
         {
-            byte[] itemsAndEquipment = new byte[0x23];
+            byte[] itemsAndEquipment = new byte[0x24];
 
             data = data_in.ToArray();
 
-            for (int i = 0x0; i < 0x20; i++)
+            for (int i = 0x0; i < 0x24; i++)
             {
                 itemsAndEquipment[i] = data[0x340 + i];
             }
@@ -170,7 +170,7 @@ namespace ALTTPSRAMEditor
         public void UpdatePlayer()
         {
             // Take player's equipment and update the local data
-            for (int i = 0x0; i < 0x20; i++)
+            for (int i = 0x0; i <= 0x23; i++)
             {
                 data[0x340 + i] = (byte) player.GetItemEquipment(i);
             }

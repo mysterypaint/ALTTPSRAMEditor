@@ -51,7 +51,7 @@ namespace ALTTPSRAMEditor
         const int bottle3Contents = 0x1E;
         const int bottle4Contents = 0x1F;
         const int wallet = 0x20; // 2 bytes
-        const int rupee = 0x22; // 2 bytes
+        const int rupees = 0x22; // 2 bytes
 
         static SRAM sdat;
         static String fname = "";
@@ -87,12 +87,24 @@ namespace ALTTPSRAMEditor
                         Console.WriteLine("Opened " + fname);
                         helperText.Text = "Opened " + fname;
                         sdat = new SRAM(bytes);
+
+                        tableLayoutPanelInventory.Visible = true;
+                        labelInventory.Visible = true;
+                        numericUpDownRupeeCounter.Visible = true;
+                        labelRupees.Visible = true;
+                        fileNameBox.Visible = true;
+                        labelFilename.Visible = true;
+
                         radioFile1.Enabled = true;
                         radioFile2.Enabled = true;
                         radioFile3.Enabled = true;
                         buttonCopy.Enabled = true;
                         buttonErase.Enabled = true;
-                        updatePlayerName(1);
+
+                        SaveSlot savslot = sdat.GetSaveSlot(1);
+                        updatePlayerName(savslot);
+                        Link player = savslot.GetPlayer();
+                        numericUpDownRupeeCounter.Value = player.GetRupeeValue();
                     }
                     else
                     {
@@ -227,38 +239,8 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        private void radioFile1_CheckedChanged(object sender, EventArgs e)
+        private void updatePlayerName(SaveSlot savslot)
         {
-            updatePlayerName(1);
-        }
-
-        private void radioFile2_CheckedChanged(object sender, EventArgs e)
-        {
-            updatePlayerName(2);
-        }
-
-        private void radioFile3_CheckedChanged(object sender, EventArgs e)
-        {
-            updatePlayerName(3);
-        }
-
-        private void updatePlayerName(int slot)
-        {
-            SaveSlot savslot;
-            switch (slot)
-            {
-                default:
-                case 1:
-                    savslot = sdat.GetSaveSlot(1);
-                    break;
-                case 2:
-                    savslot = sdat.GetSaveSlot(2);
-                    break;
-                case 3:
-                    savslot = sdat.GetSaveSlot(3);
-                    break;
-            }
-
             if (!savslot.SaveIsValid())
             {
                 String playerName = savslot.GetPlayerName();
@@ -277,15 +259,12 @@ namespace ALTTPSRAMEditor
 
             // Determine which file we're editing, and then load its data.
             SaveSlot savslot;
-            int slot = 1;
             if (radioFile2.Checked)
             {
-                slot = 2;
                 savslot = sdat.GetSaveSlot(2);
             }
             else if (radioFile3.Checked)
             {
-                slot = 3;
                 savslot = sdat.GetSaveSlot(3);
             }
             else
@@ -295,7 +274,7 @@ namespace ALTTPSRAMEditor
             savslot.SetPlayerName(fileNameBox.Text.Substring(0,6));
             
             // Update the playerName textbox to emphasize the 6 character limit.
-            updatePlayerName(slot);
+            updatePlayerName(savslot);
         }
         
         private void pictureBow_Click(object sender, EventArgs e)
@@ -321,7 +300,6 @@ namespace ALTTPSRAMEditor
 
         private void bowRadio(object sender, EventArgs e)
         {
-
             RadioButton btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
@@ -345,6 +323,26 @@ namespace ALTTPSRAMEditor
                         player.SetHasItemEquipment(bow, 0x4); // Give Bow & Silver Arrows
                         break;
                 }
+            }
+        }
+
+        private void numericUpDownRupeeCounter_ValueChanged(object sender, EventArgs e)
+        {
+            SaveSlot savslot = GetSaveSlot();
+            Link player = savslot.GetPlayer();
+            UInt16 val = (UInt16) numericUpDownRupeeCounter.Value;
+            player.SetRupees(val);
+        }
+
+        private void fileRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                SaveSlot savslot = GetSaveSlot();
+                Link player = savslot.GetPlayer();
+                updatePlayerName(savslot);
+                numericUpDownRupeeCounter.Value = player.GetRupeeValue();
             }
         }
     }

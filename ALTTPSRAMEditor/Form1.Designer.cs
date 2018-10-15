@@ -44,10 +44,9 @@
             this.radioFile1 = new System.Windows.Forms.RadioButton();
             this.helperText = new System.Windows.Forms.Label();
             this.fileNameBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelFilename = new System.Windows.Forms.Label();
             this.listBoxDungeonSelector = new System.Windows.Forms.ListBox();
             this.textBoxDeathsQuest = new System.Windows.Forms.TextBox();
-            this.buttonApplyChanges = new System.Windows.Forms.Button();
             this.labelArea = new System.Windows.Forms.Label();
             this.labelDeaths = new System.Windows.Forms.Label();
             this.textBoxDeathsPost = new System.Windows.Forms.TextBox();
@@ -87,11 +86,11 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.groupBoxBowConfig = new System.Windows.Forms.GroupBox();
-            this.bowOption1 = new System.Windows.Forms.RadioButton();
-            this.bowOption2 = new System.Windows.Forms.RadioButton();
-            this.bowOption3 = new System.Windows.Forms.RadioButton();
-            this.bowOption4 = new System.Windows.Forms.RadioButton();
             this.bowOptionNone = new System.Windows.Forms.RadioButton();
+            this.bowOption4 = new System.Windows.Forms.RadioButton();
+            this.bowOption3 = new System.Windows.Forms.RadioButton();
+            this.bowOption2 = new System.Windows.Forms.RadioButton();
+            this.bowOption1 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
@@ -151,21 +150,21 @@
             // opensrmToolStripMenuItem
             // 
             this.opensrmToolStripMenuItem.Name = "opensrmToolStripMenuItem";
-            this.opensrmToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.opensrmToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.opensrmToolStripMenuItem.Text = "Open (Ctrl+O)";
             this.opensrmToolStripMenuItem.Click += new System.EventHandler(this.opensrmToolStripMenuItem_Click);
             // 
             // saveCTRLSToolStripMenuItem
             // 
             this.saveCTRLSToolStripMenuItem.Name = "saveCTRLSToolStripMenuItem";
-            this.saveCTRLSToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.saveCTRLSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveCTRLSToolStripMenuItem.Text = "Save (Ctrl+S)";
             this.saveCTRLSToolStripMenuItem.Click += new System.EventHandler(this.saveCTRLSToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit (Alt+F4)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
@@ -243,7 +242,7 @@
             this.radioFile3.TabStop = true;
             this.radioFile3.Text = "File 3";
             this.radioFile3.UseVisualStyleBackColor = true;
-            this.radioFile3.CheckedChanged += new System.EventHandler(this.radioFile3_CheckedChanged);
+            this.radioFile3.CheckedChanged += new System.EventHandler(this.fileRadio);
             // 
             // radioFile2
             // 
@@ -256,7 +255,7 @@
             this.radioFile2.TabStop = true;
             this.radioFile2.Text = "File 2";
             this.radioFile2.UseVisualStyleBackColor = true;
-            this.radioFile2.CheckedChanged += new System.EventHandler(this.radioFile2_CheckedChanged);
+            this.radioFile2.CheckedChanged += new System.EventHandler(this.fileRadio);
             // 
             // radioFile1
             // 
@@ -270,7 +269,7 @@
             this.radioFile1.TabStop = true;
             this.radioFile1.Text = "File 1";
             this.radioFile1.UseVisualStyleBackColor = true;
-            this.radioFile1.CheckedChanged += new System.EventHandler(this.radioFile1_CheckedChanged);
+            this.radioFile1.CheckedChanged += new System.EventHandler(this.fileRadio);
             // 
             // helperText
             // 
@@ -288,15 +287,17 @@
             this.fileNameBox.Name = "fileNameBox";
             this.fileNameBox.Size = new System.Drawing.Size(100, 20);
             this.fileNameBox.TabIndex = 6;
+            this.fileNameBox.Visible = false;
             // 
-            // label1
+            // labelFilename
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Filename";
+            this.labelFilename.AutoSize = true;
+            this.labelFilename.Location = new System.Drawing.Point(218, 33);
+            this.labelFilename.Name = "labelFilename";
+            this.labelFilename.Size = new System.Drawing.Size(49, 13);
+            this.labelFilename.TabIndex = 7;
+            this.labelFilename.Text = "Filename";
+            this.labelFilename.Visible = false;
             // 
             // listBoxDungeonSelector
             // 
@@ -327,16 +328,6 @@
             this.textBoxDeathsQuest.Name = "textBoxDeathsQuest";
             this.textBoxDeathsQuest.Size = new System.Drawing.Size(100, 20);
             this.textBoxDeathsQuest.TabIndex = 9;
-            // 
-            // buttonApplyChanges
-            // 
-            this.buttonApplyChanges.Location = new System.Drawing.Point(12, 352);
-            this.buttonApplyChanges.Name = "buttonApplyChanges";
-            this.buttonApplyChanges.Size = new System.Drawing.Size(100, 23);
-            this.buttonApplyChanges.TabIndex = 10;
-            this.buttonApplyChanges.Text = "Apply Changes";
-            this.buttonApplyChanges.UseVisualStyleBackColor = true;
-            this.buttonApplyChanges.Click += new System.EventHandler(this.buttonApplyChanges_Click);
             // 
             // labelArea
             // 
@@ -392,6 +383,7 @@
             this.labelInventory.Size = new System.Drawing.Size(51, 13);
             this.labelInventory.TabIndex = 17;
             this.labelInventory.Text = "Inventory";
+            this.labelInventory.Visible = false;
             // 
             // pictureBow
             // 
@@ -451,6 +443,7 @@
             this.labelRupees.Size = new System.Drawing.Size(44, 13);
             this.labelRupees.TabIndex = 22;
             this.labelRupees.Text = "Rupees";
+            this.labelRupees.Visible = false;
             // 
             // numericUpDownRupeeCounter
             // 
@@ -463,6 +456,8 @@
             this.numericUpDownRupeeCounter.Name = "numericUpDownRupeeCounter";
             this.numericUpDownRupeeCounter.Size = new System.Drawing.Size(51, 20);
             this.numericUpDownRupeeCounter.TabIndex = 23;
+            this.numericUpDownRupeeCounter.Visible = false;
+            this.numericUpDownRupeeCounter.ValueChanged += new System.EventHandler(this.numericUpDownRupeeCounter_ValueChanged);
             // 
             // tableLayoutPanelInventory
             // 
@@ -472,7 +467,7 @@
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBox23, 3, 4);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBox22, 2, 4);
@@ -512,6 +507,7 @@
             this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelInventory.Size = new System.Drawing.Size(163, 164);
             this.tableLayoutPanelInventory.TabIndex = 0;
+            this.tableLayoutPanelInventory.Visible = false;
             // 
             // pictureBox23
             // 
@@ -792,41 +788,17 @@
             this.groupBoxBowConfig.Text = "Bow and Arrows";
             this.groupBoxBowConfig.Visible = false;
             // 
-            // bowOption1
+            // bowOptionNone
             // 
-            this.bowOption1.AutoSize = true;
-            this.bowOption1.Location = new System.Drawing.Point(7, 42);
-            this.bowOption1.Name = "bowOption1";
-            this.bowOption1.Size = new System.Drawing.Size(46, 17);
-            this.bowOption1.TabIndex = 0;
-            this.bowOption1.TabStop = true;
-            this.bowOption1.Text = "Bow";
-            this.bowOption1.UseVisualStyleBackColor = true;
-            this.bowOption1.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // bowOption2
-            // 
-            this.bowOption2.AutoSize = true;
-            this.bowOption2.Location = new System.Drawing.Point(7, 65);
-            this.bowOption2.Name = "bowOption2";
-            this.bowOption2.Size = new System.Drawing.Size(90, 17);
-            this.bowOption2.TabIndex = 1;
-            this.bowOption2.TabStop = true;
-            this.bowOption2.Text = "Bow && Arrows";
-            this.bowOption2.UseVisualStyleBackColor = true;
-            this.bowOption2.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // bowOption3
-            // 
-            this.bowOption3.AutoSize = true;
-            this.bowOption3.Location = new System.Drawing.Point(7, 88);
-            this.bowOption3.Name = "bowOption3";
-            this.bowOption3.Size = new System.Drawing.Size(105, 17);
-            this.bowOption3.TabIndex = 2;
-            this.bowOption3.TabStop = true;
-            this.bowOption3.Text = "Silver Arrow Bow";
-            this.bowOption3.UseVisualStyleBackColor = true;
-            this.bowOption3.CheckedChanged += new System.EventHandler(this.bowRadio);
+            this.bowOptionNone.AutoSize = true;
+            this.bowOptionNone.Location = new System.Drawing.Point(7, 19);
+            this.bowOptionNone.Name = "bowOptionNone";
+            this.bowOptionNone.Size = new System.Drawing.Size(63, 17);
+            this.bowOptionNone.TabIndex = 4;
+            this.bowOptionNone.TabStop = true;
+            this.bowOptionNone.Text = "No Bow";
+            this.bowOptionNone.UseVisualStyleBackColor = true;
+            this.bowOptionNone.CheckedChanged += new System.EventHandler(this.bowRadio);
             // 
             // bowOption4
             // 
@@ -840,17 +812,41 @@
             this.bowOption4.UseVisualStyleBackColor = true;
             this.bowOption4.CheckedChanged += new System.EventHandler(this.bowRadio);
             // 
-            // bowOptionNone
+            // bowOption3
             // 
-            this.bowOptionNone.AutoSize = true;
-            this.bowOptionNone.Location = new System.Drawing.Point(7, 19);
-            this.bowOptionNone.Name = "bowOptionNone";
-            this.bowOptionNone.Size = new System.Drawing.Size(63, 17);
-            this.bowOptionNone.TabIndex = 4;
-            this.bowOptionNone.TabStop = true;
-            this.bowOptionNone.Text = "No Bow";
-            this.bowOptionNone.UseVisualStyleBackColor = true;
-            this.bowOptionNone.CheckedChanged += new System.EventHandler(this.bowRadio);
+            this.bowOption3.AutoSize = true;
+            this.bowOption3.Location = new System.Drawing.Point(7, 88);
+            this.bowOption3.Name = "bowOption3";
+            this.bowOption3.Size = new System.Drawing.Size(105, 17);
+            this.bowOption3.TabIndex = 2;
+            this.bowOption3.TabStop = true;
+            this.bowOption3.Text = "Silver Arrow Bow";
+            this.bowOption3.UseVisualStyleBackColor = true;
+            this.bowOption3.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // bowOption2
+            // 
+            this.bowOption2.AutoSize = true;
+            this.bowOption2.Location = new System.Drawing.Point(7, 65);
+            this.bowOption2.Name = "bowOption2";
+            this.bowOption2.Size = new System.Drawing.Size(90, 17);
+            this.bowOption2.TabIndex = 1;
+            this.bowOption2.TabStop = true;
+            this.bowOption2.Text = "Bow && Arrows";
+            this.bowOption2.UseVisualStyleBackColor = true;
+            this.bowOption2.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // bowOption1
+            // 
+            this.bowOption1.AutoSize = true;
+            this.bowOption1.Location = new System.Drawing.Point(7, 42);
+            this.bowOption1.Name = "bowOption1";
+            this.bowOption1.Size = new System.Drawing.Size(46, 17);
+            this.bowOption1.TabIndex = 0;
+            this.bowOption1.TabStop = true;
+            this.bowOption1.Text = "Bow";
+            this.bowOption1.UseVisualStyleBackColor = true;
+            this.bowOption1.CheckedChanged += new System.EventHandler(this.bowRadio);
             // 
             // groupBox1
             // 
@@ -879,10 +875,9 @@
             this.Controls.Add(this.textBoxDeathsPost);
             this.Controls.Add(this.labelDeaths);
             this.Controls.Add(this.labelArea);
-            this.Controls.Add(this.buttonApplyChanges);
             this.Controls.Add(this.textBoxDeathsQuest);
             this.Controls.Add(this.listBoxDungeonSelector);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelFilename);
             this.Controls.Add(this.fileNameBox);
             this.Controls.Add(this.helperText);
             this.Controls.Add(this.groupFileSelect);
@@ -954,10 +949,9 @@
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.Label helperText;
         private System.Windows.Forms.TextBox fileNameBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.ListBox listBoxDungeonSelector;
         private System.Windows.Forms.TextBox textBoxDeathsQuest;
-        private System.Windows.Forms.Button buttonApplyChanges;
         private System.Windows.Forms.Label labelArea;
         private System.Windows.Forms.Label labelDeaths;
         private System.Windows.Forms.TextBox textBoxDeathsPost;
