@@ -16,6 +16,43 @@ namespace ALTTPSRAMEditor
         const int srm_size = 0x2000;
         const int srm_randomizer_size = 16 * 1024;
         const int srm_randomizer_size_2 = 32 * 1024;
+
+        // Items and Equipment
+        const int bow = 0x0;
+        const int boomerang = 0x1;
+        const int hookshot = 0x2;
+        const int bomb = 0x3;
+        const int mushroomPowder = 0x4;
+        const int fireRod = 0x5;
+        const int iceRod = 0x6;
+        const int bombosMedallion = 0x7;
+        const int etherMedallion = 0x8;
+        const int quakeMedallion = 0x9;
+        const int lamp = 0xA;
+        const int magicHammer = 0xB;
+        const int shovelFlute = 0xC;
+        const int bugNet = 0xD;
+        const int book = 0xE;
+        const int bottle = 0xF;
+        const int caneOfSomaria = 0x10;
+        const int caneOfByrna = 0x11;
+        const int magicCape = 0x12;
+        const int magicMirror = 0x13;
+        const int gloves = 0x14;
+        const int pegasusBoots = 0x15;
+        const int zorasFlippers = 0x16;
+        const int moonPearl = 0x17;
+        const int skipthis = 0x18;
+        const int sword = 0x19;
+        const int shield = 0x1A;
+        const int armor = 0x1B;
+        const int bottle1Contents = 0x1C;
+        const int bottle2Contents = 0x1D;
+        const int bottle3Contents = 0x1E;
+        const int bottle4Contents = 0x1F;
+        const int wallet = 0x20; // 2 bytes
+        const int rupee = 0x22; // 2 bytes
+
         static SRAM sdat;
         static String fname = "";
 
@@ -129,8 +166,8 @@ namespace ALTTPSRAMEditor
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String tool_credits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
-            MessageBox.Show(tool_credits);
+            String toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
+            MessageBox.Show(toolCredits);
         }
 
         private void buttonCopy_Click(object sender, EventArgs e)
@@ -222,7 +259,7 @@ namespace ALTTPSRAMEditor
                     break;
             }
 
-            if (!savslot.IsEmpty())
+            if (!savslot.SaveIsValid())
             {
                 String playerName = savslot.GetPlayerName();
                 fileNameBox.Text = playerName;
@@ -259,6 +296,56 @@ namespace ALTTPSRAMEditor
             
             // Update the playerName textbox to emphasize the 6 character limit.
             updatePlayerName(slot);
+        }
+        
+        private void pictureBow_Click(object sender, EventArgs e)
+        {
+            groupBoxBowConfig.Visible = true;
+        }
+
+        private SaveSlot GetSaveSlot()
+        {
+            SaveSlot savslot;
+            if (radioFile2.Checked)
+            {
+                savslot = sdat.GetSaveSlot(2);
+            }
+            else if (radioFile3.Checked)
+            {
+                savslot = sdat.GetSaveSlot(3);
+            }
+            else
+                savslot = sdat.GetSaveSlot(1);
+            return savslot;
+        }
+
+        private void bowRadio(object sender, EventArgs e)
+        {
+
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                SaveSlot savslot = GetSaveSlot();
+                Link player = savslot.GetPlayer();
+                switch (btn.Name)
+                {
+                    case "bowOptionNone":
+                        player.SetHasItemEquipment(bow, 0x0); // Give No Bow
+                        break;
+                    case "bowOption1":
+                        player.SetHasItemEquipment(bow, 0x1); // Give Bow
+                        break;
+                    case "bowOption2":
+                        player.SetHasItemEquipment(bow, 0x2); // Give Bow & Arrows
+                        break;
+                    case "bowOption3":
+                        player.SetHasItemEquipment(bow, 0x3); // Give Silver Bow
+                        break;
+                    case "bowOption4":
+                        player.SetHasItemEquipment(bow, 0x4); // Give Bow & Silver Arrows
+                        break;
+                }
+            }
         }
     }
 }

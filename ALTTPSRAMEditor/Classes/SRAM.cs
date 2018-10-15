@@ -29,7 +29,7 @@ namespace ALTTPSRAMEditor
 
         public SRAM(byte[] data_in)
         {
-            data = data_in;
+            data = data_in.ToArray();
 
             copyData[0] = 0xFE; // If first byte is a 0xFE, we never copied anything.
             
@@ -100,18 +100,23 @@ namespace ALTTPSRAMEditor
 
         public byte[] MergeSaveData()
         {
+            savslot1.UpdatePlayer();
             savslot1.ValidateSave();
-            Array.Copy(savslot1.GetData(), 0, outsav, slot1, 0x500);
-            savslot2.ValidateSave();
-            Array.Copy(savslot2.GetData(), 0, outsav, slot2, 0x500);
-            savslot3.ValidateSave();
-            Array.Copy(savslot3.GetData(), 0, outsav, slot3, 0x500);
+            byte[] currData = savslot1.GetData();
+            Array.Copy(currData, 0, outsav, slot1, 0x500);
+            Array.Copy(currData, 0, outsav, slot1m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
-            // Write the actual save slots to the mirror slots, just in case
-            
-            Array.Copy(savslot1.GetData(), 0, outsav, slot1m, 0x500);
-            Array.Copy(savslot2.GetData(), 0, outsav, slot2m, 0x500);
-            Array.Copy(savslot3.GetData(), 0, outsav, slot3m, 0x500);
+            savslot2.UpdatePlayer();
+            savslot2.ValidateSave();
+            currData = savslot2.GetData();
+            Array.Copy(currData, 0, outsav, slot2, 0x500);
+            Array.Copy(currData, 0, outsav, slot2m, 0x500); // Write the actual save slots to the mirror slots, just in case
+
+            savslot3.UpdatePlayer();
+            savslot3.ValidateSave();
+            currData = savslot3.GetData();
+            Array.Copy(currData, 0, outsav, slot3, 0x500);
+            Array.Copy(currData, 0, outsav, slot3m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
             // Amend the garbage data from the original SRAM to avoid corruption
             Array.Copy(data, 0x1E00, outsav, 0x1E00, 0x200);
@@ -135,29 +140,29 @@ namespace ALTTPSRAMEditor
             {
                 default:
                 case 1:
-                    if (!savslot1.IsEmpty())
+                    if (savslot1.SaveIsValid())
                         slotData = savslot1.GetData();
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Save slot 1 is empty. Copying from Mirror Data instead.");
+                        System.Windows.Forms.MessageBox.Show("Save slot 1 is empty or corrupted. Copying from Mirror Data instead.");
                         slotData = savslot1m.GetData();
                     }
                     break;
                 case 2:
-                    if (!savslot2.IsEmpty())
+                    if (savslot2.SaveIsValid())
                         slotData = savslot2.GetData();
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Save slot 2 is empty. Copying from Mirror Data instead.");
+                        System.Windows.Forms.MessageBox.Show("Save slot 2 is empty or corrupted. Copying from Mirror Data instead.");
                         slotData = savslot2m.GetData();
                     }
                     break;
                 case 3:
-                    if (!savslot3.IsEmpty())
+                    if (savslot3.SaveIsValid())
                         slotData = savslot3.GetData();
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Save slot 3 is empty. Copying from Mirror Data instead.");
+                        System.Windows.Forms.MessageBox.Show("Save slot 3 is empty or corrupted. Copying from Mirror Data instead.");
                         slotData = savslot3m.GetData();
                     }
                     break;

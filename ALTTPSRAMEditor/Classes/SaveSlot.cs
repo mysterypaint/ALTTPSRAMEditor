@@ -11,10 +11,22 @@ namespace ALTTPSRAMEditor
         private byte[] data;
         private String playerName = "";
         private UInt16 total_checksum = 0;
+        private Link player;
 
         public SaveSlot(byte[] data_in)
         {
-            data = data_in;
+            byte[] itemsAndEquipment = new byte[0x23];
+
+            data = data_in.ToArray();
+
+            for (int i = 0x0; i < 0x20; i++)
+            {
+                itemsAndEquipment[i] = data[0x340 + i];
+            }
+
+            // Initialize a player object upon creating this save slot.
+            player = new Link(itemsAndEquipment);
+
             for (int i = 0x3D9; i <= 0x3E4; i+=2)
             {
                 char outChar = '0';
@@ -112,14 +124,20 @@ namespace ALTTPSRAMEditor
             
         }
 
+        public Link GetPlayer()
+        {
+            return player;
+        }
+
         public byte[] GetData()
         {
-            return data;
+            return data.ToArray();
         }
 
         public void ValidateSave()
         {
-            // This function sums up every 16-bit value in the save slot, except for the final one
+            // This function signs the edited save to be valid to the game.
+            // It sums up every 16-bit value in the save slot, except for the final one
             // And then it writes the calculated checksum to the final two bytes (in little-endian order)
             // Before it writes that value it calculates, it does this(roughly, not literally): UInt16 total = 0x5A5A - checksum
             UInt16 checksum = 0;
@@ -133,15 +151,29 @@ namespace ALTTPSRAMEditor
             data[0x4FF] = (byte) (total_checksum >> 8);
         }
 
-        public bool IsEmpty()
+        public bool SaveIsValid()
         {
-            return false;
-            for (int i = 0x1; i < 0x500; i++)
+            // Tests if a loaded save is valid or not.
+            
+            if ((data[0x3E5] != 0xAA) || (data[0x3E6] != 0x55))
+                return false;
+
+            UInt16 checksum = 0;
+            for (int i = 0x0; i < 0x500; i += 2)
             {
-                if (data[i] != 0x0)
-                    return false;
+                UInt16 word = (UInt16)((data[i + 1] << 8) | data[i]);
+                checksum += word;
             }
-            return true;
+            return checksum == 0x5A5A; // The save is valid if the checksum total is exactly 0x5A5A
+        }
+
+        public void UpdatePlayer()
+        {
+            // Take player's equipment and update the local data
+            for (int i = 0x0; i < 0x20; i++)
+            {
+                data[0x340 + i] = (byte) player.GetItemEquipment(i);
+            }
         }
 
         public String GetPlayerName()
@@ -156,16 +188,12 @@ namespace ALTTPSRAMEditor
 
         public void SetData(byte[] in_data)
         {
-            data = in_data;
+            data = in_data.ToArray();
         }
 
         public void ClearData()
         {
             Array.Clear(data, 0, data.Length);
         }
-    }
-
-    internal class UInt8
-    {
     }
 }
