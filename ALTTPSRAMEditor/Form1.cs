@@ -52,6 +52,7 @@ namespace ALTTPSRAMEditor
         const int bottle4Contents = 0x1F;
         const int wallet = 0x20; // 2 bytes
         const int rupees = 0x22; // 2 bytes
+        static int pos = 0;
 
         static SRAM sdat;
         static String fname = "";
@@ -61,7 +62,7 @@ namespace ALTTPSRAMEditor
             InitializeComponent();
         }
 
-        private void opensrmToolStripMenuItem_Click(object sender, EventArgs e)
+            private void opensrmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenSRM();
         }
@@ -169,6 +170,10 @@ namespace ALTTPSRAMEditor
                         break;
                     case "S": // CTRL+S: Save file
                         SaveSRM();
+                        break;
+                    case "Q": // CTRL+Q: Quit program
+                        // Terminate the program if we select "Exit" in the Menu Bar
+                        System.Windows.Forms.Application.Exit();
                         break;
                     default:
                         break;
@@ -344,6 +349,100 @@ namespace ALTTPSRAMEditor
                 updatePlayerName(savslot);
                 numericUpDownRupeeCounter.Value = player.GetRupeeValue();
             }
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            DrawImageRect(e);
+        }
+
+        public void DrawImageRect(PaintEventArgs e)
+        {
+            // Create image
+            Image e_fnt = ALTTPSRAMEditor.Properties.Resources.en_font;
+
+            Dictionary<char, int> enChar = new Dictionary<char, int>();
+            enChar.Add(' ', 0);
+            enChar.Add('A', 1);
+            enChar.Add('B', 2);
+            enChar.Add('C', 3);
+            enChar.Add('D', 4);
+            enChar.Add('E', 5);
+            enChar.Add('F', 6);
+            enChar.Add('G', 7);
+            enChar.Add('H', 8);
+            enChar.Add('I', 9);
+            enChar.Add('J', 10);
+            enChar.Add('K', 11);
+            enChar.Add('L', 12);
+            enChar.Add('M', 13);
+            enChar.Add('N', 14);
+            enChar.Add('O', 15);
+            enChar.Add('P', 16);
+            enChar.Add('Q', 17);
+            enChar.Add('R', 18);
+            enChar.Add('S', 19);
+            enChar.Add('T', 20);
+            enChar.Add('U', 21);
+            enChar.Add('V', 22);
+            enChar.Add('W', 23);
+            enChar.Add('X', 24);
+            enChar.Add('Y', 25);
+            enChar.Add('Z', 26);
+            enChar.Add('a', 28);
+            enChar.Add('b', 29);
+            enChar.Add('c', 30);
+            enChar.Add('d', 31);
+            enChar.Add('e', 32);
+            enChar.Add('f', 33);
+            enChar.Add('g', 34);
+            enChar.Add('h', 35);
+            enChar.Add('i', 36);
+            enChar.Add('j', 37);
+            enChar.Add('k', 38);
+            enChar.Add('l', 39);
+            enChar.Add('m', 40);
+            enChar.Add('n', 41);
+            enChar.Add('o', 42);
+            enChar.Add('p', 43);
+            enChar.Add('q', 44);
+            enChar.Add('r', 45);
+            enChar.Add('s', 46);
+            enChar.Add('t', 47);
+            enChar.Add('u', 48);
+            enChar.Add('v', 49);
+            enChar.Add('w', 50);
+            enChar.Add('x', 51);
+            enChar.Add('y', 52);
+            enChar.Add('z', 53);
+
+            String playerName = "CUtIePiE";
+
+            foreach (char c in playerName)
+            {
+                DrawTile(e_fnt, enChar[c], e, pos);
+                pos += 8;
+            }
+        }
+
+        public static void DrawTile(Image source, int tileID, PaintEventArgs e, int pos)
+        {
+            int tileset_width = 27;
+            int tile_w = 8;
+            int tile_h = 16;
+            int x = (tileID % tileset_width) * tile_w;
+            int y = (tileID / tileset_width) * tile_h;
+            int width = 8;
+            int height = 16;
+
+            Rectangle crop = new Rectangle(x, y, width, height);
+
+            var bmp = new Bitmap(crop.Width, crop.Height);
+            using (var gr = Graphics.FromImage(bmp))
+            {
+                gr.DrawImage(source, new Rectangle(0, 0, bmp.Width, bmp.Height), crop, GraphicsUnit.Pixel);
+            }
+            e.Graphics.DrawImage(bmp, 300 + pos, 100);
         }
     }
 }

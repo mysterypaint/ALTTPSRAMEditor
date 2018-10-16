@@ -263,6 +263,16 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap en_font {
+            get {
+                object obj = ResourceManager.GetObject("en_font", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ether {
             get {
                 object obj = ResourceManager.GetObject("Ether", resourceCulture);
@@ -366,6 +376,16 @@ namespace ALTTPSRAMEditor.Properties {
         internal static System.Drawing.Bitmap Ice_Rod {
             get {
                 object obj = ResourceManager.GetObject("Ice Rod", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jpn_font {
+            get {
+                object obj = ResourceManager.GetObject("jpn_font", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

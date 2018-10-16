@@ -269,5 +269,11 @@
   <ItemGroup>
     <None Include="Resources\Zora%27s Flippers.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_font2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jpn_font2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
