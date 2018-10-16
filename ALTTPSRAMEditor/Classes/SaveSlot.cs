@@ -12,13 +12,25 @@ namespace ALTTPSRAMEditor
         private String playerName = "";
         private UInt16 total_checksum = 0;
         private Link player;
+        Form1.SaveRegion saveRegion;
 
         public SaveSlot(byte[] data_in)
         {
-            byte[] itemsAndEquipment = new byte[0x24];
-
+            // Import this save slot's data from the larger global save data
             data = data_in.ToArray();
 
+            // Determine which region this save comes from
+            if (data[0x3E5] == 0xAA && data[0x3E6] == 0x55)
+                saveRegion = Form1.SaveRegion.USA;
+            else if (data[0x3E1] == 0xAA && data[0x3E2] == 0x55)
+                saveRegion = Form1.SaveRegion.JPN;
+            else
+                saveRegion = Form1.SaveRegion.EUR;
+
+            // Copy global save data's Item&Equipment data to this Save Slot
+
+            byte[] itemsAndEquipment = new byte[0x24];
+            
             for (int i = 0x0; i < 0x24; i++)
             {
                 itemsAndEquipment[i] = data[0x340 + i];
@@ -26,107 +38,88 @@ namespace ALTTPSRAMEditor
 
             // Initialize a player object upon creating this save slot.
             player = new Link(itemsAndEquipment);
+            
+            getRawPlayerName();
+        }
 
-            for (int i = 0x3D9; i <= 0x3E4; i+=2)
+        private void getRawPlayerName()
+        {
+            if (!SaveIsValid())
+                return;
+            UInt16[] pNameRaw;
+            int j = 0;
+
+            switch (saveRegion)
             {
-                char outChar = '0';
-                switch (data[i])
+                default:
+                case Form1.SaveRegion.EUR:
+                case Form1.SaveRegion.USA:
+                    pNameRaw = new UInt16[6];
+                    for (int i = 0x3D9; i <= 0x3E4; i += 2)
+                    {
+                        pNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
+                        j++;
+                    }
+                    break;
+                case Form1.SaveRegion.JPN:
+                    pNameRaw = new UInt16[4];
+                    for (int i = 0x3D9; i < 0x3E1; i += 2)
+                    {
+                        Console.WriteLine(i + ": " + (UInt16)((data[i + 1] << 8) | data[i]));
+                        pNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
+                        j++;
+                    }
+                    break;
+            }
+            convertPlayerName(pNameRaw);
+        }
+
+        private void convertPlayerName(UInt16[] pNameRaw)
+        {
+            int j = 1; // Char counter
+            foreach (UInt16 i in pNameRaw)
+            {
+                switch (saveRegion)
                 {
-                    default:
-                    case 0x0:
-                        outChar = 'A';
+                    case Form1.SaveRegion.EUR:
+                    case Form1.SaveRegion.USA:
+                        if (j > 6)
+                            break;
+                        try
+                        {
+                            playerName += Form1.rawENChar[i];
+                        }
+                        catch (KeyNotFoundException)
+                        {
+
+                        }
                         break;
-                    case 0x1:
-                        outChar = 'B';
-                        break;
-                    case 0x2:
-                        outChar = 'C';
-                        break;
-                    case 0x3:
-                        outChar = 'D';
-                        break;
-                    case 0x4:
-                        outChar = 'E';
-                        break;
-                    case 0x5:
-                        outChar = 'F';
-                        break;
-                    case 0x6:
-                        outChar = 'G';
-                        break;
-                    case 0x7:
-                        outChar = 'H';
-                        break;
-                    case 0x8:
-                        outChar = 'I';
-                        break;
-                    case 0x9:
-                        outChar = 'J';
-                        break;
-                    case 0xA:
-                        outChar = 'K';
-                        break;
-                    case 0xB:
-                        outChar = 'L';
-                        break;
-                    case 0xC:
-                        outChar = 'M';
-                        break;
-                    case 0xD:
-                        outChar = 'N';
-                        break;
-                    case 0xE:
-                        outChar = 'O';
-                        break;
-                    case 0xF:
-                        outChar = 'P';
-                        break;
-                    case 0x10:
-                        outChar = '?';
-                        break;
-                    case 0x20:
-                        outChar = 'Q';
-                        break;
-                    case 0x21:
-                        outChar = 'R';
-                        break;
-                    case 0x22:
-                        outChar = 'S';
-                        break;
-                    case 0x23:
-                        outChar = 'T';
-                        break;
-                    case 0x24:
-                        outChar = 'U';
-                        break;
-                    case 0x25:
-                        outChar = 'V';
-                        break;
-                    case 0x26:
-                        outChar = 'W';
-                        break;
-                    case 0x27:
-                        outChar = 'X';
-                        break;
-                    case 0x28:
-                        outChar = 'Y';
-                        break;
-                    case 0x29:
-                        outChar = 'Z';
-                        break;
-                    case 0xA9:
-                    case 0xA7:
-                        outChar = ' ';
+                    case Form1.SaveRegion.JPN:
+                        if (j > 4)
+                            break;
+                        Console.WriteLine(j);
+                        try
+                        {
+                            playerName += Form1.rawJPChar[i];
+                        }
+                        catch (KeyNotFoundException)
+                        {
+
+                        }
                         break;
                 }
-                playerName += outChar;
+                j++;
             }
-            
         }
 
         public Link GetPlayer()
         {
             return player;
+        }
+
+        public Form1.SaveRegion GetRegion()
+        {
+            return saveRegion;
         }
 
         public byte[] GetData()
@@ -154,9 +147,18 @@ namespace ALTTPSRAMEditor
         public bool SaveIsValid()
         {
             // Tests if a loaded save is valid or not.
-            
-            if ((data[0x3E5] != 0xAA) || (data[0x3E6] != 0x55))
-                return false;
+            switch(saveRegion)
+            {
+                case Form1.SaveRegion.EUR:
+                case Form1.SaveRegion.USA:
+                    if ((data[0x3E5] != 0xAA) || (data[0x3E6] != 0x55))
+                        return false;
+                    break;
+                case Form1.SaveRegion.JPN:
+                    if ((data[0x3E1] != 0xAA) || (data[0x3E2] != 0x55))
+                        return false;
+                    break;
+            }
 
             UInt16 checksum = 0;
             for (int i = 0x0; i < 0x500; i += 2)

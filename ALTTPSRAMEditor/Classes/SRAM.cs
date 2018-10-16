@@ -27,6 +27,7 @@ namespace ALTTPSRAMEditor
          * (e.g. For the second save file, the information will be saved to $70:0500 to $70:09FF, and mirrored at $70:1400 to $70:18FF.)
          */
 
+
         public SRAM(byte[] data_in)
         {
             data = data_in.ToArray();

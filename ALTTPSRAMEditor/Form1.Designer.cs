@@ -43,7 +43,6 @@
             this.radioFile2 = new System.Windows.Forms.RadioButton();
             this.radioFile1 = new System.Windows.Forms.RadioButton();
             this.helperText = new System.Windows.Forms.Label();
-            this.fileNameBox = new System.Windows.Forms.TextBox();
             this.labelFilename = new System.Windows.Forms.Label();
             this.listBoxDungeonSelector = new System.Windows.Forms.ListBox();
             this.textBoxDeathsQuest = new System.Windows.Forms.TextBox();
@@ -58,13 +57,6 @@
             this.labelRupees = new System.Windows.Forms.Label();
             this.numericUpDownRupeeCounter = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanelInventory = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBoxBowConfig = new System.Windows.Forms.GroupBox();
-            this.bowOptionNone = new System.Windows.Forms.RadioButton();
-            this.bowOption4 = new System.Windows.Forms.RadioButton();
-            this.bowOption3 = new System.Windows.Forms.RadioButton();
-            this.bowOption2 = new System.Windows.Forms.RadioButton();
-            this.bowOption1 = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
@@ -92,11 +84,18 @@
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.groupBoxBowConfig = new System.Windows.Forms.GroupBox();
+            this.bowOptionNone = new System.Windows.Forms.RadioButton();
+            this.bowOption4 = new System.Windows.Forms.RadioButton();
+            this.bowOption3 = new System.Windows.Forms.RadioButton();
+            this.bowOption2 = new System.Windows.Forms.RadioButton();
+            this.bowOption1 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonChangeName = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).BeginInit();
             this.tableLayoutPanelInventory.SuspendLayout();
-            this.groupBoxBowConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
@@ -124,6 +123,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            this.groupBoxBowConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -164,7 +164,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.exitToolStripMenuItem.Text = "Exit (Ctrl+Q)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
@@ -279,15 +279,6 @@
             this.helperText.Size = new System.Drawing.Size(254, 13);
             this.helperText.TabIndex = 5;
             this.helperText.Text = "A Link to the Past SRAM Editor v1.0 by mysterypaint";
-            // 
-            // fileNameBox
-            // 
-            this.fileNameBox.Enabled = false;
-            this.fileNameBox.Location = new System.Drawing.Point(218, 49);
-            this.fileNameBox.Name = "fileNameBox";
-            this.fileNameBox.Size = new System.Drawing.Size(100, 20);
-            this.fileNameBox.TabIndex = 6;
-            this.fileNameBox.Visible = false;
             // 
             // labelFilename
             // 
@@ -404,7 +395,7 @@
             // labelRupees
             // 
             this.labelRupees.AutoSize = true;
-            this.labelRupees.Location = new System.Drawing.Point(274, 80);
+            this.labelRupees.Location = new System.Drawing.Point(278, 103);
             this.labelRupees.Name = "labelRupees";
             this.labelRupees.Size = new System.Drawing.Size(44, 13);
             this.labelRupees.TabIndex = 22;
@@ -413,7 +404,7 @@
             // 
             // numericUpDownRupeeCounter
             // 
-            this.numericUpDownRupeeCounter.Location = new System.Drawing.Point(218, 78);
+            this.numericUpDownRupeeCounter.Location = new System.Drawing.Point(221, 99);
             this.numericUpDownRupeeCounter.Maximum = new decimal(new int[] {
             999,
             0,
@@ -474,90 +465,6 @@
             this.tableLayoutPanelInventory.Size = new System.Drawing.Size(163, 164);
             this.tableLayoutPanelInventory.TabIndex = 0;
             this.tableLayoutPanelInventory.Visible = false;
-            // 
-            // groupBoxBowConfig
-            // 
-            this.groupBoxBowConfig.Controls.Add(this.bowOptionNone);
-            this.groupBoxBowConfig.Controls.Add(this.bowOption4);
-            this.groupBoxBowConfig.Controls.Add(this.bowOption3);
-            this.groupBoxBowConfig.Controls.Add(this.bowOption2);
-            this.groupBoxBowConfig.Controls.Add(this.bowOption1);
-            this.groupBoxBowConfig.Location = new System.Drawing.Point(500, 46);
-            this.groupBoxBowConfig.Name = "groupBoxBowConfig";
-            this.groupBoxBowConfig.Size = new System.Drawing.Size(200, 144);
-            this.groupBoxBowConfig.TabIndex = 24;
-            this.groupBoxBowConfig.TabStop = false;
-            this.groupBoxBowConfig.Text = "Bow and Arrows";
-            this.groupBoxBowConfig.Visible = false;
-            // 
-            // bowOptionNone
-            // 
-            this.bowOptionNone.AutoSize = true;
-            this.bowOptionNone.Location = new System.Drawing.Point(7, 19);
-            this.bowOptionNone.Name = "bowOptionNone";
-            this.bowOptionNone.Size = new System.Drawing.Size(63, 17);
-            this.bowOptionNone.TabIndex = 4;
-            this.bowOptionNone.TabStop = true;
-            this.bowOptionNone.Text = "No Bow";
-            this.bowOptionNone.UseVisualStyleBackColor = true;
-            this.bowOptionNone.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // bowOption4
-            // 
-            this.bowOption4.AutoSize = true;
-            this.bowOption4.Location = new System.Drawing.Point(7, 111);
-            this.bowOption4.Name = "bowOption4";
-            this.bowOption4.Size = new System.Drawing.Size(119, 17);
-            this.bowOption4.TabIndex = 3;
-            this.bowOption4.TabStop = true;
-            this.bowOption4.Text = "Bow && Silver Arrows";
-            this.bowOption4.UseVisualStyleBackColor = true;
-            this.bowOption4.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // bowOption3
-            // 
-            this.bowOption3.AutoSize = true;
-            this.bowOption3.Location = new System.Drawing.Point(7, 88);
-            this.bowOption3.Name = "bowOption3";
-            this.bowOption3.Size = new System.Drawing.Size(105, 17);
-            this.bowOption3.TabIndex = 2;
-            this.bowOption3.TabStop = true;
-            this.bowOption3.Text = "Silver Arrow Bow";
-            this.bowOption3.UseVisualStyleBackColor = true;
-            this.bowOption3.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // bowOption2
-            // 
-            this.bowOption2.AutoSize = true;
-            this.bowOption2.Location = new System.Drawing.Point(7, 65);
-            this.bowOption2.Name = "bowOption2";
-            this.bowOption2.Size = new System.Drawing.Size(90, 17);
-            this.bowOption2.TabIndex = 1;
-            this.bowOption2.TabStop = true;
-            this.bowOption2.Text = "Bow && Arrows";
-            this.bowOption2.UseVisualStyleBackColor = true;
-            this.bowOption2.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // bowOption1
-            // 
-            this.bowOption1.AutoSize = true;
-            this.bowOption1.Location = new System.Drawing.Point(7, 42);
-            this.bowOption1.Name = "bowOption1";
-            this.bowOption1.Size = new System.Drawing.Size(46, 17);
-            this.bowOption1.TabIndex = 0;
-            this.bowOption1.TabStop = true;
-            this.bowOption1.Text = "Bow";
-            this.bowOption1.UseVisualStyleBackColor = true;
-            this.bowOption1.CheckedChanged += new System.EventHandler(this.bowRadio);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(500, 208);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
-            this.groupBox1.TabIndex = 25;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // pictureBox23
             // 
@@ -857,12 +764,109 @@
             this.pictureBox25.TabIndex = 28;
             this.pictureBox25.TabStop = false;
             // 
+            // groupBoxBowConfig
+            // 
+            this.groupBoxBowConfig.Controls.Add(this.bowOptionNone);
+            this.groupBoxBowConfig.Controls.Add(this.bowOption4);
+            this.groupBoxBowConfig.Controls.Add(this.bowOption3);
+            this.groupBoxBowConfig.Controls.Add(this.bowOption2);
+            this.groupBoxBowConfig.Controls.Add(this.bowOption1);
+            this.groupBoxBowConfig.Location = new System.Drawing.Point(500, 46);
+            this.groupBoxBowConfig.Name = "groupBoxBowConfig";
+            this.groupBoxBowConfig.Size = new System.Drawing.Size(200, 144);
+            this.groupBoxBowConfig.TabIndex = 24;
+            this.groupBoxBowConfig.TabStop = false;
+            this.groupBoxBowConfig.Text = "Bow and Arrows";
+            this.groupBoxBowConfig.Visible = false;
+            // 
+            // bowOptionNone
+            // 
+            this.bowOptionNone.AutoSize = true;
+            this.bowOptionNone.Location = new System.Drawing.Point(7, 19);
+            this.bowOptionNone.Name = "bowOptionNone";
+            this.bowOptionNone.Size = new System.Drawing.Size(63, 17);
+            this.bowOptionNone.TabIndex = 4;
+            this.bowOptionNone.TabStop = true;
+            this.bowOptionNone.Text = "No Bow";
+            this.bowOptionNone.UseVisualStyleBackColor = true;
+            this.bowOptionNone.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // bowOption4
+            // 
+            this.bowOption4.AutoSize = true;
+            this.bowOption4.Location = new System.Drawing.Point(7, 111);
+            this.bowOption4.Name = "bowOption4";
+            this.bowOption4.Size = new System.Drawing.Size(119, 17);
+            this.bowOption4.TabIndex = 3;
+            this.bowOption4.TabStop = true;
+            this.bowOption4.Text = "Bow && Silver Arrows";
+            this.bowOption4.UseVisualStyleBackColor = true;
+            this.bowOption4.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // bowOption3
+            // 
+            this.bowOption3.AutoSize = true;
+            this.bowOption3.Location = new System.Drawing.Point(7, 88);
+            this.bowOption3.Name = "bowOption3";
+            this.bowOption3.Size = new System.Drawing.Size(105, 17);
+            this.bowOption3.TabIndex = 2;
+            this.bowOption3.TabStop = true;
+            this.bowOption3.Text = "Silver Arrow Bow";
+            this.bowOption3.UseVisualStyleBackColor = true;
+            this.bowOption3.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // bowOption2
+            // 
+            this.bowOption2.AutoSize = true;
+            this.bowOption2.Location = new System.Drawing.Point(7, 65);
+            this.bowOption2.Name = "bowOption2";
+            this.bowOption2.Size = new System.Drawing.Size(90, 17);
+            this.bowOption2.TabIndex = 1;
+            this.bowOption2.TabStop = true;
+            this.bowOption2.Text = "Bow && Arrows";
+            this.bowOption2.UseVisualStyleBackColor = true;
+            this.bowOption2.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // bowOption1
+            // 
+            this.bowOption1.AutoSize = true;
+            this.bowOption1.Location = new System.Drawing.Point(7, 42);
+            this.bowOption1.Name = "bowOption1";
+            this.bowOption1.Size = new System.Drawing.Size(46, 17);
+            this.bowOption1.TabIndex = 0;
+            this.bowOption1.TabStop = true;
+            this.bowOption1.Text = "Bow";
+            this.bowOption1.UseVisualStyleBackColor = true;
+            this.bowOption1.CheckedChanged += new System.EventHandler(this.bowRadio);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(500, 208);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // buttonChangeName
+            // 
+            this.buttonChangeName.Enabled = false;
+            this.buttonChangeName.Location = new System.Drawing.Point(221, 71);
+            this.buttonChangeName.Name = "buttonChangeName";
+            this.buttonChangeName.Size = new System.Drawing.Size(101, 23);
+            this.buttonChangeName.TabIndex = 26;
+            this.buttonChangeName.Text = "Change Name";
+            this.buttonChangeName.UseVisualStyleBackColor = true;
+            this.buttonChangeName.Visible = false;
+            this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(949, 465);
+            this.Controls.Add(this.buttonChangeName);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tableLayoutPanelInventory);
             this.Controls.Add(this.numericUpDownRupeeCounter);
@@ -878,7 +882,6 @@
             this.Controls.Add(this.textBoxDeathsQuest);
             this.Controls.Add(this.listBoxDungeonSelector);
             this.Controls.Add(this.labelFilename);
-            this.Controls.Add(this.fileNameBox);
             this.Controls.Add(this.helperText);
             this.Controls.Add(this.groupFileSelect);
             this.Controls.Add(this.menuStrip1);
@@ -890,7 +893,6 @@
             this.Name = "Form1";
             this.Text = "A Link to the Past SRAM Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -898,8 +900,6 @@
             this.groupFileSelect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).EndInit();
             this.tableLayoutPanelInventory.ResumeLayout(false);
-            this.groupBoxBowConfig.ResumeLayout(false);
-            this.groupBoxBowConfig.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
@@ -927,6 +927,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            this.groupBoxBowConfig.ResumeLayout(false);
+            this.groupBoxBowConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -949,7 +951,6 @@
         private System.Windows.Forms.Button buttonWrite;
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.Label helperText;
-        private System.Windows.Forms.TextBox fileNameBox;
         private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.ListBox listBoxDungeonSelector;
         private System.Windows.Forms.TextBox textBoxDeathsQuest;
@@ -998,6 +999,7 @@
         private System.Windows.Forms.RadioButton bowOption3;
         private System.Windows.Forms.RadioButton bowOptionNone;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button buttonChangeName;
     }
 }
 
