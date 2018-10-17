@@ -56,7 +56,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Inventory.cs" />
     <Compile Include="Classes\Link.cs" />
     <Compile Include="NameChangingForm.cs">
       <SubType>Form</SubType>
@@ -286,6 +285,108 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\jpn_font2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Big Key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Bombos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Book of Mudora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Boomerang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Bottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Bow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Bug-Catching Net.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Cane of Byrna.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Cane of Somaria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Compass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Dungeon Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Ether.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Fighter%27s Shield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Fighter%27s Sword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Fire Rod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Hookshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Ice Rod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Lamp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Magic Cape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Magic Hammer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Magic Mirror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Moon Pearl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Mushroom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Pegasus Boots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Power Glove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Quake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Shovel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D Zora%27s Flippers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeartContainerFull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeartContainerPartial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lttp_magic_bar_halved.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lttp_magic_bar_quarter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lttp_magic_bar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

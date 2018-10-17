@@ -392,7 +392,7 @@ namespace ALTTPSRAMEditor
             rawJPChar.Add(0xF, 'ん'); // n
 
             rawJPChar.Add(0x189, 'ー');
-            
+
             rawJPChar.Add(0x25, 'が'); // ga
             rawJPChar.Add(0x26, 'ぎ'); // gi
             rawJPChar.Add(0x27, 'ぐ'); // gu

@@ -17,6 +17,9 @@ namespace ALTTPSRAMEditor
         const int srm_randomizer_size = 16 * 1024;
         const int srm_randomizer_size_2 = 32 * 1024;
 
+        // Various events
+        const int birdStatueKakariko = 0x298; // Freed from Statue if set to 0x20 (Maybe?)
+
         // Items and Equipment (All these values are relative, just subtract 0x340 from their actual SRAM values
         const int bow = 0x0;
         const int boomerang = 0x1;
@@ -57,26 +60,44 @@ namespace ALTTPSRAMEditor
         const int arrowCount = 0x37;
         const int bombUpgrades = 0x30;
         const int arrowUpgrades = 0x31;
+        const int magicPower = 0x2E;
+        const int magicUpgrades = 0x3B;
+        const int maxHearts = 0x2C;
+        const int currHearts = 0x2D;
 
         static int[] bottleContents = new int[9];
         static System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
 
         public enum SaveRegion : int
         {
-            USA, JPN, EUR
+            USA,
+            JPN,
+            EUR
         };
 
         public enum BottleContents : int
         {
-            NONE, MUSHROOM, EMPTY, RED_POTION, GREEN_POTION, BLUE_POTION, FAERIE, BEE, GOOD_BEE
+            NONE,
+            MUSHROOM,
+            EMPTY,
+            RED_POTION,
+            GREEN_POTION,
+            BLUE_POTION,
+            FAERIE,
+            BEE,
+            GOOD_BEE
         };
 
         static int pos = 0;
-        static int saveRegion = (int) SaveRegion.USA;
+        static int saveRegion = (int)SaveRegion.USA;
         static SRAM sdat;
         static String fname = "";
         static String displayPlayerName = "";
 
+        // Initialize some assets
+        Image imgHeartContainerFull = ALTTPSRAMEditor.Properties.Resources.HeartContainerFull;
+        Image imgHeartContainerPartial = ALTTPSRAMEditor.Properties.Resources.HeartContainerPartial;
+        
         // Initialize the font data
         Image en_fnt = ALTTPSRAMEditor.Properties.Resources.en_font;
         Image jpn_fnt = ALTTPSRAMEditor.Properties.Resources.jpn_font;
@@ -125,11 +146,17 @@ namespace ALTTPSRAMEditor
                         radioFile3.Enabled = true;
                         buttonCopy.Enabled = true;
                         buttonErase.Enabled = true;
-                        SaveSlot savslot = sdat.GetSaveSlot(1);
                         buttonChangeName.Visible = true;
                         buttonChangeName.Enabled = true;
+                        pictureBoxMagicBar.Visible = true;
+                        numericUpDownHeartContainers.Visible = true;
+                        labelHeartContainers.Visible = true;
+                        numericUpDownMagic.Visible = true;
+                        labelMagic.Visible = true;
+                        labelMagic.Enabled = false;
 
-                        // Determine the overall region of the .srm
+                        // Determine the overall region of the .srm and initialize the save slots
+                        SaveSlot savslot = sdat.GetSaveSlot(1);
                         SaveSlot savslot2 = sdat.GetSaveSlot(2);
                         SaveSlot savslot3 = sdat.GetSaveSlot(3);
                         if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
@@ -145,9 +172,21 @@ namespace ALTTPSRAMEditor
                         else
                             saveRegion = (int)SaveRegion.EUR;
 
-                        updatePlayerName(savslot);
-                        Link player = savslot.GetPlayer();
-                        UpdateAllConfigurables(savslot);
+                        // Determine which save slot we have opened
+                        SaveSlot thisSlot;
+                        if (radioFile1.Checked)
+                        {
+                            thisSlot = savslot;
+                        }
+                        else if (radioFile2.Checked)
+                        {
+                            thisSlot = savslot2;
+                        }
+                        else
+                            thisSlot = savslot3;
+                        updatePlayerName(thisSlot);
+                        Link player = thisSlot.GetPlayer();
+                        UpdateAllConfigurables(thisSlot);
                         Refresh(); // Update the screen, including the player name
                     }
                     else
@@ -192,17 +231,17 @@ namespace ALTTPSRAMEditor
         private void Form1_Load(object sender, EventArgs e)
         {
             // Define bottle array
-            bottleContents[0] = (int) BottleContents.NONE;
-            bottleContents[1] = (int) BottleContents.EMPTY;
-            bottleContents[2] = (int) BottleContents.RED_POTION;
-            bottleContents[3] = (int) BottleContents.GREEN_POTION;
-            bottleContents[4] = (int) BottleContents.BLUE_POTION;
-            bottleContents[5] = (int) BottleContents.FAERIE;
-            bottleContents[6] = (int) BottleContents.BEE;
-            bottleContents[7] = (int) BottleContents.GOOD_BEE;
-            bottleContents[8] = (int) BottleContents.MUSHROOM;
+            bottleContents[0] = (int)BottleContents.NONE;
+            bottleContents[1] = (int)BottleContents.EMPTY;
+            bottleContents[2] = (int)BottleContents.RED_POTION;
+            bottleContents[3] = (int)BottleContents.GREEN_POTION;
+            bottleContents[4] = (int)BottleContents.BLUE_POTION;
+            bottleContents[5] = (int)BottleContents.FAERIE;
+            bottleContents[6] = (int)BottleContents.BEE;
+            bottleContents[7] = (int)BottleContents.GOOD_BEE;
+            bottleContents[8] = (int)BottleContents.MUSHROOM;
 
-            bottleContentsImg[bottleContents[0]] = ALTTPSRAMEditor.Properties.Resources.Bottle;
+            bottleContentsImg[bottleContents[0]] = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
             bottleContentsImg[bottleContents[1]] = ALTTPSRAMEditor.Properties.Resources.Bottle;
             bottleContentsImg[bottleContents[2]] = ALTTPSRAMEditor.Properties.Resources.Red_Potion;
             bottleContentsImg[bottleContents[3]] = ALTTPSRAMEditor.Properties.Resources.Green_Potion;
@@ -316,7 +355,7 @@ namespace ALTTPSRAMEditor
             buttonWrite.Enabled = false;
             // Determine which file we're editing, and then load its data.
             SaveSlot savslot;
-            
+
             if (radioFile2.Checked)
             {
                 savslot = sdat.GetSaveSlot(2);
@@ -335,13 +374,36 @@ namespace ALTTPSRAMEditor
             Link player = savslot.GetPlayer();
             displayPlayerName = savslot.GetPlayerName();
             numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+            numericUpDownHeartContainers.Value = player.GetHeartContainers();
+            numericUpDownMagic.Value = player.GetCurrMagic();
+            if (player.GetCurrMagicUpgrade() >= 0x2)
+                textQuarterMagic.Visible = true;
+            else
+                textQuarterMagic.Visible = false;
 
+            // Magic Bar Upgrades
+            
+            switch (player.GetItemEquipment(magicUpgrades))
+            {
+                default:
+                case 0x0:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar;
+                    break;
+                case 0x1:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_halved;
+                    break;
+                case 0x2:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_quarter;
+                    break;
+            }
+
+            // Bow and Arrows
             switch (player.GetItemEquipment(bow))
             {
                 default:
                 case 0x0:
                     bowOptionNone.Checked = true;
-                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow;
+                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.D_Bow;
                     break;
                 case 0x1:
                     bowOption1.Checked = true;
@@ -363,12 +425,18 @@ namespace ALTTPSRAMEditor
 
             numericUpDownArrowsHeld.Value = player.GetItemEquipment(arrowCount);
             numericUpDownBombsHeld.Value = player.GetItemEquipment(bombCount);
+            if (numericUpDownBombsHeld.Value <= 0)
+                pictureBombs.Image = ALTTPSRAMEditor.Properties.Resources.D_Bomb;
+            else
+                pictureBombs.Image = ALTTPSRAMEditor.Properties.Resources.Bomb;
+
+            // Boomerang
             switch (player.GetItemEquipment(boomerang))
             {
                 default:
                 case 0x0:
                     radioButtonNoBoomerang.Checked = true;
-                    pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Boomerang;
+                    pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
                     break;
                 case 0x1:
                     radioButtonBlueBoomerang.Checked = true;
@@ -380,25 +448,154 @@ namespace ALTTPSRAMEditor
                     break;
             }
 
-            switch (player.GetItemEquipment(hookshot))
+            // Shovel and Flute
+            switch (player.GetItemEquipment(shovelFlute))
             {
                 default:
                 case 0x0:
-                    radioButtonNoHookshot.Checked = true;
-                    pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+                    radioButtonNoShovelOrFlute.Checked = true;
+                    pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.D_Shovel;
                     break;
                 case 0x1:
-                    radioButtonHasHookshot.Checked = true;
-                    pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+                    radioButtonShovel.Checked = true;
+                    pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.Shovel;
+                    break;
+                case 0x2:
+                    radioButtonFlute.Checked = true;
+                    pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.Flute;
+                    break;
+                case 0x3:
+                    radioButtonFluteAndBird.Checked = true;
+                    pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.Flute;
                     break;
             }
+
+            // Glove Upgrades
+            switch (player.GetItemEquipment(gloves))
+            {
+                default:
+                case 0x0:
+                    radioButtonNoGloves.Checked = true;
+                    picturePowerGlove.Image = ALTTPSRAMEditor.Properties.Resources.D_Power_Glove;
+                    break;
+                case 0x1:
+                    radioButtonPowerGloves.Checked = true;
+                    picturePowerGlove.Image = ALTTPSRAMEditor.Properties.Resources.Power_Glove;
+                    break;
+                case 0x2:
+                    radioButtonTitansMitts.Checked = true;
+                    picturePowerGlove.Image = ALTTPSRAMEditor.Properties.Resources.Titan_s_Mitt;
+                    break;
+            }
+
+            // Hookshot
+            if (player.GetItemEquipment(hookshot) == 0x1)
+                pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+            else
+                pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.D_Hookshot;
+
+            // Fire Rod
+            if (player.GetItemEquipment(fireRod) == 0x1)
+                pictureFireRod.Image = ALTTPSRAMEditor.Properties.Resources.Fire_Rod;
+            else
+                pictureFireRod.Image = ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod;
+
+            // Ice Rod
+            if (player.GetItemEquipment(iceRod) == 0x1)
+                pictureIceRod.Image = ALTTPSRAMEditor.Properties.Resources.Ice_Rod;
+            else
+                pictureIceRod.Image = ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod;
+
+            // Bombos
+            if (player.GetItemEquipment(bombosMedallion) == 0x1)
+                pictureBombos.Image = ALTTPSRAMEditor.Properties.Resources.Bombos;
+            else
+                pictureBombos.Image = ALTTPSRAMEditor.Properties.Resources.D_Bombos;
+
+            // Ether
+            if (player.GetItemEquipment(etherMedallion) == 0x1)
+                pictureEther.Image = ALTTPSRAMEditor.Properties.Resources.Ether;
+            else
+                pictureEther.Image = ALTTPSRAMEditor.Properties.Resources.D_Ether;
+
+            // Quake
+            if (player.GetItemEquipment(quakeMedallion) == 0x1)
+                pictureQuake.Image = ALTTPSRAMEditor.Properties.Resources.Quake;
+            else
+                pictureQuake.Image = ALTTPSRAMEditor.Properties.Resources.D_Quake;
+
+            // Lamp
+            if (player.GetItemEquipment(lamp) == 0x1)
+                pictureLamp.Image = ALTTPSRAMEditor.Properties.Resources.Lamp;
+            else
+                pictureLamp.Image = ALTTPSRAMEditor.Properties.Resources.D_Lamp;
+
+            // Magic Hammer
+            if (player.GetItemEquipment(magicHammer) == 0x1)
+                pictureMagicHammer.Image = ALTTPSRAMEditor.Properties.Resources.Magic_Hammer;
+            else
+                pictureMagicHammer.Image = ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer;
+
+            // Bug Catching Net
+            if (player.GetItemEquipment(bugNet) == 0x1)
+                pictureBugCatchingNet.Image = ALTTPSRAMEditor.Properties.Resources.Bug_Catching_Net;
+            else
+                pictureBugCatchingNet.Image = ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net;
+
+            // Book of Mudora
+            if (player.GetItemEquipment(book) == 0x1)
+                pictureBookOfMudora.Image = ALTTPSRAMEditor.Properties.Resources.Book_of_Mudora;
+            else
+                pictureBookOfMudora.Image = ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora;
+
+            // Cane of Somaria
+            if (player.GetItemEquipment(caneOfSomaria) == 0x1)
+                pictureCaneOfSomaria.Image = ALTTPSRAMEditor.Properties.Resources.Cane_of_Somaria;
+            else
+                pictureCaneOfSomaria.Image = ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria;
+
+            // Cane of Byrna
+            if (player.GetItemEquipment(caneOfByrna) == 0x1)
+                pictureCaneOfByrna.Image = ALTTPSRAMEditor.Properties.Resources.Cane_of_Byrna;
+            else
+                pictureCaneOfByrna.Image = ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna;
+
+            // Magic Cape
+            if (player.GetItemEquipment(magicCape) == 0x1)
+                pictureMagicCape.Image = ALTTPSRAMEditor.Properties.Resources.Magic_Cape;
+            else
+                pictureMagicCape.Image = ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape;
+
+            // Magic Mirror
+            if (player.GetItemEquipment(magicMirror) == 0x2)
+                pictureMagicMirror.Image = ALTTPSRAMEditor.Properties.Resources.Magic_Mirror;
+            else
+                pictureMagicMirror.Image = ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror;
+
+            // Moon Pearl
+            if (player.GetItemEquipment(moonPearl) == 0x1)
+                pictureMoonPearl.Image = ALTTPSRAMEditor.Properties.Resources.Moon_Pearl;
+            else
+                pictureMoonPearl.Image = ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl;
+
+            byte aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
+
+            if (GetBit(aflags, 3) && player.GetItemEquipment(pegasusBoots) > 0x0) // Test for Pegasus Boots
+                pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.Pegasus_Boots;
+            else
+                pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
+
+            if (GetBit(aflags, 2) && player.GetItemEquipment(zorasFlippers) > 0x0) // Test for Zora's Flippers
+                pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.Zora_s_Flippers;
+            else
+                pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
 
             switch (player.GetItemEquipment(mushroomPowder))
             {
                 default:
                 case 0x0:
                     radioButtonNoMushPowd.Checked = true;
-                    pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Mushroom;
+                    pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.D_Mushroom;
                     break;
                 case 0x1:
                     radioButtonMushroom.Checked = true;
@@ -415,7 +612,7 @@ namespace ALTTPSRAMEditor
                 default:
                 case 0x0:
                     radioButtonNoSword.Checked = true;
-                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Sword;
                     break;
                 case 0x1:
                     radioButtonFighterSword.Checked = true;
@@ -440,7 +637,7 @@ namespace ALTTPSRAMEditor
                 default:
                 case 0x0:
                     radioButtonNoShield.Checked = true;
-                    pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+                    pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Shield;
                     break;
                 case 0x1:
                     radioButtonBlueShield.Checked = true;
@@ -472,6 +669,16 @@ namespace ALTTPSRAMEditor
                     pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Red_Tunic;
                     break;
             }
+
+
+            if (player.GetItemEquipment(bottle1Contents) <= 0 &&
+             player.GetItemEquipment(bottle2Contents) <= 0 &&
+             player.GetItemEquipment(bottle3Contents) <= 0 &&
+             player.GetItemEquipment(bottle4Contents) <= 0
+            )
+                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            else
+                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.Bottle;
 
             // Fill the 1st bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
             int fillContents = player.GetItemEquipment(bottle1Contents);
@@ -571,7 +778,7 @@ namespace ALTTPSRAMEditor
                 {
                     case "bowOptionNone":
                         player.SetHasItemEquipment(bow, 0x0); // Give No Bow
-                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow;
+                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.D_Bow;
                         break;
                     case "bowOption1":
                         player.SetHasItemEquipment(bow, 0x1); // Give Bow
@@ -620,10 +827,53 @@ namespace ALTTPSRAMEditor
         {
             if (!fname.Equals(""))
             {
-                System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+                System.Drawing.SolidBrush rectBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
                 int border = 2;
-                e.Graphics.FillRectangle(myBrush, new Rectangle(223 - border, 49 - border, (8 * 8) + (border * 2), 16 + (border * 2)));
-                myBrush.Dispose(); // 223 + pos, 49);
+                e.Graphics.FillRectangle(rectBrush, new Rectangle(223 - border, 49 - border, (8 * 8) + (border * 2), 16 + (border * 2)));
+
+
+                // Draw a black rectangle for the hearts to go behind
+                e.Graphics.FillRectangle(rectBrush, new Rectangle(409 - border, 237 - border, (8 * 10) + (border * 2), 16 + (border * 2)));
+
+                // Grab the player so we can get their info
+                Link player = GetSaveSlot().GetPlayer();
+
+                // Loop and draw all the hearts as required to represent the player's health
+                double heartContainers = player.GetHeartContainers();
+                for (var i = 0; i < heartContainers / 8; i++) {
+                    int xOff = (i % 10) * 8;
+                    int yOff = (i / 10) * 8;
+                    if (i >= (heartContainers / 8.0f - 1.0f) && heartContainers % 8 != 0)
+                        e.Graphics.DrawImage(imgHeartContainerPartial, 409 + xOff, 237 + yOff);
+                    else
+                        e.Graphics.DrawImage(imgHeartContainerFull, 409 + xOff, 237 + yOff);
+                }
+
+                Image magicContainer;
+                switch (player.GetCurrMagicUpgrade())
+                {
+                    default:
+                    case 0x0:
+                        magicContainer = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar;
+                        break;
+                    case 0x1:
+                        magicContainer = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_halved;
+                        break;
+                    case 0x2:
+                        magicContainer = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_quarter;
+                        break;
+                }
+
+                e.Graphics.DrawImage(magicContainer, 409, 268);
+                int currMagic = player.GetCurrMagic();
+                rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
+                e.Graphics.FillRectangle(rectBrush, new Rectangle(409 + 4, 308 - (currMagic/4), 8, (currMagic / 4)));
+
+                rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
+                e.Graphics.FillRectangle(rectBrush, new Rectangle(409 + 5, 308 - (currMagic/4), 6, 1));
+                //409, 268
+
+                rectBrush.Dispose(); // 223 + pos, 49);
             }
 
             try
@@ -635,13 +885,13 @@ namespace ALTTPSRAMEditor
                 Console.WriteLine("KeyNotFoundException");
                 displayPlayerName = "";
                 SaveSlot savslot = GetSaveSlot();
-                saveRegion = (int) savslot.GetRegion();
+                saveRegion = (int)savslot.GetRegion();
             }
         }
 
         public void DrawImageRect(PaintEventArgs e)
         {
-            if (saveRegion == (int) SaveRegion.JPN)
+            if (saveRegion == (int)SaveRegion.JPN)
             {
                 pos = 0;
                 int i = 0;
@@ -704,7 +954,7 @@ namespace ALTTPSRAMEditor
         private void numericUpDownArrowsHeld_ValueChanged(object sender, EventArgs e)
         {
             Link player = GetSaveSlot().GetPlayer();
-            player.SetHasItemEquipment(arrowCount, (byte) numericUpDownArrowsHeld.Value); // Set the new arrow count value
+            player.SetHasItemEquipment(arrowCount, (byte)numericUpDownArrowsHeld.Value); // Set the new arrow count value
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -736,7 +986,7 @@ namespace ALTTPSRAMEditor
                     default:
                     case "radioButtonNoBoomerang":
                         player.SetHasItemEquipment(boomerang, 0x0); // Give No Boomerang
-                        pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Boomerang;
+                        pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
                         break;
                     case "radioButtonBlueBoomerang":
                         player.SetHasItemEquipment(boomerang, 0x1); // Give Blue Boomerang
@@ -750,36 +1000,36 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        private void hookshotRadio(object sender, EventArgs e)
-        {
-            RadioButton btn = sender as RadioButton;
-            if (btn != null && btn.Checked)
-            {
-                Link player = GetSaveSlot().GetPlayer();
-                switch (btn.Name)
-                {
-                    default:
-                    case "radioButtonNoHookshot":
-                        player.SetHasItemEquipment(hookshot, 0x0); // Give No Hookshot
-                        pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
-                        break;
-                    case "radioButtonHasHookshot":
-                        player.SetHasItemEquipment(hookshot, 0x1); // Give Hookshot
-                        pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
-                        break;
-                }
-            }
-        }
-
         private void pictureHookshot_Click(object sender, EventArgs e)
         {
-            HideAllGroupBoxesExcept(groupBoxHookshot);
+            ToggleItem(hookshot, 0x1, pictureHookshot, ALTTPSRAMEditor.Properties.Resources.Hookshot, ALTTPSRAMEditor.Properties.Resources.D_Hookshot);
+        }
+
+        private void ToggleItem(int addr, int enabledVal, PictureBox picObj, Bitmap imgOn, Bitmap imgOff)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            if (player.GetItemEquipment(addr) == enabledVal)
+            {
+                player.SetHasItemEquipment(addr, 0x0); // Give the item if we don't already have it
+                picObj.Image = imgOff;
+            }
+            else
+            {
+                player.SetHasItemEquipment(addr, (byte)enabledVal); // Take the item because we must already have it
+                picObj.Image = imgOn;
+            }
         }
 
         private void numericUpDownBombsHeld_ValueChanged(object sender, EventArgs e)
         {
             Link player = GetSaveSlot().GetPlayer();
-            player.SetHasItemEquipment(bombCount, (byte) numericUpDownBombsHeld.Value); // Set the new bomb count value
+            player.SetHasItemEquipment(bombCount, (byte)numericUpDownBombsHeld.Value); // Set the new bomb count value
+
+            // Update the UI picture if necessary
+            if (numericUpDownBombsHeld.Value <= 0)
+                pictureBombs.Image = ALTTPSRAMEditor.Properties.Resources.D_Bomb;
+            else
+                pictureBombs.Image = ALTTPSRAMEditor.Properties.Resources.Bomb;
         }
 
         private void pictureBombs_Click(object sender, EventArgs e)
@@ -803,7 +1053,7 @@ namespace ALTTPSRAMEditor
                     default:
                     case "radioButtonNoMushPowd":
                         player.SetHasItemEquipment(mushroomPowder, 0x0); // Give Neither Mushroom nor Powder
-                        pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Mushroom;
+                        pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.D_Mushroom;
                         break;
                     case "radioButtonMushroom":
                         player.SetHasItemEquipment(mushroomPowder, 0x1); // Give Mushroom
@@ -828,7 +1078,7 @@ namespace ALTTPSRAMEditor
                     default:
                     case "radioButtonNoSword":
                         player.SetHasItemEquipment(sword, 0x0); // Give No Sword
-                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Sword;
                         break;
                     case "radioButtonFighterSword":
                         player.SetHasItemEquipment(sword, 0x1); // Give Fighter's Sword
@@ -866,7 +1116,7 @@ namespace ALTTPSRAMEditor
                     default:
                     case "radioButtonNoShield":
                         player.SetHasItemEquipment(shield, 0x0); // Give No Shield
-                        pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+                        pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Shield;
                         break;
                     case "radioButtonBlueShield":
                         player.SetHasItemEquipment(shield, 0x1); // Give Fighter's Shield
@@ -919,6 +1169,18 @@ namespace ALTTPSRAMEditor
             }
         }
 
+        private void CheckForBottles()
+        {
+            if (bottleContents[comboBoxBottle1.SelectedIndex] <= 0 &&
+             bottleContents[comboBoxBottle2.SelectedIndex] <= 0 &&
+             bottleContents[comboBoxBottle3.SelectedIndex] <= 0 &&
+             bottleContents[comboBoxBottle4.SelectedIndex] <= 0
+            )
+                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            else
+                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.Bottle;
+        }
+
         private void comboBoxBottle1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
@@ -926,8 +1188,10 @@ namespace ALTTPSRAMEditor
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle1.Image = bottleContentsImg[fillContents];
+
+            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
-            player.SetHasItemEquipment(bottle1Contents, (byte) fillContents);
+            player.SetHasItemEquipment(bottle1Contents, (byte)fillContents);
         }
 
         private void pictureBottles_Click(object sender, EventArgs e)
@@ -942,6 +1206,8 @@ namespace ALTTPSRAMEditor
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle2.Image = bottleContentsImg[fillContents];
+
+            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle2Contents, (byte)fillContents);
         }
@@ -953,6 +1219,8 @@ namespace ALTTPSRAMEditor
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle3.Image = bottleContentsImg[fillContents];
+
+            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle3Contents, (byte)fillContents);
         }
@@ -964,6 +1232,8 @@ namespace ALTTPSRAMEditor
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle4.Image = bottleContentsImg[fillContents];
+
+            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle4Contents, (byte)fillContents);
         }
@@ -974,26 +1244,273 @@ namespace ALTTPSRAMEditor
             byte flags = player.GetAbilityFlags();
             if (player.GetItemEquipment(pegasusBoots) == 1)
             {
-                Console.WriteLine("Boots Off");
-                Console.WriteLine(flags.ToString() + " -> " + (flags & 0xFD).ToString());
-                flags &= 0xFB; // To turn it off, bitwise and with b11111101
+                pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
+                flags &= 0xFB; // To turn it off, bitwise and with b11111011
                 player.SetHasItemEquipment(pegasusBoots, 0x0);
                 player.SetHasItemEquipment(abilityFlags, flags);
             }
             else
             {
-                Console.WriteLine("Boots On");
-                Console.WriteLine(flags.ToString() + " -> " + (flags | 0x2).ToString());
-                flags |= 0x4; // Turn it on, bitwise or with b00000010
+                pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.Pegasus_Boots;
+                flags |= 0x4; // Turn it on, bitwise or with b00000100
                 player.SetHasItemEquipment(pegasusBoots, 0x1);
                 player.SetHasItemEquipment(abilityFlags, flags);
             }
+        }
 
+        private void pictureZorasFlippers_Click(object sender, EventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            byte flags = player.GetAbilityFlags();
+            if (player.GetItemEquipment(zorasFlippers) == 1)
+            {
+                pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
+                flags &= 0xFD; // To turn it off, bitwise and with b11111101
+                player.SetHasItemEquipment(zorasFlippers, 0x0);
+                player.SetHasItemEquipment(abilityFlags, flags);
+            }
+            else
+            {
+                pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.Zora_s_Flippers;
+                flags |= 0x2; // Turn it on, bitwise or with b00000010
+                player.SetHasItemEquipment(zorasFlippers, 0x1);
+                player.SetHasItemEquipment(abilityFlags, flags);
+            }
         }
 
         public static bool GetBit(byte b, int bitNumber)
         {
             return (b & (1 << bitNumber - 1)) != 0;
+        }
+
+        private void pictureMagicMirror_Click(object sender, EventArgs e)
+        {
+            ToggleItem(magicMirror, 0x2, pictureMagicMirror, ALTTPSRAMEditor.Properties.Resources.Magic_Mirror, ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror);
+        }
+
+        private void pictureFireRod_Click(object sender, EventArgs e)
+        {
+            ToggleItem(fireRod, 0x1, pictureFireRod, ALTTPSRAMEditor.Properties.Resources.Fire_Rod, ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod);
+        }
+
+        private void pictureIceRod_Click(object sender, EventArgs e)
+        {
+            ToggleItem(iceRod, 0x1, pictureIceRod, ALTTPSRAMEditor.Properties.Resources.Ice_Rod, ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod);
+        }
+
+        private void pictureBombos_Click(object sender, EventArgs e)
+        {
+            ToggleItem(bombosMedallion, 0x1, pictureBombos, ALTTPSRAMEditor.Properties.Resources.Bombos, ALTTPSRAMEditor.Properties.Resources.D_Bombos);
+        }
+
+        private void pictureEther_Click(object sender, EventArgs e)
+        {
+            ToggleItem(etherMedallion, 0x1, pictureEther, ALTTPSRAMEditor.Properties.Resources.Ether, ALTTPSRAMEditor.Properties.Resources.D_Ether);
+        }
+
+        private void pictureQuake_Click(object sender, EventArgs e)
+        {
+            ToggleItem(quakeMedallion, 0x1, pictureQuake, ALTTPSRAMEditor.Properties.Resources.Quake, ALTTPSRAMEditor.Properties.Resources.D_Quake);
+        }
+
+        private void pictureLamp_Click(object sender, EventArgs e)
+        {
+            ToggleItem(lamp, 0x1, pictureLamp, ALTTPSRAMEditor.Properties.Resources.Lamp, ALTTPSRAMEditor.Properties.Resources.D_Lamp);
+        }
+
+        private void pictureMagicHammer_Click(object sender, EventArgs e)
+        {
+            ToggleItem(magicHammer, 0x1, pictureMagicHammer, ALTTPSRAMEditor.Properties.Resources.Magic_Hammer, ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer);
+        }
+
+        private void pictureBugCatchingNet_Click(object sender, EventArgs e)
+        {
+            ToggleItem(bugNet, 0x1, pictureBugCatchingNet, ALTTPSRAMEditor.Properties.Resources.Bug_Catching_Net, ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net);
+        }
+
+        private void pictureBookOfMudora_Click(object sender, EventArgs e)
+        {
+            ToggleItem(book, 0x1, pictureBookOfMudora, ALTTPSRAMEditor.Properties.Resources.Book_of_Mudora, ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora);
+        }
+
+        private void pictureCaneOfSomaria_Click(object sender, EventArgs e)
+        {
+            ToggleItem(caneOfSomaria, 0x1, pictureCaneOfSomaria, ALTTPSRAMEditor.Properties.Resources.Cane_of_Somaria, ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria);
+        }
+
+        private void pictureCaneOfByrna_Click(object sender, EventArgs e)
+        {
+            ToggleItem(caneOfByrna, 0x1, pictureCaneOfByrna, ALTTPSRAMEditor.Properties.Resources.Cane_of_Byrna, ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna);
+        }
+
+        private void pictureMagicCape_Click(object sender, EventArgs e)
+        {
+            ToggleItem(magicCape, 0x1, pictureMagicCape, ALTTPSRAMEditor.Properties.Resources.Magic_Cape, ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape);
+        }
+
+        private void pictureMoonPearl_Click(object sender, EventArgs e)
+        {
+            ToggleItem(moonPearl, 0x1, pictureMoonPearl, ALTTPSRAMEditor.Properties.Resources.Moon_Pearl, ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl);
+        }
+
+        private void numericUpDownHeartContainers_ValueChanged(object sender, EventArgs e)
+        {
+            GetSaveSlot().GetPlayer().SetHeartContainers((int) numericUpDownHeartContainers.Value);
+            Refresh();
+        }
+
+        private void numericUpDownMagic_ValueChanged(object sender, EventArgs e)
+        {
+            GetSaveSlot().GetPlayer().SetMagic((int)numericUpDownMagic.Value);
+            Refresh();
+        }
+
+        private void pictureBoxMagicBar_Click(object sender, EventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            int currMagicUpgrade = player.GetCurrMagicUpgrade();
+            switch (currMagicUpgrade)
+            {
+                default:
+                case 0x0:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_halved;
+                    player.SetMagicUpgrade(0x1);
+                    textQuarterMagic.Visible = false;
+                    break;
+                case 0x1:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_quarter;
+                    player.SetMagicUpgrade(0x2);
+                    textQuarterMagic.Visible = true;
+                    break;
+                case 0x2:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar;
+                    player.SetMagicUpgrade(0x0);
+                    textQuarterMagic.Visible = false;
+                    break;
+            }
+            Refresh();
+        }
+
+        private void pictureShovelFlute_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxShovelFlute);
+        }
+
+        private void picturePowerGlove_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxGloves);
+        }
+
+        private void shovelFluteRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    case "radioButtonNoShovelOrFlute":
+                        player.SetHasItemEquipment(shovelFlute, 0x0); // Give neither Shovel nor Flute
+                        pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.D_Shovel;
+                        break;
+                    case "radioButtonShovel":
+                        player.SetHasItemEquipment(shovelFlute, 0x1); // Give Shovel
+                        pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.Shovel;
+                        break;
+                    case "radioButtonFlute":
+                        player.SetHasItemEquipment(shovelFlute, 0x2); // Give Flute
+                        pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.Flute;
+                        break;
+                    case "radioButtonFluteAndBird":
+                        player.SetHasItemEquipment(shovelFlute, 0x3); // Give Flute and Bird
+                        pictureShovelFlute.Image = ALTTPSRAMEditor.Properties.Resources.Flute;
+                        break;
+                }
+            }
+        }
+
+        private void gloveUpgradesRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    case "radioButtonNoGloves":
+                        player.SetHasItemEquipment(gloves, 0x0); // Give neither Power Glove nor Titan's Mitts
+                        picturePowerGlove.Image = ALTTPSRAMEditor.Properties.Resources.D_Power_Glove;
+                        break;
+                    case "radioButtonPowerGloves":
+                        player.SetHasItemEquipment(gloves, 0x1); // Give Power Glove
+                        picturePowerGlove.Image = ALTTPSRAMEditor.Properties.Resources.Power_Glove;
+                        break;
+                    case "radioButtonTitansMitts":
+                        player.SetHasItemEquipment(gloves, 0x2); // Give Titan's Mitts
+                        picturePowerGlove.Image = ALTTPSRAMEditor.Properties.Resources.Titan_s_Mitt;
+                        break;
+                }
+            }
+        }
+
+        private void pictureHeartPieces_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBoxMagicBar_MouseClick(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void UpdateHeartPieceUI()
+        {
+            Image outImg;
+            int heartPieces = GetSaveSlot().GetPlayer().GetHeartPieces();
+            switch (heartPieces % 4)
+            {
+                default:
+                case 0:
+                    outImg = ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Empty;
+                    break;
+                case 1:
+                    outImg = ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Quarter;
+                    break;
+                case 2:
+                    outImg = ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Half;
+                    break;
+                case 3:
+                    outImg = ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Three_Quarters;
+                    break;
+            }
+            pictureHeartPieces.Image = outImg;
+            Refresh();
+        }
+
+        private void pictureHeartPieces_MouseClick(object sender, MouseEventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            int playerCurrHearts = player.GetHeartContainers();
+            int playerCurrHeartPieces = player.GetHeartPieces();
+            if (e.Button == MouseButtons.Left)
+            {
+                if (playerCurrHearts <= 152 && playerCurrHeartPieces < 24)
+                {
+                    if ((playerCurrHeartPieces + 1) % 4 == 0)
+                        player.SetHeartContainers(playerCurrHearts + 8);
+                    player.IncrementHeartPieces();
+                }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                if (playerCurrHearts > 8 && playerCurrHeartPieces > 0)
+                {
+                    if (player.GetHeartPieces() % 4 == 0)
+                        player.SetHeartContainers(playerCurrHearts - 8);
+                    player.DecrementHeartPieces();
+                }
+            }
+            UpdateHeartPieceUI();
+            numericUpDownHeartContainers.Value = player.GetHeartContainers();
+            //pictureHeartPieces
         }
     }
 }

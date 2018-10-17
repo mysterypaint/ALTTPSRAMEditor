@@ -9,17 +9,24 @@ namespace ALTTPSRAMEditor
     class SRAM
     {
         private byte[] data;
-        private const int slot1 = 0x0;
-        private const int slot1m = 0xF00;
-        private const int slot2 = 0x500;
-        private const int slot2m = 0x1400;
-        private const int slot3 = 0xA00;
-        private const int slot3m = 0x1900;
+        private
+        const int slot1 = 0x0;
+        private
+        const int slot1m = 0xF00;
+        private
+        const int slot2 = 0x500;
+        private
+        const int slot2m = 0x1400;
+        private
+        const int slot3 = 0xA00;
+        private
+        const int slot3m = 0x1900;
         private byte[] outsav = new byte[0x2000];
         private byte[] copyData = new byte[0x500];
         //Addresses $1E00 to $1FFE in SRAM are not used.
-        private const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
-        //private int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
+        private
+        const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
+                                       //private int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
         private static SaveSlot savslot1, savslot2, savslot3, savslot1m, savslot2m, savslot3m;
         /*
          * These offsets directly correspond to $7E:F for a particular save file is being played.
@@ -33,7 +40,7 @@ namespace ALTTPSRAMEditor
             data = data_in.ToArray();
 
             copyData[0] = 0xFE; // If first byte is a 0xFE, we never copied anything.
-            
+
             // Initialize the save slot data based on the larger .srm chunk
             GenerateSaveSlot(slot1, slot2, 1);
             GenerateSaveSlot(slot2, slot3, 2);
@@ -170,7 +177,7 @@ namespace ALTTPSRAMEditor
             }
             copyData = slotData;
         }
-        
+
         public void WriteFile(int fileSlot)
         {
             byte[] slotData = new byte[0x500];
@@ -196,8 +203,7 @@ namespace ALTTPSRAMEditor
         {
             switch (fileSlot)
             {
-                default:
-                    break;
+                default: break;
                 case 1:
                     savslot1.ClearData();
                     savslot1m.ClearData();
@@ -224,7 +230,7 @@ namespace ALTTPSRAMEditor
         private String HexBlock(int start, int end)
         {
             BinaryReader br = new BinaryReader(File.OpenRead(f_in));
-            
+
             String str = null;
             for (int i = start; i <= end; i++)
             {

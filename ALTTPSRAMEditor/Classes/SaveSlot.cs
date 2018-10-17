@@ -30,7 +30,7 @@ namespace ALTTPSRAMEditor
             // Copy global save data's Item&Equipment data to this Save Slot
 
             byte[] itemsAndEquipment = new byte[0x4B];
-            
+
             for (int i = 0x0; i < itemsAndEquipment.Length; i++)
             {
                 itemsAndEquipment[i] = data[0x340 + i];
@@ -38,7 +38,7 @@ namespace ALTTPSRAMEditor
 
             // Initialize a player object upon creating this save slot.
             player = new Link(itemsAndEquipment);
-            
+
             getRawPlayerName();
         }
 
@@ -84,7 +84,7 @@ namespace ALTTPSRAMEditor
                     case Form1.SaveRegion.USA:
                         if (j > 6)
                             break;
-                            playerName += Form1.rawENChar[i];
+                        playerName += Form1.rawENChar[i];
                         break;
                     case Form1.SaveRegion.JPN:
                         if (j > 4)
@@ -120,18 +120,18 @@ namespace ALTTPSRAMEditor
             UInt16 checksum = 0;
             for (int i = 0; i < 0x4fe; i += 2)
             {
-                checksum += (UInt16) ((data[i + 1] << 8) | data[i]);
+                checksum += (UInt16)((data[i + 1] << 8) | data[i]);
             }
-            total_checksum = (UInt16) (0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
-            
-            data[0x4FE] = (byte) (total_checksum & 0xff);
-            data[0x4FF] = (byte) (total_checksum >> 8);
+            total_checksum = (UInt16)(0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
+
+            data[0x4FE] = (byte)(total_checksum & 0xff);
+            data[0x4FF] = (byte)(total_checksum >> 8);
         }
 
         public bool SaveIsValid()
         {
             // Tests if a loaded save is valid or not.
-            switch(saveRegion)
+            switch (saveRegion)
             {
                 case Form1.SaveRegion.EUR:
                 case Form1.SaveRegion.USA:
@@ -160,7 +160,7 @@ namespace ALTTPSRAMEditor
             int len = itemsAndEquipment.Length;
             for (int i = 0x0; i < len; i++)
             {
-                data[0x340 + i] = (byte) itemsAndEquipment[i];
+                data[0x340 + i] = (byte)itemsAndEquipment[i];
             }
         }
 

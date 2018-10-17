@@ -57,30 +57,31 @@
             this.labelRupees = new System.Windows.Forms.Label();
             this.numericUpDownRupeeCounter = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanelInventory = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox23 = new System.Windows.Forms.PictureBox();
-            this.pictureBox22 = new System.Windows.Forms.PictureBox();
-            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureHeartPieces = new System.Windows.Forms.PictureBox();
+            this.pictureMoonPearl = new System.Windows.Forms.PictureBox();
+            this.pictureZorasFlippers = new System.Windows.Forms.PictureBox();
+            this.picturePowerGlove = new System.Windows.Forms.PictureBox();
             this.pictureBoots = new System.Windows.Forms.PictureBox();
             this.pictureMushPowd = new System.Windows.Forms.PictureBox();
             this.pictureBow = new System.Windows.Forms.PictureBox();
             this.pictureBombs = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureHookshot = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureFireRod = new System.Windows.Forms.PictureBox();
+            this.pictureIceRod = new System.Windows.Forms.PictureBox();
+            this.pictureBombos = new System.Windows.Forms.PictureBox();
+            this.pictureEther = new System.Windows.Forms.PictureBox();
+            this.pictureQuake = new System.Windows.Forms.PictureBox();
+            this.pictureLamp = new System.Windows.Forms.PictureBox();
+            this.pictureMagicHammer = new System.Windows.Forms.PictureBox();
+            this.pictureShovelFlute = new System.Windows.Forms.PictureBox();
+            this.pictureBugCatchingNet = new System.Windows.Forms.PictureBox();
+            this.pictureBookOfMudora = new System.Windows.Forms.PictureBox();
             this.pictureBottles = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureCaneOfSomaria = new System.Windows.Forms.PictureBox();
+            this.pictureCaneOfByrna = new System.Windows.Forms.PictureBox();
+            this.pictureMagicCape = new System.Windows.Forms.PictureBox();
+            this.pictureMagicMirror = new System.Windows.Forms.PictureBox();
             this.pictureMail = new System.Windows.Forms.PictureBox();
             this.pictureShield = new System.Windows.Forms.PictureBox();
             this.pictureSword = new System.Windows.Forms.PictureBox();
@@ -99,9 +100,6 @@
             this.radioButtonBlueBoomerang = new System.Windows.Forms.RadioButton();
             this.radioButtonNoBoomerang = new System.Windows.Forms.RadioButton();
             this.buttonChangeName = new System.Windows.Forms.Button();
-            this.groupBoxHookshot = new System.Windows.Forms.GroupBox();
-            this.radioButtonHasHookshot = new System.Windows.Forms.RadioButton();
-            this.radioButtonNoHookshot = new System.Windows.Forms.RadioButton();
             this.groupBoxBombs = new System.Windows.Forms.GroupBox();
             this.labelBombsMax = new System.Windows.Forms.Label();
             this.labelBombsHeld = new System.Windows.Forms.Label();
@@ -135,34 +133,50 @@
             this.pictureBottle3 = new System.Windows.Forms.PictureBox();
             this.pictureBottle2 = new System.Windows.Forms.PictureBox();
             this.pictureBottle1 = new System.Windows.Forms.PictureBox();
+            this.groupBoxGloves = new System.Windows.Forms.GroupBox();
+            this.radioButtonTitansMitts = new System.Windows.Forms.RadioButton();
+            this.radioButtonPowerGloves = new System.Windows.Forms.RadioButton();
+            this.radioButtonNoGloves = new System.Windows.Forms.RadioButton();
+            this.groupBoxShovelFlute = new System.Windows.Forms.GroupBox();
+            this.radioButtonFluteAndBird = new System.Windows.Forms.RadioButton();
+            this.radioButtonFlute = new System.Windows.Forms.RadioButton();
+            this.radioButtonShovel = new System.Windows.Forms.RadioButton();
+            this.radioButtonNoShovelOrFlute = new System.Windows.Forms.RadioButton();
+            this.numericUpDownHeartContainers = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMagic = new System.Windows.Forms.NumericUpDown();
+            this.labelHeartContainers = new System.Windows.Forms.Label();
+            this.labelMagic = new System.Windows.Forms.Label();
+            this.textQuarterMagic = new System.Windows.Forms.RichTextBox();
+            this.pictureBoxMagicBar = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).BeginInit();
             this.tableLayoutPanelInventory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHeartPieces)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMoonPearl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureZorasFlippers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picturePowerGlove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoots)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMushPowd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBombs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHookshot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFireRod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureIceRod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBombos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEther)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuake)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureLamp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMagicHammer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureShovelFlute)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBugCatchingNet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBookOfMudora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCaneOfSomaria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCaneOfByrna)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMagicCape)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMagicMirror)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureShield)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSword)).BeginInit();
@@ -170,7 +184,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowUpgrades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowsHeld)).BeginInit();
             this.groupBoxBoomerangConfig.SuspendLayout();
-            this.groupBoxHookshot.SuspendLayout();
             this.groupBoxBombs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombUpgrades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombsHeld)).BeginInit();
@@ -183,6 +196,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottle3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottle2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottle1)).BeginInit();
+            this.groupBoxGloves.SuspendLayout();
+            this.groupBoxShovelFlute.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeartContainers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMagic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -371,6 +389,7 @@
             this.listBoxDungeonSelector.Name = "listBoxDungeonSelector";
             this.listBoxDungeonSelector.Size = new System.Drawing.Size(122, 134);
             this.listBoxDungeonSelector.TabIndex = 8;
+            this.listBoxDungeonSelector.Visible = false;
             // 
             // textBoxDeathsQuest
             // 
@@ -378,6 +397,7 @@
             this.textBoxDeathsQuest.Name = "textBoxDeathsQuest";
             this.textBoxDeathsQuest.Size = new System.Drawing.Size(100, 20);
             this.textBoxDeathsQuest.TabIndex = 9;
+            this.textBoxDeathsQuest.Visible = false;
             // 
             // labelArea
             // 
@@ -387,6 +407,7 @@
             this.labelArea.Size = new System.Drawing.Size(29, 13);
             this.labelArea.TabIndex = 11;
             this.labelArea.Text = "Area";
+            this.labelArea.Visible = false;
             // 
             // labelDeaths
             // 
@@ -396,6 +417,7 @@
             this.labelDeaths.Size = new System.Drawing.Size(151, 13);
             this.labelDeaths.TabIndex = 12;
             this.labelDeaths.Text = "Deaths / Saves (During quest)";
+            this.labelDeaths.Visible = false;
             // 
             // textBoxDeathsPost
             // 
@@ -403,6 +425,7 @@
             this.textBoxDeathsPost.Name = "textBoxDeathsPost";
             this.textBoxDeathsPost.Size = new System.Drawing.Size(100, 20);
             this.textBoxDeathsPost.TabIndex = 13;
+            this.textBoxDeathsPost.Visible = false;
             // 
             // labelDeathsPostGame
             // 
@@ -412,6 +435,7 @@
             this.labelDeathsPostGame.Size = new System.Drawing.Size(140, 13);
             this.labelDeathsPostGame.TabIndex = 14;
             this.labelDeathsPostGame.Text = "Deaths / Saves (PostGame)";
+            this.labelDeathsPostGame.Visible = false;
             // 
             // checkedListBoxDungeonItems
             // 
@@ -424,6 +448,7 @@
             this.checkedListBoxDungeonItems.Name = "checkedListBoxDungeonItems";
             this.checkedListBoxDungeonItems.Size = new System.Drawing.Size(120, 49);
             this.checkedListBoxDungeonItems.TabIndex = 15;
+            this.checkedListBoxDungeonItems.Visible = false;
             // 
             // labelInventory
             // 
@@ -443,6 +468,7 @@
             this.labelDungeonKeys.Size = new System.Drawing.Size(30, 13);
             this.labelDungeonKeys.TabIndex = 20;
             this.labelDungeonKeys.Text = "Keys";
+            this.labelDungeonKeys.Visible = false;
             // 
             // textBoxDungeonKeys
             // 
@@ -450,6 +476,7 @@
             this.textBoxDungeonKeys.Name = "textBoxDungeonKeys";
             this.textBoxDungeonKeys.Size = new System.Drawing.Size(44, 20);
             this.textBoxDungeonKeys.TabIndex = 19;
+            this.textBoxDungeonKeys.Visible = false;
             // 
             // labelRupees
             // 
@@ -485,30 +512,31 @@
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.tableLayoutPanelInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox23, 3, 4);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox22, 2, 4);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox21, 1, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureHeartPieces, 0, 5);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureMoonPearl, 3, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureZorasFlippers, 2, 4);
+            this.tableLayoutPanelInventory.Controls.Add(this.picturePowerGlove, 1, 4);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBoots, 0, 4);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureMushPowd, 4, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBow, 0, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBombs, 3, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBox1, 1, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureHookshot, 2, 0);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox5, 0, 1);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox6, 1, 1);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox7, 2, 1);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox8, 3, 1);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox9, 4, 1);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox10, 0, 2);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox11, 1, 2);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox12, 2, 2);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox13, 3, 2);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox14, 4, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureFireRod, 0, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureIceRod, 1, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBombos, 2, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureEther, 3, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureQuake, 4, 1);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureLamp, 0, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureMagicHammer, 1, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureShovelFlute, 2, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBugCatchingNet, 3, 2);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBookOfMudora, 4, 2);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBottles, 0, 3);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox16, 1, 3);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox17, 2, 3);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox18, 3, 3);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox19, 4, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureCaneOfSomaria, 1, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureCaneOfByrna, 2, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureMagicCape, 3, 3);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureMagicMirror, 4, 3);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureMail, 4, 5);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureShield, 3, 5);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureSword, 2, 5);
@@ -525,42 +553,55 @@
             this.tableLayoutPanelInventory.TabIndex = 0;
             this.tableLayoutPanelInventory.Visible = false;
             // 
-            // pictureBox23
+            // pictureHeartPieces
             // 
-            this.pictureBox23.Image = global::ALTTPSRAMEditor.Properties.Resources.Moon_Pearl;
-            this.pictureBox23.ImageLocation = "";
-            this.pictureBox23.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox23.Location = new System.Drawing.Point(78, 103);
-            this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox23.TabIndex = 26;
-            this.pictureBox23.TabStop = false;
+            this.pictureHeartPieces.Image = global::ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Empty;
+            this.pictureHeartPieces.Location = new System.Drawing.Point(3, 128);
+            this.pictureHeartPieces.Name = "pictureHeartPieces";
+            this.pictureHeartPieces.Size = new System.Drawing.Size(16, 16);
+            this.pictureHeartPieces.TabIndex = 36;
+            this.pictureHeartPieces.TabStop = false;
+            this.pictureHeartPieces.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureHeartPieces_MouseClick);
             // 
-            // pictureBox22
+            // pictureMoonPearl
             // 
-            this.pictureBox22.Image = global::ALTTPSRAMEditor.Properties.Resources.Zora_s_Flippers;
-            this.pictureBox22.ImageLocation = "";
-            this.pictureBox22.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox22.Location = new System.Drawing.Point(53, 103);
-            this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox22.TabIndex = 25;
-            this.pictureBox22.TabStop = false;
+            this.pictureMoonPearl.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl;
+            this.pictureMoonPearl.ImageLocation = "";
+            this.pictureMoonPearl.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMoonPearl.Location = new System.Drawing.Point(78, 103);
+            this.pictureMoonPearl.Name = "pictureMoonPearl";
+            this.pictureMoonPearl.Size = new System.Drawing.Size(16, 16);
+            this.pictureMoonPearl.TabIndex = 26;
+            this.pictureMoonPearl.TabStop = false;
+            this.pictureMoonPearl.Click += new System.EventHandler(this.pictureMoonPearl_Click);
             // 
-            // pictureBox21
+            // pictureZorasFlippers
             // 
-            this.pictureBox21.Image = global::ALTTPSRAMEditor.Properties.Resources.Power_Glove;
-            this.pictureBox21.ImageLocation = "";
-            this.pictureBox21.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox21.Location = new System.Drawing.Point(28, 103);
-            this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox21.TabIndex = 24;
-            this.pictureBox21.TabStop = false;
+            this.pictureZorasFlippers.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
+            this.pictureZorasFlippers.ImageLocation = "";
+            this.pictureZorasFlippers.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureZorasFlippers.Location = new System.Drawing.Point(53, 103);
+            this.pictureZorasFlippers.Name = "pictureZorasFlippers";
+            this.pictureZorasFlippers.Size = new System.Drawing.Size(16, 16);
+            this.pictureZorasFlippers.TabIndex = 25;
+            this.pictureZorasFlippers.TabStop = false;
+            this.pictureZorasFlippers.Click += new System.EventHandler(this.pictureZorasFlippers_Click);
+            // 
+            // picturePowerGlove
+            // 
+            this.picturePowerGlove.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Power_Glove;
+            this.picturePowerGlove.ImageLocation = "";
+            this.picturePowerGlove.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.picturePowerGlove.Location = new System.Drawing.Point(28, 103);
+            this.picturePowerGlove.Name = "picturePowerGlove";
+            this.picturePowerGlove.Size = new System.Drawing.Size(16, 16);
+            this.picturePowerGlove.TabIndex = 24;
+            this.picturePowerGlove.TabStop = false;
+            this.picturePowerGlove.Click += new System.EventHandler(this.picturePowerGlove_Click);
             // 
             // pictureBoots
             // 
-            this.pictureBoots.Image = global::ALTTPSRAMEditor.Properties.Resources.Pegasus_Boots;
+            this.pictureBoots.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
             this.pictureBoots.ImageLocation = "";
             this.pictureBoots.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBoots.Location = new System.Drawing.Point(3, 103);
@@ -572,7 +613,7 @@
             // 
             // pictureMushPowd
             // 
-            this.pictureMushPowd.Image = global::ALTTPSRAMEditor.Properties.Resources.Mushroom;
+            this.pictureMushPowd.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Mushroom;
             this.pictureMushPowd.ImageLocation = "";
             this.pictureMushPowd.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureMushPowd.Location = new System.Drawing.Point(103, 3);
@@ -584,7 +625,8 @@
             // 
             // pictureBow
             // 
-            this.pictureBow.Image = global::ALTTPSRAMEditor.Properties.Resources.Bow;
+            this.pictureBow.BackColor = System.Drawing.SystemColors.ControlText;
+            this.pictureBow.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bow;
             this.pictureBow.ImageLocation = "";
             this.pictureBow.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
             this.pictureBow.Location = new System.Drawing.Point(3, 3);
@@ -596,7 +638,7 @@
             // 
             // pictureBombs
             // 
-            this.pictureBombs.Image = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBombs.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bomb;
             this.pictureBombs.ImageLocation = "";
             this.pictureBombs.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBombs.Location = new System.Drawing.Point(78, 3);
@@ -608,7 +650,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
+            this.pictureBox1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
             this.pictureBox1.ImageLocation = "";
             this.pictureBox1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
             this.pictureBox1.Location = new System.Drawing.Point(28, 3);
@@ -620,7 +662,7 @@
             // 
             // pictureHookshot
             // 
-            this.pictureHookshot.Image = global::ALTTPSRAMEditor.Properties.Resources.Hookshot;
+            this.pictureHookshot.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Hookshot;
             this.pictureHookshot.ImageLocation = "";
             this.pictureHookshot.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
             this.pictureHookshot.Location = new System.Drawing.Point(53, 3);
@@ -630,119 +672,129 @@
             this.pictureHookshot.TabStop = false;
             this.pictureHookshot.Click += new System.EventHandler(this.pictureHookshot_Click);
             // 
-            // pictureBox5
+            // pictureFireRod
             // 
-            this.pictureBox5.Image = global::ALTTPSRAMEditor.Properties.Resources.Fire_Rod;
-            this.pictureBox5.ImageLocation = "";
-            this.pictureBox5.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox5.Location = new System.Drawing.Point(3, 28);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox5.TabIndex = 8;
-            this.pictureBox5.TabStop = false;
+            this.pictureFireRod.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod;
+            this.pictureFireRod.ImageLocation = "";
+            this.pictureFireRod.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureFireRod.Location = new System.Drawing.Point(3, 28);
+            this.pictureFireRod.Name = "pictureFireRod";
+            this.pictureFireRod.Size = new System.Drawing.Size(16, 16);
+            this.pictureFireRod.TabIndex = 8;
+            this.pictureFireRod.TabStop = false;
+            this.pictureFireRod.Click += new System.EventHandler(this.pictureFireRod_Click);
             // 
-            // pictureBox6
+            // pictureIceRod
             // 
-            this.pictureBox6.Image = global::ALTTPSRAMEditor.Properties.Resources.Ice_Rod;
-            this.pictureBox6.ImageLocation = "";
-            this.pictureBox6.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox6.Location = new System.Drawing.Point(28, 28);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox6.TabIndex = 9;
-            this.pictureBox6.TabStop = false;
+            this.pictureIceRod.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod;
+            this.pictureIceRod.ImageLocation = "";
+            this.pictureIceRod.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureIceRod.Location = new System.Drawing.Point(28, 28);
+            this.pictureIceRod.Name = "pictureIceRod";
+            this.pictureIceRod.Size = new System.Drawing.Size(16, 16);
+            this.pictureIceRod.TabIndex = 9;
+            this.pictureIceRod.TabStop = false;
+            this.pictureIceRod.Click += new System.EventHandler(this.pictureIceRod_Click);
             // 
-            // pictureBox7
+            // pictureBombos
             // 
-            this.pictureBox7.Image = global::ALTTPSRAMEditor.Properties.Resources.Bombos;
-            this.pictureBox7.ImageLocation = "";
-            this.pictureBox7.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox7.Location = new System.Drawing.Point(53, 28);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox7.TabIndex = 10;
-            this.pictureBox7.TabStop = false;
+            this.pictureBombos.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bombos;
+            this.pictureBombos.ImageLocation = "";
+            this.pictureBombos.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBombos.Location = new System.Drawing.Point(53, 28);
+            this.pictureBombos.Name = "pictureBombos";
+            this.pictureBombos.Size = new System.Drawing.Size(16, 16);
+            this.pictureBombos.TabIndex = 10;
+            this.pictureBombos.TabStop = false;
+            this.pictureBombos.Click += new System.EventHandler(this.pictureBombos_Click);
             // 
-            // pictureBox8
+            // pictureEther
             // 
-            this.pictureBox8.Image = global::ALTTPSRAMEditor.Properties.Resources.Ether;
-            this.pictureBox8.ImageLocation = "";
-            this.pictureBox8.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox8.Location = new System.Drawing.Point(78, 28);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox8.TabIndex = 11;
-            this.pictureBox8.TabStop = false;
+            this.pictureEther.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Ether;
+            this.pictureEther.ImageLocation = "";
+            this.pictureEther.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureEther.Location = new System.Drawing.Point(78, 28);
+            this.pictureEther.Name = "pictureEther";
+            this.pictureEther.Size = new System.Drawing.Size(16, 16);
+            this.pictureEther.TabIndex = 11;
+            this.pictureEther.TabStop = false;
+            this.pictureEther.Click += new System.EventHandler(this.pictureEther_Click);
             // 
-            // pictureBox9
+            // pictureQuake
             // 
-            this.pictureBox9.Image = global::ALTTPSRAMEditor.Properties.Resources.Quake;
-            this.pictureBox9.ImageLocation = "";
-            this.pictureBox9.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox9.Location = new System.Drawing.Point(103, 28);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox9.TabIndex = 12;
-            this.pictureBox9.TabStop = false;
+            this.pictureQuake.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Quake;
+            this.pictureQuake.ImageLocation = "";
+            this.pictureQuake.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureQuake.Location = new System.Drawing.Point(103, 28);
+            this.pictureQuake.Name = "pictureQuake";
+            this.pictureQuake.Size = new System.Drawing.Size(16, 16);
+            this.pictureQuake.TabIndex = 12;
+            this.pictureQuake.TabStop = false;
+            this.pictureQuake.Click += new System.EventHandler(this.pictureQuake_Click);
             // 
-            // pictureBox10
+            // pictureLamp
             // 
-            this.pictureBox10.Image = global::ALTTPSRAMEditor.Properties.Resources.Lamp;
-            this.pictureBox10.ImageLocation = "";
-            this.pictureBox10.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox10.Location = new System.Drawing.Point(3, 53);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox10.TabIndex = 13;
-            this.pictureBox10.TabStop = false;
+            this.pictureLamp.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Lamp;
+            this.pictureLamp.ImageLocation = "";
+            this.pictureLamp.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureLamp.Location = new System.Drawing.Point(3, 53);
+            this.pictureLamp.Name = "pictureLamp";
+            this.pictureLamp.Size = new System.Drawing.Size(16, 16);
+            this.pictureLamp.TabIndex = 13;
+            this.pictureLamp.TabStop = false;
+            this.pictureLamp.Click += new System.EventHandler(this.pictureLamp_Click);
             // 
-            // pictureBox11
+            // pictureMagicHammer
             // 
-            this.pictureBox11.Image = global::ALTTPSRAMEditor.Properties.Resources.Magic_Hammer;
-            this.pictureBox11.ImageLocation = "";
-            this.pictureBox11.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox11.Location = new System.Drawing.Point(28, 53);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox11.TabIndex = 14;
-            this.pictureBox11.TabStop = false;
+            this.pictureMagicHammer.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer;
+            this.pictureMagicHammer.ImageLocation = "";
+            this.pictureMagicHammer.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMagicHammer.Location = new System.Drawing.Point(28, 53);
+            this.pictureMagicHammer.Name = "pictureMagicHammer";
+            this.pictureMagicHammer.Size = new System.Drawing.Size(16, 16);
+            this.pictureMagicHammer.TabIndex = 14;
+            this.pictureMagicHammer.TabStop = false;
+            this.pictureMagicHammer.Click += new System.EventHandler(this.pictureMagicHammer_Click);
             // 
-            // pictureBox12
+            // pictureShovelFlute
             // 
-            this.pictureBox12.Image = global::ALTTPSRAMEditor.Properties.Resources.Shovel;
-            this.pictureBox12.ImageLocation = "";
-            this.pictureBox12.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox12.Location = new System.Drawing.Point(53, 53);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox12.TabIndex = 15;
-            this.pictureBox12.TabStop = false;
+            this.pictureShovelFlute.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Shovel;
+            this.pictureShovelFlute.ImageLocation = "";
+            this.pictureShovelFlute.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureShovelFlute.Location = new System.Drawing.Point(53, 53);
+            this.pictureShovelFlute.Name = "pictureShovelFlute";
+            this.pictureShovelFlute.Size = new System.Drawing.Size(16, 16);
+            this.pictureShovelFlute.TabIndex = 15;
+            this.pictureShovelFlute.TabStop = false;
+            this.pictureShovelFlute.Click += new System.EventHandler(this.pictureShovelFlute_Click);
             // 
-            // pictureBox13
+            // pictureBugCatchingNet
             // 
-            this.pictureBox13.Image = global::ALTTPSRAMEditor.Properties.Resources.Bug_Catching_Net;
-            this.pictureBox13.ImageLocation = "";
-            this.pictureBox13.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox13.Location = new System.Drawing.Point(78, 53);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox13.TabIndex = 16;
-            this.pictureBox13.TabStop = false;
+            this.pictureBugCatchingNet.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net;
+            this.pictureBugCatchingNet.ImageLocation = "";
+            this.pictureBugCatchingNet.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBugCatchingNet.Location = new System.Drawing.Point(78, 53);
+            this.pictureBugCatchingNet.Name = "pictureBugCatchingNet";
+            this.pictureBugCatchingNet.Size = new System.Drawing.Size(16, 16);
+            this.pictureBugCatchingNet.TabIndex = 16;
+            this.pictureBugCatchingNet.TabStop = false;
+            this.pictureBugCatchingNet.Click += new System.EventHandler(this.pictureBugCatchingNet_Click);
             // 
-            // pictureBox14
+            // pictureBookOfMudora
             // 
-            this.pictureBox14.Image = global::ALTTPSRAMEditor.Properties.Resources.Book_of_Mudora;
-            this.pictureBox14.ImageLocation = "";
-            this.pictureBox14.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox14.Location = new System.Drawing.Point(103, 53);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox14.TabIndex = 17;
-            this.pictureBox14.TabStop = false;
+            this.pictureBookOfMudora.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora;
+            this.pictureBookOfMudora.ImageLocation = "";
+            this.pictureBookOfMudora.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBookOfMudora.Location = new System.Drawing.Point(103, 53);
+            this.pictureBookOfMudora.Name = "pictureBookOfMudora";
+            this.pictureBookOfMudora.Size = new System.Drawing.Size(16, 16);
+            this.pictureBookOfMudora.TabIndex = 17;
+            this.pictureBookOfMudora.TabStop = false;
+            this.pictureBookOfMudora.Click += new System.EventHandler(this.pictureBookOfMudora_Click);
             // 
             // pictureBottles
             // 
-            this.pictureBottles.Image = global::ALTTPSRAMEditor.Properties.Resources.Bottle;
+            this.pictureBottles.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
             this.pictureBottles.ImageLocation = "";
             this.pictureBottles.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBottles.Location = new System.Drawing.Point(3, 78);
@@ -752,49 +804,53 @@
             this.pictureBottles.TabStop = false;
             this.pictureBottles.Click += new System.EventHandler(this.pictureBottles_Click);
             // 
-            // pictureBox16
+            // pictureCaneOfSomaria
             // 
-            this.pictureBox16.Image = global::ALTTPSRAMEditor.Properties.Resources.Cane_of_Somaria;
-            this.pictureBox16.ImageLocation = "";
-            this.pictureBox16.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox16.Location = new System.Drawing.Point(28, 78);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox16.TabIndex = 19;
-            this.pictureBox16.TabStop = false;
+            this.pictureCaneOfSomaria.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria;
+            this.pictureCaneOfSomaria.ImageLocation = "";
+            this.pictureCaneOfSomaria.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureCaneOfSomaria.Location = new System.Drawing.Point(28, 78);
+            this.pictureCaneOfSomaria.Name = "pictureCaneOfSomaria";
+            this.pictureCaneOfSomaria.Size = new System.Drawing.Size(16, 16);
+            this.pictureCaneOfSomaria.TabIndex = 19;
+            this.pictureCaneOfSomaria.TabStop = false;
+            this.pictureCaneOfSomaria.Click += new System.EventHandler(this.pictureCaneOfSomaria_Click);
             // 
-            // pictureBox17
+            // pictureCaneOfByrna
             // 
-            this.pictureBox17.Image = global::ALTTPSRAMEditor.Properties.Resources.Cane_of_Byrna;
-            this.pictureBox17.ImageLocation = "";
-            this.pictureBox17.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox17.Location = new System.Drawing.Point(53, 78);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox17.TabIndex = 20;
-            this.pictureBox17.TabStop = false;
+            this.pictureCaneOfByrna.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna;
+            this.pictureCaneOfByrna.ImageLocation = "";
+            this.pictureCaneOfByrna.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureCaneOfByrna.Location = new System.Drawing.Point(53, 78);
+            this.pictureCaneOfByrna.Name = "pictureCaneOfByrna";
+            this.pictureCaneOfByrna.Size = new System.Drawing.Size(16, 16);
+            this.pictureCaneOfByrna.TabIndex = 20;
+            this.pictureCaneOfByrna.TabStop = false;
+            this.pictureCaneOfByrna.Click += new System.EventHandler(this.pictureCaneOfByrna_Click);
             // 
-            // pictureBox18
+            // pictureMagicCape
             // 
-            this.pictureBox18.Image = global::ALTTPSRAMEditor.Properties.Resources.Magic_Cape;
-            this.pictureBox18.ImageLocation = "";
-            this.pictureBox18.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox18.Location = new System.Drawing.Point(78, 78);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox18.TabIndex = 21;
-            this.pictureBox18.TabStop = false;
+            this.pictureMagicCape.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape;
+            this.pictureMagicCape.ImageLocation = "";
+            this.pictureMagicCape.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMagicCape.Location = new System.Drawing.Point(78, 78);
+            this.pictureMagicCape.Name = "pictureMagicCape";
+            this.pictureMagicCape.Size = new System.Drawing.Size(16, 16);
+            this.pictureMagicCape.TabIndex = 21;
+            this.pictureMagicCape.TabStop = false;
+            this.pictureMagicCape.Click += new System.EventHandler(this.pictureMagicCape_Click);
             // 
-            // pictureBox19
+            // pictureMagicMirror
             // 
-            this.pictureBox19.Image = global::ALTTPSRAMEditor.Properties.Resources.Magic_Mirror;
-            this.pictureBox19.ImageLocation = "";
-            this.pictureBox19.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBox19.Location = new System.Drawing.Point(103, 78);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox19.TabIndex = 22;
-            this.pictureBox19.TabStop = false;
+            this.pictureMagicMirror.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror;
+            this.pictureMagicMirror.ImageLocation = "";
+            this.pictureMagicMirror.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMagicMirror.Location = new System.Drawing.Point(103, 78);
+            this.pictureMagicMirror.Name = "pictureMagicMirror";
+            this.pictureMagicMirror.Size = new System.Drawing.Size(16, 16);
+            this.pictureMagicMirror.TabIndex = 22;
+            this.pictureMagicMirror.TabStop = false;
+            this.pictureMagicMirror.Click += new System.EventHandler(this.pictureMagicMirror_Click);
             // 
             // pictureMail
             // 
@@ -810,7 +866,7 @@
             // 
             // pictureShield
             // 
-            this.pictureShield.Image = global::ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+            this.pictureShield.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Shield;
             this.pictureShield.ImageLocation = "";
             this.pictureShield.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureShield.Location = new System.Drawing.Point(78, 128);
@@ -822,7 +878,7 @@
             // 
             // pictureSword
             // 
-            this.pictureSword.Image = global::ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+            this.pictureSword.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Sword;
             this.pictureSword.ImageLocation = "";
             this.pictureSword.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureSword.Location = new System.Drawing.Point(53, 128);
@@ -1014,42 +1070,6 @@
             this.buttonChangeName.UseVisualStyleBackColor = true;
             this.buttonChangeName.Visible = false;
             this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
-            // 
-            // groupBoxHookshot
-            // 
-            this.groupBoxHookshot.Controls.Add(this.radioButtonHasHookshot);
-            this.groupBoxHookshot.Controls.Add(this.radioButtonNoHookshot);
-            this.groupBoxHookshot.Location = new System.Drawing.Point(500, 46);
-            this.groupBoxHookshot.Name = "groupBoxHookshot";
-            this.groupBoxHookshot.Size = new System.Drawing.Size(200, 100);
-            this.groupBoxHookshot.TabIndex = 27;
-            this.groupBoxHookshot.TabStop = false;
-            this.groupBoxHookshot.Text = "Hookshot";
-            this.groupBoxHookshot.Visible = false;
-            // 
-            // radioButtonHasHookshot
-            // 
-            this.radioButtonHasHookshot.AutoSize = true;
-            this.radioButtonHasHookshot.Location = new System.Drawing.Point(7, 43);
-            this.radioButtonHasHookshot.Name = "radioButtonHasHookshot";
-            this.radioButtonHasHookshot.Size = new System.Drawing.Size(93, 17);
-            this.radioButtonHasHookshot.TabIndex = 1;
-            this.radioButtonHasHookshot.TabStop = true;
-            this.radioButtonHasHookshot.Text = "Has Hookshot";
-            this.radioButtonHasHookshot.UseVisualStyleBackColor = true;
-            this.radioButtonHasHookshot.CheckedChanged += new System.EventHandler(this.hookshotRadio);
-            // 
-            // radioButtonNoHookshot
-            // 
-            this.radioButtonNoHookshot.AutoSize = true;
-            this.radioButtonNoHookshot.Location = new System.Drawing.Point(7, 20);
-            this.radioButtonNoHookshot.Name = "radioButtonNoHookshot";
-            this.radioButtonNoHookshot.Size = new System.Drawing.Size(88, 17);
-            this.radioButtonNoHookshot.TabIndex = 0;
-            this.radioButtonNoHookshot.TabStop = true;
-            this.radioButtonNoHookshot.Text = "No Hookshot";
-            this.radioButtonNoHookshot.UseVisualStyleBackColor = true;
-            this.radioButtonNoHookshot.CheckedChanged += new System.EventHandler(this.hookshotRadio);
             // 
             // groupBoxBombs
             // 
@@ -1299,7 +1319,7 @@
             this.groupBoxMails.Controls.Add(this.radioButtonRedMail);
             this.groupBoxMails.Controls.Add(this.radioButtonBlueMail);
             this.groupBoxMails.Controls.Add(this.radioButtonGreenMail);
-            this.groupBoxMails.Location = new System.Drawing.Point(501, 46);
+            this.groupBoxMails.Location = new System.Drawing.Point(500, 46);
             this.groupBoxMails.Name = "groupBoxMails";
             this.groupBoxMails.Size = new System.Drawing.Size(142, 89);
             this.groupBoxMails.TabIndex = 32;
@@ -1368,16 +1388,16 @@
             this.comboBoxBottle4.Items.AddRange(new object[] {
             "No Bottle",
             "Empty Bottle",
-            "Red Potion",
-            "Green Potion",
-            "Blue Potion",
+            "Life Medicine (Red Potion)",
+            "Magic Medicine (Green Potion)",
+            "Cure・All Medicine (Blue Potion)",
             "Faerie",
             "Bee",
             "Good Bee",
             "Mushroom"});
             this.comboBoxBottle4.Location = new System.Drawing.Point(55, 111);
             this.comboBoxBottle4.Name = "comboBoxBottle4";
-            this.comboBoxBottle4.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxBottle4.Size = new System.Drawing.Size(157, 21);
             this.comboBoxBottle4.TabIndex = 37;
             this.comboBoxBottle4.SelectionChangeCommitted += new System.EventHandler(this.comboBoxBottle4_SelectionChangeCommitted);
             // 
@@ -1388,16 +1408,16 @@
             this.comboBoxBottle3.Items.AddRange(new object[] {
             "No Bottle",
             "Empty Bottle",
-            "Red Potion",
-            "Green Potion",
-            "Blue Potion",
+            "Life Medicine (Red Potion)",
+            "Magic Medicine (Green Potion)",
+            "Cure・All Medicine (Blue Potion)",
             "Faerie",
             "Bee",
             "Good Bee",
             "Mushroom"});
             this.comboBoxBottle3.Location = new System.Drawing.Point(55, 81);
             this.comboBoxBottle3.Name = "comboBoxBottle3";
-            this.comboBoxBottle3.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxBottle3.Size = new System.Drawing.Size(157, 21);
             this.comboBoxBottle3.TabIndex = 36;
             this.comboBoxBottle3.SelectionChangeCommitted += new System.EventHandler(this.comboBoxBottle3_SelectionChangeCommitted);
             // 
@@ -1408,16 +1428,16 @@
             this.comboBoxBottle2.Items.AddRange(new object[] {
             "No Bottle",
             "Empty Bottle",
-            "Red Potion",
-            "Green Potion",
-            "Blue Potion",
+            "Life Medicine (Red Potion)",
+            "Magic Medicine (Green Potion)",
+            "Cure・All Medicine (Blue Potion)",
             "Faerie",
             "Bee",
             "Good Bee",
             "Mushroom"});
             this.comboBoxBottle2.Location = new System.Drawing.Point(55, 50);
             this.comboBoxBottle2.Name = "comboBoxBottle2";
-            this.comboBoxBottle2.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxBottle2.Size = new System.Drawing.Size(157, 21);
             this.comboBoxBottle2.TabIndex = 35;
             this.comboBoxBottle2.SelectionChangeCommitted += new System.EventHandler(this.comboBoxBottle2_SelectionChangeCommitted);
             // 
@@ -1428,22 +1448,22 @@
             this.comboBoxBottle1.Items.AddRange(new object[] {
             "No Bottle",
             "Empty Bottle",
-            "Red Potion",
-            "Green Potion",
-            "Blue Potion",
+            "Life Medicine (Red Potion)",
+            "Magic Medicine (Green Potion)",
+            "Cure・All Medicine (Blue Potion)",
             "Faerie",
             "Bee",
             "Good Bee",
             "Mushroom"});
             this.comboBoxBottle1.Location = new System.Drawing.Point(55, 21);
             this.comboBoxBottle1.Name = "comboBoxBottle1";
-            this.comboBoxBottle1.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxBottle1.Size = new System.Drawing.Size(157, 21);
             this.comboBoxBottle1.TabIndex = 34;
             this.comboBoxBottle1.SelectionChangeCommitted += new System.EventHandler(this.comboBoxBottle1_SelectionChangeCommitted);
             // 
             // pictureBottle4
             // 
-            this.pictureBottle4.Image = global::ALTTPSRAMEditor.Properties.Resources.Bottle;
+            this.pictureBottle4.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
             this.pictureBottle4.ImageLocation = "";
             this.pictureBottle4.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBottle4.Location = new System.Drawing.Point(16, 111);
@@ -1454,7 +1474,7 @@
             // 
             // pictureBottle3
             // 
-            this.pictureBottle3.Image = global::ALTTPSRAMEditor.Properties.Resources.Bottle;
+            this.pictureBottle3.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
             this.pictureBottle3.ImageLocation = "";
             this.pictureBottle3.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBottle3.Location = new System.Drawing.Point(16, 81);
@@ -1465,7 +1485,7 @@
             // 
             // pictureBottle2
             // 
-            this.pictureBottle2.Image = global::ALTTPSRAMEditor.Properties.Resources.Bottle;
+            this.pictureBottle2.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
             this.pictureBottle2.ImageLocation = "";
             this.pictureBottle2.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBottle2.Location = new System.Drawing.Point(16, 50);
@@ -1476,7 +1496,7 @@
             // 
             // pictureBottle1
             // 
-            this.pictureBottle1.Image = global::ALTTPSRAMEditor.Properties.Resources.Bottle;
+            this.pictureBottle1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
             this.pictureBottle1.ImageLocation = "";
             this.pictureBottle1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureBottle1.Location = new System.Drawing.Point(16, 21);
@@ -1485,19 +1505,222 @@
             this.pictureBottle1.TabIndex = 31;
             this.pictureBottle1.TabStop = false;
             // 
+            // groupBoxGloves
+            // 
+            this.groupBoxGloves.Controls.Add(this.radioButtonTitansMitts);
+            this.groupBoxGloves.Controls.Add(this.radioButtonPowerGloves);
+            this.groupBoxGloves.Controls.Add(this.radioButtonNoGloves);
+            this.groupBoxGloves.Location = new System.Drawing.Point(500, 46);
+            this.groupBoxGloves.Name = "groupBoxGloves";
+            this.groupBoxGloves.Size = new System.Drawing.Size(200, 100);
+            this.groupBoxGloves.TabIndex = 34;
+            this.groupBoxGloves.TabStop = false;
+            this.groupBoxGloves.Text = "Glove Upgrades";
+            this.groupBoxGloves.Visible = false;
+            // 
+            // radioButtonTitansMitts
+            // 
+            this.radioButtonTitansMitts.AutoSize = true;
+            this.radioButtonTitansMitts.Location = new System.Drawing.Point(6, 65);
+            this.radioButtonTitansMitts.Name = "radioButtonTitansMitts";
+            this.radioButtonTitansMitts.Size = new System.Drawing.Size(81, 17);
+            this.radioButtonTitansMitts.TabIndex = 2;
+            this.radioButtonTitansMitts.TabStop = true;
+            this.radioButtonTitansMitts.Text = "Titan\'s Mitts";
+            this.radioButtonTitansMitts.UseVisualStyleBackColor = true;
+            this.radioButtonTitansMitts.CheckedChanged += new System.EventHandler(this.gloveUpgradesRadio);
+            // 
+            // radioButtonPowerGloves
+            // 
+            this.radioButtonPowerGloves.AutoSize = true;
+            this.radioButtonPowerGloves.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonPowerGloves.Name = "radioButtonPowerGloves";
+            this.radioButtonPowerGloves.Size = new System.Drawing.Size(91, 17);
+            this.radioButtonPowerGloves.TabIndex = 1;
+            this.radioButtonPowerGloves.TabStop = true;
+            this.radioButtonPowerGloves.Text = "Power Gloves";
+            this.radioButtonPowerGloves.UseVisualStyleBackColor = true;
+            this.radioButtonPowerGloves.CheckedChanged += new System.EventHandler(this.gloveUpgradesRadio);
+            // 
+            // radioButtonNoGloves
+            // 
+            this.radioButtonNoGloves.AutoSize = true;
+            this.radioButtonNoGloves.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonNoGloves.Name = "radioButtonNoGloves";
+            this.radioButtonNoGloves.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonNoGloves.TabIndex = 0;
+            this.radioButtonNoGloves.TabStop = true;
+            this.radioButtonNoGloves.Text = "No Gloves";
+            this.radioButtonNoGloves.UseVisualStyleBackColor = true;
+            this.radioButtonNoGloves.CheckedChanged += new System.EventHandler(this.gloveUpgradesRadio);
+            // 
+            // groupBoxShovelFlute
+            // 
+            this.groupBoxShovelFlute.Controls.Add(this.radioButtonFluteAndBird);
+            this.groupBoxShovelFlute.Controls.Add(this.radioButtonFlute);
+            this.groupBoxShovelFlute.Controls.Add(this.radioButtonShovel);
+            this.groupBoxShovelFlute.Controls.Add(this.radioButtonNoShovelOrFlute);
+            this.groupBoxShovelFlute.Location = new System.Drawing.Point(500, 46);
+            this.groupBoxShovelFlute.Name = "groupBoxShovelFlute";
+            this.groupBoxShovelFlute.Size = new System.Drawing.Size(200, 125);
+            this.groupBoxShovelFlute.TabIndex = 35;
+            this.groupBoxShovelFlute.TabStop = false;
+            this.groupBoxShovelFlute.Text = "Shovel && Flute";
+            this.groupBoxShovelFlute.Visible = false;
+            // 
+            // radioButtonFluteAndBird
+            // 
+            this.radioButtonFluteAndBird.AutoSize = true;
+            this.radioButtonFluteAndBird.Location = new System.Drawing.Point(6, 88);
+            this.radioButtonFluteAndBird.Name = "radioButtonFluteAndBird";
+            this.radioButtonFluteAndBird.Size = new System.Drawing.Size(78, 17);
+            this.radioButtonFluteAndBird.TabIndex = 3;
+            this.radioButtonFluteAndBird.TabStop = true;
+            this.radioButtonFluteAndBird.Text = "Flute && Bird";
+            this.radioButtonFluteAndBird.UseVisualStyleBackColor = true;
+            this.radioButtonFluteAndBird.CheckedChanged += new System.EventHandler(this.shovelFluteRadio);
+            // 
+            // radioButtonFlute
+            // 
+            this.radioButtonFlute.AutoSize = true;
+            this.radioButtonFlute.Location = new System.Drawing.Point(6, 65);
+            this.radioButtonFlute.Name = "radioButtonFlute";
+            this.radioButtonFlute.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonFlute.TabIndex = 2;
+            this.radioButtonFlute.TabStop = true;
+            this.radioButtonFlute.Text = "Flute";
+            this.radioButtonFlute.UseVisualStyleBackColor = true;
+            this.radioButtonFlute.CheckedChanged += new System.EventHandler(this.shovelFluteRadio);
+            // 
+            // radioButtonShovel
+            // 
+            this.radioButtonShovel.AutoSize = true;
+            this.radioButtonShovel.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonShovel.Name = "radioButtonShovel";
+            this.radioButtonShovel.Size = new System.Drawing.Size(58, 17);
+            this.radioButtonShovel.TabIndex = 1;
+            this.radioButtonShovel.TabStop = true;
+            this.radioButtonShovel.Text = "Shovel";
+            this.radioButtonShovel.UseVisualStyleBackColor = true;
+            this.radioButtonShovel.CheckedChanged += new System.EventHandler(this.shovelFluteRadio);
+            // 
+            // radioButtonNoShovelOrFlute
+            // 
+            this.radioButtonNoShovelOrFlute.AutoSize = true;
+            this.radioButtonNoShovelOrFlute.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonNoShovelOrFlute.Name = "radioButtonNoShovelOrFlute";
+            this.radioButtonNoShovelOrFlute.Size = new System.Drawing.Size(113, 17);
+            this.radioButtonNoShovelOrFlute.TabIndex = 0;
+            this.radioButtonNoShovelOrFlute.TabStop = true;
+            this.radioButtonNoShovelOrFlute.Text = "No Shovel or Flute";
+            this.radioButtonNoShovelOrFlute.UseVisualStyleBackColor = true;
+            this.radioButtonNoShovelOrFlute.CheckedChanged += new System.EventHandler(this.shovelFluteRadio);
+            // 
+            // numericUpDownHeartContainers
+            // 
+            this.numericUpDownHeartContainers.Increment = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDownHeartContainers.Location = new System.Drawing.Point(330, 237);
+            this.numericUpDownHeartContainers.Maximum = new decimal(new int[] {
+            160,
+            0,
+            0,
+            0});
+            this.numericUpDownHeartContainers.Minimum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDownHeartContainers.Name = "numericUpDownHeartContainers";
+            this.numericUpDownHeartContainers.Size = new System.Drawing.Size(70, 20);
+            this.numericUpDownHeartContainers.TabIndex = 36;
+            this.numericUpDownHeartContainers.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDownHeartContainers.Visible = false;
+            this.numericUpDownHeartContainers.ValueChanged += new System.EventHandler(this.numericUpDownHeartContainers_ValueChanged);
+            // 
+            // numericUpDownMagic
+            // 
+            this.numericUpDownMagic.Location = new System.Drawing.Point(331, 284);
+            this.numericUpDownMagic.Maximum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.numericUpDownMagic.Name = "numericUpDownMagic";
+            this.numericUpDownMagic.Size = new System.Drawing.Size(70, 20);
+            this.numericUpDownMagic.TabIndex = 37;
+            this.numericUpDownMagic.Visible = false;
+            this.numericUpDownMagic.ValueChanged += new System.EventHandler(this.numericUpDownMagic_ValueChanged);
+            // 
+            // labelHeartContainers
+            // 
+            this.labelHeartContainers.AutoSize = true;
+            this.labelHeartContainers.Location = new System.Drawing.Point(328, 221);
+            this.labelHeartContainers.Name = "labelHeartContainers";
+            this.labelHeartContainers.Size = new System.Drawing.Size(86, 13);
+            this.labelHeartContainers.TabIndex = 38;
+            this.labelHeartContainers.Text = "Heart Containers";
+            this.labelHeartContainers.Visible = false;
+            // 
+            // labelMagic
+            // 
+            this.labelMagic.AutoSize = true;
+            this.labelMagic.Location = new System.Drawing.Point(328, 268);
+            this.labelMagic.Name = "labelMagic";
+            this.labelMagic.Size = new System.Drawing.Size(36, 13);
+            this.labelMagic.TabIndex = 39;
+            this.labelMagic.Text = "Magic";
+            this.labelMagic.Visible = false;
+            // 
+            // textQuarterMagic
+            // 
+            this.textQuarterMagic.Location = new System.Drawing.Point(434, 268);
+            this.textQuarterMagic.Name = "textQuarterMagic";
+            this.textQuarterMagic.ReadOnly = true;
+            this.textQuarterMagic.Size = new System.Drawing.Size(166, 49);
+            this.textQuarterMagic.TabIndex = 41;
+            this.textQuarterMagic.Text = "Note: ¼ Magic will appear as ½  Magic in-game but will still function as intended" +
+    ".";
+            this.textQuarterMagic.Visible = false;
+            // 
+            // pictureBoxMagicBar
+            // 
+            this.pictureBoxMagicBar.Image = global::ALTTPSRAMEditor.Properties.Resources.Link_Icon_1;
+            this.pictureBoxMagicBar.InitialImage = null;
+            this.pictureBoxMagicBar.Location = new System.Drawing.Point(330, 310);
+            this.pictureBoxMagicBar.Name = "pictureBoxMagicBar";
+            this.pictureBoxMagicBar.Size = new System.Drawing.Size(16, 45);
+            this.pictureBoxMagicBar.TabIndex = 40;
+            this.pictureBoxMagicBar.TabStop = false;
+            this.pictureBoxMagicBar.Visible = false;
+            this.pictureBoxMagicBar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMagicBar_MouseClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(949, 465);
+            this.Controls.Add(this.textQuarterMagic);
+            this.Controls.Add(this.labelMagic);
+            this.Controls.Add(this.labelHeartContainers);
+            this.Controls.Add(this.numericUpDownMagic);
+            this.Controls.Add(this.numericUpDownHeartContainers);
+            this.Controls.Add(this.groupBoxShovelFlute);
+            this.Controls.Add(this.groupBoxGloves);
             this.Controls.Add(this.groupBoxBottles);
             this.Controls.Add(this.groupBoxMails);
             this.Controls.Add(this.groupBoxShield);
             this.Controls.Add(this.groupBoxSword);
             this.Controls.Add(this.groupBoxMushroomPowder);
             this.Controls.Add(this.groupBoxBombs);
-            this.Controls.Add(this.groupBoxHookshot);
             this.Controls.Add(this.buttonChangeName);
             this.Controls.Add(this.groupBoxBoomerangConfig);
             this.Controls.Add(this.tableLayoutPanelInventory);
@@ -1518,6 +1741,7 @@
             this.Controls.Add(this.groupFileSelect);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBoxBowConfig);
+            this.Controls.Add(this.pictureBoxMagicBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -1532,30 +1756,31 @@
             this.groupFileSelect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).EndInit();
             this.tableLayoutPanelInventory.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHeartPieces)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMoonPearl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureZorasFlippers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picturePowerGlove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoots)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMushPowd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBombs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHookshot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFireRod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureIceRod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBombos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEther)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuake)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureLamp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMagicHammer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureShovelFlute)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBugCatchingNet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBookOfMudora)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCaneOfSomaria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCaneOfByrna)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMagicCape)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureMagicMirror)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureShield)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSword)).EndInit();
@@ -1565,8 +1790,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowsHeld)).EndInit();
             this.groupBoxBoomerangConfig.ResumeLayout(false);
             this.groupBoxBoomerangConfig.PerformLayout();
-            this.groupBoxHookshot.ResumeLayout(false);
-            this.groupBoxHookshot.PerformLayout();
             this.groupBoxBombs.ResumeLayout(false);
             this.groupBoxBombs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombUpgrades)).EndInit();
@@ -1584,6 +1807,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottle3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottle2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBottle1)).EndInit();
+            this.groupBoxGloves.ResumeLayout(false);
+            this.groupBoxGloves.PerformLayout();
+            this.groupBoxShovelFlute.ResumeLayout(false);
+            this.groupBoxShovelFlute.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeartContainers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMagic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1623,27 +1853,27 @@
         private System.Windows.Forms.PictureBox pictureBombs;
         private System.Windows.Forms.NumericUpDown numericUpDownRupeeCounter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelInventory;
-        private System.Windows.Forms.PictureBox pictureBox23;
-        private System.Windows.Forms.PictureBox pictureBox22;
-        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.PictureBox pictureMoonPearl;
+        private System.Windows.Forms.PictureBox pictureZorasFlippers;
+        private System.Windows.Forms.PictureBox picturePowerGlove;
         private System.Windows.Forms.PictureBox pictureBoots;
         private System.Windows.Forms.PictureBox pictureMushPowd;
         private System.Windows.Forms.PictureBox pictureHookshot;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.PictureBox pictureFireRod;
+        private System.Windows.Forms.PictureBox pictureIceRod;
+        private System.Windows.Forms.PictureBox pictureBombos;
+        private System.Windows.Forms.PictureBox pictureEther;
+        private System.Windows.Forms.PictureBox pictureQuake;
+        private System.Windows.Forms.PictureBox pictureLamp;
+        private System.Windows.Forms.PictureBox pictureMagicHammer;
+        private System.Windows.Forms.PictureBox pictureShovelFlute;
+        private System.Windows.Forms.PictureBox pictureBugCatchingNet;
+        private System.Windows.Forms.PictureBox pictureBookOfMudora;
         private System.Windows.Forms.PictureBox pictureBottles;
-        private System.Windows.Forms.PictureBox pictureBox16;
-        private System.Windows.Forms.PictureBox pictureBox17;
-        private System.Windows.Forms.PictureBox pictureBox18;
-        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.PictureBox pictureCaneOfSomaria;
+        private System.Windows.Forms.PictureBox pictureCaneOfByrna;
+        private System.Windows.Forms.PictureBox pictureMagicCape;
+        private System.Windows.Forms.PictureBox pictureMagicMirror;
         private System.Windows.Forms.PictureBox pictureMail;
         private System.Windows.Forms.PictureBox pictureShield;
         private System.Windows.Forms.PictureBox pictureSword;
@@ -1662,9 +1892,6 @@
         private System.Windows.Forms.RadioButton radioButtonRedBoomerang;
         private System.Windows.Forms.RadioButton radioButtonBlueBoomerang;
         private System.Windows.Forms.RadioButton radioButtonNoBoomerang;
-        private System.Windows.Forms.GroupBox groupBoxHookshot;
-        private System.Windows.Forms.RadioButton radioButtonHasHookshot;
-        private System.Windows.Forms.RadioButton radioButtonNoHookshot;
         private System.Windows.Forms.GroupBox groupBoxBombs;
         private System.Windows.Forms.Label labelBombsMax;
         private System.Windows.Forms.Label labelBombsHeld;
@@ -1698,6 +1925,22 @@
         private System.Windows.Forms.ComboBox comboBoxBottle4;
         private System.Windows.Forms.ComboBox comboBoxBottle3;
         private System.Windows.Forms.ComboBox comboBoxBottle2;
+        private System.Windows.Forms.PictureBox pictureHeartPieces;
+        private System.Windows.Forms.GroupBox groupBoxGloves;
+        private System.Windows.Forms.RadioButton radioButtonTitansMitts;
+        private System.Windows.Forms.RadioButton radioButtonPowerGloves;
+        private System.Windows.Forms.RadioButton radioButtonNoGloves;
+        private System.Windows.Forms.GroupBox groupBoxShovelFlute;
+        private System.Windows.Forms.RadioButton radioButtonFlute;
+        private System.Windows.Forms.RadioButton radioButtonShovel;
+        private System.Windows.Forms.RadioButton radioButtonNoShovelOrFlute;
+        private System.Windows.Forms.NumericUpDown numericUpDownHeartContainers;
+        private System.Windows.Forms.NumericUpDown numericUpDownMagic;
+        private System.Windows.Forms.Label labelHeartContainers;
+        private System.Windows.Forms.Label labelMagic;
+        private System.Windows.Forms.PictureBox pictureBoxMagicBar;
+        private System.Windows.Forms.RichTextBox textQuarterMagic;
+        private System.Windows.Forms.RadioButton radioButtonFluteAndBird;
     }
 }
 
