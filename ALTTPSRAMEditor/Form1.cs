@@ -98,7 +98,7 @@ namespace ALTTPSRAMEditor
 
                     else if (fileSize == srm_size)
                     {
-                        Console.WriteLine("Opened " + fname);
+                        Console.Write("Opened " + fname);
                         helperText.Text = "Opened " + fname;
                         sdat = new SRAM(bytes);
                         tableLayoutPanelInventory.Visible = true;
@@ -120,12 +120,12 @@ namespace ALTTPSRAMEditor
                         SaveSlot savslot3 = sdat.GetSaveSlot(3);
                         if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
                         {
-                            Console.WriteLine("USA");
+                            Console.WriteLine(" - USA Save Detected");
                             saveRegion = (int)SaveRegion.USA;
                         }
                         else if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
                         {
-                            Console.WriteLine("JPN");
+                            Console.WriteLine(" - JPN Save Detected");
                             saveRegion = (int)SaveRegion.JPN;
                         }
                         else
@@ -283,7 +283,7 @@ namespace ALTTPSRAMEditor
             buttonWrite.Enabled = false;
             // Determine which file we're editing, and then load its data.
             SaveSlot savslot;
-
+            
             if (radioFile2.Checked)
             {
                 savslot = sdat.GetSaveSlot(2);
@@ -293,6 +293,7 @@ namespace ALTTPSRAMEditor
                 savslot = sdat.GetSaveSlot(3);
             }
             else savslot = sdat.GetSaveSlot(1);
+
             // Update the playerName textbox to emphasize the 6 character limit.
             updatePlayerName(savslot);
         }
@@ -373,9 +374,9 @@ namespace ALTTPSRAMEditor
         {
             if (!fname.Equals(""))
             {
-                System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Cyan);
+                System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
                 int border = 2;
-                e.Graphics.FillRectangle(myBrush, new Rectangle(223 - border, 49 - border, (8 * 6) + (border * 2), 16 + (border * 2)));
+                e.Graphics.FillRectangle(myBrush, new Rectangle(223 - border, 49 - border, (8 * 8) + (border * 2), 16 + (border * 2)));
                 myBrush.Dispose(); // 223 + pos, 49);
             }
 
@@ -405,8 +406,12 @@ namespace ALTTPSRAMEditor
                     {
                         letter = '　';
                     }
+                    else if (c == '－' || c == '-')
+                    {
+                        letter = 'ー'; // Replace katanana － and/or Romaji - to hiragana ー because they're exactly the same in the game code
+                    }
                     DrawTile(jpn_fnt, jpChar[letter], e, pos);
-                    pos += 8;
+                    pos += 16;
                     i++;
                 }
             }

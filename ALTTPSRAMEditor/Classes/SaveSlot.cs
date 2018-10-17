@@ -65,7 +65,6 @@ namespace ALTTPSRAMEditor
                     pNameRaw = new UInt16[4];
                     for (int i = 0x3D9; i < 0x3E1; i += 2)
                     {
-                        Console.WriteLine(i + ": " + (UInt16)((data[i + 1] << 8) | data[i]));
                         pNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
                         j++;
                     }
@@ -85,27 +84,12 @@ namespace ALTTPSRAMEditor
                     case Form1.SaveRegion.USA:
                         if (j > 6)
                             break;
-                        try
-                        {
                             playerName += Form1.rawENChar[i];
-                        }
-                        catch (KeyNotFoundException)
-                        {
-
-                        }
                         break;
                     case Form1.SaveRegion.JPN:
                         if (j > 4)
                             break;
-                        Console.WriteLine(j);
-                        try
-                        {
-                            playerName += Form1.rawJPChar[i];
-                        }
-                        catch (KeyNotFoundException)
-                        {
-
-                        }
+                        playerName += Form1.rawJPChar[i];
                         break;
                 }
                 j++;

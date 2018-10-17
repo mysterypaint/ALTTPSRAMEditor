@@ -333,7 +333,8 @@ namespace ALTTPSRAMEditor
             rawENChar.Add(0x86, ')');
 
             // Japanese
-            rawJPChar.Add(0x018C, ' ');
+            // Hiragana
+            rawJPChar.Add(0x18C, ' ');
             rawJPChar.Add(0x0, 'あ'); // a
             rawJPChar.Add(0x1, 'い'); // i
             rawJPChar.Add(0x2, 'う'); // u
@@ -358,215 +359,212 @@ namespace ALTTPSRAMEditor
             rawJPChar.Add(0x2B, 'て'); // te
             rawJPChar.Add(0x2C, 'と'); // to
 
-            /* rawJPChar.Add(25, 'な'); // na
-                        rawJPChar.Add(26, 'に'); // ni
-                        rawJPChar.Add(27, 'ぬ'); // nu
-                        rawJPChar.Add(28, 'ね'); // ne
-                        rawJPChar.Add(29, 'の'); // no
+            rawJPChar.Add(0x40, 'な'); // na
+            rawJPChar.Add(0x41, 'に'); // ni
+            rawJPChar.Add(0x42, 'ぬ'); // nu
+            rawJPChar.Add(0x43, 'ね'); // ne
+            rawJPChar.Add(0x44, 'の'); // no
 
-                        rawJPChar.Add(30, 'は'); // ha
-                        rawJPChar.Add(31, 'ひ'); // hi
-                        rawJPChar.Add(32, 'ふ'); // fu
-                        rawJPChar.Add(33, 'へ'); // he
-                        rawJPChar.Add(34, 'ほ'); // ho
+            rawJPChar.Add(0x48, 'は'); // ha
+            rawJPChar.Add(0x49, 'ひ'); // hi
+            rawJPChar.Add(0x4A, 'ふ'); // fu
+            rawJPChar.Add(0x4B, 'へ'); // he
+            rawJPChar.Add(0x4C, 'ほ'); // ho
 
-                        rawJPChar.Add(35, 'ま'); // ma
-                        rawJPChar.Add(36, 'み'); // mi
-                        rawJPChar.Add(37, 'む'); // mu
-                        rawJPChar.Add(38, 'め'); // me
-                        rawJPChar.Add(39, 'も'); // mo
+            rawJPChar.Add(0x60, 'ま'); // ma
+            rawJPChar.Add(0x61, 'み'); // mi
+            rawJPChar.Add(0x62, 'む'); // mu
+            rawJPChar.Add(0x63, 'め'); // me
+            rawJPChar.Add(0x64, 'も'); // mo
 
-                        rawJPChar.Add(40, 'や'); // ya
-                        rawJPChar.Add(42, 'ゆ'); // yu
-                        rawJPChar.Add(44, 'よ'); // yo
+            rawJPChar.Add(0x5, 'や'); // ya
+            rawJPChar.Add(0x6, 'ゆ'); // yu
+            rawJPChar.Add(0x7, 'よ'); // yo
 
-                        rawJPChar.Add(45, 'ら'); // ra
-                        rawJPChar.Add(46, 'り'); // ri
-                        rawJPChar.Add(47, 'る'); // ru
-                        rawJPChar.Add(48, 'れ'); // re
-                        rawJPChar.Add(49, 'ろ'); // ro
+            rawJPChar.Add(0x68, 'ら'); // ra
+            rawJPChar.Add(0x69, 'り'); // ri
+            rawJPChar.Add(0x6A, 'る'); // ru
+            rawJPChar.Add(0x6B, 'れ'); // re
+            rawJPChar.Add(0x6C, 'ろ'); // ro
 
-                        rawJPChar.Add(50, 'わ'); // wa
-                        rawJPChar.Add(51, 'を'); // wo
-                        rawJPChar.Add(52, 'ん'); // n
+            rawJPChar.Add(0xD, 'わ'); // wa
+            rawJPChar.Add(0xE, 'を'); // wo
+            rawJPChar.Add(0xF, 'ん'); // n
 
-                        rawJPChar.Add(54, 'ー');
+            rawJPChar.Add(0x189, 'ー');
+            
+            rawJPChar.Add(0x25, 'が'); // ga
+            rawJPChar.Add(0x26, 'ぎ'); // gi
+            rawJPChar.Add(0x27, 'ぐ'); // gu
+            rawJPChar.Add(0x2D, 'げ'); // ge
+            rawJPChar.Add(0x2E, 'ご'); // go
 
-                        rawJPChar.Add(55, 'が'); // ga
-                        rawJPChar.Add(56, 'ぎ'); // gi
-                        rawJPChar.Add(57, 'ぐ'); // gu
-                        rawJPChar.Add(58, 'げ'); // ge
-                        rawJPChar.Add(59, 'ご'); // go
+            rawJPChar.Add(0x2F, 'ざ'); // za
+            rawJPChar.Add(0x45, 'じ'); // ji
+            rawJPChar.Add(0x46, 'ず'); // zu
+            rawJPChar.Add(0x47, 'ぜ'); // ze
+            rawJPChar.Add(0x4D, 'ぞ'); // zo
 
-                        rawJPChar.Add(60, 'ざ'); // za
-                        rawJPChar.Add(61, 'じ'); // ji
-                        rawJPChar.Add(62, 'ず'); // zu
-                        rawJPChar.Add(63, 'ぜ'); // ze
-                        rawJPChar.Add(64, 'ぞ'); // zo
+            rawJPChar.Add(0x4E, 'だ'); // da
+            rawJPChar.Add(0x4F, 'ぢ'); // di
+            rawJPChar.Add(0x65, 'づ'); // du
+            rawJPChar.Add(0x66, 'で'); // de
+            rawJPChar.Add(0x67, 'ど'); // do
 
-                        rawJPChar.Add(65, 'だ'); // da
-                        rawJPChar.Add(66, 'ぢ'); // di
-                        rawJPChar.Add(67, 'づ'); // du
-                        rawJPChar.Add(68, 'で'); // de
-                        rawJPChar.Add(69, 'ど'); // do
+            rawJPChar.Add(0x6D, 'ば'); // ba
+            rawJPChar.Add(0x6E, 'び'); // bi
+            rawJPChar.Add(0x6F, 'ぶ'); // bu
+            rawJPChar.Add(0x80, 'べ'); // be
+            rawJPChar.Add(0x81, 'ぼ'); // bo
 
-                        rawJPChar.Add(70, 'ば'); // ba
-                        rawJPChar.Add(71, 'び'); // bi
-                        rawJPChar.Add(72, 'ぶ'); // bu
-                        rawJPChar.Add(73, 'べ'); // be
-                        rawJPChar.Add(74, 'ぼ'); // bo
+            rawJPChar.Add(0x82, 'ぱ'); // pa
+            rawJPChar.Add(0x83, 'ぴ'); // pi
+            rawJPChar.Add(0x84, 'ぷ'); // pu
+            rawJPChar.Add(0x85, 'ぺ'); // pe
+            rawJPChar.Add(0x86, 'ぽ'); // po
 
-                        rawJPChar.Add(75, 'ぱ'); // pa
-                        rawJPChar.Add(76, 'ぴ'); // pi
-                        rawJPChar.Add(77, 'ぷ'); // pu
-                        rawJPChar.Add(78, 'ぺ'); // pe
-                        rawJPChar.Add(79, 'ぽ'); // po
+            rawJPChar.Add(0x8B, 'ぁ'); // ~a
+            rawJPChar.Add(0x8C, 'ぃ'); // ~i
+            rawJPChar.Add(0x8D, 'ぅ'); // ~u
+            rawJPChar.Add(0x8E, 'ぇ'); // ~e
+            rawJPChar.Add(0x8F, 'ぉ'); // ~o
 
-                        rawJPChar.Add(80, 'ぁ'); // ~a
-                        rawJPChar.Add(81, 'ぃ'); // ~i
-                        rawJPChar.Add(82, 'ぅ'); // ~u
-                        rawJPChar.Add(83, 'ぇ'); // ~e
-                        rawJPChar.Add(84, 'ぉ'); // ~o
+            rawJPChar.Add(0x87, 'ゃ'); // ~ya
+            rawJPChar.Add(0x88, 'ゅ'); // ~yu
+            rawJPChar.Add(0x89, 'ょ'); // ~yo
 
-                        rawJPChar.Add(85, 'ゃ'); // ~ya
-                        rawJPChar.Add(86, 'ゅ'); // ~yu
-                        rawJPChar.Add(87, 'ょ'); // ~yo
+            rawJPChar.Add(0x8A, 'っ'); // ~tsu
 
-                        rawJPChar.Add(89, 'っ'); // ~tsu
+            // Katakana
+            rawJPChar.Add(0xA0, 'ア'); // a
+            rawJPChar.Add(0xA1, 'イ'); // i
+            rawJPChar.Add(0xA2, 'ウ'); // u
+            rawJPChar.Add(0xA3, 'エ'); // e
+            rawJPChar.Add(0xA4, 'オ'); // o
 
-                        // Katakana
-                        rawJPChar.Add(95, 'ア'); // a
-                        rawJPChar.Add(96, 'イ'); // i
-                        rawJPChar.Add(97, 'ウ'); // u
-                        rawJPChar.Add(98, 'エ'); // e
-                        rawJPChar.Add(99, 'オ'); // o
+            rawJPChar.Add(0xA8, 'カ'); // ka
+            rawJPChar.Add(0xA9, 'キ'); // ki
+            rawJPChar.Add(0xAA, 'ク'); // ku
+            rawJPChar.Add(0xAB, 'ケ'); // ke
+            rawJPChar.Add(0xAC, 'コ'); // ko
 
-                        rawJPChar.Add(100, 'カ'); // ka
-                        rawJPChar.Add(101, 'キ'); // ki
-                        rawJPChar.Add(102, 'ク'); // ku
-                        rawJPChar.Add(103, 'ケ'); // ke
-                        rawJPChar.Add(104, 'コ'); // ko
+            rawJPChar.Add(0xC0, 'サ'); // sa
+            rawJPChar.Add(0xC1, 'シ'); // shi
+            rawJPChar.Add(0xC2, 'ス'); // su
+            rawJPChar.Add(0xC3, 'セ'); // se
+            rawJPChar.Add(0xC4, 'ソ'); // so
 
-                        rawJPChar.Add(105, 'サ'); // sa
-                        rawJPChar.Add(106, 'シ'); // shi
-                        rawJPChar.Add(107, 'ス'); // su
-                        rawJPChar.Add(108, 'セ'); // se
-                        rawJPChar.Add(109, 'ソ'); // so
+            rawJPChar.Add(0xC8, 'タ'); // ta
+            rawJPChar.Add(0xC9, 'チ'); // chi
+            rawJPChar.Add(0xCA, 'ツ'); // tsu
+            rawJPChar.Add(0xCB, 'テ'); // te
+            rawJPChar.Add(0xCC, 'ト'); // to
 
-                        rawJPChar.Add(110, 'タ'); // ta
-                        rawJPChar.Add(111, 'チ'); // chi
-                        rawJPChar.Add(112, 'ツ'); // tsu
-                        rawJPChar.Add(113, 'テ'); // te
-                        rawJPChar.Add(114, 'ト'); // to
+            rawJPChar.Add(0xE0, 'ナ'); // na
+            rawJPChar.Add(0xE1, 'ニ'); // ni
+            rawJPChar.Add(0xE2, 'ヌ'); // nu
+            rawJPChar.Add(0xE3, 'ネ'); // ne
+            rawJPChar.Add(0xE4, 'ノ'); // no
 
-                        rawJPChar.Add(115, 'ナ'); // na
-                        rawJPChar.Add(116, 'ニ'); // ni
-                        rawJPChar.Add(117, 'ヌ'); // nu
-                        rawJPChar.Add(118, 'ネ'); // ne
-                        rawJPChar.Add(119, 'ノ'); // no
+            rawJPChar.Add(0xE8, 'ハ'); // ha
+            rawJPChar.Add(0xE9, 'ヒ'); // hi
+            rawJPChar.Add(0xEA, 'フ'); // fu
+            rawJPChar.Add(0xEB, 'ヘ'); // he
+            rawJPChar.Add(0xEC, 'ホ'); // ho
 
-                        rawJPChar.Add(120, 'ハ'); // ha
-                        rawJPChar.Add(121, 'ヒ'); // hi
-                        rawJPChar.Add(122, 'フ'); // fu
-                        rawJPChar.Add(123, 'ヘ'); // he
-                        rawJPChar.Add(124, 'ホ'); // ho
+            rawJPChar.Add(0x100, 'マ'); // ma
+            rawJPChar.Add(0x101, 'ミ'); // mi
+            rawJPChar.Add(0x102, 'ム'); // mu
+            rawJPChar.Add(0x103, 'メ'); // me
+            rawJPChar.Add(0x104, 'モ'); // mo
 
-                        rawJPChar.Add(125, 'マ'); // ma
-                        rawJPChar.Add(126, 'ミ'); // mi
-                        rawJPChar.Add(127, 'ム'); // mu
-                        rawJPChar.Add(128, 'メ'); // me
-                        rawJPChar.Add(129, 'モ'); // mo
+            rawJPChar.Add(0xA5, 'ヤ'); // ya
+            rawJPChar.Add(0xA6, 'ユ'); // yu
+            rawJPChar.Add(0xA7, 'ヨ'); // yo
 
-                        rawJPChar.Add(130, 'ヤ'); // ya
-                        rawJPChar.Add(132, 'ユ'); // yu
-                        rawJPChar.Add(134, 'ヨ'); // yo
+            rawJPChar.Add(0x108, 'ラ'); // ra
+            rawJPChar.Add(0x109, 'リ'); // ri
+            rawJPChar.Add(0x10A, 'ル'); // ru
+            rawJPChar.Add(0x10B, 'レ'); // re
+            rawJPChar.Add(0x10C, 'ロ'); // ro
 
-                        rawJPChar.Add(135, 'ラ'); // ra
-                        rawJPChar.Add(136, 'リ'); // ri
-                        rawJPChar.Add(137, 'ル'); // ru
-                        rawJPChar.Add(138, 'レ'); // re
-                        rawJPChar.Add(139, 'ロ'); // ro
+            rawJPChar.Add(0xAD, 'ワ'); // wa
+            rawJPChar.Add(0xAE, 'ヲ'); // wo
+            rawJPChar.Add(0xAF, 'ン'); // n
 
-                        rawJPChar.Add(140, 'ワ'); // wa
-                        rawJPChar.Add(141, 'ヲ'); // wo
-                        rawJPChar.Add(142, 'ン'); // n
+            //rawJPChar.Add(0x189, '－'); <- Exactly the same as hiragana; accounted for in the name-reading code
 
-                        rawJPChar.Add(144, '－');
+            rawJPChar.Add(0xC5, 'ガ'); // ga
+            rawJPChar.Add(0xC6, 'ギ'); // gi
+            rawJPChar.Add(0xC7, 'グ'); // gu
+            rawJPChar.Add(0xCD, 'ゲ'); // ge
+            rawJPChar.Add(0xCE, 'ゴ'); // go
 
-                        rawJPChar.Add(145, 'ガ'); // ga
-                        rawJPChar.Add(146, 'ギ'); // gi
-                        rawJPChar.Add(147, 'グ'); // gu
-                        rawJPChar.Add(148, 'ゲ'); // ge
-                        rawJPChar.Add(149, 'ゴ'); // go
+            rawJPChar.Add(0xCF, 'ザ'); // za
+            rawJPChar.Add(0xE5, 'ジ'); // ji
+            rawJPChar.Add(0xE6, 'ズ'); // zu
+            rawJPChar.Add(0xE7, 'ゼ'); // ze
+            rawJPChar.Add(0xED, 'ゾ'); // zo
 
-                        rawJPChar.Add(150, 'ザ'); // za
-                        rawJPChar.Add(151, 'ジ'); // ji
-                        rawJPChar.Add(152, 'ズ'); // zu
-                        rawJPChar.Add(153, 'ゼ'); // ze
-                        rawJPChar.Add(154, 'ゾ'); // zo
+            rawJPChar.Add(0xEE, 'ダ'); // da
+            rawJPChar.Add(0xEF, 'ヂ'); // di
+            rawJPChar.Add(0x105, 'ヅ'); // du
+            rawJPChar.Add(0x106, 'デ'); // de
+            rawJPChar.Add(0x107, 'ド'); // do
 
-                        rawJPChar.Add(155, 'ダ'); // da
-                        rawJPChar.Add(156, 'ヂ'); // di
-                        rawJPChar.Add(157, 'ヅ'); // du
-                        rawJPChar.Add(158, 'デ'); // de
-                        rawJPChar.Add(159, 'ド'); // do
+            rawJPChar.Add(0x10D, 'バ'); // ba
+            rawJPChar.Add(0x10E, 'ビ'); // bi
+            rawJPChar.Add(0x10F, 'ブ'); // bu
+            rawJPChar.Add(0x120, 'ベ'); // be
+            rawJPChar.Add(0x121, 'ボ'); // bo
 
-                        rawJPChar.Add(160, 'バ'); // ba
-                        rawJPChar.Add(161, 'ビ'); // bi
-                        rawJPChar.Add(162, 'ブ'); // bu
-                        rawJPChar.Add(163, 'ベ'); // be
-                        rawJPChar.Add(164, 'ボ'); // bo
+            rawJPChar.Add(0x122, 'パ'); // pa
+            rawJPChar.Add(0x123, 'ピ'); // pi
+            rawJPChar.Add(0x124, 'プ'); // pu
+            rawJPChar.Add(0x125, 'ペ'); // pe
+            rawJPChar.Add(0x126, 'ポ'); // po
 
-                        rawJPChar.Add(165, 'パ'); // pa
-                        rawJPChar.Add(166, 'ピ'); // pi
-                        rawJPChar.Add(167, 'プ'); // pu
-                        rawJPChar.Add(168, 'ペ'); // pe
-                        rawJPChar.Add(169, 'ポ'); // po
+            rawJPChar.Add(0x12B, 'ァ'); // ~a
+            rawJPChar.Add(0x12C, 'ィ'); // ~i
+            rawJPChar.Add(0x12D, 'ゥ'); // ~u
+            rawJPChar.Add(0x12E, 'ェ'); // ~e
+            rawJPChar.Add(0x12F, 'ォ'); // ~o
 
-                        rawJPChar.Add(170, 'ァ'); // ~a
-                        rawJPChar.Add(171, 'ィ'); // ~i
-                        rawJPChar.Add(172, 'ゥ'); // ~u
-                        rawJPChar.Add(173, 'ェ'); // ~e
-                        rawJPChar.Add(174, 'ォ'); // ~o
+            rawJPChar.Add(0x127, 'ャ'); // ~ya
+            rawJPChar.Add(0x128, 'ュ'); // ~yu
+            rawJPChar.Add(0x129, 'ョ'); // ~yo
 
-                        rawJPChar.Add(175, 'ャ'); // ~ya
-                        rawJPChar.Add(176, 'ュ'); // ~yu
-                        rawJPChar.Add(177, 'ョ'); // ~yo
-
-                        rawJPChar.Add(179, 'ッ'); // ~tsu
-                        */
+            rawJPChar.Add(0x12A, 'ッ'); // ~tsu
 
             // Romaji
-            //rawJPChar.Add(180, 'A');
+            rawJPChar.Add(0x014A, 'A');
             rawJPChar.Add(0x014B, 'B');
-            //rawJPChar.Add(182, 'C');
+            rawJPChar.Add(0x014C, 'C');
             rawJPChar.Add(0x014D, 'D');
-            //rawJPChar.Add(184, 'E');
-            //rawJPChar.Add(185, 'F');
-            //rawJPChar.Add(186, 'G');
+            rawJPChar.Add(0x014E, 'E');
+            rawJPChar.Add(0x014F, 'F');
+            rawJPChar.Add(0x0160, 'G');
             rawJPChar.Add(0x0161, 'H');
-
-            //rawJPChar.Add(188, 'I');
-            //rawJPChar.Add(189, 'J');
-            //rawJPChar.Add(190, 'K');
+            rawJPChar.Add(0x0162, 'I');
+            rawJPChar.Add(0x0163, 'J');
+            rawJPChar.Add(0x0164, 'K');
             rawJPChar.Add(0x0165, 'L');
-            /*rawJPChar.Add(192, 'M');
-            rawJPChar.Add(193, 'N');
-            rawJPChar.Add(194, 'O');
-            rawJPChar.Add(195, 'P');
-            rawJPChar.Add(196, 'Q');
-            rawJPChar.Add(197, 'R');
-            rawJPChar.Add(198, 'S');
-            rawJPChar.Add(199, 'T');
-            rawJPChar.Add(200, 'U');
-            rawJPChar.Add(201, 'V');
-            rawJPChar.Add(202, 'W');
-            rawJPChar.Add(203, 'X');
-            rawJPChar.Add(204, 'Y');
-            rawJPChar.Add(205, 'Z');
-            rawJPChar.Add(206, '-');
-            rawJPChar.Add(207, '~');
-            */
+            rawJPChar.Add(0x0166, 'M');
+            rawJPChar.Add(0x0167, 'N');
+            rawJPChar.Add(0x0168, 'O');
+            rawJPChar.Add(0x0169, 'P');
+            rawJPChar.Add(0x016A, 'Q');
+            rawJPChar.Add(0x016B, 'R');
+            rawJPChar.Add(0x016C, 'S');
+            rawJPChar.Add(0x016D, 'T');
+            rawJPChar.Add(0x016E, 'U');
+            rawJPChar.Add(0x016F, 'V');
+            rawJPChar.Add(0x0180, 'W');
+            rawJPChar.Add(0x0181, 'X');
+            rawJPChar.Add(0x0182, 'Y');
+            rawJPChar.Add(0x0183, 'Z');
+            //rawJPChar.Add(0x0189, '-'); <- Exactly the same as hiragana; accounted for in the name-reading code
+            rawJPChar.Add(0x018E, '~');
         }
     }
 }
