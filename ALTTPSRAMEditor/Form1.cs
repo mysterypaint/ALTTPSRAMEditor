@@ -17,11 +17,11 @@ namespace ALTTPSRAMEditor
         const int srm_randomizer_size = 16 * 1024;
         const int srm_randomizer_size_2 = 32 * 1024;
 
-        // Items and Equipment
+        // Items and Equipment (All these values are relative, just subtract 0x340 from their actual SRAM values
         const int bow = 0x0;
         const int boomerang = 0x1;
         const int hookshot = 0x2;
-        const int bomb = 0x3;
+        const int bombCount = 0x3;
         const int mushroomPowder = 0x4;
         const int fireRod = 0x5;
         const int iceRod = 0x6;
@@ -53,8 +53,22 @@ namespace ALTTPSRAMEditor
         const int wallet = 0x20; // 2 bytes
         const int rupees = 0x22; // 2 bytes
 
-        public enum SaveRegion : int {
+        const int abilityFlags = 0x39;
+        const int arrowCount = 0x37;
+        const int bombUpgrades = 0x30;
+        const int arrowUpgrades = 0x31;
+
+        static int[] bottleContents = new int[9];
+        static System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
+
+        public enum SaveRegion : int
+        {
             USA, JPN, EUR
+        };
+
+        public enum BottleContents : int
+        {
+            NONE, MUSHROOM, EMPTY, RED_POTION, GREEN_POTION, BLUE_POTION, FAERIE, BEE, GOOD_BEE
         };
 
         static int pos = 0;
@@ -133,8 +147,7 @@ namespace ALTTPSRAMEditor
 
                         updatePlayerName(savslot);
                         Link player = savslot.GetPlayer();
-                        displayPlayerName = savslot.GetPlayerName();
-                        numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+                        UpdateAllConfigurables(savslot);
                         Refresh(); // Update the screen, including the player name
                     }
                     else
@@ -178,6 +191,26 @@ namespace ALTTPSRAMEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Define bottle array
+            bottleContents[0] = (int) BottleContents.NONE;
+            bottleContents[1] = (int) BottleContents.EMPTY;
+            bottleContents[2] = (int) BottleContents.RED_POTION;
+            bottleContents[3] = (int) BottleContents.GREEN_POTION;
+            bottleContents[4] = (int) BottleContents.BLUE_POTION;
+            bottleContents[5] = (int) BottleContents.FAERIE;
+            bottleContents[6] = (int) BottleContents.BEE;
+            bottleContents[7] = (int) BottleContents.GOOD_BEE;
+            bottleContents[8] = (int) BottleContents.MUSHROOM;
+
+            bottleContentsImg[bottleContents[0]] = ALTTPSRAMEditor.Properties.Resources.Bottle;
+            bottleContentsImg[bottleContents[1]] = ALTTPSRAMEditor.Properties.Resources.Bottle;
+            bottleContentsImg[bottleContents[2]] = ALTTPSRAMEditor.Properties.Resources.Red_Potion;
+            bottleContentsImg[bottleContents[3]] = ALTTPSRAMEditor.Properties.Resources.Green_Potion;
+            bottleContentsImg[bottleContents[4]] = ALTTPSRAMEditor.Properties.Resources.Blue_Potion;
+            bottleContentsImg[bottleContents[5]] = ALTTPSRAMEditor.Properties.Resources.Fairy;
+            bottleContentsImg[bottleContents[6]] = ALTTPSRAMEditor.Properties.Resources.Bee;
+            bottleContentsImg[bottleContents[7]] = ALTTPSRAMEditor.Properties.Resources.Bee;
+            bottleContentsImg[bottleContents[8]] = ALTTPSRAMEditor.Properties.Resources.Mushroom;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -294,13 +327,220 @@ namespace ALTTPSRAMEditor
             }
             else savslot = sdat.GetSaveSlot(1);
 
+            updatePlayerName(savslot);
+        }
+
+        private void UpdateAllConfigurables(SaveSlot savslot)
+        {
+            Link player = savslot.GetPlayer();
+            displayPlayerName = savslot.GetPlayerName();
+            numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+
+            switch (player.GetItemEquipment(bow))
+            {
+                default:
+                case 0x0:
+                    bowOptionNone.Checked = true;
+                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow;
+                    break;
+                case 0x1:
+                    bowOption1.Checked = true;
+                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow;
+                    break;
+                case 0x2:
+                    bowOption2.Checked = true;
+                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
+                    break;
+                case 0x3:
+                    bowOption3.Checked = true;
+                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow_and_Light_Arrow;
+                    break;
+                case 0x4:
+                    bowOption4.Checked = true;
+                    pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow_and_Light_Arrow;
+                    break;
+            }
+
+            numericUpDownArrowsHeld.Value = player.GetItemEquipment(arrowCount);
+            numericUpDownBombsHeld.Value = player.GetItemEquipment(bombCount);
+            switch (player.GetItemEquipment(boomerang))
+            {
+                default:
+                case 0x0:
+                    radioButtonNoBoomerang.Checked = true;
+                    pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Boomerang;
+                    break;
+                case 0x1:
+                    radioButtonBlueBoomerang.Checked = true;
+                    pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Boomerang;
+                    break;
+                case 0x2:
+                    radioButtonRedBoomerang.Checked = true;
+                    pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Magical_Boomerang;
+                    break;
+            }
+
+            switch (player.GetItemEquipment(hookshot))
+            {
+                default:
+                case 0x0:
+                    radioButtonNoHookshot.Checked = true;
+                    pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+                    break;
+                case 0x1:
+                    radioButtonHasHookshot.Checked = true;
+                    pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+                    break;
+            }
+
+            switch (player.GetItemEquipment(mushroomPowder))
+            {
+                default:
+                case 0x0:
+                    radioButtonNoMushPowd.Checked = true;
+                    pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Mushroom;
+                    break;
+                case 0x1:
+                    radioButtonMushroom.Checked = true;
+                    pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Mushroom;
+                    break;
+                case 0x2:
+                    radioButtonPowder.Checked = true;
+                    pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Magic_Powder;
+                    break;
+            }
+
+            switch (player.GetItemEquipment(sword))
+            {
+                default:
+                case 0x0:
+                    radioButtonNoSword.Checked = true;
+                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+                    break;
+                case 0x1:
+                    radioButtonFighterSword.Checked = true;
+                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+                    break;
+                case 0x2:
+                    radioButtonMasterSword.Checked = true;
+                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Master_Sword;
+                    break;
+                case 0x3:
+                    radioButtonTemperedSword.Checked = true;
+                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Tempered_Sword;
+                    break;
+                case 0x4:
+                    radioButtonGoldenSword.Checked = true;
+                    pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Golden_Sword;
+                    break;
+            }
+
+            switch (player.GetItemEquipment(shield))
+            {
+                default:
+                case 0x0:
+                    radioButtonNoShield.Checked = true;
+                    pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+                    break;
+                case 0x1:
+                    radioButtonBlueShield.Checked = true;
+                    pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+                    break;
+                case 0x2:
+                    radioButtonHerosShield.Checked = true;
+                    pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Red_Shield;
+                    break;
+                case 0x3:
+                    radioButtonMirrorShield.Checked = true;
+                    pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Mirror_Shield;
+                    break;
+            }
+
+            switch (player.GetItemEquipment(armor))
+            {
+                default:
+                case 0x0:
+                    radioButtonGreenMail.Checked = true;
+                    pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Green_Tunic;
+                    break;
+                case 0x1:
+                    radioButtonBlueMail.Checked = true;
+                    pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Tunic;
+                    break;
+                case 0x2:
+                    radioButtonRedMail.Checked = true;
+                    pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Red_Tunic;
+                    break;
+            }
+
+            // Fill the 1st bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
+            int fillContents = player.GetItemEquipment(bottle1Contents);
+            if (fillContents == 1)
+                fillContents = 9;
+            if (fillContents - 1 < 0)
+            {
+                comboBoxBottle1.SelectedIndex = 0;
+                fillContents = 1;
+            }
+            else
+                comboBoxBottle1.SelectedIndex = fillContents - 1;
+            // Update the picture so it represents what the 1st bottle actually has
+            pictureBottle1.Image = bottleContentsImg[bottleContents[fillContents - 1]];
+
+
+            // Fill the 2nd bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
+            fillContents = player.GetItemEquipment(bottle2Contents);
+            if (fillContents == 1)
+                fillContents = 9;
+            if (fillContents - 1 < 0)
+            {
+                comboBoxBottle2.SelectedIndex = 0;
+                fillContents = 1;
+            }
+            else
+                comboBoxBottle2.SelectedIndex = fillContents - 1;
+            // Update the picture so it represents what the 2nd bottle actually has
+            pictureBottle2.Image = bottleContentsImg[bottleContents[fillContents - 1]];
+
+
+            // Fill the 3rd bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
+            fillContents = player.GetItemEquipment(bottle3Contents);
+            if (fillContents == 1)
+                fillContents = 9;
+            if (fillContents - 1 < 0)
+            {
+                comboBoxBottle3.SelectedIndex = 0;
+                fillContents = 1;
+            }
+            else
+                comboBoxBottle3.SelectedIndex = fillContents - 1;
+            // Update the picture so it represents what the 3rd bottle actually has
+            pictureBottle3.Image = bottleContentsImg[bottleContents[fillContents - 1]];
+
+
+
+            // Fill the 4th bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
+            fillContents = player.GetItemEquipment(bottle4Contents);
+            if (fillContents == 1)
+                fillContents = 9;
+            if (fillContents - 1 < 0)
+            {
+                comboBoxBottle4.SelectedIndex = 0;
+                fillContents = 1;
+            }
+            else
+                comboBoxBottle4.SelectedIndex = fillContents - 1;
+            // Update the picture so it represents what the 4th bottle actually has
+            pictureBottle4.Image = bottleContentsImg[bottleContents[fillContents - 1]];
+
+
             // Update the playerName textbox to emphasize the 6 character limit.
             updatePlayerName(savslot);
         }
 
         private void pictureBow_Click(object sender, EventArgs e)
         {
-            groupBoxBowConfig.Visible = true;
+            HideAllGroupBoxesExcept(groupBoxBowConfig);
         }
 
         private SaveSlot GetSaveSlot()
@@ -325,25 +565,29 @@ namespace ALTTPSRAMEditor
 
             if (btn != null && btn.Checked)
             {
-                SaveSlot savslot = GetSaveSlot();
-                Link player = savslot.GetPlayer();
+                Link player = GetSaveSlot().GetPlayer();
 
                 switch (btn.Name)
                 {
                     case "bowOptionNone":
                         player.SetHasItemEquipment(bow, 0x0); // Give No Bow
+                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow;
                         break;
                     case "bowOption1":
                         player.SetHasItemEquipment(bow, 0x1); // Give Bow
+                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow;
                         break;
                     case "bowOption2":
                         player.SetHasItemEquipment(bow, 0x2); // Give Bow & Arrows
+                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
                         break;
                     case "bowOption3":
                         player.SetHasItemEquipment(bow, 0x3); // Give Silver Bow
+                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow_and_Light_Arrow;
                         break;
                     case "bowOption4":
                         player.SetHasItemEquipment(bow, 0x4); // Give Bow & Silver Arrows
+                        pictureBow.Image = ALTTPSRAMEditor.Properties.Resources.Bow_and_Light_Arrow;
                         break;
                 }
             }
@@ -359,6 +603,7 @@ namespace ALTTPSRAMEditor
 
         private void fileRadio(object sender, EventArgs e)
         {
+            // User clicked a radio button to change file save slots
             RadioButton btn = sender as RadioButton;
 
             if (btn != null && btn.Checked)
@@ -367,6 +612,7 @@ namespace ALTTPSRAMEditor
                 Link player = savslot.GetPlayer();
                 updatePlayerName(savslot);
                 numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+                UpdateAllConfigurables(savslot);
             }
         }
 
@@ -453,6 +699,301 @@ namespace ALTTPSRAMEditor
         {
             var newForm = new NameChangingForm();
             newForm.ShowDialog();
+        }
+
+        private void numericUpDownArrowsHeld_ValueChanged(object sender, EventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetHasItemEquipment(arrowCount, (byte) numericUpDownArrowsHeld.Value); // Set the new arrow count value
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxBoomerangConfig);
+        }
+
+        private void HideAllGroupBoxesExcept(GroupBox currentGroupBox)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c.GetType() == typeof(GroupBox))
+                {
+                    if (!c.Equals(currentGroupBox) && !c.Equals(groupFileSelect))
+                        c.Visible = false;
+                }
+            }
+            currentGroupBox.Visible = true;
+        }
+
+        private void boomerangRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    default:
+                    case "radioButtonNoBoomerang":
+                        player.SetHasItemEquipment(boomerang, 0x0); // Give No Boomerang
+                        pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Boomerang;
+                        break;
+                    case "radioButtonBlueBoomerang":
+                        player.SetHasItemEquipment(boomerang, 0x1); // Give Blue Boomerang
+                        pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Boomerang;
+                        break;
+                    case "radioButtonRedBoomerang":
+                        player.SetHasItemEquipment(boomerang, 0x2); // Give Red Boomerang
+                        pictureBox1.Image = ALTTPSRAMEditor.Properties.Resources.Magical_Boomerang;
+                        break;
+                }
+            }
+        }
+
+        private void hookshotRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    default:
+                    case "radioButtonNoHookshot":
+                        player.SetHasItemEquipment(hookshot, 0x0); // Give No Hookshot
+                        pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+                        break;
+                    case "radioButtonHasHookshot":
+                        player.SetHasItemEquipment(hookshot, 0x1); // Give Hookshot
+                        pictureHookshot.Image = ALTTPSRAMEditor.Properties.Resources.Hookshot;
+                        break;
+                }
+            }
+        }
+
+        private void pictureHookshot_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxHookshot);
+        }
+
+        private void numericUpDownBombsHeld_ValueChanged(object sender, EventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetHasItemEquipment(bombCount, (byte) numericUpDownBombsHeld.Value); // Set the new bomb count value
+        }
+
+        private void pictureBombs_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxBombs);
+        }
+
+        private void pictureMushPowd_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxMushroomPowder);
+        }
+
+        private void mushPowdRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    default:
+                    case "radioButtonNoMushPowd":
+                        player.SetHasItemEquipment(mushroomPowder, 0x0); // Give Neither Mushroom nor Powder
+                        pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Mushroom;
+                        break;
+                    case "radioButtonMushroom":
+                        player.SetHasItemEquipment(mushroomPowder, 0x1); // Give Mushroom
+                        pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Mushroom;
+                        break;
+                    case "radioButtonPowder":
+                        player.SetHasItemEquipment(mushroomPowder, 0x2); // Give Magic Powder
+                        pictureMushPowd.Image = ALTTPSRAMEditor.Properties.Resources.Magic_Powder;
+                        break;
+                }
+            }
+        }
+
+        private void swordRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    default:
+                    case "radioButtonNoSword":
+                        player.SetHasItemEquipment(sword, 0x0); // Give No Sword
+                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+                        break;
+                    case "radioButtonFighterSword":
+                        player.SetHasItemEquipment(sword, 0x1); // Give Fighter's Sword
+                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Sword;
+                        break;
+                    case "radioButtonMasterSword":
+                        player.SetHasItemEquipment(sword, 0x2); // Give Master Sword
+                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Master_Sword;
+                        break;
+                    case "radioButtonTemperedSword":
+                        player.SetHasItemEquipment(sword, 0x3); // Give Tempered Sword
+                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Tempered_Sword;
+                        break;
+                    case "radioButtonGoldenSword":
+                        player.SetHasItemEquipment(sword, 0x4); // Give Golden Sword
+                        pictureSword.Image = ALTTPSRAMEditor.Properties.Resources.Golden_Sword;
+                        break;
+                }
+            }
+        }
+
+        private void pictureSword_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxSword);
+        }
+
+        private void radioShield(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    default:
+                    case "radioButtonNoShield":
+                        player.SetHasItemEquipment(shield, 0x0); // Give No Shield
+                        pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+                        break;
+                    case "radioButtonBlueShield":
+                        player.SetHasItemEquipment(shield, 0x1); // Give Fighter's Shield
+                        pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Fighter_s_Shield;
+                        break;
+                    case "radioButtonHerosShield":
+                        player.SetHasItemEquipment(shield, 0x2); // Give Hero's Shield
+                        pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Red_Shield;
+                        break;
+                    case "radioButtonMirrorShield":
+                        player.SetHasItemEquipment(shield, 0x3); // Give Mirror Shield
+                        pictureShield.Image = ALTTPSRAMEditor.Properties.Resources.Mirror_Shield;
+                        break;
+                }
+            }
+        }
+
+        private void pictureShield_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxShield);
+        }
+
+        private void pictureMail_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxMails);
+        }
+
+        private void mailRadio(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn != null && btn.Checked)
+            {
+                Link player = GetSaveSlot().GetPlayer();
+                switch (btn.Name)
+                {
+                    default:
+                    case "radioButtonGreenMail":
+                        player.SetHasItemEquipment(armor, 0x0); // Give Green Mail
+                        pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Green_Tunic;
+                        break;
+                    case "radioButtonBlueMail":
+                        player.SetHasItemEquipment(armor, 0x1); // Give Blue Mail
+                        pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Tunic;
+                        break;
+                    case "radioButtonRedMail":
+                        player.SetHasItemEquipment(armor, 0x2); // Give Red Mail
+                        pictureMail.Image = ALTTPSRAMEditor.Properties.Resources.Red_Tunic;
+                        break;
+                }
+            }
+        }
+
+        private void comboBoxBottle1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
+            int fillContents = bottleContents[comboBoxBottle1.SelectedIndex];
+
+            // Update the picture so it represents what the bottle actually has
+            pictureBottle1.Image = bottleContentsImg[fillContents];
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetHasItemEquipment(bottle1Contents, (byte) fillContents);
+        }
+
+        private void pictureBottles_Click(object sender, EventArgs e)
+        {
+            HideAllGroupBoxesExcept(groupBoxBottles);
+        }
+
+        private void comboBoxBottle2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
+            int fillContents = bottleContents[comboBoxBottle2.SelectedIndex];
+
+            // Update the picture so it represents what the bottle actually has
+            pictureBottle2.Image = bottleContentsImg[fillContents];
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetHasItemEquipment(bottle2Contents, (byte)fillContents);
+        }
+
+        private void comboBoxBottle3_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
+            int fillContents = bottleContents[comboBoxBottle3.SelectedIndex];
+
+            // Update the picture so it represents what the bottle actually has
+            pictureBottle3.Image = bottleContentsImg[fillContents];
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetHasItemEquipment(bottle3Contents, (byte)fillContents);
+        }
+
+        private void comboBoxBottle4_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
+            int fillContents = bottleContents[comboBoxBottle4.SelectedIndex];
+
+            // Update the picture so it represents what the bottle actually has
+            pictureBottle4.Image = bottleContentsImg[fillContents];
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetHasItemEquipment(bottle4Contents, (byte)fillContents);
+        }
+
+        private void pictureBoots_Click(object sender, EventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            byte flags = player.GetAbilityFlags();
+            if (player.GetItemEquipment(pegasusBoots) == 1)
+            {
+                Console.WriteLine("Boots Off");
+                Console.WriteLine(flags.ToString() + " -> " + (flags & 0xFD).ToString());
+                flags &= 0xFB; // To turn it off, bitwise and with b11111101
+                player.SetHasItemEquipment(pegasusBoots, 0x0);
+                player.SetHasItemEquipment(abilityFlags, flags);
+            }
+            else
+            {
+                Console.WriteLine("Boots On");
+                Console.WriteLine(flags.ToString() + " -> " + (flags | 0x2).ToString());
+                flags |= 0x4; // Turn it on, bitwise or with b00000010
+                player.SetHasItemEquipment(pegasusBoots, 0x1);
+                player.SetHasItemEquipment(abilityFlags, flags);
+            }
+
+        }
+
+        public static bool GetBit(byte b, int bitNumber)
+        {
+            return (b & (1 << bitNumber - 1)) != 0;
         }
     }
 }

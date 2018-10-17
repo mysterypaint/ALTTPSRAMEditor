@@ -29,9 +29,9 @@ namespace ALTTPSRAMEditor
 
             // Copy global save data's Item&Equipment data to this Save Slot
 
-            byte[] itemsAndEquipment = new byte[0x24];
+            byte[] itemsAndEquipment = new byte[0x4B];
             
-            for (int i = 0x0; i < 0x24; i++)
+            for (int i = 0x0; i < itemsAndEquipment.Length; i++)
             {
                 itemsAndEquipment[i] = data[0x340 + i];
             }
@@ -156,9 +156,11 @@ namespace ALTTPSRAMEditor
         public void UpdatePlayer()
         {
             // Take player's equipment and update the local data
-            for (int i = 0x0; i <= 0x23; i++)
+            byte[] itemsAndEquipment = player.GetItemsAndEquipmentArray();
+            int len = itemsAndEquipment.Length;
+            for (int i = 0x0; i < len; i++)
             {
-                data[0x340 + i] = (byte) player.GetItemEquipment(i);
+                data[0x340 + i] = (byte) itemsAndEquipment[i];
             }
         }
 

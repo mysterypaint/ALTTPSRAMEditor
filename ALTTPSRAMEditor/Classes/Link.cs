@@ -9,10 +9,22 @@ namespace ALTTPSRAMEditor
     class Link
     {
         private byte[] itemsAndEquipment;
+        private byte abilityFlags;
 
         public Link(byte[] itemsAndEquipmentInput)
         {
             itemsAndEquipment = itemsAndEquipmentInput.ToArray();
+            abilityFlags = itemsAndEquipment[0x39];
+        }
+
+        public byte[] GetItemsAndEquipmentArray()
+        {
+            return itemsAndEquipment;
+        }
+
+        public byte GetAbilityFlags()
+        {
+            return abilityFlags;
         }
 
         public void SetHasItemEquipment(int addr, byte val)
