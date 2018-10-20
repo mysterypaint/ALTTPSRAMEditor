@@ -14,13 +14,16 @@ namespace ALTTPSRAMEditor
         private Link player;
         private byte pendants;
         private byte crystals;
+        int slotIndex;
         Form1.SaveRegion saveRegion;
         byte[] itemsAndEquipment;
 
-        public SaveSlot(byte[] data_in)
+        public SaveSlot(byte[] data_in, int _slot)
         {
             // Import this save slot's data from the larger global save data
             data = data_in.ToArray();
+
+            slotIndex = _slot;
 
             // Determine which region this save comes from
             if (data[0x3E5] == 0xAA && data[0x3E6] == 0x55)
@@ -49,10 +52,15 @@ namespace ALTTPSRAMEditor
             getRawPlayerName();
         }
 
+        public override String ToString()
+        {
+            return slotIndex.ToString();
+        }
         private void getRawPlayerName()
         {
             if (!SaveIsValid())
                 return;
+
             UInt16[] pNameRaw;
             int j = 0;
 

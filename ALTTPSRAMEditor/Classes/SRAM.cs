@@ -86,22 +86,22 @@ namespace ALTTPSRAMEditor
             switch (thisSlot)
             {
                 case 1:
-                    savslot1 = new SaveSlot(in_dat);
+                    savslot1 = new SaveSlot(in_dat, 1);
                     break;
                 case 2:
-                    savslot2 = new SaveSlot(in_dat);
+                    savslot2 = new SaveSlot(in_dat, 2);
                     break;
                 case 3:
-                    savslot3 = new SaveSlot(in_dat);
+                    savslot3 = new SaveSlot(in_dat, 3);
                     break;
                 case 4:
-                    savslot1m = new SaveSlot(in_dat);
+                    savslot1m = new SaveSlot(in_dat, 4);
                     break;
                 case 5:
-                    savslot2m = new SaveSlot(in_dat);
+                    savslot2m = new SaveSlot(in_dat, 5);
                     break;
                 case 6:
-                    savslot3m = new SaveSlot(in_dat);
+                    savslot3m = new SaveSlot(in_dat, 6);
                     break;
             }
         }

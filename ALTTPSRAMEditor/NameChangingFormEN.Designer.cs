@@ -1,6 +1,6 @@
 ﻿namespace ALTTPSRAMEditor
 {
-    partial class NameChangingForm
+    partial class NameChangingFormEN
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // NameChangingForm
+            // NameChangingFormEN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImage = global::ALTTPSRAMEditor.Properties.Resources.filename_USA;
+            this.ClientSize = new System.Drawing.Size(256, 361);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "NameChangingForm";
-            this.Text = "NameChangingForm";
+            this.Name = "NameChangingFormEN";
+            this.Text = "Change Player Name (USA/EUR)";
             this.Load += new System.EventHandler(this.NameChangingForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NameChangingForm_KeyDown);
             this.ResumeLayout(false);

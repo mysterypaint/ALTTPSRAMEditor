@@ -148,25 +148,9 @@ namespace ALTTPSRAMEditor
                         Console.Write("Opened " + fname);
                         helperText.Text = "Opened " + fname;
                         sdat = new SRAM(bytes);
-                        tableLayoutPanelInventory.Visible = true;
-                        labelInventory.Visible = true;
-                        numericUpDownRupeeCounter.Visible = true;
-                        labelRupees.Visible = true;
-                        labelFilename.Visible = true;
                         radioFile1.Enabled = true;
                         radioFile2.Enabled = true;
                         radioFile3.Enabled = true;
-                        buttonCopy.Enabled = true;
-                        buttonErase.Enabled = true;
-                        buttonChangeName.Visible = true;
-                        buttonChangeName.Enabled = true;
-                        pictureBoxMagicBar.Visible = true;
-                        numericUpDownHeartContainers.Visible = true;
-                        labelHeartContainers.Visible = true;
-                        numericUpDownMagic.Visible = true;
-                        labelMagic.Visible = true;
-                        labelMagic.Enabled = false;
-                        groupPendantsCrystals.Visible = true;
 
                         // Determine the overall region of the .srm and initialize the save slots
                         SaveSlot savslot = sdat.GetSaveSlot(1);
@@ -197,9 +181,13 @@ namespace ALTTPSRAMEditor
                         }
                         else
                             thisSlot = savslot3;
-                        updatePlayerName(thisSlot);
-                        Link player = thisSlot.GetPlayer();
-                        UpdateAllConfigurables(thisSlot);
+
+                        if (thisSlot.SaveIsValid())
+                        {
+                            updatePlayerName(thisSlot);
+                            Link player = thisSlot.GetPlayer();
+                            UpdateAllConfigurables(thisSlot);
+                        }
                         Refresh(); // Update the screen, including the player name
                     }
                     else
@@ -352,7 +340,7 @@ namespace ALTTPSRAMEditor
         {
             if (!savslot.SaveIsValid())
             {
-                String playerName = savslot.GetPlayerName();
+                displayPlayerName = "";
                 buttonChangeName.Enabled = false;
             }
             else
@@ -384,6 +372,44 @@ namespace ALTTPSRAMEditor
 
         private void UpdateAllConfigurables(SaveSlot savslot)
         {
+            if (!savslot.SaveIsValid())
+            {
+                HideAllGroupBoxesExcept(groupFileSelect);
+                tableLayoutPanelInventory.Visible = false;
+                labelInventory.Visible = false;
+                numericUpDownRupeeCounter.Visible = false;
+                labelRupees.Visible = false;
+                labelFilename.Visible = false;
+                buttonCopy.Enabled = false;
+                buttonErase.Enabled = false;
+                buttonChangeName.Visible = false;
+                buttonChangeName.Enabled = false;
+                pictureBoxMagicBar.Visible = false;
+                numericUpDownHeartContainers.Visible = false;
+                labelHeartContainers.Visible = false;
+                numericUpDownMagic.Visible = false;
+                labelMagic.Visible = false;
+                labelMagic.Enabled = false;
+                groupPendantsCrystals.Visible = false;
+                return;
+            }
+            tableLayoutPanelInventory.Visible = true;
+            labelInventory.Visible = true;
+            numericUpDownRupeeCounter.Visible = true;
+            labelRupees.Visible = true;
+            labelFilename.Visible = true;
+            buttonCopy.Enabled = true;
+            buttonErase.Enabled = true;
+            buttonChangeName.Visible = true;
+            buttonChangeName.Enabled = true;
+            pictureBoxMagicBar.Visible = true;
+            numericUpDownHeartContainers.Visible = true;
+            labelHeartContainers.Visible = true;
+            numericUpDownMagic.Visible = true;
+            labelMagic.Visible = true;
+            labelMagic.Enabled = false;
+            groupPendantsCrystals.Visible = true;
+
             Link player = savslot.GetPlayer();
             displayPlayerName = savslot.GetPlayerName();
             numericUpDownRupeeCounter.Value = player.GetRupeeValue();
@@ -830,7 +856,10 @@ namespace ALTTPSRAMEditor
             {
                 savslot = sdat.GetSaveSlot(3);
             }
-            else savslot = sdat.GetSaveSlot(1);
+            else
+            {
+                savslot = sdat.GetSaveSlot(1);
+            }
             return savslot;
         }
 
@@ -888,6 +917,14 @@ namespace ALTTPSRAMEditor
                 updatePlayerName(savslot);
                 numericUpDownRupeeCounter.Value = player.GetRupeeValue();
                 UpdateAllConfigurables(savslot);
+                if (!savslot.SaveIsValid())
+                {
+                    helperText.Text = "Save slot " + savslot.ToString() + " is invalid.";
+                }
+                else
+                {
+                    helperText.Text = "Editing Save slot " + savslot.ToString() + ".";
+                }
             }
         }
 
@@ -895,16 +932,23 @@ namespace ALTTPSRAMEditor
         {
             if (!fname.Equals(""))
             {
+                SaveSlot savslot = GetSaveSlot();
+
+                if (!savslot.SaveIsValid())
+                {
+                    textQuarterMagic.Visible = false;
+                    return;
+                }
+
                 System.Drawing.SolidBrush rectBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
                 int border = 2;
                 e.Graphics.FillRectangle(rectBrush, new Rectangle(223 - border, 49 - border, (8 * 8) + (border * 2), 16 + (border * 2)));
-
 
                 // Draw a black rectangle for the hearts to go behind
                 e.Graphics.FillRectangle(rectBrush, new Rectangle(409 - border, 237 - border, (8 * 10) + (border * 2), 16 + (border * 2)));
 
                 // Grab the player so we can get their info
-                Link player = GetSaveSlot().GetPlayer();
+                Link player = savslot.GetPlayer();
 
                 // Loop and draw all the hearts as required to represent the player's health
                 double heartContainers = player.GetHeartContainers();
@@ -1015,8 +1059,16 @@ namespace ALTTPSRAMEditor
 
         private void buttonChangeName_Click(object sender, EventArgs e)
         {
-            var newForm = new NameChangingForm();
-            newForm.ShowDialog();
+            if (saveRegion == (int)SaveRegion.JPN)
+            {
+                var nameForm = new NameChangingFormJP();
+                nameForm.ShowDialog();
+            }
+            else
+            {
+                var nameForm = new NameChangingFormEN();
+                nameForm.ShowDialog();
+            }
         }
 
         private void numericUpDownArrowsHeld_ValueChanged(object sender, EventArgs e)

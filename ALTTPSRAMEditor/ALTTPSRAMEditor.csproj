@@ -57,11 +57,17 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Link.cs" />
-    <Compile Include="NameChangingForm.cs">
+    <Compile Include="NameChangingFormEN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NameChangingForm.Designer.cs">
-      <DependentUpon>NameChangingForm.cs</DependentUpon>
+    <Compile Include="NameChangingFormEN.Designer.cs">
+      <DependentUpon>NameChangingFormEN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NameChangingFormJP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameChangingFormJP.Designer.cs">
+      <DependentUpon>NameChangingFormJP.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +77,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NameChangingForm.resx">
-      <DependentUpon>NameChangingForm.cs</DependentUpon>
+    <EmbeddedResource Include="NameChangingFormEN.resx">
+      <DependentUpon>NameChangingFormEN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameChangingFormJP.resx">
+      <DependentUpon>NameChangingFormJP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -405,6 +414,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Red Pendant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filename_USA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filename_JP.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
