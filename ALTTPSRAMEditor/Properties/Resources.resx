@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Pendant of Courage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pendant of Courage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Bomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Bomb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="D Dungeon Map" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Dungeon Map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,6 +160,9 @@
   <data name="Piece of Heart Quarter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Piece of Heart Quarter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Magic Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Magic Hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Titan's Mitt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Titan's Mitt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,8 +172,8 @@
   <data name="Golden Sword" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Golden Sword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Bow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Bow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Cane of Byrna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Cane of Byrna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="D Big Key" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Big Key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,8 +202,8 @@
   <data name="Green Tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Green Tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Bomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Bomb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Moon Pearl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Moon Pearl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fighter's Shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fighter's Shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,11 +214,20 @@
   <data name="Fire Rod" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fire Rod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="D Magic Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Magic Hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lttp_magic_bar_halved" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lttp_magic_bar_halved.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Bow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Piece of Heart Full" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Piece of Heart Full.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Piece of Heart Empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piece of Heart Empty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="D Fighter's Shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Fighter's Shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,8 +235,8 @@
   <data name="D Cane of Somaria" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Cane of Somaria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Power Glove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Power Glove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lttp_magic_bar_quarter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lttp_magic_bar_quarter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Mushroom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mushroom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,11 +244,14 @@
   <data name="Quake" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Quake.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Piece of Heart Empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Piece of Heart Empty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Flute" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Flute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Piece of Heart Half" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Piece of Heart Half.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Lamp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Lamp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pendant of Courage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pendant of Courage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Blue Potion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Blue Potion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,11 +262,11 @@
   <data name="Ether" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ether.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Moon Pearl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Moon Pearl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Quake" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Quake.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Flute" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Flute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Power Glove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Power Glove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Compass" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Compass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,6 +283,9 @@
   <data name="Big Key and Chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Big Key and Chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HeartContainerPartial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeartContainerPartial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Link Icon 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Link Icon 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -282,12 +300,6 @@
   </data>
   <data name="D Magic Cape" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Magic Cape.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="D Lamp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Lamp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bomb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Magic Powder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Magic Powder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -304,9 +316,6 @@
   <data name="D Fighter's Sword" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Fighter's Sword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Cane of Byrna" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Cane of Byrna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Pendant of Wisdom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pendant of Wisdom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -319,20 +328,20 @@
   <data name="Zora's Flippers" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Zora's Flippers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Crystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Crystal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="D Hookshot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Hookshot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Shovel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Shovel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Book of Mudora" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Book of Mudora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fairy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fairy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Magic Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Magic Hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Bow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Bow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lttp_magic_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lttp_magic_bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Link Icon 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Link Icon 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -349,17 +358,17 @@
   <data name="Boomerang" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Boomerang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Piece of Heart Half" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piece of Heart Half.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Cane of Somaria" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cane of Somaria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jpn_font" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jpn_font2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Boomerang" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Boomerang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ice Rod" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ice Rod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Bomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bomb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Bottle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bottle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -370,14 +379,14 @@
   <data name="D Bug-Catching Net" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Bug-Catching Net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Ice Rod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ice Rod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Mirror Shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mirror Shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="D Magic Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Magic Hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="D Quake" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\D Quake.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="D Shovel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Shovel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="D Magic Mirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\D Magic Mirror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -385,8 +394,11 @@
   <data name="Red Shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Red Shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Book of Mudora" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Book of Mudora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HeartContainerFull" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeartContainerFull.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="D Boomerang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\D Boomerang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Pegasus Boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pegasus Boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -394,19 +406,25 @@
   <data name="en_font" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\en_font2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HeartContainerFull" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HeartContainerFull.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Blue Crystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blue Crystal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HeartContainerPartial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HeartContainerPartial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Blue Pendant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blue Pendant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lttp_magic_bar_halved" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lttp_magic_bar_halved.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Clear Crystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Clear Crystal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lttp_magic_bar_quarter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lttp_magic_bar_quarter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Clear Pendant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Clear Pendant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lttp_magic_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lttp_magic_bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Green Pendant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Green Pendant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Red Crystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Red Crystal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Red Pendant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Red Pendant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

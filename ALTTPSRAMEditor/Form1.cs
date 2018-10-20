@@ -65,6 +65,18 @@ namespace ALTTPSRAMEditor
         const int maxHearts = 0x2C;
         const int currHearts = 0x2D;
 
+        public const int greenPendant = 0x2;
+        public const int bluePendant = 0x1;
+        public const int redPendant = 0x0;
+
+        public const int crystalPoD = 0x1;
+        public const int crystalSP = 0x4;
+        public const int crystalSW = 0x6;
+        public const int crystalTT = 0x5;
+        public const int crystalIP = 0x2;
+        public const int crystalMM = 0x0;
+        public const int crystalTR = 0x3;
+
         static int[] bottleContents = new int[9];
         static System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
 
@@ -154,6 +166,7 @@ namespace ALTTPSRAMEditor
                         numericUpDownMagic.Visible = true;
                         labelMagic.Visible = true;
                         labelMagic.Enabled = false;
+                        groupPendantsCrystals.Visible = true;
 
                         // Determine the overall region of the .srm and initialize the save slots
                         SaveSlot savslot = sdat.GetSaveSlot(1);
@@ -580,12 +593,12 @@ namespace ALTTPSRAMEditor
 
             byte aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
 
-            if (GetBit(aflags, 3) && player.GetItemEquipment(pegasusBoots) > 0x0) // Test for Pegasus Boots
+            if (GetBit(aflags, 0x2) && player.GetItemEquipment(pegasusBoots) > 0x0) // Test for Pegasus Boots
                 pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.Pegasus_Boots;
             else
                 pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
 
-            if (GetBit(aflags, 2) && player.GetItemEquipment(zorasFlippers) > 0x0) // Test for Zora's Flippers
+            if (GetBit(aflags, 0x1) && player.GetItemEquipment(zorasFlippers) > 0x0) // Test for Zora's Flippers
                 pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.Zora_s_Flippers;
             else
                 pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
@@ -740,6 +753,61 @@ namespace ALTTPSRAMEditor
             // Update the picture so it represents what the 4th bottle actually has
             pictureBottle4.Image = bottleContentsImg[bottleContents[fillContents - 1]];
 
+            // Update the pendants
+            byte _pendants = GetSaveSlot().GetPendants();
+
+            if (!GetBit(_pendants, greenPendant)) // Test for green pendant
+                pictureGreenPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            else
+                pictureGreenPendant.Image = ALTTPSRAMEditor.Properties.Resources.Green_Pendant;
+
+            if (!GetBit(_pendants, bluePendant)) // Test for blue pendant
+                pictureBluePendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            else
+                pictureBluePendant.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Pendant;
+
+            if (!GetBit(_pendants, redPendant)) // Test for red pendant
+                pictureRedPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            else
+                pictureRedPendant.Image = ALTTPSRAMEditor.Properties.Resources.Red_Pendant;
+
+            // Update the crystals
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (!GetBit(_crystals, crystalPoD)) // Test for PoD Crystal
+                pictureCrystalPoD.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalPoD.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            if (!GetBit(_crystals, crystalSP)) // Test for SP Crystal
+                pictureCrystalSP.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalSP.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            if (!GetBit(_crystals, crystalSW)) // Test for SW Crystal
+                pictureCrystalSW.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalSW.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            if (!GetBit(_crystals, crystalTT)) // Test for TT Crystal
+                pictureCrystalTT.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalTT.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            if (!GetBit(_crystals, crystalIP)) // Test for IP Crystal
+                pictureCrystalIP.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalIP.Image = ALTTPSRAMEditor.Properties.Resources.Red_Crystal;
+
+            if (!GetBit(_crystals, crystalMM)) // Test for MM Crystal
+                pictureCrystalMM.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalMM.Image = ALTTPSRAMEditor.Properties.Resources.Red_Crystal;
+
+            if (!GetBit(_crystals, crystalTR)) // Test for TR Crystal
+                pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
 
             // Update the playerName textbox to emphasize the 6 character limit.
             updatePlayerName(savslot);
@@ -968,7 +1036,7 @@ namespace ALTTPSRAMEditor
             {
                 if (c.GetType() == typeof(GroupBox))
                 {
-                    if (!c.Equals(currentGroupBox) && !c.Equals(groupFileSelect))
+                    if (!c.Equals(currentGroupBox) && !c.Equals(groupFileSelect) && !c.Equals(groupPendantsCrystals))
                         c.Visible = false;
                 }
             }
@@ -1280,6 +1348,7 @@ namespace ALTTPSRAMEditor
 
         public static bool GetBit(byte b, int bitNumber)
         {
+            bitNumber++;
             return (b & (1 << bitNumber - 1)) != 0;
         }
 
@@ -1511,6 +1580,142 @@ namespace ALTTPSRAMEditor
             UpdateHeartPieceUI();
             numericUpDownHeartContainers.Value = player.GetHeartContainers();
             //pictureHeartPieces
+        }
+
+        private void ToggleCrystalPendant(bool isCrystal, int _val)
+        {
+            if (!isCrystal)
+            {
+                GetSaveSlot().TogglePendant(_val);
+            }
+            else
+            {
+                GetSaveSlot().ToggleCrystal(_val);
+            }
+        }
+
+        private void pictureGreenPendant_Click(object sender, EventArgs e)
+        {
+            byte _pendants = GetSaveSlot().GetPendants();
+
+            if (GetBit(_pendants, greenPendant)) // Test for green pendant
+                pictureGreenPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            else
+                pictureGreenPendant.Image = ALTTPSRAMEditor.Properties.Resources.Green_Pendant;
+
+            ToggleCrystalPendant(false, greenPendant);
+        }
+
+        private void pictureBluePendant_Click(object sender, EventArgs e)
+        {
+            byte _pendants = GetSaveSlot().GetPendants();
+
+            if (GetBit(_pendants, bluePendant)) // Test for blue pendant
+                pictureBluePendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            else
+                pictureBluePendant.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Pendant;
+
+            ToggleCrystalPendant(false, bluePendant);
+        }
+
+        private void pictureRedPendant_Click(object sender, EventArgs e)
+        {
+            byte _pendants = GetSaveSlot().GetPendants();
+
+            if (GetBit(_pendants, redPendant)) // Test for red pendant
+                pictureRedPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            else
+                pictureRedPendant.Image = ALTTPSRAMEditor.Properties.Resources.Red_Pendant;
+
+            ToggleCrystalPendant(false, redPendant);
+        }
+
+        private void pictureCrystalPoD_Click(object sender, EventArgs e)
+        {
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalPoD)) // Test for PoD Crystal
+                pictureCrystalPoD.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalPoD.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            ToggleCrystalPendant(true, crystalPoD);
+        }
+
+        private void pictureCrystalSP_Click(object sender, EventArgs e)
+        {
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalSP)) // Test for SP Crystal
+                pictureCrystalSP.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalSP.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            ToggleCrystalPendant(true, crystalSP);
+        }
+
+        private void pictureCrystalSW_Click(object sender, EventArgs e)
+        {
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalSW)) // Test for SW Crystal
+                pictureCrystalSW.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalSW.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            ToggleCrystalPendant(true, crystalSW);
+        }
+
+        private void pictureCrystalTT_Click(object sender, EventArgs e)
+        {
+
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalTT)) // Test for TT Crystal
+                pictureCrystalTT.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalTT.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            ToggleCrystalPendant(true, crystalTT);
+        }
+
+        private void pictureCrystalIP_Click(object sender, EventArgs e)
+        {
+
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalIP)) // Test for IP Crystal
+                pictureCrystalIP.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalIP.Image = ALTTPSRAMEditor.Properties.Resources.Red_Crystal;
+
+            ToggleCrystalPendant(true, crystalIP);
+        }
+
+        private void pictureCrystalMM_Click(object sender, EventArgs e)
+        {
+
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalMM)) // Test for MM Crystal
+                pictureCrystalMM.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalMM.Image = ALTTPSRAMEditor.Properties.Resources.Red_Crystal;
+
+            ToggleCrystalPendant(true, crystalMM);
+        }
+
+        private void pictureCrystalTR_Click(object sender, EventArgs e)
+        {
+
+            byte _crystals = GetSaveSlot().GetCrystals();
+
+            if (GetBit(_crystals, crystalTR)) // Test for TR Crystal
+                pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            else
+                pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
+
+            ToggleCrystalPendant(true, crystalTR);
         }
     }
 }

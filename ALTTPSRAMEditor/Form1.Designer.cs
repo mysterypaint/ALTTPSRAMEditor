@@ -57,34 +57,6 @@
             this.labelRupees = new System.Windows.Forms.Label();
             this.numericUpDownRupeeCounter = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanelInventory = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureHeartPieces = new System.Windows.Forms.PictureBox();
-            this.pictureMoonPearl = new System.Windows.Forms.PictureBox();
-            this.pictureZorasFlippers = new System.Windows.Forms.PictureBox();
-            this.picturePowerGlove = new System.Windows.Forms.PictureBox();
-            this.pictureBoots = new System.Windows.Forms.PictureBox();
-            this.pictureMushPowd = new System.Windows.Forms.PictureBox();
-            this.pictureBow = new System.Windows.Forms.PictureBox();
-            this.pictureBombs = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureHookshot = new System.Windows.Forms.PictureBox();
-            this.pictureFireRod = new System.Windows.Forms.PictureBox();
-            this.pictureIceRod = new System.Windows.Forms.PictureBox();
-            this.pictureBombos = new System.Windows.Forms.PictureBox();
-            this.pictureEther = new System.Windows.Forms.PictureBox();
-            this.pictureQuake = new System.Windows.Forms.PictureBox();
-            this.pictureLamp = new System.Windows.Forms.PictureBox();
-            this.pictureMagicHammer = new System.Windows.Forms.PictureBox();
-            this.pictureShovelFlute = new System.Windows.Forms.PictureBox();
-            this.pictureBugCatchingNet = new System.Windows.Forms.PictureBox();
-            this.pictureBookOfMudora = new System.Windows.Forms.PictureBox();
-            this.pictureBottles = new System.Windows.Forms.PictureBox();
-            this.pictureCaneOfSomaria = new System.Windows.Forms.PictureBox();
-            this.pictureCaneOfByrna = new System.Windows.Forms.PictureBox();
-            this.pictureMagicCape = new System.Windows.Forms.PictureBox();
-            this.pictureMagicMirror = new System.Windows.Forms.PictureBox();
-            this.pictureMail = new System.Windows.Forms.PictureBox();
-            this.pictureShield = new System.Windows.Forms.PictureBox();
-            this.pictureSword = new System.Windows.Forms.PictureBox();
             this.groupBoxBowConfig = new System.Windows.Forms.GroupBox();
             this.labelArrowsHeld = new System.Windows.Forms.Label();
             this.labelArrowUpgrades = new System.Windows.Forms.Label();
@@ -129,10 +101,6 @@
             this.comboBoxBottle3 = new System.Windows.Forms.ComboBox();
             this.comboBoxBottle2 = new System.Windows.Forms.ComboBox();
             this.comboBoxBottle1 = new System.Windows.Forms.ComboBox();
-            this.pictureBottle4 = new System.Windows.Forms.PictureBox();
-            this.pictureBottle3 = new System.Windows.Forms.PictureBox();
-            this.pictureBottle2 = new System.Windows.Forms.PictureBox();
-            this.pictureBottle1 = new System.Windows.Forms.PictureBox();
             this.groupBoxGloves = new System.Windows.Forms.GroupBox();
             this.radioButtonTitansMitts = new System.Windows.Forms.RadioButton();
             this.radioButtonPowerGloves = new System.Windows.Forms.RadioButton();
@@ -147,11 +115,89 @@
             this.labelHeartContainers = new System.Windows.Forms.Label();
             this.labelMagic = new System.Windows.Forms.Label();
             this.textQuarterMagic = new System.Windows.Forms.RichTextBox();
+            this.groupPendantsCrystals = new System.Windows.Forms.GroupBox();
+            this.pictureCrystalTR = new System.Windows.Forms.PictureBox();
+            this.pictureCrystalIP = new System.Windows.Forms.PictureBox();
+            this.pictureCrystalTT = new System.Windows.Forms.PictureBox();
+            this.pictureCrystalSW = new System.Windows.Forms.PictureBox();
+            this.pictureCrystalSP = new System.Windows.Forms.PictureBox();
+            this.pictureCrystalMM = new System.Windows.Forms.PictureBox();
+            this.pictureCrystalPoD = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureRedPendant = new System.Windows.Forms.PictureBox();
+            this.pictureBluePendant = new System.Windows.Forms.PictureBox();
+            this.pictureGreenPendant = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBottle4 = new System.Windows.Forms.PictureBox();
+            this.pictureBottle3 = new System.Windows.Forms.PictureBox();
+            this.pictureBottle2 = new System.Windows.Forms.PictureBox();
+            this.pictureBottle1 = new System.Windows.Forms.PictureBox();
+            this.pictureHeartPieces = new System.Windows.Forms.PictureBox();
+            this.pictureMoonPearl = new System.Windows.Forms.PictureBox();
+            this.pictureZorasFlippers = new System.Windows.Forms.PictureBox();
+            this.picturePowerGlove = new System.Windows.Forms.PictureBox();
+            this.pictureBoots = new System.Windows.Forms.PictureBox();
+            this.pictureMushPowd = new System.Windows.Forms.PictureBox();
+            this.pictureBow = new System.Windows.Forms.PictureBox();
+            this.pictureBombs = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureHookshot = new System.Windows.Forms.PictureBox();
+            this.pictureFireRod = new System.Windows.Forms.PictureBox();
+            this.pictureIceRod = new System.Windows.Forms.PictureBox();
+            this.pictureBombos = new System.Windows.Forms.PictureBox();
+            this.pictureEther = new System.Windows.Forms.PictureBox();
+            this.pictureQuake = new System.Windows.Forms.PictureBox();
+            this.pictureLamp = new System.Windows.Forms.PictureBox();
+            this.pictureMagicHammer = new System.Windows.Forms.PictureBox();
+            this.pictureShovelFlute = new System.Windows.Forms.PictureBox();
+            this.pictureBugCatchingNet = new System.Windows.Forms.PictureBox();
+            this.pictureBookOfMudora = new System.Windows.Forms.PictureBox();
+            this.pictureBottles = new System.Windows.Forms.PictureBox();
+            this.pictureCaneOfSomaria = new System.Windows.Forms.PictureBox();
+            this.pictureCaneOfByrna = new System.Windows.Forms.PictureBox();
+            this.pictureMagicCape = new System.Windows.Forms.PictureBox();
+            this.pictureMagicMirror = new System.Windows.Forms.PictureBox();
+            this.pictureMail = new System.Windows.Forms.PictureBox();
+            this.pictureShield = new System.Windows.Forms.PictureBox();
+            this.pictureSword = new System.Windows.Forms.PictureBox();
             this.pictureBoxMagicBar = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).BeginInit();
             this.tableLayoutPanelInventory.SuspendLayout();
+            this.groupBoxBowConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowUpgrades)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowsHeld)).BeginInit();
+            this.groupBoxBoomerangConfig.SuspendLayout();
+            this.groupBoxBombs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombUpgrades)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombsHeld)).BeginInit();
+            this.groupBoxMushroomPowder.SuspendLayout();
+            this.groupBoxSword.SuspendLayout();
+            this.groupBoxShield.SuspendLayout();
+            this.groupBoxMails.SuspendLayout();
+            this.groupBoxBottles.SuspendLayout();
+            this.groupBoxGloves.SuspendLayout();
+            this.groupBoxShovelFlute.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeartContainers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMagic)).BeginInit();
+            this.groupPendantsCrystals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalTR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalIP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalTT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalSW)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalSP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalMM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalPoD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureRedPendant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBluePendant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGreenPendant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHeartPieces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMoonPearl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZorasFlippers)).BeginInit();
@@ -180,26 +226,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureShield)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSword)).BeginInit();
-            this.groupBoxBowConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowUpgrades)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowsHeld)).BeginInit();
-            this.groupBoxBoomerangConfig.SuspendLayout();
-            this.groupBoxBombs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombUpgrades)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombsHeld)).BeginInit();
-            this.groupBoxMushroomPowder.SuspendLayout();
-            this.groupBoxSword.SuspendLayout();
-            this.groupBoxShield.SuspendLayout();
-            this.groupBoxMails.SuspendLayout();
-            this.groupBoxBottles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle1)).BeginInit();
-            this.groupBoxGloves.SuspendLayout();
-            this.groupBoxShovelFlute.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeartContainers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMagic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,7 +236,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(949, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(755, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -552,341 +578,6 @@
             this.tableLayoutPanelInventory.Size = new System.Drawing.Size(163, 164);
             this.tableLayoutPanelInventory.TabIndex = 0;
             this.tableLayoutPanelInventory.Visible = false;
-            // 
-            // pictureHeartPieces
-            // 
-            this.pictureHeartPieces.Image = global::ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Empty;
-            this.pictureHeartPieces.Location = new System.Drawing.Point(3, 128);
-            this.pictureHeartPieces.Name = "pictureHeartPieces";
-            this.pictureHeartPieces.Size = new System.Drawing.Size(16, 16);
-            this.pictureHeartPieces.TabIndex = 36;
-            this.pictureHeartPieces.TabStop = false;
-            this.pictureHeartPieces.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureHeartPieces_MouseClick);
-            // 
-            // pictureMoonPearl
-            // 
-            this.pictureMoonPearl.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl;
-            this.pictureMoonPearl.ImageLocation = "";
-            this.pictureMoonPearl.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureMoonPearl.Location = new System.Drawing.Point(78, 103);
-            this.pictureMoonPearl.Name = "pictureMoonPearl";
-            this.pictureMoonPearl.Size = new System.Drawing.Size(16, 16);
-            this.pictureMoonPearl.TabIndex = 26;
-            this.pictureMoonPearl.TabStop = false;
-            this.pictureMoonPearl.Click += new System.EventHandler(this.pictureMoonPearl_Click);
-            // 
-            // pictureZorasFlippers
-            // 
-            this.pictureZorasFlippers.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
-            this.pictureZorasFlippers.ImageLocation = "";
-            this.pictureZorasFlippers.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureZorasFlippers.Location = new System.Drawing.Point(53, 103);
-            this.pictureZorasFlippers.Name = "pictureZorasFlippers";
-            this.pictureZorasFlippers.Size = new System.Drawing.Size(16, 16);
-            this.pictureZorasFlippers.TabIndex = 25;
-            this.pictureZorasFlippers.TabStop = false;
-            this.pictureZorasFlippers.Click += new System.EventHandler(this.pictureZorasFlippers_Click);
-            // 
-            // picturePowerGlove
-            // 
-            this.picturePowerGlove.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Power_Glove;
-            this.picturePowerGlove.ImageLocation = "";
-            this.picturePowerGlove.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.picturePowerGlove.Location = new System.Drawing.Point(28, 103);
-            this.picturePowerGlove.Name = "picturePowerGlove";
-            this.picturePowerGlove.Size = new System.Drawing.Size(16, 16);
-            this.picturePowerGlove.TabIndex = 24;
-            this.picturePowerGlove.TabStop = false;
-            this.picturePowerGlove.Click += new System.EventHandler(this.picturePowerGlove_Click);
-            // 
-            // pictureBoots
-            // 
-            this.pictureBoots.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
-            this.pictureBoots.ImageLocation = "";
-            this.pictureBoots.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBoots.Location = new System.Drawing.Point(3, 103);
-            this.pictureBoots.Name = "pictureBoots";
-            this.pictureBoots.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoots.TabIndex = 23;
-            this.pictureBoots.TabStop = false;
-            this.pictureBoots.Click += new System.EventHandler(this.pictureBoots_Click);
-            // 
-            // pictureMushPowd
-            // 
-            this.pictureMushPowd.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Mushroom;
-            this.pictureMushPowd.ImageLocation = "";
-            this.pictureMushPowd.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureMushPowd.Location = new System.Drawing.Point(103, 3);
-            this.pictureMushPowd.Name = "pictureMushPowd";
-            this.pictureMushPowd.Size = new System.Drawing.Size(16, 16);
-            this.pictureMushPowd.TabIndex = 7;
-            this.pictureMushPowd.TabStop = false;
-            this.pictureMushPowd.Click += new System.EventHandler(this.pictureMushPowd_Click);
-            // 
-            // pictureBow
-            // 
-            this.pictureBow.BackColor = System.Drawing.SystemColors.ControlText;
-            this.pictureBow.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bow;
-            this.pictureBow.ImageLocation = "";
-            this.pictureBow.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
-            this.pictureBow.Location = new System.Drawing.Point(3, 3);
-            this.pictureBow.Name = "pictureBow";
-            this.pictureBow.Size = new System.Drawing.Size(16, 16);
-            this.pictureBow.TabIndex = 0;
-            this.pictureBow.TabStop = false;
-            this.pictureBow.Click += new System.EventHandler(this.pictureBow_Click);
-            // 
-            // pictureBombs
-            // 
-            this.pictureBombs.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bomb;
-            this.pictureBombs.ImageLocation = "";
-            this.pictureBombs.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBombs.Location = new System.Drawing.Point(78, 3);
-            this.pictureBombs.Name = "pictureBombs";
-            this.pictureBombs.Size = new System.Drawing.Size(16, 16);
-            this.pictureBombs.TabIndex = 5;
-            this.pictureBombs.TabStop = false;
-            this.pictureBombs.Click += new System.EventHandler(this.pictureBombs_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
-            this.pictureBox1.Location = new System.Drawing.Point(28, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureHookshot
-            // 
-            this.pictureHookshot.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Hookshot;
-            this.pictureHookshot.ImageLocation = "";
-            this.pictureHookshot.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
-            this.pictureHookshot.Location = new System.Drawing.Point(53, 3);
-            this.pictureHookshot.Name = "pictureHookshot";
-            this.pictureHookshot.Size = new System.Drawing.Size(16, 16);
-            this.pictureHookshot.TabIndex = 6;
-            this.pictureHookshot.TabStop = false;
-            this.pictureHookshot.Click += new System.EventHandler(this.pictureHookshot_Click);
-            // 
-            // pictureFireRod
-            // 
-            this.pictureFireRod.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod;
-            this.pictureFireRod.ImageLocation = "";
-            this.pictureFireRod.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureFireRod.Location = new System.Drawing.Point(3, 28);
-            this.pictureFireRod.Name = "pictureFireRod";
-            this.pictureFireRod.Size = new System.Drawing.Size(16, 16);
-            this.pictureFireRod.TabIndex = 8;
-            this.pictureFireRod.TabStop = false;
-            this.pictureFireRod.Click += new System.EventHandler(this.pictureFireRod_Click);
-            // 
-            // pictureIceRod
-            // 
-            this.pictureIceRod.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod;
-            this.pictureIceRod.ImageLocation = "";
-            this.pictureIceRod.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureIceRod.Location = new System.Drawing.Point(28, 28);
-            this.pictureIceRod.Name = "pictureIceRod";
-            this.pictureIceRod.Size = new System.Drawing.Size(16, 16);
-            this.pictureIceRod.TabIndex = 9;
-            this.pictureIceRod.TabStop = false;
-            this.pictureIceRod.Click += new System.EventHandler(this.pictureIceRod_Click);
-            // 
-            // pictureBombos
-            // 
-            this.pictureBombos.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bombos;
-            this.pictureBombos.ImageLocation = "";
-            this.pictureBombos.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBombos.Location = new System.Drawing.Point(53, 28);
-            this.pictureBombos.Name = "pictureBombos";
-            this.pictureBombos.Size = new System.Drawing.Size(16, 16);
-            this.pictureBombos.TabIndex = 10;
-            this.pictureBombos.TabStop = false;
-            this.pictureBombos.Click += new System.EventHandler(this.pictureBombos_Click);
-            // 
-            // pictureEther
-            // 
-            this.pictureEther.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Ether;
-            this.pictureEther.ImageLocation = "";
-            this.pictureEther.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureEther.Location = new System.Drawing.Point(78, 28);
-            this.pictureEther.Name = "pictureEther";
-            this.pictureEther.Size = new System.Drawing.Size(16, 16);
-            this.pictureEther.TabIndex = 11;
-            this.pictureEther.TabStop = false;
-            this.pictureEther.Click += new System.EventHandler(this.pictureEther_Click);
-            // 
-            // pictureQuake
-            // 
-            this.pictureQuake.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Quake;
-            this.pictureQuake.ImageLocation = "";
-            this.pictureQuake.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureQuake.Location = new System.Drawing.Point(103, 28);
-            this.pictureQuake.Name = "pictureQuake";
-            this.pictureQuake.Size = new System.Drawing.Size(16, 16);
-            this.pictureQuake.TabIndex = 12;
-            this.pictureQuake.TabStop = false;
-            this.pictureQuake.Click += new System.EventHandler(this.pictureQuake_Click);
-            // 
-            // pictureLamp
-            // 
-            this.pictureLamp.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Lamp;
-            this.pictureLamp.ImageLocation = "";
-            this.pictureLamp.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureLamp.Location = new System.Drawing.Point(3, 53);
-            this.pictureLamp.Name = "pictureLamp";
-            this.pictureLamp.Size = new System.Drawing.Size(16, 16);
-            this.pictureLamp.TabIndex = 13;
-            this.pictureLamp.TabStop = false;
-            this.pictureLamp.Click += new System.EventHandler(this.pictureLamp_Click);
-            // 
-            // pictureMagicHammer
-            // 
-            this.pictureMagicHammer.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer;
-            this.pictureMagicHammer.ImageLocation = "";
-            this.pictureMagicHammer.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureMagicHammer.Location = new System.Drawing.Point(28, 53);
-            this.pictureMagicHammer.Name = "pictureMagicHammer";
-            this.pictureMagicHammer.Size = new System.Drawing.Size(16, 16);
-            this.pictureMagicHammer.TabIndex = 14;
-            this.pictureMagicHammer.TabStop = false;
-            this.pictureMagicHammer.Click += new System.EventHandler(this.pictureMagicHammer_Click);
-            // 
-            // pictureShovelFlute
-            // 
-            this.pictureShovelFlute.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Shovel;
-            this.pictureShovelFlute.ImageLocation = "";
-            this.pictureShovelFlute.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureShovelFlute.Location = new System.Drawing.Point(53, 53);
-            this.pictureShovelFlute.Name = "pictureShovelFlute";
-            this.pictureShovelFlute.Size = new System.Drawing.Size(16, 16);
-            this.pictureShovelFlute.TabIndex = 15;
-            this.pictureShovelFlute.TabStop = false;
-            this.pictureShovelFlute.Click += new System.EventHandler(this.pictureShovelFlute_Click);
-            // 
-            // pictureBugCatchingNet
-            // 
-            this.pictureBugCatchingNet.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net;
-            this.pictureBugCatchingNet.ImageLocation = "";
-            this.pictureBugCatchingNet.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBugCatchingNet.Location = new System.Drawing.Point(78, 53);
-            this.pictureBugCatchingNet.Name = "pictureBugCatchingNet";
-            this.pictureBugCatchingNet.Size = new System.Drawing.Size(16, 16);
-            this.pictureBugCatchingNet.TabIndex = 16;
-            this.pictureBugCatchingNet.TabStop = false;
-            this.pictureBugCatchingNet.Click += new System.EventHandler(this.pictureBugCatchingNet_Click);
-            // 
-            // pictureBookOfMudora
-            // 
-            this.pictureBookOfMudora.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora;
-            this.pictureBookOfMudora.ImageLocation = "";
-            this.pictureBookOfMudora.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBookOfMudora.Location = new System.Drawing.Point(103, 53);
-            this.pictureBookOfMudora.Name = "pictureBookOfMudora";
-            this.pictureBookOfMudora.Size = new System.Drawing.Size(16, 16);
-            this.pictureBookOfMudora.TabIndex = 17;
-            this.pictureBookOfMudora.TabStop = false;
-            this.pictureBookOfMudora.Click += new System.EventHandler(this.pictureBookOfMudora_Click);
-            // 
-            // pictureBottles
-            // 
-            this.pictureBottles.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            this.pictureBottles.ImageLocation = "";
-            this.pictureBottles.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBottles.Location = new System.Drawing.Point(3, 78);
-            this.pictureBottles.Name = "pictureBottles";
-            this.pictureBottles.Size = new System.Drawing.Size(16, 16);
-            this.pictureBottles.TabIndex = 18;
-            this.pictureBottles.TabStop = false;
-            this.pictureBottles.Click += new System.EventHandler(this.pictureBottles_Click);
-            // 
-            // pictureCaneOfSomaria
-            // 
-            this.pictureCaneOfSomaria.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria;
-            this.pictureCaneOfSomaria.ImageLocation = "";
-            this.pictureCaneOfSomaria.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureCaneOfSomaria.Location = new System.Drawing.Point(28, 78);
-            this.pictureCaneOfSomaria.Name = "pictureCaneOfSomaria";
-            this.pictureCaneOfSomaria.Size = new System.Drawing.Size(16, 16);
-            this.pictureCaneOfSomaria.TabIndex = 19;
-            this.pictureCaneOfSomaria.TabStop = false;
-            this.pictureCaneOfSomaria.Click += new System.EventHandler(this.pictureCaneOfSomaria_Click);
-            // 
-            // pictureCaneOfByrna
-            // 
-            this.pictureCaneOfByrna.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna;
-            this.pictureCaneOfByrna.ImageLocation = "";
-            this.pictureCaneOfByrna.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureCaneOfByrna.Location = new System.Drawing.Point(53, 78);
-            this.pictureCaneOfByrna.Name = "pictureCaneOfByrna";
-            this.pictureCaneOfByrna.Size = new System.Drawing.Size(16, 16);
-            this.pictureCaneOfByrna.TabIndex = 20;
-            this.pictureCaneOfByrna.TabStop = false;
-            this.pictureCaneOfByrna.Click += new System.EventHandler(this.pictureCaneOfByrna_Click);
-            // 
-            // pictureMagicCape
-            // 
-            this.pictureMagicCape.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape;
-            this.pictureMagicCape.ImageLocation = "";
-            this.pictureMagicCape.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureMagicCape.Location = new System.Drawing.Point(78, 78);
-            this.pictureMagicCape.Name = "pictureMagicCape";
-            this.pictureMagicCape.Size = new System.Drawing.Size(16, 16);
-            this.pictureMagicCape.TabIndex = 21;
-            this.pictureMagicCape.TabStop = false;
-            this.pictureMagicCape.Click += new System.EventHandler(this.pictureMagicCape_Click);
-            // 
-            // pictureMagicMirror
-            // 
-            this.pictureMagicMirror.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror;
-            this.pictureMagicMirror.ImageLocation = "";
-            this.pictureMagicMirror.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureMagicMirror.Location = new System.Drawing.Point(103, 78);
-            this.pictureMagicMirror.Name = "pictureMagicMirror";
-            this.pictureMagicMirror.Size = new System.Drawing.Size(16, 16);
-            this.pictureMagicMirror.TabIndex = 22;
-            this.pictureMagicMirror.TabStop = false;
-            this.pictureMagicMirror.Click += new System.EventHandler(this.pictureMagicMirror_Click);
-            // 
-            // pictureMail
-            // 
-            this.pictureMail.Image = global::ALTTPSRAMEditor.Properties.Resources.Green_Tunic;
-            this.pictureMail.ImageLocation = "";
-            this.pictureMail.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureMail.Location = new System.Drawing.Point(103, 128);
-            this.pictureMail.Name = "pictureMail";
-            this.pictureMail.Size = new System.Drawing.Size(27, 24);
-            this.pictureMail.TabIndex = 30;
-            this.pictureMail.TabStop = false;
-            this.pictureMail.Click += new System.EventHandler(this.pictureMail_Click);
-            // 
-            // pictureShield
-            // 
-            this.pictureShield.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Shield;
-            this.pictureShield.ImageLocation = "";
-            this.pictureShield.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureShield.Location = new System.Drawing.Point(78, 128);
-            this.pictureShield.Name = "pictureShield";
-            this.pictureShield.Size = new System.Drawing.Size(16, 16);
-            this.pictureShield.TabIndex = 29;
-            this.pictureShield.TabStop = false;
-            this.pictureShield.Click += new System.EventHandler(this.pictureShield_Click);
-            // 
-            // pictureSword
-            // 
-            this.pictureSword.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Sword;
-            this.pictureSword.ImageLocation = "";
-            this.pictureSword.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureSword.Location = new System.Drawing.Point(53, 128);
-            this.pictureSword.Name = "pictureSword";
-            this.pictureSword.Size = new System.Drawing.Size(16, 16);
-            this.pictureSword.TabIndex = 28;
-            this.pictureSword.TabStop = false;
-            this.pictureSword.Click += new System.EventHandler(this.pictureSword_Click);
             // 
             // groupBoxBowConfig
             // 
@@ -1461,50 +1152,6 @@
             this.comboBoxBottle1.TabIndex = 34;
             this.comboBoxBottle1.SelectionChangeCommitted += new System.EventHandler(this.comboBoxBottle1_SelectionChangeCommitted);
             // 
-            // pictureBottle4
-            // 
-            this.pictureBottle4.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            this.pictureBottle4.ImageLocation = "";
-            this.pictureBottle4.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBottle4.Location = new System.Drawing.Point(16, 111);
-            this.pictureBottle4.Name = "pictureBottle4";
-            this.pictureBottle4.Size = new System.Drawing.Size(16, 16);
-            this.pictureBottle4.TabIndex = 34;
-            this.pictureBottle4.TabStop = false;
-            // 
-            // pictureBottle3
-            // 
-            this.pictureBottle3.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            this.pictureBottle3.ImageLocation = "";
-            this.pictureBottle3.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBottle3.Location = new System.Drawing.Point(16, 81);
-            this.pictureBottle3.Name = "pictureBottle3";
-            this.pictureBottle3.Size = new System.Drawing.Size(16, 16);
-            this.pictureBottle3.TabIndex = 33;
-            this.pictureBottle3.TabStop = false;
-            // 
-            // pictureBottle2
-            // 
-            this.pictureBottle2.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            this.pictureBottle2.ImageLocation = "";
-            this.pictureBottle2.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBottle2.Location = new System.Drawing.Point(16, 50);
-            this.pictureBottle2.Name = "pictureBottle2";
-            this.pictureBottle2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBottle2.TabIndex = 32;
-            this.pictureBottle2.TabStop = false;
-            // 
-            // pictureBottle1
-            // 
-            this.pictureBottle1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            this.pictureBottle1.ImageLocation = "";
-            this.pictureBottle1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
-            this.pictureBottle1.Location = new System.Drawing.Point(16, 21);
-            this.pictureBottle1.Name = "pictureBottle1";
-            this.pictureBottle1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBottle1.TabIndex = 31;
-            this.pictureBottle1.TabStop = false;
-            // 
             // groupBoxGloves
             // 
             this.groupBoxGloves.Controls.Add(this.radioButtonTitansMitts);
@@ -1690,9 +1337,528 @@
     ".";
             this.textQuarterMagic.Visible = false;
             // 
+            // groupPendantsCrystals
+            // 
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalTR);
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalIP);
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalTT);
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalSW);
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalSP);
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalMM);
+            this.groupPendantsCrystals.Controls.Add(this.pictureCrystalPoD);
+            this.groupPendantsCrystals.Controls.Add(this.pictureBox3);
+            this.groupPendantsCrystals.Controls.Add(this.pictureRedPendant);
+            this.groupPendantsCrystals.Controls.Add(this.pictureBluePendant);
+            this.groupPendantsCrystals.Controls.Add(this.pictureGreenPendant);
+            this.groupPendantsCrystals.Controls.Add(this.pictureBox2);
+            this.groupPendantsCrystals.Location = new System.Drawing.Point(607, 221);
+            this.groupPendantsCrystals.Name = "groupPendantsCrystals";
+            this.groupPendantsCrystals.Size = new System.Drawing.Size(128, 170);
+            this.groupPendantsCrystals.TabIndex = 43;
+            this.groupPendantsCrystals.TabStop = false;
+            this.groupPendantsCrystals.Text = "Pendants and Crystals";
+            this.groupPendantsCrystals.Visible = false;
+            // 
+            // pictureCrystalTR
+            // 
+            this.pictureCrystalTR.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalTR.Location = new System.Drawing.Point(55, 112);
+            this.pictureCrystalTR.Name = "pictureCrystalTR";
+            this.pictureCrystalTR.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalTR.TabIndex = 54;
+            this.pictureCrystalTR.TabStop = false;
+            this.pictureCrystalTR.Click += new System.EventHandler(this.pictureCrystalTR_Click);
+            // 
+            // pictureCrystalIP
+            // 
+            this.pictureCrystalIP.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalIP.Location = new System.Drawing.Point(39, 112);
+            this.pictureCrystalIP.Name = "pictureCrystalIP";
+            this.pictureCrystalIP.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalIP.TabIndex = 53;
+            this.pictureCrystalIP.TabStop = false;
+            this.pictureCrystalIP.Click += new System.EventHandler(this.pictureCrystalIP_Click);
+            // 
+            // pictureCrystalTT
+            // 
+            this.pictureCrystalTT.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalTT.Location = new System.Drawing.Point(47, 128);
+            this.pictureCrystalTT.Name = "pictureCrystalTT";
+            this.pictureCrystalTT.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalTT.TabIndex = 52;
+            this.pictureCrystalTT.TabStop = false;
+            this.pictureCrystalTT.Click += new System.EventHandler(this.pictureCrystalTT_Click);
+            // 
+            // pictureCrystalSW
+            // 
+            this.pictureCrystalSW.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalSW.Location = new System.Drawing.Point(63, 128);
+            this.pictureCrystalSW.Name = "pictureCrystalSW";
+            this.pictureCrystalSW.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalSW.TabIndex = 51;
+            this.pictureCrystalSW.TabStop = false;
+            this.pictureCrystalSW.Click += new System.EventHandler(this.pictureCrystalSW_Click);
+            // 
+            // pictureCrystalSP
+            // 
+            this.pictureCrystalSP.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalSP.Location = new System.Drawing.Point(71, 112);
+            this.pictureCrystalSP.Name = "pictureCrystalSP";
+            this.pictureCrystalSP.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalSP.TabIndex = 50;
+            this.pictureCrystalSP.TabStop = false;
+            this.pictureCrystalSP.Click += new System.EventHandler(this.pictureCrystalSP_Click);
+            // 
+            // pictureCrystalMM
+            // 
+            this.pictureCrystalMM.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalMM.Location = new System.Drawing.Point(47, 96);
+            this.pictureCrystalMM.Name = "pictureCrystalMM";
+            this.pictureCrystalMM.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalMM.TabIndex = 49;
+            this.pictureCrystalMM.TabStop = false;
+            this.pictureCrystalMM.Click += new System.EventHandler(this.pictureCrystalMM_Click);
+            // 
+            // pictureCrystalPoD
+            // 
+            this.pictureCrystalPoD.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
+            this.pictureCrystalPoD.Location = new System.Drawing.Point(63, 96);
+            this.pictureCrystalPoD.Name = "pictureCrystalPoD";
+            this.pictureCrystalPoD.Size = new System.Drawing.Size(16, 16);
+            this.pictureCrystalPoD.TabIndex = 48;
+            this.pictureCrystalPoD.TabStop = false;
+            this.pictureCrystalPoD.Click += new System.EventHandler(this.pictureCrystalPoD_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Black;
+            this.pictureBox3.Location = new System.Drawing.Point(28, 92);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(72, 64);
+            this.pictureBox3.TabIndex = 47;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureRedPendant
+            // 
+            this.pictureRedPendant.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            this.pictureRedPendant.Location = new System.Drawing.Point(55, 28);
+            this.pictureRedPendant.Name = "pictureRedPendant";
+            this.pictureRedPendant.Size = new System.Drawing.Size(16, 16);
+            this.pictureRedPendant.TabIndex = 46;
+            this.pictureRedPendant.TabStop = false;
+            this.pictureRedPendant.Click += new System.EventHandler(this.pictureRedPendant_Click);
+            // 
+            // pictureBluePendant
+            // 
+            this.pictureBluePendant.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            this.pictureBluePendant.Location = new System.Drawing.Point(39, 56);
+            this.pictureBluePendant.Name = "pictureBluePendant";
+            this.pictureBluePendant.Size = new System.Drawing.Size(16, 16);
+            this.pictureBluePendant.TabIndex = 45;
+            this.pictureBluePendant.TabStop = false;
+            this.pictureBluePendant.Click += new System.EventHandler(this.pictureBluePendant_Click);
+            // 
+            // pictureGreenPendant
+            // 
+            this.pictureGreenPendant.Image = global::ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
+            this.pictureGreenPendant.Location = new System.Drawing.Point(71, 56);
+            this.pictureGreenPendant.Name = "pictureGreenPendant";
+            this.pictureGreenPendant.Size = new System.Drawing.Size(16, 16);
+            this.pictureGreenPendant.TabIndex = 44;
+            this.pictureGreenPendant.TabStop = false;
+            this.pictureGreenPendant.Click += new System.EventHandler(this.pictureGreenPendant_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Black;
+            this.pictureBox2.Location = new System.Drawing.Point(28, 19);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(72, 64);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBottle4
+            // 
+            this.pictureBottle4.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            this.pictureBottle4.ImageLocation = "";
+            this.pictureBottle4.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBottle4.Location = new System.Drawing.Point(16, 111);
+            this.pictureBottle4.Name = "pictureBottle4";
+            this.pictureBottle4.Size = new System.Drawing.Size(16, 16);
+            this.pictureBottle4.TabIndex = 34;
+            this.pictureBottle4.TabStop = false;
+            // 
+            // pictureBottle3
+            // 
+            this.pictureBottle3.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            this.pictureBottle3.ImageLocation = "";
+            this.pictureBottle3.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBottle3.Location = new System.Drawing.Point(16, 81);
+            this.pictureBottle3.Name = "pictureBottle3";
+            this.pictureBottle3.Size = new System.Drawing.Size(16, 16);
+            this.pictureBottle3.TabIndex = 33;
+            this.pictureBottle3.TabStop = false;
+            // 
+            // pictureBottle2
+            // 
+            this.pictureBottle2.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            this.pictureBottle2.ImageLocation = "";
+            this.pictureBottle2.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBottle2.Location = new System.Drawing.Point(16, 50);
+            this.pictureBottle2.Name = "pictureBottle2";
+            this.pictureBottle2.Size = new System.Drawing.Size(16, 16);
+            this.pictureBottle2.TabIndex = 32;
+            this.pictureBottle2.TabStop = false;
+            // 
+            // pictureBottle1
+            // 
+            this.pictureBottle1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            this.pictureBottle1.ImageLocation = "";
+            this.pictureBottle1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBottle1.Location = new System.Drawing.Point(16, 21);
+            this.pictureBottle1.Name = "pictureBottle1";
+            this.pictureBottle1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBottle1.TabIndex = 31;
+            this.pictureBottle1.TabStop = false;
+            // 
+            // pictureHeartPieces
+            // 
+            this.pictureHeartPieces.Image = global::ALTTPSRAMEditor.Properties.Resources.Piece_of_Heart_Empty;
+            this.pictureHeartPieces.Location = new System.Drawing.Point(3, 128);
+            this.pictureHeartPieces.Name = "pictureHeartPieces";
+            this.pictureHeartPieces.Size = new System.Drawing.Size(16, 16);
+            this.pictureHeartPieces.TabIndex = 36;
+            this.pictureHeartPieces.TabStop = false;
+            this.pictureHeartPieces.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureHeartPieces_MouseClick);
+            // 
+            // pictureMoonPearl
+            // 
+            this.pictureMoonPearl.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl;
+            this.pictureMoonPearl.ImageLocation = "";
+            this.pictureMoonPearl.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMoonPearl.Location = new System.Drawing.Point(78, 103);
+            this.pictureMoonPearl.Name = "pictureMoonPearl";
+            this.pictureMoonPearl.Size = new System.Drawing.Size(16, 16);
+            this.pictureMoonPearl.TabIndex = 26;
+            this.pictureMoonPearl.TabStop = false;
+            this.pictureMoonPearl.Click += new System.EventHandler(this.pictureMoonPearl_Click);
+            // 
+            // pictureZorasFlippers
+            // 
+            this.pictureZorasFlippers.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
+            this.pictureZorasFlippers.ImageLocation = "";
+            this.pictureZorasFlippers.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureZorasFlippers.Location = new System.Drawing.Point(53, 103);
+            this.pictureZorasFlippers.Name = "pictureZorasFlippers";
+            this.pictureZorasFlippers.Size = new System.Drawing.Size(16, 16);
+            this.pictureZorasFlippers.TabIndex = 25;
+            this.pictureZorasFlippers.TabStop = false;
+            this.pictureZorasFlippers.Click += new System.EventHandler(this.pictureZorasFlippers_Click);
+            // 
+            // picturePowerGlove
+            // 
+            this.picturePowerGlove.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Power_Glove;
+            this.picturePowerGlove.ImageLocation = "";
+            this.picturePowerGlove.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.picturePowerGlove.Location = new System.Drawing.Point(28, 103);
+            this.picturePowerGlove.Name = "picturePowerGlove";
+            this.picturePowerGlove.Size = new System.Drawing.Size(16, 16);
+            this.picturePowerGlove.TabIndex = 24;
+            this.picturePowerGlove.TabStop = false;
+            this.picturePowerGlove.Click += new System.EventHandler(this.picturePowerGlove_Click);
+            // 
+            // pictureBoots
+            // 
+            this.pictureBoots.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
+            this.pictureBoots.ImageLocation = "";
+            this.pictureBoots.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBoots.Location = new System.Drawing.Point(3, 103);
+            this.pictureBoots.Name = "pictureBoots";
+            this.pictureBoots.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoots.TabIndex = 23;
+            this.pictureBoots.TabStop = false;
+            this.pictureBoots.Click += new System.EventHandler(this.pictureBoots_Click);
+            // 
+            // pictureMushPowd
+            // 
+            this.pictureMushPowd.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Mushroom;
+            this.pictureMushPowd.ImageLocation = "";
+            this.pictureMushPowd.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMushPowd.Location = new System.Drawing.Point(103, 3);
+            this.pictureMushPowd.Name = "pictureMushPowd";
+            this.pictureMushPowd.Size = new System.Drawing.Size(16, 16);
+            this.pictureMushPowd.TabIndex = 7;
+            this.pictureMushPowd.TabStop = false;
+            this.pictureMushPowd.Click += new System.EventHandler(this.pictureMushPowd_Click);
+            // 
+            // pictureBow
+            // 
+            this.pictureBow.BackColor = System.Drawing.SystemColors.ControlText;
+            this.pictureBow.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bow;
+            this.pictureBow.ImageLocation = "";
+            this.pictureBow.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bow_and_Arrow;
+            this.pictureBow.Location = new System.Drawing.Point(3, 3);
+            this.pictureBow.Name = "pictureBow";
+            this.pictureBow.Size = new System.Drawing.Size(16, 16);
+            this.pictureBow.TabIndex = 0;
+            this.pictureBow.TabStop = false;
+            this.pictureBow.Click += new System.EventHandler(this.pictureBow_Click);
+            // 
+            // pictureBombs
+            // 
+            this.pictureBombs.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bomb;
+            this.pictureBombs.ImageLocation = "";
+            this.pictureBombs.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBombs.Location = new System.Drawing.Point(78, 3);
+            this.pictureBombs.Name = "pictureBombs";
+            this.pictureBombs.Size = new System.Drawing.Size(16, 16);
+            this.pictureBombs.TabIndex = 5;
+            this.pictureBombs.TabStop = false;
+            this.pictureBombs.Click += new System.EventHandler(this.pictureBombs_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
+            this.pictureBox1.Location = new System.Drawing.Point(28, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureHookshot
+            // 
+            this.pictureHookshot.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Hookshot;
+            this.pictureHookshot.ImageLocation = "";
+            this.pictureHookshot.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
+            this.pictureHookshot.Location = new System.Drawing.Point(53, 3);
+            this.pictureHookshot.Name = "pictureHookshot";
+            this.pictureHookshot.Size = new System.Drawing.Size(16, 16);
+            this.pictureHookshot.TabIndex = 6;
+            this.pictureHookshot.TabStop = false;
+            this.pictureHookshot.Click += new System.EventHandler(this.pictureHookshot_Click);
+            // 
+            // pictureFireRod
+            // 
+            this.pictureFireRod.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod;
+            this.pictureFireRod.ImageLocation = "";
+            this.pictureFireRod.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureFireRod.Location = new System.Drawing.Point(3, 28);
+            this.pictureFireRod.Name = "pictureFireRod";
+            this.pictureFireRod.Size = new System.Drawing.Size(16, 16);
+            this.pictureFireRod.TabIndex = 8;
+            this.pictureFireRod.TabStop = false;
+            this.pictureFireRod.Click += new System.EventHandler(this.pictureFireRod_Click);
+            // 
+            // pictureIceRod
+            // 
+            this.pictureIceRod.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod;
+            this.pictureIceRod.ImageLocation = "";
+            this.pictureIceRod.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureIceRod.Location = new System.Drawing.Point(28, 28);
+            this.pictureIceRod.Name = "pictureIceRod";
+            this.pictureIceRod.Size = new System.Drawing.Size(16, 16);
+            this.pictureIceRod.TabIndex = 9;
+            this.pictureIceRod.TabStop = false;
+            this.pictureIceRod.Click += new System.EventHandler(this.pictureIceRod_Click);
+            // 
+            // pictureBombos
+            // 
+            this.pictureBombos.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bombos;
+            this.pictureBombos.ImageLocation = "";
+            this.pictureBombos.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBombos.Location = new System.Drawing.Point(53, 28);
+            this.pictureBombos.Name = "pictureBombos";
+            this.pictureBombos.Size = new System.Drawing.Size(16, 16);
+            this.pictureBombos.TabIndex = 10;
+            this.pictureBombos.TabStop = false;
+            this.pictureBombos.Click += new System.EventHandler(this.pictureBombos_Click);
+            // 
+            // pictureEther
+            // 
+            this.pictureEther.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Ether;
+            this.pictureEther.ImageLocation = "";
+            this.pictureEther.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureEther.Location = new System.Drawing.Point(78, 28);
+            this.pictureEther.Name = "pictureEther";
+            this.pictureEther.Size = new System.Drawing.Size(16, 16);
+            this.pictureEther.TabIndex = 11;
+            this.pictureEther.TabStop = false;
+            this.pictureEther.Click += new System.EventHandler(this.pictureEther_Click);
+            // 
+            // pictureQuake
+            // 
+            this.pictureQuake.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Quake;
+            this.pictureQuake.ImageLocation = "";
+            this.pictureQuake.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureQuake.Location = new System.Drawing.Point(103, 28);
+            this.pictureQuake.Name = "pictureQuake";
+            this.pictureQuake.Size = new System.Drawing.Size(16, 16);
+            this.pictureQuake.TabIndex = 12;
+            this.pictureQuake.TabStop = false;
+            this.pictureQuake.Click += new System.EventHandler(this.pictureQuake_Click);
+            // 
+            // pictureLamp
+            // 
+            this.pictureLamp.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Lamp;
+            this.pictureLamp.ImageLocation = "";
+            this.pictureLamp.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureLamp.Location = new System.Drawing.Point(3, 53);
+            this.pictureLamp.Name = "pictureLamp";
+            this.pictureLamp.Size = new System.Drawing.Size(16, 16);
+            this.pictureLamp.TabIndex = 13;
+            this.pictureLamp.TabStop = false;
+            this.pictureLamp.Click += new System.EventHandler(this.pictureLamp_Click);
+            // 
+            // pictureMagicHammer
+            // 
+            this.pictureMagicHammer.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer;
+            this.pictureMagicHammer.ImageLocation = "";
+            this.pictureMagicHammer.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMagicHammer.Location = new System.Drawing.Point(28, 53);
+            this.pictureMagicHammer.Name = "pictureMagicHammer";
+            this.pictureMagicHammer.Size = new System.Drawing.Size(16, 16);
+            this.pictureMagicHammer.TabIndex = 14;
+            this.pictureMagicHammer.TabStop = false;
+            this.pictureMagicHammer.Click += new System.EventHandler(this.pictureMagicHammer_Click);
+            // 
+            // pictureShovelFlute
+            // 
+            this.pictureShovelFlute.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Shovel;
+            this.pictureShovelFlute.ImageLocation = "";
+            this.pictureShovelFlute.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureShovelFlute.Location = new System.Drawing.Point(53, 53);
+            this.pictureShovelFlute.Name = "pictureShovelFlute";
+            this.pictureShovelFlute.Size = new System.Drawing.Size(16, 16);
+            this.pictureShovelFlute.TabIndex = 15;
+            this.pictureShovelFlute.TabStop = false;
+            this.pictureShovelFlute.Click += new System.EventHandler(this.pictureShovelFlute_Click);
+            // 
+            // pictureBugCatchingNet
+            // 
+            this.pictureBugCatchingNet.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net;
+            this.pictureBugCatchingNet.ImageLocation = "";
+            this.pictureBugCatchingNet.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBugCatchingNet.Location = new System.Drawing.Point(78, 53);
+            this.pictureBugCatchingNet.Name = "pictureBugCatchingNet";
+            this.pictureBugCatchingNet.Size = new System.Drawing.Size(16, 16);
+            this.pictureBugCatchingNet.TabIndex = 16;
+            this.pictureBugCatchingNet.TabStop = false;
+            this.pictureBugCatchingNet.Click += new System.EventHandler(this.pictureBugCatchingNet_Click);
+            // 
+            // pictureBookOfMudora
+            // 
+            this.pictureBookOfMudora.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora;
+            this.pictureBookOfMudora.ImageLocation = "";
+            this.pictureBookOfMudora.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBookOfMudora.Location = new System.Drawing.Point(103, 53);
+            this.pictureBookOfMudora.Name = "pictureBookOfMudora";
+            this.pictureBookOfMudora.Size = new System.Drawing.Size(16, 16);
+            this.pictureBookOfMudora.TabIndex = 17;
+            this.pictureBookOfMudora.TabStop = false;
+            this.pictureBookOfMudora.Click += new System.EventHandler(this.pictureBookOfMudora_Click);
+            // 
+            // pictureBottles
+            // 
+            this.pictureBottles.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            this.pictureBottles.ImageLocation = "";
+            this.pictureBottles.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureBottles.Location = new System.Drawing.Point(3, 78);
+            this.pictureBottles.Name = "pictureBottles";
+            this.pictureBottles.Size = new System.Drawing.Size(16, 16);
+            this.pictureBottles.TabIndex = 18;
+            this.pictureBottles.TabStop = false;
+            this.pictureBottles.Click += new System.EventHandler(this.pictureBottles_Click);
+            // 
+            // pictureCaneOfSomaria
+            // 
+            this.pictureCaneOfSomaria.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria;
+            this.pictureCaneOfSomaria.ImageLocation = "";
+            this.pictureCaneOfSomaria.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureCaneOfSomaria.Location = new System.Drawing.Point(28, 78);
+            this.pictureCaneOfSomaria.Name = "pictureCaneOfSomaria";
+            this.pictureCaneOfSomaria.Size = new System.Drawing.Size(16, 16);
+            this.pictureCaneOfSomaria.TabIndex = 19;
+            this.pictureCaneOfSomaria.TabStop = false;
+            this.pictureCaneOfSomaria.Click += new System.EventHandler(this.pictureCaneOfSomaria_Click);
+            // 
+            // pictureCaneOfByrna
+            // 
+            this.pictureCaneOfByrna.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna;
+            this.pictureCaneOfByrna.ImageLocation = "";
+            this.pictureCaneOfByrna.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureCaneOfByrna.Location = new System.Drawing.Point(53, 78);
+            this.pictureCaneOfByrna.Name = "pictureCaneOfByrna";
+            this.pictureCaneOfByrna.Size = new System.Drawing.Size(16, 16);
+            this.pictureCaneOfByrna.TabIndex = 20;
+            this.pictureCaneOfByrna.TabStop = false;
+            this.pictureCaneOfByrna.Click += new System.EventHandler(this.pictureCaneOfByrna_Click);
+            // 
+            // pictureMagicCape
+            // 
+            this.pictureMagicCape.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape;
+            this.pictureMagicCape.ImageLocation = "";
+            this.pictureMagicCape.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMagicCape.Location = new System.Drawing.Point(78, 78);
+            this.pictureMagicCape.Name = "pictureMagicCape";
+            this.pictureMagicCape.Size = new System.Drawing.Size(16, 16);
+            this.pictureMagicCape.TabIndex = 21;
+            this.pictureMagicCape.TabStop = false;
+            this.pictureMagicCape.Click += new System.EventHandler(this.pictureMagicCape_Click);
+            // 
+            // pictureMagicMirror
+            // 
+            this.pictureMagicMirror.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror;
+            this.pictureMagicMirror.ImageLocation = "";
+            this.pictureMagicMirror.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMagicMirror.Location = new System.Drawing.Point(103, 78);
+            this.pictureMagicMirror.Name = "pictureMagicMirror";
+            this.pictureMagicMirror.Size = new System.Drawing.Size(16, 16);
+            this.pictureMagicMirror.TabIndex = 22;
+            this.pictureMagicMirror.TabStop = false;
+            this.pictureMagicMirror.Click += new System.EventHandler(this.pictureMagicMirror_Click);
+            // 
+            // pictureMail
+            // 
+            this.pictureMail.Image = global::ALTTPSRAMEditor.Properties.Resources.Green_Tunic;
+            this.pictureMail.ImageLocation = "";
+            this.pictureMail.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureMail.Location = new System.Drawing.Point(103, 128);
+            this.pictureMail.Name = "pictureMail";
+            this.pictureMail.Size = new System.Drawing.Size(27, 24);
+            this.pictureMail.TabIndex = 30;
+            this.pictureMail.TabStop = false;
+            this.pictureMail.Click += new System.EventHandler(this.pictureMail_Click);
+            // 
+            // pictureShield
+            // 
+            this.pictureShield.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Shield;
+            this.pictureShield.ImageLocation = "";
+            this.pictureShield.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureShield.Location = new System.Drawing.Point(78, 128);
+            this.pictureShield.Name = "pictureShield";
+            this.pictureShield.Size = new System.Drawing.Size(16, 16);
+            this.pictureShield.TabIndex = 29;
+            this.pictureShield.TabStop = false;
+            this.pictureShield.Click += new System.EventHandler(this.pictureShield_Click);
+            // 
+            // pictureSword
+            // 
+            this.pictureSword.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Fighter_s_Sword;
+            this.pictureSword.ImageLocation = "";
+            this.pictureSword.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
+            this.pictureSword.Location = new System.Drawing.Point(53, 128);
+            this.pictureSword.Name = "pictureSword";
+            this.pictureSword.Size = new System.Drawing.Size(16, 16);
+            this.pictureSword.TabIndex = 28;
+            this.pictureSword.TabStop = false;
+            this.pictureSword.Click += new System.EventHandler(this.pictureSword_Click);
+            // 
             // pictureBoxMagicBar
             // 
-            this.pictureBoxMagicBar.Image = global::ALTTPSRAMEditor.Properties.Resources.Link_Icon_1;
+            this.pictureBoxMagicBar.Image = global::ALTTPSRAMEditor.Properties.Resources.Red_Pendant;
             this.pictureBoxMagicBar.InitialImage = null;
             this.pictureBoxMagicBar.Location = new System.Drawing.Point(330, 310);
             this.pictureBoxMagicBar.Name = "pictureBoxMagicBar";
@@ -1707,7 +1873,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(949, 465);
+            this.ClientSize = new System.Drawing.Size(755, 465);
+            this.Controls.Add(this.groupPendantsCrystals);
             this.Controls.Add(this.textQuarterMagic);
             this.Controls.Add(this.labelMagic);
             this.Controls.Add(this.labelHeartContainers);
@@ -1742,6 +1909,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBoxBowConfig);
             this.Controls.Add(this.pictureBoxMagicBar);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -1756,6 +1924,48 @@
             this.groupFileSelect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).EndInit();
             this.tableLayoutPanelInventory.ResumeLayout(false);
+            this.groupBoxBowConfig.ResumeLayout(false);
+            this.groupBoxBowConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowUpgrades)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowsHeld)).EndInit();
+            this.groupBoxBoomerangConfig.ResumeLayout(false);
+            this.groupBoxBoomerangConfig.PerformLayout();
+            this.groupBoxBombs.ResumeLayout(false);
+            this.groupBoxBombs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombUpgrades)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombsHeld)).EndInit();
+            this.groupBoxMushroomPowder.ResumeLayout(false);
+            this.groupBoxMushroomPowder.PerformLayout();
+            this.groupBoxSword.ResumeLayout(false);
+            this.groupBoxSword.PerformLayout();
+            this.groupBoxShield.ResumeLayout(false);
+            this.groupBoxShield.PerformLayout();
+            this.groupBoxMails.ResumeLayout(false);
+            this.groupBoxMails.PerformLayout();
+            this.groupBoxBottles.ResumeLayout(false);
+            this.groupBoxGloves.ResumeLayout(false);
+            this.groupBoxGloves.PerformLayout();
+            this.groupBoxShovelFlute.ResumeLayout(false);
+            this.groupBoxShovelFlute.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeartContainers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMagic)).EndInit();
+            this.groupPendantsCrystals.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalTR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalIP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalTT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalSW)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalSP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalMM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCrystalPoD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureRedPendant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBluePendant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGreenPendant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHeartPieces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMoonPearl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZorasFlippers)).EndInit();
@@ -1784,35 +1994,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureShield)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSword)).EndInit();
-            this.groupBoxBowConfig.ResumeLayout(false);
-            this.groupBoxBowConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowUpgrades)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownArrowsHeld)).EndInit();
-            this.groupBoxBoomerangConfig.ResumeLayout(false);
-            this.groupBoxBoomerangConfig.PerformLayout();
-            this.groupBoxBombs.ResumeLayout(false);
-            this.groupBoxBombs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombUpgrades)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBombsHeld)).EndInit();
-            this.groupBoxMushroomPowder.ResumeLayout(false);
-            this.groupBoxMushroomPowder.PerformLayout();
-            this.groupBoxSword.ResumeLayout(false);
-            this.groupBoxSword.PerformLayout();
-            this.groupBoxShield.ResumeLayout(false);
-            this.groupBoxShield.PerformLayout();
-            this.groupBoxMails.ResumeLayout(false);
-            this.groupBoxMails.PerformLayout();
-            this.groupBoxBottles.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBottle1)).EndInit();
-            this.groupBoxGloves.ResumeLayout(false);
-            this.groupBoxGloves.PerformLayout();
-            this.groupBoxShovelFlute.ResumeLayout(false);
-            this.groupBoxShovelFlute.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeartContainers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMagic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1941,6 +2122,19 @@
         private System.Windows.Forms.PictureBox pictureBoxMagicBar;
         private System.Windows.Forms.RichTextBox textQuarterMagic;
         private System.Windows.Forms.RadioButton radioButtonFluteAndBird;
+        private System.Windows.Forms.GroupBox groupPendantsCrystals;
+        private System.Windows.Forms.PictureBox pictureGreenPendant;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureCrystalPoD;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureRedPendant;
+        private System.Windows.Forms.PictureBox pictureBluePendant;
+        private System.Windows.Forms.PictureBox pictureCrystalTR;
+        private System.Windows.Forms.PictureBox pictureCrystalIP;
+        private System.Windows.Forms.PictureBox pictureCrystalTT;
+        private System.Windows.Forms.PictureBox pictureCrystalSW;
+        private System.Windows.Forms.PictureBox pictureCrystalSP;
+        private System.Windows.Forms.PictureBox pictureCrystalMM;
     }
 }
 

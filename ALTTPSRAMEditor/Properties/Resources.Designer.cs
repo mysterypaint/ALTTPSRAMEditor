@@ -93,6 +93,26 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Blue_Crystal {
+            get {
+                object obj = ResourceManager.GetObject("Blue Crystal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Blue_Pendant {
+            get {
+                object obj = ResourceManager.GetObject("Blue Pendant", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Blue_Potion {
             get {
                 object obj = ResourceManager.GetObject("Blue Potion", resourceCulture);
@@ -233,9 +253,9 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Compass {
+        internal static System.Drawing.Bitmap Clear_Crystal {
             get {
-                object obj = ResourceManager.GetObject("Compass", resourceCulture);
+                object obj = ResourceManager.GetObject("Clear Crystal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +263,19 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Crystal {
+        internal static System.Drawing.Bitmap Clear_Pendant {
             get {
-                object obj = ResourceManager.GetObject("Crystal", resourceCulture);
+                object obj = ResourceManager.GetObject("Clear Pendant", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Compass {
+            get {
+                object obj = ResourceManager.GetObject("Compass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -633,6 +663,16 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Green_Pendant {
+            get {
+                object obj = ResourceManager.GetObject("Green Pendant", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Green_Potion {
             get {
                 object obj = ResourceManager.GetObject("Green Potion", resourceCulture);
@@ -956,6 +996,26 @@ namespace ALTTPSRAMEditor.Properties {
         internal static System.Drawing.Bitmap Quake {
             get {
                 object obj = ResourceManager.GetObject("Quake", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Red_Crystal {
+            get {
+                object obj = ResourceManager.GetObject("Red Crystal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Red_Pendant {
+            get {
+                object obj = ResourceManager.GetObject("Red Pendant", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

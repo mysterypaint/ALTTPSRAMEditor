@@ -152,9 +152,6 @@
     <None Include="Resources\Compass.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Crystal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Dungeon Map.png" />
   </ItemGroup>
   <ItemGroup>
@@ -387,6 +384,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lttp_magic_bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue Crystal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue Pendant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clear Crystal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clear Pendant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green Pendant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red Crystal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red Pendant.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

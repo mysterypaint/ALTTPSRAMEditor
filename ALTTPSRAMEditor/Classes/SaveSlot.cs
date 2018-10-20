@@ -12,7 +12,10 @@ namespace ALTTPSRAMEditor
         private String playerName = "";
         private UInt16 total_checksum = 0;
         private Link player;
+        private byte pendants;
+        private byte crystals;
         Form1.SaveRegion saveRegion;
+        byte[] itemsAndEquipment;
 
         public SaveSlot(byte[] data_in)
         {
@@ -29,12 +32,16 @@ namespace ALTTPSRAMEditor
 
             // Copy global save data's Item&Equipment data to this Save Slot
 
-            byte[] itemsAndEquipment = new byte[0x4B];
+            itemsAndEquipment = new byte[0x4B];
 
             for (int i = 0x0; i < itemsAndEquipment.Length; i++)
             {
                 itemsAndEquipment[i] = data[0x340 + i];
             }
+
+            // Copy pendants and crystals to a private variable for this save slot
+            pendants = itemsAndEquipment[0x34];
+            crystals = itemsAndEquipment[0x3A];
 
             // Initialize a player object upon creating this save slot.
             player = new Link(itemsAndEquipment);
@@ -157,11 +164,108 @@ namespace ALTTPSRAMEditor
         {
             // Take player's equipment and update the local data
             byte[] itemsAndEquipment = player.GetItemsAndEquipmentArray();
+
+            // Update pendant and crystal data before merging this save
+            itemsAndEquipment[0x34] = pendants;
+            itemsAndEquipment[0x3A] = crystals;
+
             int len = itemsAndEquipment.Length;
             for (int i = 0x0; i < len; i++)
             {
                 data[0x340 + i] = (byte)itemsAndEquipment[i];
             }
+        }
+
+        public byte GetPendants()
+        {
+            return pendants;
+        }
+
+        public byte GetCrystals()
+        {
+            return crystals;
+        }
+
+        public void TogglePendant(int _val)
+        {
+            switch (_val)
+            {
+                default:
+                case Form1.greenPendant:
+                    if (Form1.GetBit(pendants, Form1.greenPendant))
+                        pendants &= 0xFB; // Turn it off if we already have the pendant
+                    else
+                        pendants |= 0x4; // Turn it on if we don't already have the pendant
+                    break;
+                case Form1.bluePendant:
+                    if (Form1.GetBit(pendants, Form1.bluePendant))
+                        pendants &= 0xFD; // Turn it off if we already have the pendant
+                    else
+                        pendants |= 0x2; // Turn it on if we don't already have the pendant
+                    break;
+                case Form1.redPendant:
+                    if (Form1.GetBit(pendants, Form1.redPendant))
+                        pendants &= 0xFE; // Turn it off if we already have the pendant
+                    else
+                        pendants |= 0x1; // Turn it on if we don't already have the pendant
+                    break;
+            }
+
+            // Update pendant data for this save slot
+            itemsAndEquipment[0x34] = pendants;
+        }
+
+        public void ToggleCrystal(int _val)
+        {
+            switch (_val)
+            {
+                default:
+                case Form1.crystalPoD:
+                    if (Form1.GetBit(crystals, Form1.crystalPoD))
+                        crystals &= 0xFD; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x2; // Turn it on if we don't already have the crystal
+                    break;
+                case Form1.crystalSP:
+                    if (Form1.GetBit(crystals, Form1.crystalSP))
+                        crystals &= 0xEF; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x10; // Turn it on if we don't already have the crystal
+                    break;
+                case Form1.crystalSW:
+                    if (Form1.GetBit(crystals, Form1.crystalSW))
+                        crystals &= 0xBF; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x40; // Turn it on if we don't already have the crystal
+                    break;
+                case Form1.crystalTT:
+                    if (Form1.GetBit(crystals, Form1.crystalTT))
+                        crystals &= 0xDF; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x20; // Turn it on if we don't already have the crystal
+                    break;
+                case Form1.crystalIP:
+                    if (Form1.GetBit(crystals, Form1.crystalIP))
+                        crystals &= 0xFB; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x4; // Turn it on if we don't already have the crystal
+                    break;
+                case Form1.crystalMM:
+                    if (Form1.GetBit(crystals, Form1.crystalMM))
+                        crystals &= 0xFE; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x1; // Turn it on if we don't already have the crystal
+                    break;
+                case Form1.crystalTR:
+                    if (Form1.GetBit(crystals, Form1.crystalTR))
+                        crystals &= 0xF7; // Turn it off if we already have the crystal
+                    else
+                        crystals |= 0x8; // Turn it on if we don't already have the crystal
+                    break;
+            }
+
+            // Update crystal data for this save slot
+            itemsAndEquipment[0x3A] = crystals;
         }
 
         public String GetPlayerName()
