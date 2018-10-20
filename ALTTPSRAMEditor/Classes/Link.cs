@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
+    [Serializable]
     class Link
     {
         private byte[] itemsAndEquipment;

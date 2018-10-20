@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
+    [Serializable]
     class SaveSlot
     {
         private byte[] data;
@@ -14,6 +15,7 @@ namespace ALTTPSRAMEditor
         private Link player;
         private byte pendants;
         private byte crystals;
+        private bool isValid;
         int slotIndex;
         Form1.SaveRegion saveRegion;
         byte[] itemsAndEquipment;
@@ -25,6 +27,7 @@ namespace ALTTPSRAMEditor
 
             slotIndex = _slot;
 
+            isValid = SaveIsValid();
             // Determine which region this save comes from
             if (data[0x3E5] == 0xAA && data[0x3E6] == 0x55)
                 saveRegion = Form1.SaveRegion.USA;
@@ -50,6 +53,21 @@ namespace ALTTPSRAMEditor
             player = new Link(itemsAndEquipment);
 
             getRawPlayerName();
+        }
+
+        public void SetSaveSlot(int _slot)
+        {
+            slotIndex = _slot;
+        }
+
+        public void SetIsValid(bool _val)
+        {
+            isValid = _val;
+        }
+
+        public bool GetIsValid()
+        {
+            return isValid;
         }
 
         public override String ToString()
@@ -293,7 +311,8 @@ namespace ALTTPSRAMEditor
 
         public void ClearData()
         {
-            Array.Clear(data, 0, data.Length);
+            Array.Clear(data, 0, data.Length - 2); // Invalidate the data by storing 0 to everything besides the checksum check
+            isValid = false;
         }
     }
 }

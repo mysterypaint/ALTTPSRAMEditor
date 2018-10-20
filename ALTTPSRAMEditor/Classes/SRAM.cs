@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
+    [Serializable]
     class SRAM
     {
         private byte[] data;
@@ -22,12 +23,11 @@ namespace ALTTPSRAMEditor
         private
         const int slot3m = 0x1900;
         private byte[] outsav = new byte[0x2000];
-        private byte[] copyData = new byte[0x500];
         //Addresses $1E00 to $1FFE in SRAM are not used.
         private
         const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
                                        //private int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
-        private static SaveSlot savslot1, savslot2, savslot3, savslot1m, savslot2m, savslot3m;
+        private static SaveSlot savslot1, savslot2, savslot3, savslot1m, savslot2m, savslot3m, savslotTemp;
         /*
          * These offsets directly correspond to $7E:F for a particular save file is being played.
          * When the game is finished it writes the information into bank $70 in the corresponding slot + offsets presented here.
@@ -38,8 +38,6 @@ namespace ALTTPSRAMEditor
         public SRAM(byte[] data_in)
         {
             data = data_in.ToArray();
-
-            copyData[0] = 0xFE; // If first byte is a 0xFE, we never copied anything.
 
             // Initialize the save slot data based on the larger .srm chunk
             GenerateSaveSlot(slot1, slot2, 1);
@@ -109,19 +107,22 @@ namespace ALTTPSRAMEditor
         public byte[] MergeSaveData()
         {
             savslot1.UpdatePlayer();
-            savslot1.ValidateSave();
+            if (savslot1.GetIsValid())
+                savslot1.ValidateSave();
             byte[] currData = savslot1.GetData();
             Array.Copy(currData, 0, outsav, slot1, 0x500);
             Array.Copy(currData, 0, outsav, slot1m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
             savslot2.UpdatePlayer();
-            savslot2.ValidateSave();
+            if (savslot2.GetIsValid())
+                savslot2.ValidateSave();
             currData = savslot2.GetData();
             Array.Copy(currData, 0, outsav, slot2, 0x500);
             Array.Copy(currData, 0, outsav, slot2m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
             savslot3.UpdatePlayer();
-            savslot3.ValidateSave();
+            if (savslot3.GetIsValid())
+                savslot3.ValidateSave();
             currData = savslot3.GetData();
             Array.Copy(currData, 0, outsav, slot3, 0x500);
             Array.Copy(currData, 0, outsav, slot3m, 0x500); // Write the actual save slots to the mirror slots, just in case
@@ -143,59 +144,62 @@ namespace ALTTPSRAMEditor
 
         public void CopyFile(int fileSlot)
         {
-            byte[] slotData = new byte[0x500];
             switch (fileSlot)
             {
                 default:
                 case 1:
                     if (savslot1.SaveIsValid())
-                        slotData = savslot1.GetData();
+                        savslotTemp = savslot1.Clone();
                     else
                     {
                         System.Windows.Forms.MessageBox.Show("Save slot 1 is empty or corrupted. Copying from Mirror Data instead.");
-                        slotData = savslot1m.GetData();
+                        savslotTemp = savslot1m.Clone();
                     }
                     break;
                 case 2:
                     if (savslot2.SaveIsValid())
-                        slotData = savslot2.GetData();
+                        savslotTemp = savslot2.Clone();
                     else
                     {
                         System.Windows.Forms.MessageBox.Show("Save slot 2 is empty or corrupted. Copying from Mirror Data instead.");
-                        slotData = savslot2m.GetData();
+                        savslotTemp = savslot2m.Clone();
                     }
                     break;
                 case 3:
                     if (savslot3.SaveIsValid())
-                        slotData = savslot3.GetData();
+                        savslotTemp = savslot3.Clone();
                     else
                     {
                         System.Windows.Forms.MessageBox.Show("Save slot 3 is empty or corrupted. Copying from Mirror Data instead.");
-                        slotData = savslot3m.GetData();
+                        savslotTemp = savslot3m.Clone();
                     }
                     break;
             }
-            copyData = slotData;
         }
 
-        public void WriteFile(int fileSlot)
+        public SaveSlot WriteFile(int fileSlot)
         {
-            byte[] slotData = new byte[0x500];
             switch (fileSlot)
             {
                 default:
                 case 1:
-                    savslot1.SetData(copyData);
-                    savslot1m.SetData(copyData);
-                    break;
+                    savslot1 = savslotTemp.Clone();
+                    savslot1.SetSaveSlot(1);
+                    savslot1m = savslotTemp.Clone();
+                    savslot1m.SetSaveSlot(1);
+                    return savslot1;
                 case 2:
-                    savslot2.SetData(copyData);
-                    savslot2m.SetData(copyData);
-                    break;
+                    savslot2 = savslotTemp.Clone();
+                    savslot2.SetSaveSlot(2);
+                    savslot2m = savslotTemp.Clone();
+                    savslot2m.SetSaveSlot(2);
+                    return savslot2;
                 case 3:
-                    savslot3.SetData(copyData);
-                    savslot3m.SetData(copyData);
-                    break;
+                    savslot3 = savslotTemp.Clone();
+                    savslot3.SetSaveSlot(3);
+                    savslot3m = savslotTemp.Clone();
+                    savslot3m.SetSaveSlot(3);
+                    return savslot3;
             }
         }
 
@@ -218,14 +222,7 @@ namespace ALTTPSRAMEditor
                     break;
             }
         }
-
-        public void ClearCopyData()
-        {
-            for (int i = 0; i < copyData.Length; i++)
-                copyData[i] = 0x0;
-            copyData[0] = 0xFE;
-        }
-
+        
         /*
         private String HexBlock(int start, int end)
         {

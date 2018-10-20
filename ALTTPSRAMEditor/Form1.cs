@@ -77,6 +77,8 @@ namespace ALTTPSRAMEditor
         public const int crystalMM = 0x0;
         public const int crystalTR = 0x3;
 
+        private bool canRefresh = true;
+
         static int[] bottleContents = new int[9];
         static System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
 
@@ -304,21 +306,23 @@ namespace ALTTPSRAMEditor
 
         private void buttonWrite_Click(object sender, EventArgs e)
         {
+            SaveSlot savslot = sdat.WriteFile(1);
             if (radioFile1.Checked)
             {
-                sdat.WriteFile(1);
                 helperText.Text = "Wrote to File 1!";
             }
             else if (radioFile2.Checked)
             {
-                sdat.WriteFile(2);
+                savslot = sdat.WriteFile(2);
                 helperText.Text = "Wrote to File 2!";
             }
             else if (radioFile3.Checked)
             {
-                sdat.WriteFile(3);
+                savslot = sdat.WriteFile(3);
                 helperText.Text = "Wrote to File 3!";
             }
+            UpdateAllConfigurables(savslot);
+            Refresh();
         }
 
         private void buttonErase_Click(object sender, EventArgs e)
@@ -334,6 +338,10 @@ namespace ALTTPSRAMEditor
                 sdat.EraseFile(selFile);
                 helperText.Text = "Erased File " + selFile + ".";
             }
+            SaveSlot savslot = sdat.GetSaveSlot(selFile);
+            savslot.SetIsValid(false);
+            canRefresh = true;
+            UpdateAllConfigurables(savslot);
         }
 
         public void SetPlayerName(String _str)
@@ -917,7 +925,7 @@ namespace ALTTPSRAMEditor
                 UpdateAllConfigurables(savslot);
                 if (!savslot.SaveIsValid())
                 {
-                    helperText.Text = "Save slot " + savslot.ToString() + " is invalid.";
+                    helperText.Text = "Save slot " + savslot.ToString() + " is empty or invalid.";
                 }
                 else
                 {
@@ -932,9 +940,14 @@ namespace ALTTPSRAMEditor
             {
                 SaveSlot savslot = GetSaveSlot();
 
-                if (!savslot.SaveIsValid())
+                if (!savslot.SaveIsValid() || !savslot.GetIsValid())
                 {
                     textQuarterMagic.Visible = false;
+                    if (canRefresh)
+                    {
+                        canRefresh = false;
+                        Refresh();
+                    }
                     return;
                 }
 
