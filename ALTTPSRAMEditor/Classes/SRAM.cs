@@ -185,19 +185,19 @@ namespace ALTTPSRAMEditor
                 case 1:
                     savslot1 = savslotTemp.Clone();
                     savslot1.SetSaveSlot(1);
-                    savslot1m = savslotTemp.Clone();
+                    savslot1m = savslot1;
                     savslot1m.SetSaveSlot(1);
                     return savslot1;
                 case 2:
                     savslot2 = savslotTemp.Clone();
                     savslot2.SetSaveSlot(2);
-                    savslot2m = savslotTemp.Clone();
+                    savslot2m = savslot2;
                     savslot2m.SetSaveSlot(2);
                     return savslot2;
                 case 3:
                     savslot3 = savslotTemp.Clone();
                     savslot3.SetSaveSlot(3);
-                    savslot3m = savslotTemp.Clone();
+                    savslot3m = savslot3;
                     savslot3m.SetSaveSlot(3);
                     return savslot3;
             }

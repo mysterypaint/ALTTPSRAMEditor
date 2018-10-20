@@ -15,15 +15,20 @@ namespace ALTTPSRAMEditor
     {
         private Bitmap jp_fnt;
         private String currName;
+        private UInt16[] currNameRaw;
+        private Dictionary<UInt16, char> rawJPChar;
+        private bool saveChanges;
         Form1 form1;
 
         public NameChangingFormJP(Form1 _form1)
         {
             InitializeComponent();
             form1 = _form1;
+            rawJPChar = form1.GetRawJPChar();
             currName = form1.GetPlayerName();
-
-            currName = "Test";
+            currNameRaw = new UInt16[6];
+            saveChanges = true;
+            currName = "どしよう";
         }
 
         private void NameChangingFormJP_KeyDown(object sender, KeyEventArgs e)
@@ -39,6 +44,7 @@ namespace ALTTPSRAMEditor
         {
             // Name Changing Form Initialization
             jp_fnt = new Bitmap(ALTTPSRAMEditor.Properties.Resources.jpn_font);
+            saveChanges = true;
             //int tileID = 2;
 
             Console.WriteLine(currName);
@@ -74,9 +80,7 @@ namespace ALTTPSRAMEditor
 
         private static Image GetCharTexture(Bitmap en_fnt, int tileID)
         {
-            int tileset_width = 27; // English Font
-            //int tileset_width = 20; // Japanese Font
-
+            int tileset_width = 20; // Japanese Font
             int tile_w = 8;
             int tile_h = 16;
             int x = (tileID % tileset_width) * tile_w;
@@ -106,11 +110,35 @@ namespace ALTTPSRAMEditor
             return bmp;
         }
 
-        private void NameChangingFormJP_FormClosed(object sender, FormClosedEventArgs e)
+        private void UpdatePlayerName()
         {
             // Update Form1 with the changed player name
+            // If the name is too short, fill it with spaces
+            for (int k = currName.Length; k < 4; k++)
+                currName += " ";
+
+            currName = currName.Substring(0,4); // Chop off anything longer than 4 chars
             form1.SetPlayerName(currName);
-            form1.UpdatePlayerName();
+            int i = 0;
+            foreach (char c in currName)
+            {
+                currNameRaw[i] = rawJPChar.FirstOrDefault(x => x.Value == c).Key;
+                i++;
+            }
+            form1.SetPlayerNameRaw(currNameRaw);
+            form1.UpdatePlayerName(currName);
+            form1.Refresh();
+        }
+
+        private void NameChangingFormJP_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NameChangingFormJP_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (saveChanges)
+                UpdatePlayerName();
         }
     }
 }

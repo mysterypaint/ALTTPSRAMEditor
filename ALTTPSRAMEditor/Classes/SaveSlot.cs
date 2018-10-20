@@ -11,6 +11,7 @@ namespace ALTTPSRAMEditor
     {
         private byte[] data;
         private String playerName = "";
+        private UInt16[] playerNameRaw;
         private UInt16 total_checksum = 0;
         private Link player;
         private byte pendants;
@@ -24,10 +25,9 @@ namespace ALTTPSRAMEditor
         {
             // Import this save slot's data from the larger global save data
             data = data_in.ToArray();
-
             slotIndex = _slot;
+            playerNameRaw = new UInt16[6];
 
-            isValid = SaveIsValid();
             // Determine which region this save comes from
             if (data[0x3E5] == 0xAA && data[0x3E6] == 0x55)
                 saveRegion = Form1.SaveRegion.USA;
@@ -36,6 +36,7 @@ namespace ALTTPSRAMEditor
             else
                 saveRegion = Form1.SaveRegion.EUR;
 
+            isValid = SaveIsValid();
             // Copy global save data's Item&Equipment data to this Save Slot
 
             itemsAndEquipment = new byte[0x4B];
@@ -78,8 +79,6 @@ namespace ALTTPSRAMEditor
         {
             if (!SaveIsValid())
                 return;
-
-            UInt16[] pNameRaw;
             int j = 0;
 
             switch (saveRegion)
@@ -87,29 +86,28 @@ namespace ALTTPSRAMEditor
                 default:
                 case Form1.SaveRegion.EUR:
                 case Form1.SaveRegion.USA:
-                    pNameRaw = new UInt16[6];
                     for (int i = 0x3D9; i <= 0x3E4; i += 2)
                     {
-                        pNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
+                        playerNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
                         j++;
                     }
                     break;
                 case Form1.SaveRegion.JPN:
-                    pNameRaw = new UInt16[4];
+                    playerNameRaw = new UInt16[4];
                     for (int i = 0x3D9; i < 0x3E1; i += 2)
                     {
-                        pNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
+                        playerNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
                         j++;
                     }
                     break;
             }
-            convertPlayerName(pNameRaw);
+            convertPlayerNameRawToString(playerNameRaw);
         }
 
-        private void convertPlayerName(UInt16[] pNameRaw)
+        private void convertPlayerNameRawToString(UInt16[] playerNameRaw)
         {
             int j = 1; // Char counter
-            foreach (UInt16 i in pNameRaw)
+            foreach (UInt16 i in playerNameRaw)
             {
                 switch (saveRegion)
                 {
@@ -132,6 +130,39 @@ namespace ALTTPSRAMEditor
         public Link GetPlayer()
         {
             return player;
+        }
+
+        public UInt16[] GetPlayerNameRaw()
+        {
+            return playerNameRaw;
+        }
+
+        public void SetPlayerNameRaw(UInt16[] _newName)
+        {
+            int j = 0;
+            switch (saveRegion)
+            {
+                default:
+                case Form1.SaveRegion.EUR:
+                case Form1.SaveRegion.USA:
+                    for (int i = 0x3D9; i <= 0x3E4; i += 2)
+                    {
+                        playerNameRaw[j] = _newName[j];
+                        data[i] = (byte) (_newName[j] & 0xff);
+                        data[i+1] = (byte)(_newName[j] >> 8);
+                        j++;
+                    }
+                    break;
+                case Form1.SaveRegion.JPN:
+                    for (int i = 0x3D9; i <= 0x3DF; i += 2)
+                    {
+                        playerNameRaw[j] = _newName[j];
+                        data[i] = (byte)(_newName[j] & 0xff);
+                        data[i + 1] = (byte)(_newName[j] >> 8);
+                        j++;
+                    }
+                    break;
+            }
         }
 
         public Form1.SaveRegion GetRegion()

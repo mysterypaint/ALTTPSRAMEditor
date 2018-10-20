@@ -39,6 +39,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NameChangingFormJP";
             this.Text = "Change Player Name (JPN)";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NameChangingFormJP_FormClosing);
+            this.Load += new System.EventHandler(this.NameChangingFormJP_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NameChangingFormJP_KeyDown);
             this.ResumeLayout(false);
 

@@ -15,15 +15,19 @@ namespace ALTTPSRAMEditor
     {
         private Bitmap en_fnt;
         private String currName;
+        private UInt16[] currNameRaw;
+        private Dictionary<UInt16, char> rawENChar;
+        private bool saveChanges;
         Form1 form1;
 
         public NameChangingFormEN(Form1 _form1)
         {
             InitializeComponent();
             form1 = _form1;
+            rawENChar = form1.GetRawENChar();
             currName = form1.GetPlayerName();
-
-            currName = "Test";
+            currNameRaw = new UInt16[6];
+            currName = "w-wh!?";
         }
 
         private void NameChangingFormJP_KeyDown(object sender, KeyEventArgs e)
@@ -39,9 +43,9 @@ namespace ALTTPSRAMEditor
         {
             // Name Changing Form Initialization
             en_fnt = new Bitmap(ALTTPSRAMEditor.Properties.Resources.en_font);
-            //int tileID = 2;
+            saveChanges = false;
 
-            Console.WriteLine(currName);
+            //int tileID = 2;
             kbdENCharA.Image = GetCharTexture(en_fnt, 1);
             kbdENCharB.Image = GetCharTexture(en_fnt, 2);
             /*kbdENCharC.Image = GetCharTexture(en_fnt, 3);
@@ -83,8 +87,6 @@ namespace ALTTPSRAMEditor
         private static Image GetCharTexture(Bitmap en_fnt, int tileID)
         {
             int tileset_width = 27; // English Font
-            //int tileset_width = 20; // Japanese Font
-
             int tile_w = 8;
             int tile_h = 16;
             int x = (tileID % tileset_width) * tile_w;
@@ -116,14 +118,35 @@ namespace ALTTPSRAMEditor
 
         private void kbdENCharA_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("HI");
+            Console.WriteLine("kbdENCharA_Click");
         }
 
         private void NameChangingFormEN_FormClosed(object sender, FormClosedEventArgs e)
         {
+            saveChanges = true;
+            if (saveChanges)
+                UpdatePlayerName();
+        }
+
+        private void UpdatePlayerName()
+        {
             // Update Form1 with the changed player name
+            // If the name is too short, fill it with spaces
+            for (int k = currName.Length; k < 6; k++)
+                currName += " ";
+
+            currName = currName.Substring(0, 6); // Chop off anything longer than 6 chars
             form1.SetPlayerName(currName);
-            form1.UpdatePlayerName();
+            int i = 0;
+            foreach (char c in currName)
+            {
+                currNameRaw[i] = rawENChar.FirstOrDefault(x => x.Value == c).Key;
+                i++;
+            }
+            Console.Write(currName[5] + ", ");
+            Console.WriteLine(currNameRaw[5]);
+            //form1.SetPlayerNameRaw(currNameRaw);
+            //form1.UpdatePlayerName();
         }
     }
 }

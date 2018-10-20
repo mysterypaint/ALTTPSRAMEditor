@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
-    class Data : System.Windows.Forms.Control
+    class Data
     {
         public Data(Dictionary<char, int> enChar, Dictionary<char, int> jpChar, Dictionary<UInt16, char> rawENChar, Dictionary<UInt16, char> rawJPChar)
         {
@@ -324,8 +324,8 @@ namespace ALTTPSRAMEditor
             rawENChar.Add(0x6B, '7');
             rawENChar.Add(0x6C, '8');
             rawENChar.Add(0x6D, '9');
-            rawENChar.Add(0x6E, '?');
-            rawENChar.Add(0x6F, '!');
+            rawENChar.Add(0x6F, '?');
+            rawENChar.Add(0xC1, '!');
             rawENChar.Add(0x80, '-');
             rawENChar.Add(0x81, '.');
             rawENChar.Add(0x82, ',');

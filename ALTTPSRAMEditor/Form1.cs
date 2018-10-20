@@ -126,6 +126,16 @@ namespace ALTTPSRAMEditor
             InitializeComponent();
         }
 
+        public Dictionary<UInt16, char> GetRawENChar()
+        {
+            return rawENChar;
+        }
+
+        public Dictionary<UInt16, char> GetRawJPChar()
+        {
+            return rawJPChar;
+        }
+
         private void opensrmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenSRM();
@@ -349,6 +359,11 @@ namespace ALTTPSRAMEditor
             GetSaveSlot().SetPlayerName(_str);
         }
 
+        public void SetPlayerNameRaw(UInt16[] _newName)
+        {
+            GetSaveSlot().SetPlayerNameRaw(_newName);
+        }
+
         public String GetPlayerName()
         {
             return GetSaveSlot().GetPlayerName();
@@ -367,6 +382,22 @@ namespace ALTTPSRAMEditor
                 buttonChangeName.Enabled = true;
             }
             displayPlayerName = savslot.GetPlayerName();
+            Refresh(); // Update the screen, including the player name
+        }
+
+        public void UpdatePlayerName(String _str)
+        {
+            SaveSlot savslot = GetSaveSlot();
+            if (!savslot.SaveIsValid())
+            {
+                displayPlayerName = "";
+                buttonChangeName.Enabled = false;
+            }
+            else
+            {
+                buttonChangeName.Enabled = true;
+            }
+            displayPlayerName = _str;
             Refresh(); // Update the screen, including the player name
         }
 
