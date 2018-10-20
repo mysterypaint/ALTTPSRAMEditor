@@ -184,7 +184,7 @@ namespace ALTTPSRAMEditor
 
                         if (thisSlot.SaveIsValid())
                         {
-                            updatePlayerName(thisSlot);
+                            UpdatePlayerName();
                             Link player = thisSlot.GetPlayer();
                             UpdateAllConfigurables(thisSlot);
                         }
@@ -336,8 +336,19 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        private void updatePlayerName(SaveSlot savslot)
+        public void SetPlayerName(String _str)
         {
+            GetSaveSlot().SetPlayerName(_str);
+        }
+
+        public String GetPlayerName()
+        {
+            return GetSaveSlot().GetPlayerName();
+        }
+
+        public void UpdatePlayerName()
+        {
+            SaveSlot savslot = GetSaveSlot();
             if (!savslot.SaveIsValid())
             {
                 displayPlayerName = "";
@@ -354,20 +365,7 @@ namespace ALTTPSRAMEditor
         private void buttonApplyChanges_Click(object sender, EventArgs e)
         {
             buttonWrite.Enabled = false;
-            // Determine which file we're editing, and then load its data.
-            SaveSlot savslot;
-
-            if (radioFile2.Checked)
-            {
-                savslot = sdat.GetSaveSlot(2);
-            }
-            else if (radioFile3.Checked)
-            {
-                savslot = sdat.GetSaveSlot(3);
-            }
-            else savslot = sdat.GetSaveSlot(1);
-
-            updatePlayerName(savslot);
+            UpdatePlayerName();
         }
 
         private void UpdateAllConfigurables(SaveSlot savslot)
@@ -835,8 +833,8 @@ namespace ALTTPSRAMEditor
             else
                 pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
 
-            // Update the playerName textbox to emphasize the 6 character limit.
-            updatePlayerName(savslot);
+            // Update the playerName textbox
+            UpdatePlayerName();
         }
 
         private void pictureBow_Click(object sender, EventArgs e)
@@ -914,7 +912,7 @@ namespace ALTTPSRAMEditor
             {
                 SaveSlot savslot = GetSaveSlot();
                 Link player = savslot.GetPlayer();
-                updatePlayerName(savslot);
+                UpdatePlayerName();
                 numericUpDownRupeeCounter.Value = player.GetRupeeValue();
                 UpdateAllConfigurables(savslot);
                 if (!savslot.SaveIsValid())
@@ -1061,12 +1059,12 @@ namespace ALTTPSRAMEditor
         {
             if (saveRegion == (int)SaveRegion.JPN)
             {
-                var nameForm = new NameChangingFormJP();
+                var nameForm = new NameChangingFormJP(this);
                 nameForm.ShowDialog();
             }
             else
             {
-                var nameForm = new NameChangingFormEN();
+                var nameForm = new NameChangingFormEN(this);
                 nameForm.ShowDialog();
             }
         }

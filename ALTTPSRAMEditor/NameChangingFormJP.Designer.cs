@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ALTTPSRAMEditor.Properties.Resources.filename_JP;
-            this.ClientSize = new System.Drawing.Size(528, 232);
+            this.ClientSize = new System.Drawing.Size(1056, 463);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NameChangingFormJP";
             this.Text = "Change Player Name (JPN)";
