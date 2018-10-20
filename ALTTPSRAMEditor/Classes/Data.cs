@@ -277,7 +277,7 @@ namespace ALTTPSRAMEditor
             rawENChar.Add(0x0D, 'N');
             rawENChar.Add(0x0E, 'O');
             rawENChar.Add(0x0F, 'P');
-            rawENChar.Add(0x10, '?');
+            rawENChar.Add(0x10, '%'); // Glitched ? char, use 0x6F instead
             rawENChar.Add(0x20, 'Q');
             rawENChar.Add(0x21, 'R');
             rawENChar.Add(0x22, 'S');

@@ -14,10 +14,11 @@ namespace ALTTPSRAMEditor
     public partial class NameChangingFormEN : Form
     {
         private Bitmap en_fnt;
-        private String currName;
+        private StringBuilder currName;
         private UInt16[] currNameRaw;
         private Dictionary<UInt16, char> rawENChar;
         private bool saveChanges;
+        private int charPos = 0;
         Form1 form1;
 
         public NameChangingFormEN(Form1 _form1)
@@ -25,9 +26,8 @@ namespace ALTTPSRAMEditor
             InitializeComponent();
             form1 = _form1;
             rawENChar = form1.GetRawENChar();
-            currName = form1.GetPlayerName();
+            currName = new StringBuilder(form1.GetPlayerName().Substring(0,6));
             currNameRaw = new UInt16[6];
-            currName = "w-wh!?";
         }
 
         private void NameChangingFormJP_KeyDown(object sender, KeyEventArgs e)
@@ -118,7 +118,7 @@ namespace ALTTPSRAMEditor
 
         private void kbdENCharA_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("kbdENCharA_Click");
+            TypeChar('A');
         }
 
         private void NameChangingFormEN_FormClosed(object sender, FormClosedEventArgs e)
@@ -128,25 +128,32 @@ namespace ALTTPSRAMEditor
                 UpdatePlayerName();
         }
 
+        private void TypeChar(char c)
+        {
+            currName[charPos] = c;
+
+            charPos++;
+            if (charPos > 5)
+                charPos = 0;
+        }
+
         private void UpdatePlayerName()
         {
             // Update Form1 with the changed player name
             // If the name is too short, fill it with spaces
             for (int k = currName.Length; k < 6; k++)
-                currName += " ";
-
-            currName = currName.Substring(0, 6); // Chop off anything longer than 6 chars
-            form1.SetPlayerName(currName);
-            int i = 0;
-            foreach (char c in currName)
+                currName[k] = ' ';
+            
+            form1.SetPlayerName(currName.ToString());
+            int j = 0;
+            for (int i = 0; i < currName.Length; i++)
             {
-                currNameRaw[i] = rawENChar.FirstOrDefault(x => x.Value == c).Key;
-                i++;
+                currNameRaw[i] = rawENChar.FirstOrDefault(x => x.Value == currName[i]).Key;
+                Console.Write(currName[i] + ", "); Console.WriteLine(currNameRaw[i]);
+                j++;
             }
-            Console.Write(currName[5] + ", ");
-            Console.WriteLine(currNameRaw[5]);
-            //form1.SetPlayerNameRaw(currNameRaw);
-            //form1.UpdatePlayerName();
+            form1.SetPlayerNameRaw(currNameRaw);
+            form1.UpdatePlayerName();
         }
     }
 }
