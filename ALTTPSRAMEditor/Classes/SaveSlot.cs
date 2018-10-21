@@ -56,6 +56,34 @@ namespace ALTTPSRAMEditor
             getRawPlayerName();
         }
 
+        public void CommitPlayerName()
+        {
+            // Set the actual player name in data[] just before writing to SRAM
+            int j = 0;
+
+            switch (saveRegion)
+            {
+                default:
+                case Form1.SaveRegion.USA:
+                case Form1.SaveRegion.EUR:
+                    for (int i = 0x3D9; i <= 0x3E4; i += 2)
+                    {
+                        data[i] = (byte)(playerNameRaw[j] & 0xff);
+                        data[i + 1] = (byte)(playerNameRaw[j] >> 8);
+                        j++;
+                    }
+                    break;
+                case Form1.SaveRegion.JPN:
+                    for (int i = 0x3D9; i <= 0x3E0; i += 2)
+                    {
+                        data[i] = (byte)(playerNameRaw[j] & 0xff);
+                        data[i + 1] = (byte)(playerNameRaw[j] >> 8);
+                        j++;
+                    }
+                    break;
+            }
+        }
+
         public void SetSaveSlot(int _slot)
         {
             slotIndex = _slot;
@@ -148,8 +176,6 @@ namespace ALTTPSRAMEditor
                     for (int i = 0x3D9; i <= 0x3E4; i += 2)
                     {
                         playerNameRaw[j] = _newName[j];
-                        data[i] = (byte) (_newName[j] & 0xff);
-                        data[i+1] = (byte)(_newName[j] >> 8);
                         j++;
                     }
                     break;
@@ -157,8 +183,6 @@ namespace ALTTPSRAMEditor
                     for (int i = 0x3D9; i <= 0x3DF; i += 2)
                     {
                         playerNameRaw[j] = _newName[j];
-                        data[i] = (byte)(_newName[j] & 0xff);
-                        data[i + 1] = (byte)(_newName[j] >> 8);
                         j++;
                     }
                     break;

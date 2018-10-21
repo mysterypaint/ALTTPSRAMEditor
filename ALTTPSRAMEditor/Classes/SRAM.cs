@@ -107,6 +107,9 @@ namespace ALTTPSRAMEditor
         public byte[] MergeSaveData()
         {
             savslot1.UpdatePlayer();
+            savslot1.CommitPlayerName();
+
+
             if (savslot1.GetIsValid())
                 savslot1.ValidateSave();
             byte[] currData = savslot1.GetData();
@@ -114,6 +117,7 @@ namespace ALTTPSRAMEditor
             Array.Copy(currData, 0, outsav, slot1m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
             savslot2.UpdatePlayer();
+            savslot2.CommitPlayerName();
             if (savslot2.GetIsValid())
                 savslot2.ValidateSave();
             currData = savslot2.GetData();
@@ -121,6 +125,7 @@ namespace ALTTPSRAMEditor
             Array.Copy(currData, 0, outsav, slot2m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
             savslot3.UpdatePlayer();
+            savslot3.CommitPlayerName();
             if (savslot3.GetIsValid())
                 savslot3.ValidateSave();
             currData = savslot3.GetData();
