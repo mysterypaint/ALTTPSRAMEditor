@@ -147,6 +147,75 @@ namespace ALTTPSRAMEditor
             return hex.ToString();
         }
 
+        public SaveSlot CreateFile(int fileSlot, Form1.SaveRegion _saveRegion)
+        {
+            // Create a clean save file to use, call it "Link" or "LINK" depending on region.
+            byte[] _new_save = new byte[0x500];
+            _new_save[0x20D] = 0xF0;
+            _new_save[0x20F] = 0xF0;
+            _new_save[0x36C] = 0x18;
+            _new_save[0x36D] = 0x18;
+            _new_save[0x379] = 0xF8;
+
+            switch (_saveRegion)
+            {
+                default:
+                case Form1.SaveRegion.USA:
+                case Form1.SaveRegion.EUR:
+                    _new_save[0x3D9] = 0x0B; // L
+                    _new_save[0x3DB] = 0xC0; // i
+                    _new_save[0x3DD] = 0x47; // n
+                    _new_save[0x3DF] = 0x44; // k
+                    _new_save[0x3E1] = 0xA9; // (Space)
+                    _new_save[0x3E3] = 0xA9; // (Space)
+                    _new_save[0x3E5] = 0xAA; // Everything past this is checksum verification
+                    _new_save[0x3E6] = 0x55;
+                    _new_save[0X405] = 0xFF;
+                    _new_save[0X406] = 0xFF;
+                    _new_save[0X4FE] = 0xEE;
+                    _new_save[0X4FF] = 0x17;
+                    break;
+                case Form1.SaveRegion.JPN:
+                    _new_save[0x3D9] = 0x65; // L
+                    _new_save[0x3DA] = 0x01; //
+                    _new_save[0x3DB] = 0x62; // I
+                    _new_save[0x3DC] = 0x01; //
+                    _new_save[0x3DD] = 0x67; // N
+                    _new_save[0x3DE] = 0x01; //
+                    _new_save[0x3DF] = 0x64; // K
+                    _new_save[0x3E0] = 0x01; //
+                    _new_save[0x3E1] = 0xAA; // Everything past this is checksum verification
+                    _new_save[0x3E2] = 0x55;
+                    _new_save[0X401] = 0xFF;
+                    _new_save[0X402] = 0xFF;
+                    _new_save[0X4FE] = 0xEA;
+                    _new_save[0X4FF] = 0x2D;
+                    break;
+            }
+
+            SaveSlot savslot = null;
+            switch (fileSlot)
+            {
+                default:
+                case 1:
+                    savslot1 = new SaveSlot(_new_save, 1);
+                    savslot1m = savslot1;
+                    savslot = savslot1;
+                    break;
+                case 2:
+                    savslot2 = new SaveSlot(_new_save, 2);
+                    savslot2m = savslot2;
+                    savslot = savslot2;
+                    break;
+                case 3:
+                    savslot3 = new SaveSlot(_new_save, 3);
+                    savslot3m = savslot3;
+                    savslot = savslot3;
+                    break;
+            }
+            return savslot;
+        }
+
         public void CopyFile(int fileSlot)
         {
             switch (fileSlot)

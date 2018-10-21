@@ -210,6 +210,12 @@ namespace ALTTPSRAMEditor
                             Link player = thisSlot.GetPlayer();
                             UpdateAllConfigurables(thisSlot);
                         }
+                        else
+                        {
+                            buttonCreate.Enabled = true;
+                            buttonCreate.Visible = true;
+                            buttonCopy.Visible = false;
+                        }
                         Refresh(); // Update the screen, including the player name
                     }
                     else
@@ -301,6 +307,33 @@ namespace ALTTPSRAMEditor
         {
             String toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
             MessageBox.Show(toolCredits);
+        }
+
+        private void buttonCreate_Click(object sender, EventArgs e)
+        {
+            SaveSlot savslot = null;
+
+            if (radioFile1.Checked)
+            {
+                savslot = sdat.CreateFile(1, (SaveRegion) saveRegion);
+                helperText.Text = "Created File 1!";
+            }
+            else if (radioFile2.Checked)
+            {
+                savslot = sdat.CreateFile(2, (SaveRegion) saveRegion);
+                helperText.Text = "Created File 2!";
+            }
+            else if (radioFile3.Checked)
+            {
+                savslot = sdat.CreateFile(3, (SaveRegion) saveRegion);
+                helperText.Text = "Created File 3!";
+            }
+
+            UpdatePlayerName();
+            Link player = savslot.GetPlayer();
+            UpdateAllConfigurables(savslot);
+
+            Refresh();
         }
 
         private void buttonCopy_Click(object sender, EventArgs e)
@@ -422,6 +455,10 @@ namespace ALTTPSRAMEditor
             if (!savslot.SaveIsValid())
             {
                 HideAllGroupBoxesExcept(groupFileSelect);
+
+                buttonCreate.Enabled = true;
+                buttonCreate.Visible = true;
+                buttonCopy.Visible = false;
                 tableLayoutPanelInventory.Visible = false;
                 labelInventory.Visible = false;
                 numericUpDownRupeeCounter.Visible = false;
@@ -440,6 +477,10 @@ namespace ALTTPSRAMEditor
                 groupPendantsCrystals.Visible = false;
                 return;
             }
+
+            buttonCreate.Enabled = false;
+            buttonCreate.Visible = false;
+            buttonCopy.Visible = true;
             tableLayoutPanelInventory.Visible = true;
             labelInventory.Visible = true;
             numericUpDownRupeeCounter.Visible = true;
