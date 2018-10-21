@@ -773,6 +773,16 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap jp_font_space {
+            get {
+                object obj = ResourceManager.GetObject("jp_font_space", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jpn_font {
             get {
                 object obj = ResourceManager.GetObject("jpn_font", resourceCulture);

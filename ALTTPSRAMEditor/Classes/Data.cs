@@ -334,7 +334,7 @@ namespace ALTTPSRAMEditor
 
             // Japanese
             // Hiragana
-            rawJPChar.Add(0x18C, ' ');
+            rawJPChar.Add(0x18C, '　');
             rawJPChar.Add(0x0, 'あ'); // a
             rawJPChar.Add(0x1, 'い'); // i
             rawJPChar.Add(0x2, 'う'); // u

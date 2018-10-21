@@ -434,5 +434,8 @@
   <ItemGroup>
     <None Include="Resources\jpn_font_end.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jp_font_space.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

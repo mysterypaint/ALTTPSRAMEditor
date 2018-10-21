@@ -226,6 +226,7 @@
             this.kbdRomajiCharP = new System.Windows.Forms.PictureBox();
             this.kbdKatakanaCharPi = new System.Windows.Forms.PictureBox();
             this.kbdKatakanaCharPe = new System.Windows.Forms.PictureBox();
+            this.kbdJPSpace = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureJPCharHeart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureJPNameChar0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureJPNameChar1)).BeginInit();
@@ -424,10 +425,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.kbdRomajiCharP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kbdKatakanaCharPi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kbdKatakanaCharPe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kbdJPSpace)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureJPCharHeart
             // 
+            this.pictureJPCharHeart.BackColor = System.Drawing.Color.Black;
             this.pictureJPCharHeart.Image = global::ALTTPSRAMEditor.Properties.Resources.Player_Name_Heart;
             this.pictureJPCharHeart.Location = new System.Drawing.Point(880, 38);
             this.pictureJPCharHeart.Name = "pictureJPCharHeart";
@@ -474,7 +477,7 @@
             // kbdJPMoveLeft
             // 
             this.kbdJPMoveLeft.BackColor = System.Drawing.Color.Maroon;
-            this.kbdJPMoveLeft.Location = new System.Drawing.Point(786, 368);
+            this.kbdJPMoveLeft.Location = new System.Drawing.Point(818, 368);
             this.kbdJPMoveLeft.Name = "kbdJPMoveLeft";
             this.kbdJPMoveLeft.Size = new System.Drawing.Size(32, 32);
             this.kbdJPMoveLeft.TabIndex = 5;
@@ -484,7 +487,7 @@
             // kbdJPMoveRight
             // 
             this.kbdJPMoveRight.BackColor = System.Drawing.Color.Maroon;
-            this.kbdJPMoveRight.Location = new System.Drawing.Point(850, 368);
+            this.kbdJPMoveRight.Location = new System.Drawing.Point(882, 368);
             this.kbdJPMoveRight.Name = "kbdJPMoveRight";
             this.kbdJPMoveRight.Size = new System.Drawing.Size(32, 32);
             this.kbdJPMoveRight.TabIndex = 6;
@@ -505,7 +508,7 @@
             // 
             this.kbdJPEnd.BackColor = System.Drawing.Color.Maroon;
             this.kbdJPEnd.Image = global::ALTTPSRAMEditor.Properties.Resources.jpn_font_end;
-            this.kbdJPEnd.Location = new System.Drawing.Point(914, 374);
+            this.kbdJPEnd.Location = new System.Drawing.Point(952, 374);
             this.kbdJPEnd.Name = "kbdJPEnd";
             this.kbdJPEnd.Size = new System.Drawing.Size(48, 26);
             this.kbdJPEnd.TabIndex = 8;
@@ -540,6 +543,7 @@
             this.kbdHiraganaCharE.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharE.TabIndex = 11;
             this.kbdHiraganaCharE.TabStop = false;
+            this.kbdHiraganaCharE.Click += new System.EventHandler(this.kbdHiraganaCharE_Click);
             // 
             // kbdHiraganaCharO
             // 
@@ -549,6 +553,7 @@
             this.kbdHiraganaCharO.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharO.TabIndex = 12;
             this.kbdHiraganaCharO.TabStop = false;
+            this.kbdHiraganaCharO.Click += new System.EventHandler(this.kbdHiraganaCharO_Click);
             // 
             // kbdHiraganaCharGa
             // 
@@ -558,6 +563,7 @@
             this.kbdHiraganaCharGa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharGa.TabIndex = 13;
             this.kbdHiraganaCharGa.TabStop = false;
+            this.kbdHiraganaCharGa.Click += new System.EventHandler(this.kbdHiraganaCharGa_Click);
             // 
             // kbdHiraganaCharGi
             // 
@@ -567,6 +573,7 @@
             this.kbdHiraganaCharGi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharGi.TabIndex = 14;
             this.kbdHiraganaCharGi.TabStop = false;
+            this.kbdHiraganaCharGi.Click += new System.EventHandler(this.kbdHiraganaCharGi_Click);
             // 
             // kbdHiraganaCharGu
             // 
@@ -576,6 +583,7 @@
             this.kbdHiraganaCharGu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharGu.TabIndex = 15;
             this.kbdHiraganaCharGu.TabStop = false;
+            this.kbdHiraganaCharGu.Click += new System.EventHandler(this.kbdHiraganaCharGu_Click);
             // 
             // kbdHiraganaCharGe
             // 
@@ -585,6 +593,7 @@
             this.kbdHiraganaCharGe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharGe.TabIndex = 16;
             this.kbdHiraganaCharGe.TabStop = false;
+            this.kbdHiraganaCharGe.Click += new System.EventHandler(this.kbdHiraganaCharGe_Click);
             // 
             // kbdHiraganaCharGo
             // 
@@ -594,6 +603,7 @@
             this.kbdHiraganaCharGo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharGo.TabIndex = 17;
             this.kbdHiraganaCharGo.TabStop = false;
+            this.kbdHiraganaCharGo.Click += new System.EventHandler(this.kbdHiraganaCharGo_Click);
             // 
             // kbdKatakanaCharA
             // 
@@ -603,6 +613,7 @@
             this.kbdKatakanaCharA.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharA.TabIndex = 18;
             this.kbdKatakanaCharA.TabStop = false;
+            this.kbdKatakanaCharA.Click += new System.EventHandler(this.kbdKatakanaCharA_Click);
             // 
             // kbdKatakanaCharI
             // 
@@ -612,6 +623,7 @@
             this.kbdKatakanaCharI.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharI.TabIndex = 19;
             this.kbdKatakanaCharI.TabStop = false;
+            this.kbdKatakanaCharI.Click += new System.EventHandler(this.kbdKatakanaCharI_Click);
             // 
             // kbdKatakanaCharU
             // 
@@ -621,6 +633,7 @@
             this.kbdKatakanaCharU.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharU.TabIndex = 20;
             this.kbdKatakanaCharU.TabStop = false;
+            this.kbdKatakanaCharU.Click += new System.EventHandler(this.kbdKatakanaCharU_Click);
             // 
             // kbdKatakanaCharE
             // 
@@ -630,6 +643,7 @@
             this.kbdKatakanaCharE.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharE.TabIndex = 21;
             this.kbdKatakanaCharE.TabStop = false;
+            this.kbdKatakanaCharE.Click += new System.EventHandler(this.kbdKatakanaCharE_Click);
             // 
             // kbdKatakanaCharO
             // 
@@ -639,6 +653,7 @@
             this.kbdKatakanaCharO.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharO.TabIndex = 22;
             this.kbdKatakanaCharO.TabStop = false;
+            this.kbdKatakanaCharO.Click += new System.EventHandler(this.kbdKatakanaCharO_Click);
             // 
             // kbdKatakanaCharGa
             // 
@@ -648,6 +663,7 @@
             this.kbdKatakanaCharGa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharGa.TabIndex = 23;
             this.kbdKatakanaCharGa.TabStop = false;
+            this.kbdKatakanaCharGa.Click += new System.EventHandler(this.kbdKatakanaCharGa_Click);
             // 
             // kbdKatakanaCharGi
             // 
@@ -657,6 +673,7 @@
             this.kbdKatakanaCharGi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharGi.TabIndex = 24;
             this.kbdKatakanaCharGi.TabStop = false;
+            this.kbdKatakanaCharGi.Click += new System.EventHandler(this.kbdKatakanaCharGi_Click);
             // 
             // kbdKatakanaCharGu
             // 
@@ -666,6 +683,7 @@
             this.kbdKatakanaCharGu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharGu.TabIndex = 25;
             this.kbdKatakanaCharGu.TabStop = false;
+            this.kbdKatakanaCharGu.Click += new System.EventHandler(this.kbdKatakanaCharGu_Click);
             // 
             // kbdKatakanaCharGe
             // 
@@ -675,6 +693,7 @@
             this.kbdKatakanaCharGe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharGe.TabIndex = 26;
             this.kbdKatakanaCharGe.TabStop = false;
+            this.kbdKatakanaCharGe.Click += new System.EventHandler(this.kbdKatakanaCharGe_Click);
             // 
             // kbdKatakanaCharGo
             // 
@@ -684,6 +703,7 @@
             this.kbdKatakanaCharGo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharGo.TabIndex = 27;
             this.kbdKatakanaCharGo.TabStop = false;
+            this.kbdKatakanaCharGo.Click += new System.EventHandler(this.kbdKatakanaCharGo_Click);
             // 
             // kbdRomajiCharA
             // 
@@ -693,6 +713,7 @@
             this.kbdRomajiCharA.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharA.TabIndex = 28;
             this.kbdRomajiCharA.TabStop = false;
+            this.kbdRomajiCharA.Click += new System.EventHandler(this.kbdRomajiCharA_Click);
             // 
             // kbdRomajiCharB
             // 
@@ -702,6 +723,7 @@
             this.kbdRomajiCharB.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharB.TabIndex = 29;
             this.kbdRomajiCharB.TabStop = false;
+            this.kbdRomajiCharB.Click += new System.EventHandler(this.kbdRomajiCharB_Click);
             // 
             // kbdRomajiCharC
             // 
@@ -711,6 +733,7 @@
             this.kbdRomajiCharC.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharC.TabIndex = 30;
             this.kbdRomajiCharC.TabStop = false;
+            this.kbdRomajiCharC.Click += new System.EventHandler(this.kbdRomajiCharC_Click);
             // 
             // kbdRomajiCharD
             // 
@@ -720,6 +743,7 @@
             this.kbdRomajiCharD.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharD.TabIndex = 31;
             this.kbdRomajiCharD.TabStop = false;
+            this.kbdRomajiCharD.Click += new System.EventHandler(this.kbdRomajiCharD_Click);
             // 
             // kbdHiraganaCharKa
             // 
@@ -729,6 +753,7 @@
             this.kbdHiraganaCharKa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharKa.TabIndex = 32;
             this.kbdHiraganaCharKa.TabStop = false;
+            this.kbdHiraganaCharKa.Click += new System.EventHandler(this.kbdHiraganaCharKa_Click);
             // 
             // kbdHiraganaCharSa
             // 
@@ -738,6 +763,7 @@
             this.kbdHiraganaCharSa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSa.TabIndex = 33;
             this.kbdHiraganaCharSa.TabStop = false;
+            this.kbdHiraganaCharSa.Click += new System.EventHandler(this.kbdHiraganaCharSa_Click);
             // 
             // kbdHiraganaCharTa
             // 
@@ -747,6 +773,7 @@
             this.kbdHiraganaCharTa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharTa.TabIndex = 34;
             this.kbdHiraganaCharTa.TabStop = false;
+            this.kbdHiraganaCharTa.Click += new System.EventHandler(this.kbdHiraganaCharTa_Click);
             // 
             // kbdHiraganaCharNa
             // 
@@ -756,6 +783,7 @@
             this.kbdHiraganaCharNa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharNa.TabIndex = 35;
             this.kbdHiraganaCharNa.TabStop = false;
+            this.kbdHiraganaCharNa.Click += new System.EventHandler(this.kbdHiraganaCharNa_Click);
             // 
             // kbdHiraganaCharHa
             // 
@@ -765,6 +793,7 @@
             this.kbdHiraganaCharHa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharHa.TabIndex = 36;
             this.kbdHiraganaCharHa.TabStop = false;
+            this.kbdHiraganaCharHa.Click += new System.EventHandler(this.kbdHiraganaCharHa_Click);
             // 
             // kbdHiraganaCharMa
             // 
@@ -774,6 +803,7 @@
             this.kbdHiraganaCharMa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharMa.TabIndex = 37;
             this.kbdHiraganaCharMa.TabStop = false;
+            this.kbdHiraganaCharMa.Click += new System.EventHandler(this.kbdHiraganaCharMa_Click);
             // 
             // kbdHiraganaCharYa
             // 
@@ -783,6 +813,7 @@
             this.kbdHiraganaCharYa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharYa.TabIndex = 38;
             this.kbdHiraganaCharYa.TabStop = false;
+            this.kbdHiraganaCharYa.Click += new System.EventHandler(this.kbdHiraganaCharYa_Click);
             // 
             // kbdHiraganaCharRa
             // 
@@ -792,6 +823,7 @@
             this.kbdHiraganaCharRa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharRa.TabIndex = 39;
             this.kbdHiraganaCharRa.TabStop = false;
+            this.kbdHiraganaCharRa.Click += new System.EventHandler(this.kbdHiraganaCharRa_Click);
             // 
             // kbdHiraganaCharWa
             // 
@@ -801,6 +833,7 @@
             this.kbdHiraganaCharWa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharWa.TabIndex = 40;
             this.kbdHiraganaCharWa.TabStop = false;
+            this.kbdHiraganaCharWa.Click += new System.EventHandler(this.kbdHiraganaCharWa_Click);
             // 
             // kbdHiraganaCharYu
             // 
@@ -810,6 +843,7 @@
             this.kbdHiraganaCharYu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharYu.TabIndex = 41;
             this.kbdHiraganaCharYu.TabStop = false;
+            this.kbdHiraganaCharYu.Click += new System.EventHandler(this.kbdHiraganaCharYu_Click);
             // 
             // kbdHiraganaCharYo
             // 
@@ -819,6 +853,7 @@
             this.kbdHiraganaCharYo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharYo.TabIndex = 42;
             this.kbdHiraganaCharYo.TabStop = false;
+            this.kbdHiraganaCharYo.Click += new System.EventHandler(this.kbdHiraganaCharYo_Click);
             // 
             // kbdHiraganaCharHyphen
             // 
@@ -828,6 +863,7 @@
             this.kbdHiraganaCharHyphen.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharHyphen.TabIndex = 43;
             this.kbdHiraganaCharHyphen.TabStop = false;
+            this.kbdHiraganaCharHyphen.Click += new System.EventHandler(this.kbdHiraganaCharHyphen_Click);
             // 
             // kbdHiraganaCharZa
             // 
@@ -837,6 +873,7 @@
             this.kbdHiraganaCharZa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharZa.TabIndex = 44;
             this.kbdHiraganaCharZa.TabStop = false;
+            this.kbdHiraganaCharZa.Click += new System.EventHandler(this.kbdHiraganaCharZa_Click);
             // 
             // kbdHiraganaCharDa
             // 
@@ -846,6 +883,7 @@
             this.kbdHiraganaCharDa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharDa.TabIndex = 45;
             this.kbdHiraganaCharDa.TabStop = false;
+            this.kbdHiraganaCharDa.Click += new System.EventHandler(this.kbdHiraganaCharDa_Click);
             // 
             // kbdHiraganaCharBa
             // 
@@ -855,6 +893,7 @@
             this.kbdHiraganaCharBa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharBa.TabIndex = 46;
             this.kbdHiraganaCharBa.TabStop = false;
+            this.kbdHiraganaCharBa.Click += new System.EventHandler(this.kbdHiraganaCharBa_Click);
             // 
             // kbdHiraganaCharPa
             // 
@@ -864,6 +903,7 @@
             this.kbdHiraganaCharPa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharPa.TabIndex = 47;
             this.kbdHiraganaCharPa.TabStop = false;
+            this.kbdHiraganaCharPa.Click += new System.EventHandler(this.kbdHiraganaCharPa_Click);
             // 
             // kbdHiraganaCharSmallA
             // 
@@ -873,6 +913,7 @@
             this.kbdHiraganaCharSmallA.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallA.TabIndex = 48;
             this.kbdHiraganaCharSmallA.TabStop = false;
+            this.kbdHiraganaCharSmallA.Click += new System.EventHandler(this.kbdHiraganaCharSmallA_Click);
             // 
             // kbdHiraganaCharSmallYa
             // 
@@ -882,6 +923,7 @@
             this.kbdHiraganaCharSmallYa.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallYa.TabIndex = 49;
             this.kbdHiraganaCharSmallYa.TabStop = false;
+            this.kbdHiraganaCharSmallYa.Click += new System.EventHandler(this.kbdHiraganaCharSmallYa_Click);
             // 
             // kbdKatakanaCharSmallYa
             // 
@@ -891,6 +933,7 @@
             this.kbdKatakanaCharSmallYa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallYa.TabIndex = 50;
             this.kbdKatakanaCharSmallYa.TabStop = false;
+            this.kbdKatakanaCharSmallYa.Click += new System.EventHandler(this.kbdKatakanaCharSmallYa_Click);
             // 
             // kbdKatakanaCharSmallA
             // 
@@ -900,6 +943,7 @@
             this.kbdKatakanaCharSmallA.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallA.TabIndex = 51;
             this.kbdKatakanaCharSmallA.TabStop = false;
+            this.kbdKatakanaCharSmallA.Click += new System.EventHandler(this.kbdKatakanaCharSmallA_Click);
             // 
             // kbdKatakanaCharPa
             // 
@@ -909,6 +953,7 @@
             this.kbdKatakanaCharPa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharPa.TabIndex = 52;
             this.kbdKatakanaCharPa.TabStop = false;
+            this.kbdKatakanaCharPa.Click += new System.EventHandler(this.kbdKatakanaCharPa_Click);
             // 
             // kbdKatakanaCharBa
             // 
@@ -918,6 +963,7 @@
             this.kbdKatakanaCharBa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharBa.TabIndex = 53;
             this.kbdKatakanaCharBa.TabStop = false;
+            this.kbdKatakanaCharBa.Click += new System.EventHandler(this.kbdKatakanaCharBa_Click);
             // 
             // kbdKatakanaCharDa
             // 
@@ -927,6 +973,7 @@
             this.kbdKatakanaCharDa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharDa.TabIndex = 54;
             this.kbdKatakanaCharDa.TabStop = false;
+            this.kbdKatakanaCharDa.Click += new System.EventHandler(this.kbdKatakanaCharDa_Click);
             // 
             // kbdKatakanaCharZa
             // 
@@ -936,6 +983,7 @@
             this.kbdKatakanaCharZa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharZa.TabIndex = 55;
             this.kbdKatakanaCharZa.TabStop = false;
+            this.kbdKatakanaCharZa.Click += new System.EventHandler(this.kbdKatakanaCharZa_Click);
             // 
             // kbdRomajiCharY
             // 
@@ -945,6 +993,7 @@
             this.kbdRomajiCharY.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharY.TabIndex = 56;
             this.kbdRomajiCharY.TabStop = false;
+            this.kbdRomajiCharY.Click += new System.EventHandler(this.kbdRomajiCharY_Click);
             // 
             // kbdRomajiCharTilde
             // 
@@ -954,6 +1003,7 @@
             this.kbdRomajiCharTilde.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharTilde.TabIndex = 57;
             this.kbdRomajiCharTilde.TabStop = false;
+            this.kbdRomajiCharTilde.Click += new System.EventHandler(this.kbdRomajiCharTilde_Click);
             // 
             // kbdRomajiCharHyphen
             // 
@@ -963,6 +1013,7 @@
             this.kbdRomajiCharHyphen.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharHyphen.TabIndex = 58;
             this.kbdRomajiCharHyphen.TabStop = false;
+            this.kbdRomajiCharHyphen.Click += new System.EventHandler(this.kbdRomajiCharHyphen_Click);
             // 
             // kbdRomajiCharZ
             // 
@@ -972,6 +1023,7 @@
             this.kbdRomajiCharZ.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharZ.TabIndex = 59;
             this.kbdRomajiCharZ.TabStop = false;
+            this.kbdRomajiCharZ.Click += new System.EventHandler(this.kbdRomajiCharZ_Click);
             // 
             // kbdKatakanaCharKa
             // 
@@ -981,6 +1033,7 @@
             this.kbdKatakanaCharKa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharKa.TabIndex = 60;
             this.kbdKatakanaCharKa.TabStop = false;
+            this.kbdKatakanaCharKa.Click += new System.EventHandler(this.kbdKatakanaCharKa_Click);
             // 
             // kbdKatakanaCharSa
             // 
@@ -990,6 +1043,7 @@
             this.kbdKatakanaCharSa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSa.TabIndex = 61;
             this.kbdKatakanaCharSa.TabStop = false;
+            this.kbdKatakanaCharSa.Click += new System.EventHandler(this.kbdKatakanaCharSa_Click);
             // 
             // kbdKatakanaCharTa
             // 
@@ -999,6 +1053,7 @@
             this.kbdKatakanaCharTa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharTa.TabIndex = 62;
             this.kbdKatakanaCharTa.TabStop = false;
+            this.kbdKatakanaCharTa.Click += new System.EventHandler(this.kbdKatakanaCharTa_Click);
             // 
             // kbdKatakanaCharNa
             // 
@@ -1008,6 +1063,7 @@
             this.kbdKatakanaCharNa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharNa.TabIndex = 63;
             this.kbdKatakanaCharNa.TabStop = false;
+            this.kbdKatakanaCharNa.Click += new System.EventHandler(this.kbdKatakanaCharNa_Click);
             // 
             // kbdKatakanaCharHa
             // 
@@ -1017,6 +1073,7 @@
             this.kbdKatakanaCharHa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharHa.TabIndex = 64;
             this.kbdKatakanaCharHa.TabStop = false;
+            this.kbdKatakanaCharHa.Click += new System.EventHandler(this.kbdKatakanaCharHa_Click);
             // 
             // kbdKatakanaCharMa
             // 
@@ -1026,6 +1083,7 @@
             this.kbdKatakanaCharMa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharMa.TabIndex = 65;
             this.kbdKatakanaCharMa.TabStop = false;
+            this.kbdKatakanaCharMa.Click += new System.EventHandler(this.kbdKatakanaCharMa_Click);
             // 
             // kbdKatakanaCharYa
             // 
@@ -1035,6 +1093,7 @@
             this.kbdKatakanaCharYa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharYa.TabIndex = 66;
             this.kbdKatakanaCharYa.TabStop = false;
+            this.kbdKatakanaCharYa.Click += new System.EventHandler(this.kbdKatakanaCharYa_Click);
             // 
             // kbdKatakanaCharRa
             // 
@@ -1044,6 +1103,7 @@
             this.kbdKatakanaCharRa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharRa.TabIndex = 67;
             this.kbdKatakanaCharRa.TabStop = false;
+            this.kbdKatakanaCharRa.Click += new System.EventHandler(this.kbdKatakanaCharRa_Click);
             // 
             // kbdKatakanaCharWa
             // 
@@ -1053,6 +1113,7 @@
             this.kbdKatakanaCharWa.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharWa.TabIndex = 68;
             this.kbdKatakanaCharWa.TabStop = false;
+            this.kbdKatakanaCharWa.Click += new System.EventHandler(this.kbdKatakanaCharWa_Click);
             // 
             // kbdKatakanaCharYu
             // 
@@ -1062,6 +1123,7 @@
             this.kbdKatakanaCharYu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharYu.TabIndex = 69;
             this.kbdKatakanaCharYu.TabStop = false;
+            this.kbdKatakanaCharYu.Click += new System.EventHandler(this.kbdKatakanaCharYu_Click);
             // 
             // kbdKatakanaCharYo
             // 
@@ -1071,6 +1133,7 @@
             this.kbdKatakanaCharYo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharYo.TabIndex = 70;
             this.kbdKatakanaCharYo.TabStop = false;
+            this.kbdKatakanaCharYo.Click += new System.EventHandler(this.kbdKatakanaCharYo_Click);
             // 
             // kbdKatakanaCharHyphen
             // 
@@ -1080,6 +1143,7 @@
             this.kbdKatakanaCharHyphen.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharHyphen.TabIndex = 71;
             this.kbdKatakanaCharHyphen.TabStop = false;
+            this.kbdKatakanaCharHyphen.Click += new System.EventHandler(this.kbdKatakanaCharHyphen_Click);
             // 
             // kbdHiraganaCharKi
             // 
@@ -1089,6 +1153,7 @@
             this.kbdHiraganaCharKi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharKi.TabIndex = 72;
             this.kbdHiraganaCharKi.TabStop = false;
+            this.kbdHiraganaCharKi.Click += new System.EventHandler(this.kbdHiraganaCharKi_Click);
             // 
             // kbdHiraganaCharKu
             // 
@@ -1098,6 +1163,7 @@
             this.kbdHiraganaCharKu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharKu.TabIndex = 73;
             this.kbdHiraganaCharKu.TabStop = false;
+            this.kbdHiraganaCharKu.Click += new System.EventHandler(this.kbdHiraganaCharKu_Click);
             // 
             // kbdHiraganaCharKe
             // 
@@ -1107,6 +1173,7 @@
             this.kbdHiraganaCharKe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharKe.TabIndex = 74;
             this.kbdHiraganaCharKe.TabStop = false;
+            this.kbdHiraganaCharKe.Click += new System.EventHandler(this.kbdHiraganaCharKe_Click);
             // 
             // kbdHiraganaCharKo
             // 
@@ -1116,6 +1183,7 @@
             this.kbdHiraganaCharKo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharKo.TabIndex = 75;
             this.kbdHiraganaCharKo.TabStop = false;
+            this.kbdHiraganaCharKo.Click += new System.EventHandler(this.kbdHiraganaCharKo_Click);
             // 
             // kbdHiraganaCharSo
             // 
@@ -1125,6 +1193,7 @@
             this.kbdHiraganaCharSo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSo.TabIndex = 76;
             this.kbdHiraganaCharSo.TabStop = false;
+            this.kbdHiraganaCharSo.Click += new System.EventHandler(this.kbdHiraganaCharSo_Click);
             // 
             // kbdHiraganaCharSe
             // 
@@ -1134,6 +1203,7 @@
             this.kbdHiraganaCharSe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSe.TabIndex = 77;
             this.kbdHiraganaCharSe.TabStop = false;
+            this.kbdHiraganaCharSe.Click += new System.EventHandler(this.kbdHiraganaCharSe_Click);
             // 
             // kbdHiraganaCharSu
             // 
@@ -1143,6 +1213,7 @@
             this.kbdHiraganaCharSu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSu.TabIndex = 78;
             this.kbdHiraganaCharSu.TabStop = false;
+            this.kbdHiraganaCharSu.Click += new System.EventHandler(this.kbdHiraganaCharSu_Click);
             // 
             // kbdHiraganaCharShi
             // 
@@ -1152,6 +1223,7 @@
             this.kbdHiraganaCharShi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharShi.TabIndex = 79;
             this.kbdHiraganaCharShi.TabStop = false;
+            this.kbdHiraganaCharShi.Click += new System.EventHandler(this.kbdHiraganaCharShi_Click);
             // 
             // kbdHiraganaCharChi
             // 
@@ -1161,6 +1233,7 @@
             this.kbdHiraganaCharChi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharChi.TabIndex = 80;
             this.kbdHiraganaCharChi.TabStop = false;
+            this.kbdHiraganaCharChi.Click += new System.EventHandler(this.kbdHiraganaCharChi_Click);
             // 
             // kbdHiraganaCharTsu
             // 
@@ -1170,6 +1243,7 @@
             this.kbdHiraganaCharTsu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharTsu.TabIndex = 81;
             this.kbdHiraganaCharTsu.TabStop = false;
+            this.kbdHiraganaCharTsu.Click += new System.EventHandler(this.kbdHiraganaCharTsu_Click);
             // 
             // kbdHiraganaCharTe
             // 
@@ -1179,6 +1253,7 @@
             this.kbdHiraganaCharTe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharTe.TabIndex = 82;
             this.kbdHiraganaCharTe.TabStop = false;
+            this.kbdHiraganaCharTe.Click += new System.EventHandler(this.kbdHiraganaCharTe_Click);
             // 
             // kbdHiraganaCharTo
             // 
@@ -1188,6 +1263,7 @@
             this.kbdHiraganaCharTo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharTo.TabIndex = 83;
             this.kbdHiraganaCharTo.TabStop = false;
+            this.kbdHiraganaCharTo.Click += new System.EventHandler(this.kbdHiraganaCharTo_Click);
             // 
             // kbdHiraganaCharNo
             // 
@@ -1197,6 +1273,7 @@
             this.kbdHiraganaCharNo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharNo.TabIndex = 84;
             this.kbdHiraganaCharNo.TabStop = false;
+            this.kbdHiraganaCharNo.Click += new System.EventHandler(this.kbdHiraganaCharNo_Click);
             // 
             // kbdHiraganaCharNe
             // 
@@ -1206,6 +1283,7 @@
             this.kbdHiraganaCharNe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharNe.TabIndex = 85;
             this.kbdHiraganaCharNe.TabStop = false;
+            this.kbdHiraganaCharNe.Click += new System.EventHandler(this.kbdHiraganaCharNe_Click);
             // 
             // kbdHiraganaCharNu
             // 
@@ -1215,6 +1293,7 @@
             this.kbdHiraganaCharNu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharNu.TabIndex = 86;
             this.kbdHiraganaCharNu.TabStop = false;
+            this.kbdHiraganaCharNu.Click += new System.EventHandler(this.kbdHiraganaCharNu_Click);
             // 
             // kbdHiraganaCharNi
             // 
@@ -1224,6 +1303,7 @@
             this.kbdHiraganaCharNi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharNi.TabIndex = 87;
             this.kbdHiraganaCharNi.TabStop = false;
+            this.kbdHiraganaCharNi.Click += new System.EventHandler(this.kbdHiraganaCharNi_Click);
             // 
             // kbdHiraganaCharHi
             // 
@@ -1233,6 +1313,7 @@
             this.kbdHiraganaCharHi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharHi.TabIndex = 88;
             this.kbdHiraganaCharHi.TabStop = false;
+            this.kbdHiraganaCharHi.Click += new System.EventHandler(this.kbdHiraganaCharHi_Click);
             // 
             // kbdHiraganaCharFu
             // 
@@ -1242,6 +1323,7 @@
             this.kbdHiraganaCharFu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharFu.TabIndex = 89;
             this.kbdHiraganaCharFu.TabStop = false;
+            this.kbdHiraganaCharFu.Click += new System.EventHandler(this.kbdHiraganaCharFu_Click);
             // 
             // kbdHiraganaCharHe
             // 
@@ -1251,6 +1333,7 @@
             this.kbdHiraganaCharHe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharHe.TabIndex = 90;
             this.kbdHiraganaCharHe.TabStop = false;
+            this.kbdHiraganaCharHe.Click += new System.EventHandler(this.kbdHiraganaCharHe_Click);
             // 
             // kbdHiraganaCharHo
             // 
@@ -1260,6 +1343,7 @@
             this.kbdHiraganaCharHo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharHo.TabIndex = 91;
             this.kbdHiraganaCharHo.TabStop = false;
+            this.kbdHiraganaCharHo.Click += new System.EventHandler(this.kbdHiraganaCharHo_Click);
             // 
             // kbdHiraganaCharMi
             // 
@@ -1269,6 +1353,7 @@
             this.kbdHiraganaCharMi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharMi.TabIndex = 92;
             this.kbdHiraganaCharMi.TabStop = false;
+            this.kbdHiraganaCharMi.Click += new System.EventHandler(this.kbdHiraganaCharMi_Click);
             // 
             // kbdHiraganaCharMu
             // 
@@ -1278,6 +1363,7 @@
             this.kbdHiraganaCharMu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharMu.TabIndex = 93;
             this.kbdHiraganaCharMu.TabStop = false;
+            this.kbdHiraganaCharMu.Click += new System.EventHandler(this.kbdHiraganaCharMu_Click);
             // 
             // kbdHiraganaCharMe
             // 
@@ -1287,6 +1373,7 @@
             this.kbdHiraganaCharMe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharMe.TabIndex = 94;
             this.kbdHiraganaCharMe.TabStop = false;
+            this.kbdHiraganaCharMe.Click += new System.EventHandler(this.kbdHiraganaCharMe_Click);
             // 
             // kbdHiraganaCharMo
             // 
@@ -1296,6 +1383,7 @@
             this.kbdHiraganaCharMo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharMo.TabIndex = 95;
             this.kbdHiraganaCharMo.TabStop = false;
+            this.kbdHiraganaCharMo.Click += new System.EventHandler(this.kbdHiraganaCharMo_Click);
             // 
             // kbdHiraganaCharRo
             // 
@@ -1305,6 +1393,7 @@
             this.kbdHiraganaCharRo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharRo.TabIndex = 96;
             this.kbdHiraganaCharRo.TabStop = false;
+            this.kbdHiraganaCharRo.Click += new System.EventHandler(this.kbdHiraganaCharRo_Click);
             // 
             // kbdHiraganaCharRe
             // 
@@ -1314,6 +1403,7 @@
             this.kbdHiraganaCharRe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharRe.TabIndex = 97;
             this.kbdHiraganaCharRe.TabStop = false;
+            this.kbdHiraganaCharRe.Click += new System.EventHandler(this.kbdHiraganaCharRe_Click);
             // 
             // kbdHiraganaCharRu
             // 
@@ -1323,6 +1413,7 @@
             this.kbdHiraganaCharRu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharRu.TabIndex = 98;
             this.kbdHiraganaCharRu.TabStop = false;
+            this.kbdHiraganaCharRu.Click += new System.EventHandler(this.kbdHiraganaCharRu_Click);
             // 
             // kbdHiraganaCharRi
             // 
@@ -1332,6 +1423,7 @@
             this.kbdHiraganaCharRi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharRi.TabIndex = 99;
             this.kbdHiraganaCharRi.TabStop = false;
+            this.kbdHiraganaCharRi.Click += new System.EventHandler(this.kbdHiraganaCharRi_Click);
             // 
             // kbdHiraganaCharN
             // 
@@ -1341,6 +1433,7 @@
             this.kbdHiraganaCharN.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharN.TabIndex = 100;
             this.kbdHiraganaCharN.TabStop = false;
+            this.kbdHiraganaCharN.Click += new System.EventHandler(this.kbdHiraganaCharN_Click);
             // 
             // kbdHiraganaCharWo
             // 
@@ -1350,6 +1443,7 @@
             this.kbdHiraganaCharWo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharWo.TabIndex = 101;
             this.kbdHiraganaCharWo.TabStop = false;
+            this.kbdHiraganaCharWo.Click += new System.EventHandler(this.kbdHiraganaCharWo_Click);
             // 
             // kbdHiraganaCharSmallYu
             // 
@@ -1359,6 +1453,7 @@
             this.kbdHiraganaCharSmallYu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallYu.TabIndex = 102;
             this.kbdHiraganaCharSmallYu.TabStop = false;
+            this.kbdHiraganaCharSmallYu.Click += new System.EventHandler(this.kbdHiraganaCharSmallYu_Click);
             // 
             // kbdHiraganaCharSmallYo
             // 
@@ -1368,6 +1463,7 @@
             this.kbdHiraganaCharSmallYo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallYo.TabIndex = 103;
             this.kbdHiraganaCharSmallYo.TabStop = false;
+            this.kbdHiraganaCharSmallYo.Click += new System.EventHandler(this.kbdHiraganaCharSmallYo_Click);
             // 
             // kbdHiraganaCharSmallE
             // 
@@ -1377,6 +1473,7 @@
             this.kbdHiraganaCharSmallE.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallE.TabIndex = 104;
             this.kbdHiraganaCharSmallE.TabStop = false;
+            this.kbdHiraganaCharSmallE.Click += new System.EventHandler(this.kbdHiraganaCharSmallE_Click);
             // 
             // kbdHiraganaCharSmallTsu
             // 
@@ -1386,6 +1483,7 @@
             this.kbdHiraganaCharSmallTsu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallTsu.TabIndex = 105;
             this.kbdHiraganaCharSmallTsu.TabStop = false;
+            this.kbdHiraganaCharSmallTsu.Click += new System.EventHandler(this.kbdHiraganaCharSmallTsu_Click);
             // 
             // kbdHiraganaCharSmallO
             // 
@@ -1395,6 +1493,7 @@
             this.kbdHiraganaCharSmallO.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallO.TabIndex = 106;
             this.kbdHiraganaCharSmallO.TabStop = false;
+            this.kbdHiraganaCharSmallO.Click += new System.EventHandler(this.kbdHiraganaCharSmallO_Click);
             // 
             // kbdHiraganaCharPo
             // 
@@ -1404,6 +1503,7 @@
             this.kbdHiraganaCharPo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharPo.TabIndex = 107;
             this.kbdHiraganaCharPo.TabStop = false;
+            this.kbdHiraganaCharPo.Click += new System.EventHandler(this.kbdHiraganaCharPo_Click);
             // 
             // kbdHiraganaCharBo
             // 
@@ -1413,6 +1513,7 @@
             this.kbdHiraganaCharBo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharBo.TabIndex = 108;
             this.kbdHiraganaCharBo.TabStop = false;
+            this.kbdHiraganaCharBo.Click += new System.EventHandler(this.kbdHiraganaCharBo_Click);
             // 
             // kbdHiraganaCharDo
             // 
@@ -1422,6 +1523,7 @@
             this.kbdHiraganaCharDo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharDo.TabIndex = 109;
             this.kbdHiraganaCharDo.TabStop = false;
+            this.kbdHiraganaCharDo.Click += new System.EventHandler(this.kbdHiraganaCharDo_Click);
             // 
             // kbdHiraganaCharZo
             // 
@@ -1431,6 +1533,7 @@
             this.kbdHiraganaCharZo.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharZo.TabIndex = 110;
             this.kbdHiraganaCharZo.TabStop = false;
+            this.kbdHiraganaCharZo.Click += new System.EventHandler(this.kbdHiraganaCharZo_Click);
             // 
             // kbdHiraganaCharZe
             // 
@@ -1440,6 +1543,7 @@
             this.kbdHiraganaCharZe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharZe.TabIndex = 111;
             this.kbdHiraganaCharZe.TabStop = false;
+            this.kbdHiraganaCharZe.Click += new System.EventHandler(this.kbdHiraganaCharZe_Click);
             // 
             // kbdHiraganaCharZu
             // 
@@ -1449,6 +1553,7 @@
             this.kbdHiraganaCharZu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharZu.TabIndex = 112;
             this.kbdHiraganaCharZu.TabStop = false;
+            this.kbdHiraganaCharZu.Click += new System.EventHandler(this.kbdHiraganaCharZu_Click);
             // 
             // kbdHiraganaCharJi
             // 
@@ -1458,6 +1563,7 @@
             this.kbdHiraganaCharJi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharJi.TabIndex = 113;
             this.kbdHiraganaCharJi.TabStop = false;
+            this.kbdHiraganaCharJi.Click += new System.EventHandler(this.kbdHiraganaCharJi_Click);
             // 
             // kbdHiraganaCharDi
             // 
@@ -1467,6 +1573,7 @@
             this.kbdHiraganaCharDi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharDi.TabIndex = 114;
             this.kbdHiraganaCharDi.TabStop = false;
+            this.kbdHiraganaCharDi.Click += new System.EventHandler(this.kbdHiraganaCharDi_Click);
             // 
             // kbdHiraganaCharDu
             // 
@@ -1476,6 +1583,7 @@
             this.kbdHiraganaCharDu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharDu.TabIndex = 115;
             this.kbdHiraganaCharDu.TabStop = false;
+            this.kbdHiraganaCharDu.Click += new System.EventHandler(this.kbdHiraganaCharDu_Click);
             // 
             // kbdHiraganaCharDe
             // 
@@ -1485,6 +1593,7 @@
             this.kbdHiraganaCharDe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharDe.TabIndex = 116;
             this.kbdHiraganaCharDe.TabStop = false;
+            this.kbdHiraganaCharDe.Click += new System.EventHandler(this.kbdHiraganaCharDe_Click);
             // 
             // kbdHiraganaCharBe
             // 
@@ -1494,6 +1603,7 @@
             this.kbdHiraganaCharBe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharBe.TabIndex = 117;
             this.kbdHiraganaCharBe.TabStop = false;
+            this.kbdHiraganaCharBe.Click += new System.EventHandler(this.kbdHiraganaCharBe_Click);
             // 
             // kbdHiraganaCharBu
             // 
@@ -1503,6 +1613,7 @@
             this.kbdHiraganaCharBu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharBu.TabIndex = 118;
             this.kbdHiraganaCharBu.TabStop = false;
+            this.kbdHiraganaCharBu.Click += new System.EventHandler(this.kbdHiraganaCharBu_Click);
             // 
             // kbdHiraganaCharPe
             // 
@@ -1512,6 +1623,7 @@
             this.kbdHiraganaCharPe.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharPe.TabIndex = 119;
             this.kbdHiraganaCharPe.TabStop = false;
+            this.kbdHiraganaCharPe.Click += new System.EventHandler(this.kbdHiraganaCharPe_Click);
             // 
             // kbdHiraganaCharPu
             // 
@@ -1521,6 +1633,7 @@
             this.kbdHiraganaCharPu.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharPu.TabIndex = 120;
             this.kbdHiraganaCharPu.TabStop = false;
+            this.kbdHiraganaCharPu.Click += new System.EventHandler(this.kbdHiraganaCharPu_Click);
             // 
             // kbdHiraganaCharBi
             // 
@@ -1530,6 +1643,7 @@
             this.kbdHiraganaCharBi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharBi.TabIndex = 121;
             this.kbdHiraganaCharBi.TabStop = false;
+            this.kbdHiraganaCharBi.Click += new System.EventHandler(this.kbdHiraganaCharBi_Click);
             // 
             // kbdHiraganaCharPi
             // 
@@ -1539,6 +1653,7 @@
             this.kbdHiraganaCharPi.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharPi.TabIndex = 122;
             this.kbdHiraganaCharPi.TabStop = false;
+            this.kbdHiraganaCharPi.Click += new System.EventHandler(this.kbdHiraganaCharPi_Click);
             // 
             // kbdHiraganaCharSmallU
             // 
@@ -1548,6 +1663,7 @@
             this.kbdHiraganaCharSmallU.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallU.TabIndex = 123;
             this.kbdHiraganaCharSmallU.TabStop = false;
+            this.kbdHiraganaCharSmallU.Click += new System.EventHandler(this.kbdHiraganaCharSmallU_Click);
             // 
             // kbdHiraganaCharSmallI
             // 
@@ -1557,6 +1673,7 @@
             this.kbdHiraganaCharSmallI.Size = new System.Drawing.Size(32, 32);
             this.kbdHiraganaCharSmallI.TabIndex = 124;
             this.kbdHiraganaCharSmallI.TabStop = false;
+            this.kbdHiraganaCharSmallI.Click += new System.EventHandler(this.kbdHiraganaCharSmallI_Click);
             // 
             // kbdKatakanaCharChi
             // 
@@ -1566,6 +1683,7 @@
             this.kbdKatakanaCharChi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharChi.TabIndex = 125;
             this.kbdKatakanaCharChi.TabStop = false;
+            this.kbdKatakanaCharChi.Click += new System.EventHandler(this.kbdKatakanaCharChi_Click);
             // 
             // kbdKatakanaCharMu
             // 
@@ -1575,6 +1693,7 @@
             this.kbdKatakanaCharMu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharMu.TabIndex = 126;
             this.kbdKatakanaCharMu.TabStop = false;
+            this.kbdKatakanaCharMu.Click += new System.EventHandler(this.kbdKatakanaCharMu_Click);
             // 
             // kbdKatakanaCharMi
             // 
@@ -1584,6 +1703,7 @@
             this.kbdKatakanaCharMi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharMi.TabIndex = 127;
             this.kbdKatakanaCharMi.TabStop = false;
+            this.kbdKatakanaCharMi.Click += new System.EventHandler(this.kbdKatakanaCharMi_Click);
             // 
             // kbdKatakanaCharFu
             // 
@@ -1593,6 +1713,7 @@
             this.kbdKatakanaCharFu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharFu.TabIndex = 128;
             this.kbdKatakanaCharFu.TabStop = false;
+            this.kbdKatakanaCharFu.Click += new System.EventHandler(this.kbdKatakanaCharFu_Click);
             // 
             // kbdKatakanaCharHi
             // 
@@ -1602,6 +1723,7 @@
             this.kbdKatakanaCharHi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharHi.TabIndex = 129;
             this.kbdKatakanaCharHi.TabStop = false;
+            this.kbdKatakanaCharHi.Click += new System.EventHandler(this.kbdKatakanaCharHi_Click);
             // 
             // kbdKatakanaCharNi
             // 
@@ -1611,6 +1733,7 @@
             this.kbdKatakanaCharNi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharNi.TabIndex = 130;
             this.kbdKatakanaCharNi.TabStop = false;
+            this.kbdKatakanaCharNi.Click += new System.EventHandler(this.kbdKatakanaCharNi_Click);
             // 
             // kbdKatakanaCharNu
             // 
@@ -1620,6 +1743,7 @@
             this.kbdKatakanaCharNu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharNu.TabIndex = 131;
             this.kbdKatakanaCharNu.TabStop = false;
+            this.kbdKatakanaCharNu.Click += new System.EventHandler(this.kbdKatakanaCharNu_Click);
             // 
             // kbdKatakanaCharTsu
             // 
@@ -1629,6 +1753,7 @@
             this.kbdKatakanaCharTsu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharTsu.TabIndex = 132;
             this.kbdKatakanaCharTsu.TabStop = false;
+            this.kbdKatakanaCharTsu.Click += new System.EventHandler(this.kbdKatakanaCharTsu_Click);
             // 
             // kbdKatakanaCharShi
             // 
@@ -1638,6 +1763,7 @@
             this.kbdKatakanaCharShi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharShi.TabIndex = 133;
             this.kbdKatakanaCharShi.TabStop = false;
+            this.kbdKatakanaCharShi.Click += new System.EventHandler(this.kbdKatakanaCharShi_Click);
             // 
             // kbdKatakanaCharSu
             // 
@@ -1647,6 +1773,7 @@
             this.kbdKatakanaCharSu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSu.TabIndex = 134;
             this.kbdKatakanaCharSu.TabStop = false;
+            this.kbdKatakanaCharSu.Click += new System.EventHandler(this.kbdKatakanaCharSu_Click);
             // 
             // kbdKatakanaCharKi
             // 
@@ -1656,6 +1783,7 @@
             this.kbdKatakanaCharKi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharKi.TabIndex = 135;
             this.kbdKatakanaCharKi.TabStop = false;
+            this.kbdKatakanaCharKi.Click += new System.EventHandler(this.kbdKatakanaCharKi_Click);
             // 
             // kbdKatakanaCharKu
             // 
@@ -1665,6 +1793,7 @@
             this.kbdKatakanaCharKu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharKu.TabIndex = 136;
             this.kbdKatakanaCharKu.TabStop = false;
+            this.kbdKatakanaCharKu.Click += new System.EventHandler(this.kbdKatakanaCharKu_Click);
             // 
             // kbdKatakanaCharKe
             // 
@@ -1674,6 +1803,7 @@
             this.kbdKatakanaCharKe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharKe.TabIndex = 137;
             this.kbdKatakanaCharKe.TabStop = false;
+            this.kbdKatakanaCharKe.Click += new System.EventHandler(this.kbdKatakanaCharKe_Click);
             // 
             // kbdKatakanaCharKo
             // 
@@ -1683,6 +1813,7 @@
             this.kbdKatakanaCharKo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharKo.TabIndex = 138;
             this.kbdKatakanaCharKo.TabStop = false;
+            this.kbdKatakanaCharKo.Click += new System.EventHandler(this.kbdKatakanaCharKo_Click);
             // 
             // kbdKatakanaCharSe
             // 
@@ -1692,6 +1823,7 @@
             this.kbdKatakanaCharSe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSe.TabIndex = 139;
             this.kbdKatakanaCharSe.TabStop = false;
+            this.kbdKatakanaCharSe.Click += new System.EventHandler(this.kbdKatakanaCharSe_Click);
             // 
             // kbdKatakanaCharTe
             // 
@@ -1701,6 +1833,7 @@
             this.kbdKatakanaCharTe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharTe.TabIndex = 140;
             this.kbdKatakanaCharTe.TabStop = false;
+            this.kbdKatakanaCharTe.Click += new System.EventHandler(this.kbdKatakanaCharTe_Click);
             // 
             // kbdKatakanaCharTo
             // 
@@ -1710,6 +1843,7 @@
             this.kbdKatakanaCharTo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharTo.TabIndex = 141;
             this.kbdKatakanaCharTo.TabStop = false;
+            this.kbdKatakanaCharTo.Click += new System.EventHandler(this.kbdKatakanaCharTo_Click);
             // 
             // kbdKatakanaCharSo
             // 
@@ -1719,6 +1853,7 @@
             this.kbdKatakanaCharSo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSo.TabIndex = 142;
             this.kbdKatakanaCharSo.TabStop = false;
+            this.kbdKatakanaCharSo.Click += new System.EventHandler(this.kbdKatakanaCharSo_Click);
             // 
             // kbdKatakanaCharNe
             // 
@@ -1728,6 +1863,7 @@
             this.kbdKatakanaCharNe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharNe.TabIndex = 143;
             this.kbdKatakanaCharNe.TabStop = false;
+            this.kbdKatakanaCharNe.Click += new System.EventHandler(this.kbdKatakanaCharNe_Click);
             // 
             // kbdKatakanaCharNo
             // 
@@ -1737,6 +1873,7 @@
             this.kbdKatakanaCharNo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharNo.TabIndex = 144;
             this.kbdKatakanaCharNo.TabStop = false;
+            this.kbdKatakanaCharNo.Click += new System.EventHandler(this.kbdKatakanaCharNo_Click);
             // 
             // kbdKatakanaCharHe
             // 
@@ -1746,6 +1883,7 @@
             this.kbdKatakanaCharHe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharHe.TabIndex = 145;
             this.kbdKatakanaCharHe.TabStop = false;
+            this.kbdKatakanaCharHe.Click += new System.EventHandler(this.kbdKatakanaCharHe_Click);
             // 
             // kbdKatakanaCharHo
             // 
@@ -1755,6 +1893,7 @@
             this.kbdKatakanaCharHo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharHo.TabIndex = 146;
             this.kbdKatakanaCharHo.TabStop = false;
+            this.kbdKatakanaCharHo.Click += new System.EventHandler(this.kbdKatakanaCharHo_Click);
             // 
             // kbdKatakanaCharMe
             // 
@@ -1764,6 +1903,7 @@
             this.kbdKatakanaCharMe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharMe.TabIndex = 147;
             this.kbdKatakanaCharMe.TabStop = false;
+            this.kbdKatakanaCharMe.Click += new System.EventHandler(this.kbdKatakanaCharMe_Click);
             // 
             // kbdKatakanaCharMo
             // 
@@ -1773,6 +1913,7 @@
             this.kbdKatakanaCharMo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharMo.TabIndex = 148;
             this.kbdKatakanaCharMo.TabStop = false;
+            this.kbdKatakanaCharMo.Click += new System.EventHandler(this.kbdKatakanaCharMo_Click);
             // 
             // kbdKatakanaCharRi
             // 
@@ -1782,6 +1923,7 @@
             this.kbdKatakanaCharRi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharRi.TabIndex = 149;
             this.kbdKatakanaCharRi.TabStop = false;
+            this.kbdKatakanaCharRi.Click += new System.EventHandler(this.kbdKatakanaCharRi_Click);
             // 
             // kbdKatakanaCharRu
             // 
@@ -1791,6 +1933,7 @@
             this.kbdKatakanaCharRu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharRu.TabIndex = 150;
             this.kbdKatakanaCharRu.TabStop = false;
+            this.kbdKatakanaCharRu.Click += new System.EventHandler(this.kbdKatakanaCharRu_Click);
             // 
             // kbdKatakanaCharRe
             // 
@@ -1800,6 +1943,7 @@
             this.kbdKatakanaCharRe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharRe.TabIndex = 151;
             this.kbdKatakanaCharRe.TabStop = false;
+            this.kbdKatakanaCharRe.Click += new System.EventHandler(this.kbdKatakanaCharRe_Click);
             // 
             // kbdKatakanaCharRo
             // 
@@ -1809,6 +1953,7 @@
             this.kbdKatakanaCharRo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharRo.TabIndex = 152;
             this.kbdKatakanaCharRo.TabStop = false;
+            this.kbdKatakanaCharRo.Click += new System.EventHandler(this.kbdKatakanaCharRo_Click);
             // 
             // kbdKatakanaCharWo
             // 
@@ -1818,6 +1963,7 @@
             this.kbdKatakanaCharWo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharWo.TabIndex = 153;
             this.kbdKatakanaCharWo.TabStop = false;
+            this.kbdKatakanaCharWo.Click += new System.EventHandler(this.kbdKatakanaCharWo_Click);
             // 
             // kbdKatakanaCharN
             // 
@@ -1827,6 +1973,7 @@
             this.kbdKatakanaCharN.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharN.TabIndex = 154;
             this.kbdKatakanaCharN.TabStop = false;
+            this.kbdKatakanaCharN.Click += new System.EventHandler(this.kbdKatakanaCharN_Click);
             // 
             // kbdKatakanaCharSmallYu
             // 
@@ -1836,6 +1983,7 @@
             this.kbdKatakanaCharSmallYu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallYu.TabIndex = 155;
             this.kbdKatakanaCharSmallYu.TabStop = false;
+            this.kbdKatakanaCharSmallYu.Click += new System.EventHandler(this.kbdKatakanaCharSmallYu_Click);
             // 
             // kbdKatakanaCharSmallYo
             // 
@@ -1845,6 +1993,7 @@
             this.kbdKatakanaCharSmallYo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallYo.TabIndex = 156;
             this.kbdKatakanaCharSmallYo.TabStop = false;
+            this.kbdKatakanaCharSmallYo.Click += new System.EventHandler(this.kbdKatakanaCharSmallYo_Click);
             // 
             // kbdKatakanaCharSmallTsu
             // 
@@ -1854,6 +2003,7 @@
             this.kbdKatakanaCharSmallTsu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallTsu.TabIndex = 157;
             this.kbdKatakanaCharSmallTsu.TabStop = false;
+            this.kbdKatakanaCharSmallTsu.Click += new System.EventHandler(this.kbdKatakanaCharSmallTsu_Click);
             // 
             // kbdKatakanaCharSmallO
             // 
@@ -1863,6 +2013,7 @@
             this.kbdKatakanaCharSmallO.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallO.TabIndex = 158;
             this.kbdKatakanaCharSmallO.TabStop = false;
+            this.kbdKatakanaCharSmallO.Click += new System.EventHandler(this.kbdKatakanaCharSmallO_Click);
             // 
             // kbdKatakanaCharSmallU
             // 
@@ -1872,6 +2023,7 @@
             this.kbdKatakanaCharSmallU.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallU.TabIndex = 159;
             this.kbdKatakanaCharSmallU.TabStop = false;
+            this.kbdKatakanaCharSmallU.Click += new System.EventHandler(this.kbdKatakanaCharSmallU_Click);
             // 
             // kbdKatakanaCharSmallE
             // 
@@ -1881,6 +2033,7 @@
             this.kbdKatakanaCharSmallE.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallE.TabIndex = 160;
             this.kbdKatakanaCharSmallE.TabStop = false;
+            this.kbdKatakanaCharSmallE.Click += new System.EventHandler(this.kbdKatakanaCharSmallE_Click);
             // 
             // kbdKatakanaCharSmallI
             // 
@@ -1890,6 +2043,7 @@
             this.kbdKatakanaCharSmallI.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharSmallI.TabIndex = 161;
             this.kbdKatakanaCharSmallI.TabStop = false;
+            this.kbdKatakanaCharSmallI.Click += new System.EventHandler(this.kbdKatakanaCharSmallI_Click);
             // 
             // kbdKatakanaCharPu
             // 
@@ -1899,6 +2053,7 @@
             this.kbdKatakanaCharPu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharPu.TabIndex = 162;
             this.kbdKatakanaCharPu.TabStop = false;
+            this.kbdKatakanaCharPu.Click += new System.EventHandler(this.kbdKatakanaCharPu_Click);
             // 
             // kbdKatakanaCharPo
             // 
@@ -1908,6 +2063,7 @@
             this.kbdKatakanaCharPo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharPo.TabIndex = 163;
             this.kbdKatakanaCharPo.TabStop = false;
+            this.kbdKatakanaCharPo.Click += new System.EventHandler(this.kbdKatakanaCharPo_Click);
             // 
             // kbdKatakanaCharBi
             // 
@@ -1917,6 +2073,7 @@
             this.kbdKatakanaCharBi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharBi.TabIndex = 164;
             this.kbdKatakanaCharBi.TabStop = false;
+            this.kbdKatakanaCharBi.Click += new System.EventHandler(this.kbdKatakanaCharBi_Click);
             // 
             // kbdKatakanaCharBu
             // 
@@ -1926,6 +2083,7 @@
             this.kbdKatakanaCharBu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharBu.TabIndex = 165;
             this.kbdKatakanaCharBu.TabStop = false;
+            this.kbdKatakanaCharBu.Click += new System.EventHandler(this.kbdKatakanaCharBu_Click);
             // 
             // kbdKatakanaCharBe
             // 
@@ -1935,6 +2093,7 @@
             this.kbdKatakanaCharBe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharBe.TabIndex = 166;
             this.kbdKatakanaCharBe.TabStop = false;
+            this.kbdKatakanaCharBe.Click += new System.EventHandler(this.kbdKatakanaCharBe_Click);
             // 
             // kbdKatakanaCharBo
             // 
@@ -1944,6 +2103,7 @@
             this.kbdKatakanaCharBo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharBo.TabIndex = 167;
             this.kbdKatakanaCharBo.TabStop = false;
+            this.kbdKatakanaCharBo.Click += new System.EventHandler(this.kbdKatakanaCharBo_Click);
             // 
             // kbdKatakanaCharDu
             // 
@@ -1953,6 +2113,7 @@
             this.kbdKatakanaCharDu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharDu.TabIndex = 168;
             this.kbdKatakanaCharDu.TabStop = false;
+            this.kbdKatakanaCharDu.Click += new System.EventHandler(this.kbdKatakanaCharDu_Click);
             // 
             // kbdKatakanaCharDi
             // 
@@ -1962,6 +2123,7 @@
             this.kbdKatakanaCharDi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharDi.TabIndex = 169;
             this.kbdKatakanaCharDi.TabStop = false;
+            this.kbdKatakanaCharDi.Click += new System.EventHandler(this.kbdKatakanaCharDi_Click);
             // 
             // kbdKatakanaCharJi
             // 
@@ -1971,6 +2133,7 @@
             this.kbdKatakanaCharJi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharJi.TabIndex = 170;
             this.kbdKatakanaCharJi.TabStop = false;
+            this.kbdKatakanaCharJi.Click += new System.EventHandler(this.kbdKatakanaCharJi_Click);
             // 
             // kbdKatakanaCharZu
             // 
@@ -1980,6 +2143,7 @@
             this.kbdKatakanaCharZu.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharZu.TabIndex = 171;
             this.kbdKatakanaCharZu.TabStop = false;
+            this.kbdKatakanaCharZu.Click += new System.EventHandler(this.kbdKatakanaCharZu_Click);
             // 
             // kbdKatakanaCharZe
             // 
@@ -1989,6 +2153,7 @@
             this.kbdKatakanaCharZe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharZe.TabIndex = 172;
             this.kbdKatakanaCharZe.TabStop = false;
+            this.kbdKatakanaCharZe.Click += new System.EventHandler(this.kbdKatakanaCharZe_Click);
             // 
             // kbdKatakanaCharDo
             // 
@@ -1998,6 +2163,7 @@
             this.kbdKatakanaCharDo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharDo.TabIndex = 173;
             this.kbdKatakanaCharDo.TabStop = false;
+            this.kbdKatakanaCharDo.Click += new System.EventHandler(this.kbdKatakanaCharDo_Click);
             // 
             // kbdKatakanaCharDe
             // 
@@ -2007,6 +2173,7 @@
             this.kbdKatakanaCharDe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharDe.TabIndex = 174;
             this.kbdKatakanaCharDe.TabStop = false;
+            this.kbdKatakanaCharDe.Click += new System.EventHandler(this.kbdKatakanaCharDe_Click);
             // 
             // kbdKatakanaCharZo
             // 
@@ -2016,6 +2183,7 @@
             this.kbdKatakanaCharZo.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharZo.TabIndex = 175;
             this.kbdKatakanaCharZo.TabStop = false;
+            this.kbdKatakanaCharZo.Click += new System.EventHandler(this.kbdKatakanaCharZo_Click);
             // 
             // kbdRomajiCharE
             // 
@@ -2025,6 +2193,7 @@
             this.kbdRomajiCharE.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharE.TabIndex = 176;
             this.kbdRomajiCharE.TabStop = false;
+            this.kbdRomajiCharE.Click += new System.EventHandler(this.kbdRomajiCharE_Click);
             // 
             // kbdRomajiCharI
             // 
@@ -2034,6 +2203,7 @@
             this.kbdRomajiCharI.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharI.TabIndex = 177;
             this.kbdRomajiCharI.TabStop = false;
+            this.kbdRomajiCharI.Click += new System.EventHandler(this.kbdRomajiCharI_Click);
             // 
             // kbdRomajiCharM
             // 
@@ -2043,6 +2213,7 @@
             this.kbdRomajiCharM.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharM.TabIndex = 178;
             this.kbdRomajiCharM.TabStop = false;
+            this.kbdRomajiCharM.Click += new System.EventHandler(this.kbdRomajiCharM_Click);
             // 
             // kbdRomajiCharQ
             // 
@@ -2052,6 +2223,7 @@
             this.kbdRomajiCharQ.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharQ.TabIndex = 179;
             this.kbdRomajiCharQ.TabStop = false;
+            this.kbdRomajiCharQ.Click += new System.EventHandler(this.kbdRomajiCharQ_Click);
             // 
             // kbdRomajiCharU
             // 
@@ -2061,6 +2233,7 @@
             this.kbdRomajiCharU.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharU.TabIndex = 180;
             this.kbdRomajiCharU.TabStop = false;
+            this.kbdRomajiCharU.Click += new System.EventHandler(this.kbdRomajiCharU_Click);
             // 
             // kbdRomajiCharF
             // 
@@ -2070,6 +2243,7 @@
             this.kbdRomajiCharF.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharF.TabIndex = 181;
             this.kbdRomajiCharF.TabStop = false;
+            this.kbdRomajiCharF.Click += new System.EventHandler(this.kbdRomajiCharF_Click);
             // 
             // kbdRomajiCharJ
             // 
@@ -2079,6 +2253,7 @@
             this.kbdRomajiCharJ.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharJ.TabIndex = 182;
             this.kbdRomajiCharJ.TabStop = false;
+            this.kbdRomajiCharJ.Click += new System.EventHandler(this.kbdRomajiCharJ_Click);
             // 
             // kbdRomajiCharN
             // 
@@ -2088,6 +2263,7 @@
             this.kbdRomajiCharN.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharN.TabIndex = 183;
             this.kbdRomajiCharN.TabStop = false;
+            this.kbdRomajiCharN.Click += new System.EventHandler(this.kbdRomajiCharN_Click);
             // 
             // kbdRomajiCharR
             // 
@@ -2097,6 +2273,7 @@
             this.kbdRomajiCharR.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharR.TabIndex = 184;
             this.kbdRomajiCharR.TabStop = false;
+            this.kbdRomajiCharR.Click += new System.EventHandler(this.kbdRomajiCharR_Click);
             // 
             // kbdRomajiCharV
             // 
@@ -2106,6 +2283,7 @@
             this.kbdRomajiCharV.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharV.TabIndex = 185;
             this.kbdRomajiCharV.TabStop = false;
+            this.kbdRomajiCharV.Click += new System.EventHandler(this.kbdRomajiCharV_Click);
             // 
             // kbdRomajiCharX
             // 
@@ -2115,6 +2293,7 @@
             this.kbdRomajiCharX.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharX.TabIndex = 186;
             this.kbdRomajiCharX.TabStop = false;
+            this.kbdRomajiCharX.Click += new System.EventHandler(this.kbdRomajiCharX_Click);
             // 
             // kbdRomajiCharW
             // 
@@ -2124,6 +2303,7 @@
             this.kbdRomajiCharW.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharW.TabIndex = 187;
             this.kbdRomajiCharW.TabStop = false;
+            this.kbdRomajiCharW.Click += new System.EventHandler(this.kbdRomajiCharW_Click);
             // 
             // kbdRomajiCharT
             // 
@@ -2133,6 +2313,7 @@
             this.kbdRomajiCharT.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharT.TabIndex = 188;
             this.kbdRomajiCharT.TabStop = false;
+            this.kbdRomajiCharT.Click += new System.EventHandler(this.kbdRomajiCharT_Click);
             // 
             // kbdRomajiCharS
             // 
@@ -2142,6 +2323,7 @@
             this.kbdRomajiCharS.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharS.TabIndex = 189;
             this.kbdRomajiCharS.TabStop = false;
+            this.kbdRomajiCharS.Click += new System.EventHandler(this.kbdRomajiCharS_Click);
             // 
             // kbdRomajiCharO
             // 
@@ -2151,6 +2333,7 @@
             this.kbdRomajiCharO.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharO.TabIndex = 190;
             this.kbdRomajiCharO.TabStop = false;
+            this.kbdRomajiCharO.Click += new System.EventHandler(this.kbdRomajiCharO_Click);
             // 
             // kbdRomajiCharK
             // 
@@ -2160,6 +2343,7 @@
             this.kbdRomajiCharK.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharK.TabIndex = 191;
             this.kbdRomajiCharK.TabStop = false;
+            this.kbdRomajiCharK.Click += new System.EventHandler(this.kbdRomajiCharK_Click);
             // 
             // kbdRomajiCharG
             // 
@@ -2169,6 +2353,7 @@
             this.kbdRomajiCharG.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharG.TabIndex = 192;
             this.kbdRomajiCharG.TabStop = false;
+            this.kbdRomajiCharG.Click += new System.EventHandler(this.kbdRomajiCharG_Click);
             // 
             // kbdRomajiCharH
             // 
@@ -2178,6 +2363,7 @@
             this.kbdRomajiCharH.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharH.TabIndex = 193;
             this.kbdRomajiCharH.TabStop = false;
+            this.kbdRomajiCharH.Click += new System.EventHandler(this.kbdRomajiCharH_Click);
             // 
             // kbdRomajiCharL
             // 
@@ -2187,6 +2373,7 @@
             this.kbdRomajiCharL.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharL.TabIndex = 194;
             this.kbdRomajiCharL.TabStop = false;
+            this.kbdRomajiCharL.Click += new System.EventHandler(this.kbdRomajiCharL_Click);
             // 
             // kbdRomajiCharP
             // 
@@ -2196,6 +2383,7 @@
             this.kbdRomajiCharP.Size = new System.Drawing.Size(32, 32);
             this.kbdRomajiCharP.TabIndex = 195;
             this.kbdRomajiCharP.TabStop = false;
+            this.kbdRomajiCharP.Click += new System.EventHandler(this.kbdRomajiCharP_Click);
             // 
             // kbdKatakanaCharPi
             // 
@@ -2205,6 +2393,7 @@
             this.kbdKatakanaCharPi.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharPi.TabIndex = 196;
             this.kbdKatakanaCharPi.TabStop = false;
+            this.kbdKatakanaCharPi.Click += new System.EventHandler(this.kbdKatakanaCharPi_Click);
             // 
             // kbdKatakanaCharPe
             // 
@@ -2214,6 +2403,18 @@
             this.kbdKatakanaCharPe.Size = new System.Drawing.Size(32, 32);
             this.kbdKatakanaCharPe.TabIndex = 197;
             this.kbdKatakanaCharPe.TabStop = false;
+            this.kbdKatakanaCharPe.Click += new System.EventHandler(this.kbdKatakanaCharPe_Click);
+            // 
+            // kbdJPSpace
+            // 
+            this.kbdJPSpace.BackColor = System.Drawing.Color.Maroon;
+            this.kbdJPSpace.Image = global::ALTTPSRAMEditor.Properties.Resources.jp_font_space;
+            this.kbdJPSpace.Location = new System.Drawing.Point(626, 365);
+            this.kbdJPSpace.Name = "kbdJPSpace";
+            this.kbdJPSpace.Size = new System.Drawing.Size(160, 40);
+            this.kbdJPSpace.TabIndex = 198;
+            this.kbdJPSpace.TabStop = false;
+            this.kbdJPSpace.Click += new System.EventHandler(this.kbdJPSpace_Click);
             // 
             // NameChangingFormJP
             // 
@@ -2221,6 +2422,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ALTTPSRAMEditor.Properties.Resources.filename_JP;
             this.ClientSize = new System.Drawing.Size(1056, 463);
+            this.Controls.Add(this.kbdJPSpace);
             this.Controls.Add(this.kbdKatakanaCharPe);
             this.Controls.Add(this.kbdKatakanaCharPi);
             this.Controls.Add(this.kbdRomajiCharP);
@@ -2624,6 +2826,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kbdRomajiCharP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kbdKatakanaCharPi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kbdKatakanaCharPe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kbdJPSpace)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2828,5 +3031,6 @@
         private System.Windows.Forms.PictureBox kbdRomajiCharP;
         private System.Windows.Forms.PictureBox kbdKatakanaCharPi;
         private System.Windows.Forms.PictureBox kbdKatakanaCharPe;
+        private System.Windows.Forms.PictureBox kbdJPSpace;
     }
 }
