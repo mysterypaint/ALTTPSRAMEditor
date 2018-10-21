@@ -422,5 +422,14 @@
   <ItemGroup>
     <None Include="Resources\filename_JP.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player Name Heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_font_end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_font_space.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

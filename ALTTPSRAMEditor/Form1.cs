@@ -126,9 +126,19 @@ namespace ALTTPSRAMEditor
             InitializeComponent();
         }
 
+        public Dictionary<char, int> GetENChar()
+        {
+            return enChar;
+        }
+
         public Dictionary<UInt16, char> GetRawENChar()
         {
             return rawENChar;
+        }
+
+        public Dictionary<char, int> GetJPChar()
+        {
+            return jpChar;
         }
 
         public Dictionary<UInt16, char> GetRawJPChar()

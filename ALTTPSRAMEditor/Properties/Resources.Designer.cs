@@ -593,6 +593,26 @@ namespace ALTTPSRAMEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap en_font_end {
+            get {
+                object obj = ResourceManager.GetObject("en_font_end", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap en_font_space {
+            get {
+                object obj = ResourceManager.GetObject("en_font_space", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ether {
             get {
                 object obj = ResourceManager.GetObject("Ether", resourceCulture);
@@ -996,6 +1016,16 @@ namespace ALTTPSRAMEditor.Properties {
         internal static System.Drawing.Bitmap Piece_of_Heart_Three_Quarters {
             get {
                 object obj = ResourceManager.GetObject("Piece of Heart Three Quarters", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Player_Name_Heart {
+            get {
+                object obj = ResourceManager.GetObject("Player Name Heart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
