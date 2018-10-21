@@ -1072,6 +1072,7 @@
             this.Controls.Add(this.pictureENNameChar0);
             this.Controls.Add(this.kbdENCharB);
             this.Controls.Add(this.kbdENCharA);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "NameChangingFormEN";

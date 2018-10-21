@@ -51,13 +51,110 @@ namespace ALTTPSRAMEditor
             // Draw the name to the screen
             UpdateDisplayName();
 
-            kbdHiraganaCharA.Image = GetCharTexture(jp_fnt, 9, false);
-            kbdHiraganaCharI.Image = GetCharTexture(jp_fnt, 10, false);
-            kbdHiraganaCharU.Image = GetCharTexture(jp_fnt, 11, false);
-            /*
-             * 
-            kbdENCharD.Image = GetCharTexture(en_fnt, 4, false);
-*/
+            kbdHiraganaCharA.Image = GetCharTexture(jp_fnt, 5, false);
+            kbdHiraganaCharI.Image = GetCharTexture(jp_fnt, 6, false);
+            kbdHiraganaCharU.Image = GetCharTexture(jp_fnt, 7, false);
+            kbdHiraganaCharE.Image = GetCharTexture(jp_fnt, 8, false);
+            kbdHiraganaCharO.Image = GetCharTexture(jp_fnt, 9, false);
+
+            kbdHiraganaCharKa.Image = GetCharTexture(jp_fnt, 10, false);
+            kbdHiraganaCharKi.Image = GetCharTexture(jp_fnt, 11, false);
+            kbdHiraganaCharKu.Image = GetCharTexture(jp_fnt, 12, false);
+            kbdHiraganaCharKe.Image = GetCharTexture(jp_fnt, 13, false);
+            kbdHiraganaCharKo.Image = GetCharTexture(jp_fnt, 14, false);
+
+            kbdHiraganaCharSa.Image = GetCharTexture(jp_fnt, 15, false);
+            kbdHiraganaCharShi.Image = GetCharTexture(jp_fnt, 16, false);
+            kbdHiraganaCharSu.Image = GetCharTexture(jp_fnt, 17, false);
+            kbdHiraganaCharSe.Image = GetCharTexture(jp_fnt, 18, false);
+            kbdHiraganaCharSo.Image = GetCharTexture(jp_fnt, 19, false);
+
+            kbdHiraganaCharTa.Image = GetCharTexture(jp_fnt, 20, false);
+            kbdHiraganaCharChi.Image = GetCharTexture(jp_fnt, 21, false);
+            kbdHiraganaCharTsu.Image = GetCharTexture(jp_fnt, 22, false);
+            kbdHiraganaCharTe.Image = GetCharTexture(jp_fnt, 23, false);
+            kbdHiraganaCharTo.Image = GetCharTexture(jp_fnt, 24, false);
+
+            kbdHiraganaCharNa.Image = GetCharTexture(jp_fnt, 25, false);
+            kbdHiraganaCharNi.Image = GetCharTexture(jp_fnt, 26, false);
+            kbdHiraganaCharNu.Image = GetCharTexture(jp_fnt, 27, false);
+            kbdHiraganaCharNe.Image = GetCharTexture(jp_fnt, 28, false);
+            kbdHiraganaCharNo.Image = GetCharTexture(jp_fnt, 29, false);
+
+            kbdHiraganaCharHa.Image = GetCharTexture(jp_fnt, 30, false);
+            kbdHiraganaCharHi.Image = GetCharTexture(jp_fnt, 31, false);
+            kbdHiraganaCharFu.Image = GetCharTexture(jp_fnt, 32, false);
+            kbdHiraganaCharHe.Image = GetCharTexture(jp_fnt, 33, false);
+            kbdHiraganaCharHo.Image = GetCharTexture(jp_fnt, 34, false);
+
+            kbdHiraganaCharMa.Image = GetCharTexture(jp_fnt, 35, false);
+            kbdHiraganaCharMi.Image = GetCharTexture(jp_fnt, 36, false);
+            kbdHiraganaCharMu.Image = GetCharTexture(jp_fnt, 37, false);
+            kbdHiraganaCharMe.Image = GetCharTexture(jp_fnt, 38, false);
+            kbdHiraganaCharMo.Image = GetCharTexture(jp_fnt, 39, false);
+
+            kbdHiraganaCharYa.Image = GetCharTexture(jp_fnt, 40, false);
+            kbdHiraganaCharYu.Image = GetCharTexture(jp_fnt, 42, false);
+            kbdHiraganaCharYo.Image = GetCharTexture(jp_fnt, 44, false);
+
+            kbdHiraganaCharRa.Image = GetCharTexture(jp_fnt, 45, false);
+            kbdHiraganaCharRi.Image = GetCharTexture(jp_fnt, 46, false);
+            kbdHiraganaCharRu.Image = GetCharTexture(jp_fnt, 47, false);
+            kbdHiraganaCharRe.Image = GetCharTexture(jp_fnt, 48, false);
+            kbdHiraganaCharRo.Image = GetCharTexture(jp_fnt, 49, false);
+
+            kbdHiraganaCharWa.Image = GetCharTexture(jp_fnt, 50, false);
+            kbdHiraganaCharWo.Image = GetCharTexture(jp_fnt, 51, false);
+            kbdHiraganaCharN.Image = GetCharTexture(jp_fnt, 52, false);
+            kbdHiraganaCharHyphen.Image = GetCharTexture(jp_fnt, 54, false);
+
+
+
+            kbdHiraganaCharGa.Image = GetCharTexture(jp_fnt, 55, false);
+            kbdHiraganaCharGi.Image = GetCharTexture(jp_fnt, 56, false);
+            kbdHiraganaCharGu.Image = GetCharTexture(jp_fnt, 57, false);
+            kbdHiraganaCharGe.Image = GetCharTexture(jp_fnt, 58, false);
+            kbdHiraganaCharGo.Image = GetCharTexture(jp_fnt, 59, false);
+
+
+            kbdHiraganaCharZa.Image = GetCharTexture(jp_fnt, 60, false);
+            kbdHiraganaCharJi.Image = GetCharTexture(jp_fnt, 61, false);
+            kbdHiraganaCharZu.Image = GetCharTexture(jp_fnt, 62, false);
+            kbdHiraganaCharZe.Image = GetCharTexture(jp_fnt, 63, false);
+            kbdHiraganaCharZo.Image = GetCharTexture(jp_fnt, 64, false);
+
+            kbdHiraganaCharDa.Image = GetCharTexture(jp_fnt, 65, false);
+            kbdHiraganaCharDi.Image = GetCharTexture(jp_fnt, 66, false);
+            kbdHiraganaCharDu.Image = GetCharTexture(jp_fnt, 67, false);
+            kbdHiraganaCharDe.Image = GetCharTexture(jp_fnt, 68, false);
+            kbdHiraganaCharDo.Image = GetCharTexture(jp_fnt, 69, false);
+
+            kbdHiraganaCharBa.Image = GetCharTexture(jp_fnt, 70, false);
+            kbdHiraganaCharBi.Image = GetCharTexture(jp_fnt, 71, false);
+            kbdHiraganaCharBu.Image = GetCharTexture(jp_fnt, 72, false);
+            kbdHiraganaCharBe.Image = GetCharTexture(jp_fnt, 73, false);
+            kbdHiraganaCharBo.Image = GetCharTexture(jp_fnt, 74, false);
+
+            kbdHiraganaCharPa.Image = GetCharTexture(jp_fnt, 75, false);
+            kbdHiraganaCharPi.Image = GetCharTexture(jp_fnt, 76, false);
+            kbdHiraganaCharPu.Image = GetCharTexture(jp_fnt, 77, false);
+            kbdHiraganaCharPe.Image = GetCharTexture(jp_fnt, 78, false);
+            kbdHiraganaCharPo.Image = GetCharTexture(jp_fnt, 79, false);
+
+            kbdHiraganaCharSmallA.Image = GetCharTexture(jp_fnt, 80, false);
+            kbdHiraganaCharSmallI.Image = GetCharTexture(jp_fnt, 81, false);
+            kbdHiraganaCharSmallU.Image = GetCharTexture(jp_fnt, 82, false);
+            kbdHiraganaCharSmallE.Image = GetCharTexture(jp_fnt, 83, false);
+            kbdHiraganaCharSmallO.Image = GetCharTexture(jp_fnt, 84, false);
+
+            kbdHiraganaCharSmallYa.Image = GetCharTexture(jp_fnt, 85, false);
+            kbdHiraganaCharSmallYu.Image = GetCharTexture(jp_fnt, 86, false);
+            kbdHiraganaCharSmallYo.Image = GetCharTexture(jp_fnt, 87, false);
+            kbdHiraganaCharSmallTsu.Image = GetCharTexture(jp_fnt, 89, false);
+
+            kbdJPMoveLeft.Image = GetCharTexture(jp_fnt, 90, false);
+            kbdJPMoveRight.Image = GetCharTexture(jp_fnt, 91, false);
+            kbdJPEnd.Image = ALTTPSRAMEditor.Properties.Resources.jpn_font_end;
             Refresh();
         }
 
