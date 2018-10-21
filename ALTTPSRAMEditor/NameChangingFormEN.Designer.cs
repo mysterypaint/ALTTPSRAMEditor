@@ -916,7 +916,7 @@
             // kbdENMoveLeft
             // 
             this.kbdENMoveLeft.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.kbdENMoveLeft.Location = new System.Drawing.Point(312, 604);
+            this.kbdENMoveLeft.Location = new System.Drawing.Point(248, 604);
             this.kbdENMoveLeft.Name = "kbdENMoveLeft";
             this.kbdENMoveLeft.Size = new System.Drawing.Size(32, 32);
             this.kbdENMoveLeft.TabIndex = 73;
@@ -926,7 +926,7 @@
             // kbdENMoveRight
             // 
             this.kbdENMoveRight.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.kbdENMoveRight.Location = new System.Drawing.Point(344, 604);
+            this.kbdENMoveRight.Location = new System.Drawing.Point(312, 604);
             this.kbdENMoveRight.Name = "kbdENMoveRight";
             this.kbdENMoveRight.Size = new System.Drawing.Size(32, 32);
             this.kbdENMoveRight.TabIndex = 74;

@@ -154,7 +154,7 @@ namespace ALTTPSRAMEditor
         private void OpenSRM()
         {
             OpenFileDialog fd1 = new OpenFileDialog();
-            fd1.Filter = "SRAM|*.srm|All Files|*.*"; // Filter to show.srm files only.
+            fd1.Filter = "SRAM|*.srm|SaveRAM|*.SaveRAM|All Files|*.*"; // Filter to show.srm files only.
             if (fd1.ShowDialog().Equals(DialogResult.OK))
             { // Prompt the user to open a file, then check if a valid file was opened.
                 fname = fd1.FileName;
@@ -163,60 +163,29 @@ namespace ALTTPSRAMEditor
                 { // Open the text file using a File Stream
                     byte[] bytes = File.ReadAllBytes(fname);
                     long fileSize = new System.IO.FileInfo(fname).Length;
-                    if (fileSize == srm_randomizer_size || fileSize == srm_randomizer_size_2) MessageBox.Show("Invalid SRAM File. (Randomizer saves aren't supported. Maybe one day...?)");
-
-                    else if (fileSize == srm_size)
+                    if (fileSize == srm_size)
                     {
-                        Console.Write("Opened " + fname);
-                        helperText.Text = "Opened " + fname;
-                        sdat = new SRAM(bytes);
-                        radioFile1.Enabled = true;
-                        radioFile2.Enabled = true;
-                        radioFile3.Enabled = true;
+                        OpenSRMGoodSize(bytes);
+                    }
+                    else if (fileSize > srm_size)
+                    {
+                        bool validFile = true;
 
-                        // Determine the overall region of the .srm and initialize the save slots
-                        SaveSlot savslot = sdat.GetSaveSlot(1);
-                        SaveSlot savslot2 = sdat.GetSaveSlot(2);
-                        SaveSlot savslot3 = sdat.GetSaveSlot(3);
-                        if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
+                        if (fileSize <= 0x8000)
                         {
-                            Console.WriteLine(" - USA Save Detected");
-                            saveRegion = (int)SaveRegion.USA;
-                        }
-                        else if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
-                        {
-                            Console.WriteLine(" - JPN Save Detected");
-                            saveRegion = (int)SaveRegion.JPN;
+                            for (var i = 0x2000; i < 0x8000; i++)
+                            {
+                                if (bytes[i] != 0x0)
+                                    validFile = false;
+                            }
                         }
                         else
-                            saveRegion = (int)SaveRegion.EUR;
+                            validFile = false;
 
-                        // Determine which save slot we have opened
-                        SaveSlot thisSlot;
-                        if (radioFile1.Checked)
-                        {
-                            thisSlot = savslot;
-                        }
-                        else if (radioFile2.Checked)
-                        {
-                            thisSlot = savslot2;
-                        }
+                        if (!validFile)
+                            MessageBox.Show("Invalid SRAM File. (Randomizer saves aren't supported. Maybe one day...?)");
                         else
-                            thisSlot = savslot3;
-
-                        if (thisSlot.SaveIsValid())
-                        {
-                            UpdatePlayerName();
-                            Link player = thisSlot.GetPlayer();
-                            UpdateAllConfigurables(thisSlot);
-                        }
-                        else
-                        {
-                            buttonCreate.Enabled = true;
-                            buttonCreate.Visible = true;
-                            buttonCopy.Visible = false;
-                        }
-                        Refresh(); // Update the screen, including the player name
+                            OpenSRMGoodSize(bytes);
                     }
                     else
                     {
@@ -228,6 +197,60 @@ namespace ALTTPSRAMEditor
                     MessageBox.Show("The file could not be read:\n" + e.Message);
                 }
             }
+        }
+
+        private void OpenSRMGoodSize(byte[] _bytes)
+        {
+            Console.Write("Opened " + fname);
+            helperText.Text = "Opened " + fname;
+            sdat = new SRAM(_bytes);
+            radioFile1.Enabled = true;
+            radioFile2.Enabled = true;
+            radioFile3.Enabled = true;
+
+            // Determine the overall region of the .srm and initialize the save slots
+            SaveSlot savslot = sdat.GetSaveSlot(1);
+            SaveSlot savslot2 = sdat.GetSaveSlot(2);
+            SaveSlot savslot3 = sdat.GetSaveSlot(3);
+            if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
+            {
+                Console.WriteLine(" - USA Save Detected");
+                saveRegion = (int)SaveRegion.USA;
+            }
+            else if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
+            {
+                Console.WriteLine(" - JPN Save Detected");
+                saveRegion = (int)SaveRegion.JPN;
+            }
+            else
+                saveRegion = (int)SaveRegion.EUR;
+
+            // Determine which save slot we have opened
+            SaveSlot thisSlot;
+            if (radioFile1.Checked)
+            {
+                thisSlot = savslot;
+            }
+            else if (radioFile2.Checked)
+            {
+                thisSlot = savslot2;
+            }
+            else
+                thisSlot = savslot3;
+
+            if (thisSlot.SaveIsValid())
+            {
+                UpdatePlayerName();
+                Link player = thisSlot.GetPlayer();
+                UpdateAllConfigurables(thisSlot);
+            }
+            else
+            {
+                buttonCreate.Enabled = true;
+                buttonCreate.Visible = true;
+                buttonCopy.Visible = false;
+            }
+            Refresh(); // Update the screen, including the player name
         }
 
         private void SaveSRM()
