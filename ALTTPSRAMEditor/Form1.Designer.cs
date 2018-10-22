@@ -36,6 +36,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupFileSelect = new System.Windows.Forms.GroupBox();
+            this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonErase = new System.Windows.Forms.Button();
             this.buttonWrite = new System.Windows.Forms.Button();
             this.buttonCopy = new System.Windows.Forms.Button();
@@ -46,12 +47,10 @@
             this.labelFilename = new System.Windows.Forms.Label();
             this.listBoxDungeonSelector = new System.Windows.Forms.ListBox();
             this.textBoxDeathsQuest = new System.Windows.Forms.TextBox();
-            this.labelArea = new System.Windows.Forms.Label();
             this.labelDeaths = new System.Windows.Forms.Label();
             this.textBoxDeathsPost = new System.Windows.Forms.TextBox();
             this.labelDeathsPostGame = new System.Windows.Forms.Label();
             this.checkedListBoxDungeonItems = new System.Windows.Forms.CheckedListBox();
-            this.labelInventory = new System.Windows.Forms.Label();
             this.labelDungeonKeys = new System.Windows.Forms.Label();
             this.textBoxDungeonKeys = new System.Windows.Forms.TextBox();
             this.labelRupees = new System.Windows.Forms.Label();
@@ -161,7 +160,10 @@
             this.pictureGreenPendant = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxMagicBar = new System.Windows.Forms.PictureBox();
-            this.buttonCreate = new System.Windows.Forms.Button();
+            this.groupInventory = new System.Windows.Forms.GroupBox();
+            this.groupBoxHUD = new System.Windows.Forms.GroupBox();
+            this.pictureBoxHeartContainerPreview = new System.Windows.Forms.PictureBox();
+            this.groupBoxAreas = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).BeginInit();
@@ -228,6 +230,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureGreenPendant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).BeginInit();
+            this.groupInventory.SuspendLayout();
+            this.groupBoxHUD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHeartContainerPreview)).BeginInit();
+            this.groupBoxAreas.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -302,6 +308,18 @@
             this.groupFileSelect.TabIndex = 4;
             this.groupFileSelect.TabStop = false;
             this.groupFileSelect.Text = "Current File";
+            // 
+            // buttonCreate
+            // 
+            this.buttonCreate.Enabled = false;
+            this.buttonCreate.Location = new System.Drawing.Point(95, 19);
+            this.buttonCreate.Name = "buttonCreate";
+            this.buttonCreate.Size = new System.Drawing.Size(75, 23);
+            this.buttonCreate.TabIndex = 10;
+            this.buttonCreate.Text = "Create";
+            this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Visible = false;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // buttonErase
             // 
@@ -413,7 +431,7 @@
             "Thieves Town (Gargoyle\'s Domain)",
             "Turtle Rock",
             "Ganon\'s Tower"});
-            this.listBoxDungeonSelector.Location = new System.Drawing.Point(12, 153);
+            this.listBoxDungeonSelector.Location = new System.Drawing.Point(15, 19);
             this.listBoxDungeonSelector.Name = "listBoxDungeonSelector";
             this.listBoxDungeonSelector.Size = new System.Drawing.Size(122, 134);
             this.listBoxDungeonSelector.TabIndex = 8;
@@ -421,26 +439,16 @@
             // 
             // textBoxDeathsQuest
             // 
-            this.textBoxDeathsQuest.Location = new System.Drawing.Point(12, 293);
+            this.textBoxDeathsQuest.Location = new System.Drawing.Point(18, 158);
             this.textBoxDeathsQuest.Name = "textBoxDeathsQuest";
             this.textBoxDeathsQuest.Size = new System.Drawing.Size(100, 20);
             this.textBoxDeathsQuest.TabIndex = 9;
             this.textBoxDeathsQuest.Visible = false;
             // 
-            // labelArea
-            // 
-            this.labelArea.AutoSize = true;
-            this.labelArea.Location = new System.Drawing.Point(9, 137);
-            this.labelArea.Name = "labelArea";
-            this.labelArea.Size = new System.Drawing.Size(29, 13);
-            this.labelArea.TabIndex = 11;
-            this.labelArea.Text = "Area";
-            this.labelArea.Visible = false;
-            // 
             // labelDeaths
             // 
             this.labelDeaths.AutoSize = true;
-            this.labelDeaths.Location = new System.Drawing.Point(118, 296);
+            this.labelDeaths.Location = new System.Drawing.Point(15, 144);
             this.labelDeaths.Name = "labelDeaths";
             this.labelDeaths.Size = new System.Drawing.Size(151, 13);
             this.labelDeaths.TabIndex = 12;
@@ -449,7 +457,7 @@
             // 
             // textBoxDeathsPost
             // 
-            this.textBoxDeathsPost.Location = new System.Drawing.Point(12, 326);
+            this.textBoxDeathsPost.Location = new System.Drawing.Point(18, 200);
             this.textBoxDeathsPost.Name = "textBoxDeathsPost";
             this.textBoxDeathsPost.Size = new System.Drawing.Size(100, 20);
             this.textBoxDeathsPost.TabIndex = 13;
@@ -458,7 +466,7 @@
             // labelDeathsPostGame
             // 
             this.labelDeathsPostGame.AutoSize = true;
-            this.labelDeathsPostGame.Location = new System.Drawing.Point(118, 329);
+            this.labelDeathsPostGame.Location = new System.Drawing.Point(15, 184);
             this.labelDeathsPostGame.Name = "labelDeathsPostGame";
             this.labelDeathsPostGame.Size = new System.Drawing.Size(140, 13);
             this.labelDeathsPostGame.TabIndex = 14;
@@ -472,26 +480,16 @@
             "Compass",
             "Big Key",
             "Dungeon Map"});
-            this.checkedListBoxDungeonItems.Location = new System.Drawing.Point(138, 153);
+            this.checkedListBoxDungeonItems.Location = new System.Drawing.Point(143, 18);
             this.checkedListBoxDungeonItems.Name = "checkedListBoxDungeonItems";
             this.checkedListBoxDungeonItems.Size = new System.Drawing.Size(120, 49);
             this.checkedListBoxDungeonItems.TabIndex = 15;
             this.checkedListBoxDungeonItems.Visible = false;
             // 
-            // labelInventory
-            // 
-            this.labelInventory.AutoSize = true;
-            this.labelInventory.Location = new System.Drawing.Point(328, 33);
-            this.labelInventory.Name = "labelInventory";
-            this.labelInventory.Size = new System.Drawing.Size(51, 13);
-            this.labelInventory.TabIndex = 17;
-            this.labelInventory.Text = "Inventory";
-            this.labelInventory.Visible = false;
-            // 
             // labelDungeonKeys
             // 
             this.labelDungeonKeys.AutoSize = true;
-            this.labelDungeonKeys.Location = new System.Drawing.Point(188, 211);
+            this.labelDungeonKeys.Location = new System.Drawing.Point(140, 82);
             this.labelDungeonKeys.Name = "labelDungeonKeys";
             this.labelDungeonKeys.Size = new System.Drawing.Size(30, 13);
             this.labelDungeonKeys.TabIndex = 20;
@@ -500,7 +498,7 @@
             // 
             // textBoxDungeonKeys
             // 
-            this.textBoxDungeonKeys.Location = new System.Drawing.Point(138, 208);
+            this.textBoxDungeonKeys.Location = new System.Drawing.Point(143, 98);
             this.textBoxDungeonKeys.Name = "textBoxDungeonKeys";
             this.textBoxDungeonKeys.Size = new System.Drawing.Size(44, 20);
             this.textBoxDungeonKeys.TabIndex = 19;
@@ -509,7 +507,7 @@
             // labelRupees
             // 
             this.labelRupees.AutoSize = true;
-            this.labelRupees.Location = new System.Drawing.Point(278, 103);
+            this.labelRupees.Location = new System.Drawing.Point(3, 96);
             this.labelRupees.Name = "labelRupees";
             this.labelRupees.Size = new System.Drawing.Size(44, 13);
             this.labelRupees.TabIndex = 22;
@@ -518,7 +516,7 @@
             // 
             // numericUpDownRupeeCounter
             // 
-            this.numericUpDownRupeeCounter.Location = new System.Drawing.Point(221, 99);
+            this.numericUpDownRupeeCounter.Location = new System.Drawing.Point(6, 112);
             this.numericUpDownRupeeCounter.Maximum = new decimal(new int[] {
             999,
             0,
@@ -568,7 +566,7 @@
             this.tableLayoutPanelInventory.Controls.Add(this.pictureMail, 4, 5);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureShield, 3, 5);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureSword, 2, 5);
-            this.tableLayoutPanelInventory.Location = new System.Drawing.Point(331, 50);
+            this.tableLayoutPanelInventory.Location = new System.Drawing.Point(6, 15);
             this.tableLayoutPanelInventory.Name = "tableLayoutPanelInventory";
             this.tableLayoutPanelInventory.RowCount = 6;
             this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -577,9 +575,8 @@
             this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanelInventory.Size = new System.Drawing.Size(163, 164);
+            this.tableLayoutPanelInventory.Size = new System.Drawing.Size(154, 152);
             this.tableLayoutPanelInventory.TabIndex = 0;
-            this.tableLayoutPanelInventory.Visible = false;
             // 
             // pictureHeartPieces
             // 
@@ -887,7 +884,7 @@
             this.pictureMail.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Bomb;
             this.pictureMail.Location = new System.Drawing.Point(103, 128);
             this.pictureMail.Name = "pictureMail";
-            this.pictureMail.Size = new System.Drawing.Size(27, 24);
+            this.pictureMail.Size = new System.Drawing.Size(27, 21);
             this.pictureMail.TabIndex = 30;
             this.pictureMail.TabStop = false;
             this.pictureMail.Click += new System.EventHandler(this.pictureMail_Click);
@@ -1651,7 +1648,7 @@
             0,
             0,
             0});
-            this.numericUpDownHeartContainers.Location = new System.Drawing.Point(330, 237);
+            this.numericUpDownHeartContainers.Location = new System.Drawing.Point(6, 32);
             this.numericUpDownHeartContainers.Maximum = new decimal(new int[] {
             160,
             0,
@@ -1675,7 +1672,7 @@
             // 
             // numericUpDownMagic
             // 
-            this.numericUpDownMagic.Location = new System.Drawing.Point(331, 284);
+            this.numericUpDownMagic.Location = new System.Drawing.Point(6, 72);
             this.numericUpDownMagic.Maximum = new decimal(new int[] {
             128,
             0,
@@ -1690,7 +1687,7 @@
             // labelHeartContainers
             // 
             this.labelHeartContainers.AutoSize = true;
-            this.labelHeartContainers.Location = new System.Drawing.Point(328, 221);
+            this.labelHeartContainers.Location = new System.Drawing.Point(3, 16);
             this.labelHeartContainers.Name = "labelHeartContainers";
             this.labelHeartContainers.Size = new System.Drawing.Size(86, 13);
             this.labelHeartContainers.TabIndex = 38;
@@ -1700,7 +1697,7 @@
             // labelMagic
             // 
             this.labelMagic.AutoSize = true;
-            this.labelMagic.Location = new System.Drawing.Point(328, 268);
+            this.labelMagic.Location = new System.Drawing.Point(3, 56);
             this.labelMagic.Name = "labelMagic";
             this.labelMagic.Size = new System.Drawing.Size(36, 13);
             this.labelMagic.TabIndex = 39;
@@ -1709,10 +1706,10 @@
             // 
             // textQuarterMagic
             // 
-            this.textQuarterMagic.Location = new System.Drawing.Point(434, 268);
+            this.textQuarterMagic.Location = new System.Drawing.Point(118, 72);
             this.textQuarterMagic.Name = "textQuarterMagic";
             this.textQuarterMagic.ReadOnly = true;
-            this.textQuarterMagic.Size = new System.Drawing.Size(166, 49);
+            this.textQuarterMagic.Size = new System.Drawing.Size(148, 52);
             this.textQuarterMagic.TabIndex = 41;
             this.textQuarterMagic.Text = "Note: ¼ Magic will appear as ½  Magic in-game but will still function as intended" +
     ".";
@@ -1860,27 +1857,68 @@
             // 
             // pictureBoxMagicBar
             // 
-            this.pictureBoxMagicBar.Image = global::ALTTPSRAMEditor.Properties.Resources.Red_Pendant;
             this.pictureBoxMagicBar.InitialImage = null;
-            this.pictureBoxMagicBar.Location = new System.Drawing.Point(330, 310);
+            this.pictureBoxMagicBar.Location = new System.Drawing.Point(96, 72);
             this.pictureBoxMagicBar.Name = "pictureBoxMagicBar";
             this.pictureBoxMagicBar.Size = new System.Drawing.Size(16, 45);
             this.pictureBoxMagicBar.TabIndex = 40;
             this.pictureBoxMagicBar.TabStop = false;
             this.pictureBoxMagicBar.Visible = false;
+            this.pictureBoxMagicBar.Click += new System.EventHandler(this.pictureBoxMagicBar_Click);
             this.pictureBoxMagicBar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMagicBar_MouseClick);
             // 
-            // buttonCreate
+            // groupInventory
             // 
-            this.buttonCreate.Enabled = false;
-            this.buttonCreate.Location = new System.Drawing.Point(95, 19);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(75, 23);
-            this.buttonCreate.TabIndex = 10;
-            this.buttonCreate.Text = "Create";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Visible = false;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
+            this.groupInventory.Controls.Add(this.tableLayoutPanelInventory);
+            this.groupInventory.Location = new System.Drawing.Point(328, 33);
+            this.groupInventory.Name = "groupInventory";
+            this.groupInventory.Size = new System.Drawing.Size(166, 172);
+            this.groupInventory.TabIndex = 44;
+            this.groupInventory.TabStop = false;
+            this.groupInventory.Text = "Inventory";
+            this.groupInventory.Visible = false;
+            // 
+            // groupBoxHUD
+            // 
+            this.groupBoxHUD.Controls.Add(this.pictureBoxHeartContainerPreview);
+            this.groupBoxHUD.Controls.Add(this.labelHeartContainers);
+            this.groupBoxHUD.Controls.Add(this.numericUpDownRupeeCounter);
+            this.groupBoxHUD.Controls.Add(this.pictureBoxMagicBar);
+            this.groupBoxHUD.Controls.Add(this.textQuarterMagic);
+            this.groupBoxHUD.Controls.Add(this.numericUpDownHeartContainers);
+            this.groupBoxHUD.Controls.Add(this.labelRupees);
+            this.groupBoxHUD.Controls.Add(this.numericUpDownMagic);
+            this.groupBoxHUD.Controls.Add(this.labelMagic);
+            this.groupBoxHUD.Location = new System.Drawing.Point(328, 221);
+            this.groupBoxHUD.Name = "groupBoxHUD";
+            this.groupBoxHUD.Size = new System.Drawing.Size(272, 138);
+            this.groupBoxHUD.TabIndex = 45;
+            this.groupBoxHUD.TabStop = false;
+            this.groupBoxHUD.Text = "HUD";
+            this.groupBoxHUD.Visible = false;
+            // 
+            // pictureBoxHeartContainerPreview
+            // 
+            this.pictureBoxHeartContainerPreview.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxHeartContainerPreview.Location = new System.Drawing.Point(96, 32);
+            this.pictureBoxHeartContainerPreview.Name = "pictureBoxHeartContainerPreview";
+            this.pictureBoxHeartContainerPreview.Size = new System.Drawing.Size(84, 20);
+            this.pictureBoxHeartContainerPreview.TabIndex = 42;
+            this.pictureBoxHeartContainerPreview.TabStop = false;
+            // 
+            // groupBoxAreas
+            // 
+            this.groupBoxAreas.Controls.Add(this.textBoxDungeonKeys);
+            this.groupBoxAreas.Controls.Add(this.labelDungeonKeys);
+            this.groupBoxAreas.Controls.Add(this.checkedListBoxDungeonItems);
+            this.groupBoxAreas.Controls.Add(this.listBoxDungeonSelector);
+            this.groupBoxAreas.Location = new System.Drawing.Point(18, 231);
+            this.groupBoxAreas.Name = "groupBoxAreas";
+            this.groupBoxAreas.Size = new System.Drawing.Size(279, 160);
+            this.groupBoxAreas.TabIndex = 46;
+            this.groupBoxAreas.TabStop = false;
+            this.groupBoxAreas.Text = "Area";
+            this.groupBoxAreas.Visible = false;
             // 
             // Form1
             // 
@@ -1888,12 +1926,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(755, 465);
+            this.Controls.Add(this.groupBoxAreas);
+            this.Controls.Add(this.groupBoxHUD);
+            this.Controls.Add(this.groupInventory);
             this.Controls.Add(this.groupPendantsCrystals);
-            this.Controls.Add(this.textQuarterMagic);
-            this.Controls.Add(this.labelMagic);
-            this.Controls.Add(this.labelHeartContainers);
-            this.Controls.Add(this.numericUpDownMagic);
-            this.Controls.Add(this.numericUpDownHeartContainers);
             this.Controls.Add(this.groupBoxShovelFlute);
             this.Controls.Add(this.groupBoxGloves);
             this.Controls.Add(this.groupBoxBottles);
@@ -1904,25 +1940,15 @@
             this.Controls.Add(this.groupBoxBombs);
             this.Controls.Add(this.buttonChangeName);
             this.Controls.Add(this.groupBoxBoomerangConfig);
-            this.Controls.Add(this.tableLayoutPanelInventory);
-            this.Controls.Add(this.numericUpDownRupeeCounter);
-            this.Controls.Add(this.labelRupees);
-            this.Controls.Add(this.labelDungeonKeys);
-            this.Controls.Add(this.textBoxDungeonKeys);
-            this.Controls.Add(this.labelInventory);
-            this.Controls.Add(this.checkedListBoxDungeonItems);
             this.Controls.Add(this.labelDeathsPostGame);
             this.Controls.Add(this.textBoxDeathsPost);
             this.Controls.Add(this.labelDeaths);
-            this.Controls.Add(this.labelArea);
             this.Controls.Add(this.textBoxDeathsQuest);
-            this.Controls.Add(this.listBoxDungeonSelector);
             this.Controls.Add(this.labelFilename);
             this.Controls.Add(this.helperText);
             this.Controls.Add(this.groupFileSelect);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBoxBowConfig);
-            this.Controls.Add(this.pictureBoxMagicBar);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
@@ -2009,6 +2035,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureGreenPendant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).EndInit();
+            this.groupInventory.ResumeLayout(false);
+            this.groupBoxHUD.ResumeLayout(false);
+            this.groupBoxHUD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHeartContainerPreview)).EndInit();
+            this.groupBoxAreas.ResumeLayout(false);
+            this.groupBoxAreas.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2034,12 +2066,10 @@
         private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.ListBox listBoxDungeonSelector;
         private System.Windows.Forms.TextBox textBoxDeathsQuest;
-        private System.Windows.Forms.Label labelArea;
         private System.Windows.Forms.Label labelDeaths;
         private System.Windows.Forms.TextBox textBoxDeathsPost;
         private System.Windows.Forms.Label labelDeathsPostGame;
         private System.Windows.Forms.CheckedListBox checkedListBoxDungeonItems;
-        private System.Windows.Forms.Label labelInventory;
         private System.Windows.Forms.PictureBox pictureBow;
         private System.Windows.Forms.Label labelDungeonKeys;
         private System.Windows.Forms.TextBox textBoxDungeonKeys;
@@ -2150,6 +2180,10 @@
         private System.Windows.Forms.PictureBox pictureCrystalSP;
         private System.Windows.Forms.PictureBox pictureCrystalMM;
         private System.Windows.Forms.Button buttonCreate;
+        private System.Windows.Forms.GroupBox groupInventory;
+        private System.Windows.Forms.GroupBox groupBoxHUD;
+        private System.Windows.Forms.PictureBox pictureBoxHeartContainerPreview;
+        private System.Windows.Forms.GroupBox groupBoxAreas;
     }
 }
 

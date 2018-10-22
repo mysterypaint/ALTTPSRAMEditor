@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Drawing2D;
 
 namespace ALTTPSRAMEditor
 {
@@ -246,6 +247,12 @@ namespace ALTTPSRAMEditor
             }
             else
             {
+                HideAllGroupBoxesExcept(groupFileSelect);
+                groupBoxHUD.Visible = false;
+                groupInventory.Visible = false;
+                groupPendantsCrystals.Visible = false;
+                labelFilename.Visible = false;
+                buttonChangeName.Visible = false;
                 buttonCreate.Enabled = true;
                 buttonCreate.Visible = true;
                 buttonCopy.Visible = false;
@@ -413,11 +420,11 @@ namespace ALTTPSRAMEditor
             {
                 sdat.EraseFile(selFile);
                 helperText.Text = "Erased File " + selFile + ".";
+                SaveSlot savslot = sdat.GetSaveSlot(selFile);
+                savslot.SetIsValid(false);
+                canRefresh = true;
+                UpdateAllConfigurables(savslot);
             }
-            SaveSlot savslot = sdat.GetSaveSlot(selFile);
-            savslot.SetIsValid(false);
-            canRefresh = true;
-            UpdateAllConfigurables(savslot);
         }
 
         public void SetPlayerName(String _str)
@@ -482,8 +489,8 @@ namespace ALTTPSRAMEditor
                 buttonCreate.Enabled = true;
                 buttonCreate.Visible = true;
                 buttonCopy.Visible = false;
-                tableLayoutPanelInventory.Visible = false;
-                labelInventory.Visible = false;
+                groupBoxHUD.Visible = false;
+                groupInventory.Visible = false;
                 numericUpDownRupeeCounter.Visible = false;
                 labelRupees.Visible = false;
                 labelFilename.Visible = false;
@@ -504,8 +511,8 @@ namespace ALTTPSRAMEditor
             buttonCreate.Enabled = false;
             buttonCreate.Visible = false;
             buttonCopy.Visible = true;
-            tableLayoutPanelInventory.Visible = true;
-            labelInventory.Visible = true;
+            groupBoxHUD.Visible = true;
+            groupInventory.Visible = true;
             numericUpDownRupeeCounter.Visible = true;
             labelRupees.Visible = true;
             labelFilename.Visible = true;
@@ -1056,27 +1063,43 @@ namespace ALTTPSRAMEditor
                     return;
                 }
 
-                System.Drawing.SolidBrush rectBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+                // Initialize the brush for drawing, then draw the black box behind the player name
+                SolidBrush rectBrush = new SolidBrush(Color.Black);
                 int border = 2;
                 e.Graphics.FillRectangle(rectBrush, new Rectangle(223 - border, 49 - border, (8 * 8) + (border * 2), 16 + (border * 2)));
-
-                // Draw a black rectangle for the hearts to go behind
-                e.Graphics.FillRectangle(rectBrush, new Rectangle(409 - border, 237 - border, (8 * 10) + (border * 2), 16 + (border * 2)));
-
+                
                 // Grab the player so we can get their info
                 Link player = savslot.GetPlayer();
 
-                // Loop and draw all the hearts as required to represent the player's health
-                double heartContainers = player.GetHeartContainers();
-                for (var i = 0; i < heartContainers / 8; i++) {
-                    int xOff = (i % 10) * 8;
-                    int yOff = (i / 10) * 8;
-                    if (i >= (heartContainers / 8.0f - 1.0f) && heartContainers % 8 != 0)
-                        e.Graphics.DrawImage(imgHeartContainerPartial, 409 + xOff, 237 + yOff);
-                    else
-                        e.Graphics.DrawImage(imgHeartContainerFull, 409 + xOff, 237 + yOff);
+                // Now we'll loop through and draw all the hearts as required to represent the player's health
+                // First, create a blank canvas so we can draw to it (this is abstract, won't show up on the screen, it's just in the computer memory)
+                Rectangle fillRect = new Rectangle(0, 0, 84, 20);
+                var tex = new Bitmap(fillRect.Width, fillRect.Height);
+
+                // Draw onto the blank canvas we created
+                using (var gr = Graphics.FromImage(tex))
+                {
+                    // Apply some pixel-perfect settings before we draw anything...
+                    gr.Clear(Color.Transparent);
+                    gr.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    gr.PixelOffsetMode = PixelOffsetMode.Half;
+
+                    double heartContainers = player.GetHeartContainers();
+                    for (var i = 0; i < heartContainers / 8; i++)
+                    {
+                        int xOff = (i % 10) * 8;
+                        int yOff = (i / 10) * 8;
+                        if (i >= (heartContainers / 8.0f - 1.0f) && heartContainers % 8 != 0)
+                            gr.DrawImage(imgHeartContainerPartial, 2 + xOff, 2 + yOff);
+                        else
+                            gr.DrawImage(imgHeartContainerFull, 2 + xOff, 2 + yOff);
+                    }
                 }
 
+                // Write all the contents of the canvas into the heart container preview PictureBox on the Form
+                pictureBoxHeartContainerPreview.Image = tex;
+
+                // Now, we'll draw the magic bar based on the upgrade/values the save slot has
                 Image magicContainer;
                 switch (player.GetCurrMagicUpgrade())
                 {
@@ -1092,32 +1115,46 @@ namespace ALTTPSRAMEditor
                         break;
                 }
 
-                e.Graphics.DrawImage(magicContainer, 409, 268);
-                int currMagic = player.GetCurrMagic();
-                rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
-                e.Graphics.FillRectangle(rectBrush, new Rectangle(409 + 4, 308 - (currMagic/4), 8, (currMagic / 4)));
+                // Create another blank canvas so we can draw to it
+                fillRect = new Rectangle(0, 0, magicContainer.Width, magicContainer.Height);
+                tex = new Bitmap(fillRect.Width, fillRect.Height);
 
-                rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
-                e.Graphics.FillRectangle(rectBrush, new Rectangle(409 + 5, 308 - (currMagic/4), 6, 1));
-                //409, 268
+                // Draw onto the blank canvas we created
+                using (var gr = Graphics.FromImage(tex))
+                {
+                    // Apply some pixel-perfect settings before we draw anything...
+                    gr.Clear(Color.Transparent);
+                    gr.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    gr.PixelOffsetMode = PixelOffsetMode.Half;
 
-                rectBrush.Dispose(); // 223 + pos, 49);
-            }
+                    // Draw the empty magic bar container into the canvas (not to the screen)
+                    int currMagic = player.GetCurrMagic();
+                    gr.DrawImage(magicContainer, 0, 0);
 
-            try
-            {
-                DrawImageRect(e);
+                    // Using a colored rectangle, fill the magic bar with a bar representing magic, based on what the player's current magic value is
+                    rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
+                    fillRect = new Rectangle(0 + 4, 0 - ((currMagic + 3) / 4) + 40, 8, ((currMagic+3) / 4));
+                    gr.FillRectangle(rectBrush, fillRect);
+
+                    // If necessary, draw the white "1-pixel-line" part of the magic bar fill, for aesthetic purposes
+                    if (currMagic > 0)
+                    {
+                        rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
+                        fillRect = new Rectangle(5, -((currMagic + 3) / 4) + 40, 6, 1);
+                        gr.FillRectangle(rectBrush, fillRect); // Could probably use a pen w/ DrawLine() here, but might as well recycle the rectangle
+                    }
+                }
+
+                // Write all the contents of the canvas into the magic bar's PictureBox on the Form
+                pictureBoxMagicBar.Image = tex;
+
+                // Get rid of the brush to prevent memory leaks
+                rectBrush.Dispose();
             }
-            catch (KeyNotFoundException)
-            {
-                Console.WriteLine("KeyNotFoundException");
-                displayPlayerName = "";
-                SaveSlot savslot = GetSaveSlot();
-                saveRegion = (int)savslot.GetRegion();
-            }
+            DrawDisplayPlayerName(e);
         }
 
-        public void DrawImageRect(PaintEventArgs e)
+        public void DrawDisplayPlayerName(PaintEventArgs e)
         {
             if (saveRegion == (int)SaveRegion.JPN)
             {
@@ -1204,7 +1241,7 @@ namespace ALTTPSRAMEditor
             {
                 if (c.GetType() == typeof(GroupBox))
                 {
-                    if (!c.Equals(currentGroupBox) && !c.Equals(groupFileSelect) && !c.Equals(groupPendantsCrystals))
+                    if (!c.Equals(currentGroupBox) && !c.Equals(groupInventory) && !c.Equals(groupFileSelect) && !c.Equals(groupPendantsCrystals) && !c.Equals(groupBoxHUD))
                         c.Visible = false;
                 }
             }
@@ -1602,32 +1639,6 @@ namespace ALTTPSRAMEditor
             Refresh();
         }
 
-        private void pictureBoxMagicBar_Click(object sender, EventArgs e)
-        {
-            Link player = GetSaveSlot().GetPlayer();
-            int currMagicUpgrade = player.GetCurrMagicUpgrade();
-            switch (currMagicUpgrade)
-            {
-                default:
-                case 0x0:
-                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_halved;
-                    player.SetMagicUpgrade(0x1);
-                    textQuarterMagic.Visible = false;
-                    break;
-                case 0x1:
-                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_quarter;
-                    player.SetMagicUpgrade(0x2);
-                    textQuarterMagic.Visible = true;
-                    break;
-                case 0x2:
-                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar;
-                    player.SetMagicUpgrade(0x0);
-                    textQuarterMagic.Visible = false;
-                    break;
-            }
-            Refresh();
-        }
-
         private void pictureShovelFlute_Click(object sender, EventArgs e)
         {
             HideAllGroupBoxesExcept(groupBoxShovelFlute);
@@ -1884,6 +1895,32 @@ namespace ALTTPSRAMEditor
                 pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Blue_Crystal;
 
             ToggleCrystalPendant(true, crystalTR);
+        }
+
+        private void pictureBoxMagicBar_Click(object sender, EventArgs e)
+        {
+            Link player = GetSaveSlot().GetPlayer();
+            int currMagicUpgrade = player.GetCurrMagicUpgrade();
+            switch (currMagicUpgrade)
+            {
+                default:
+                case 0x0:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_halved;
+                    player.SetMagicUpgrade(0x1);
+                    textQuarterMagic.Visible = false;
+                    break;
+                case 0x1:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar_quarter;
+                    player.SetMagicUpgrade(0x2);
+                    textQuarterMagic.Visible = true;
+                    break;
+                case 0x2:
+                    pictureBoxMagicBar.Image = ALTTPSRAMEditor.Properties.Resources.lttp_magic_bar;
+                    player.SetMagicUpgrade(0x0);
+                    textQuarterMagic.Visible = false;
+                    break;
+            }
+            Refresh();
         }
     }
 }

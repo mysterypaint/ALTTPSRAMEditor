@@ -366,7 +366,6 @@ namespace ALTTPSRAMEditor
 
         private void NameChangingFormJP_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*
             if (!autoClose)
             {
                 DialogResult dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
@@ -380,7 +379,7 @@ namespace ALTTPSRAMEditor
                     if (dialogCloseConfirm == DialogResult.Yes)
                         e.Cancel = true;
                 }
-            }*/
+            }
         }
 
         private void kbdJPMoveLeft_Click(object sender, EventArgs e)
