@@ -79,6 +79,7 @@ namespace ALTTPSRAMEditor
         public const int crystalTR = 0x3;
 
         private bool canRefresh = true;
+        private bool fileOpen = false;
 
         static int[] bottleContents = new int[9];
         static System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
@@ -193,6 +194,10 @@ namespace ALTTPSRAMEditor
                         MessageBox.Show("Invalid SRAM File.");
                     }
                 }
+                catch (System.IO.IOException)
+                {
+                    helperText.Text = "File reading conflict: " + fname + ".\nIs it open in another program?";
+                }
                 catch (Exception e)
                 {
                     MessageBox.Show("The file could not be read:\n" + e.Message);
@@ -203,6 +208,7 @@ namespace ALTTPSRAMEditor
         private void OpenSRMGoodSize(byte[] _bytes)
         {
             Console.Write("Opened " + fname);
+            fileOpen = true;
             helperText.Text = "Opened " + fname;
             sdat = new SRAM(_bytes);
             radioFile1.Enabled = true;
@@ -253,6 +259,7 @@ namespace ALTTPSRAMEditor
                 groupPendantsCrystals.Visible = false;
                 labelFilename.Visible = false;
                 buttonChangeName.Visible = false;
+                buttonResetDeaths.Visible = false;
                 buttonCreate.Enabled = true;
                 buttonCreate.Visible = true;
                 buttonCopy.Visible = false;
@@ -269,9 +276,17 @@ namespace ALTTPSRAMEditor
             }
 
             byte[] outputData = sdat.MergeSaveData();
-            File.WriteAllBytes(fname, outputData);
-            helperText.Text = "Saved file at " + fname;
-            buttonWrite.Enabled = false;
+
+            try
+            {
+                File.WriteAllBytes(fname, outputData);
+                helperText.Text = "Saved file at " + fname;
+                buttonWrite.Enabled = false;
+            }
+            catch (System.IO.IOException)
+            {
+                helperText.Text = "File writing conflict: " + fname + ".\nIs it open in another program?";
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) { }
@@ -449,10 +464,12 @@ namespace ALTTPSRAMEditor
             {
                 displayPlayerName = "";
                 buttonChangeName.Enabled = false;
+                buttonResetDeaths.Enabled = false;
             }
             else
             {
                 buttonChangeName.Enabled = true;
+                buttonResetDeaths.Enabled = true;
             }
             displayPlayerName = savslot.GetPlayerName();
             Refresh(); // Update the screen, including the player name
@@ -465,10 +482,12 @@ namespace ALTTPSRAMEditor
             {
                 displayPlayerName = "";
                 buttonChangeName.Enabled = false;
+                buttonResetDeaths.Enabled = false;
             }
             else
             {
                 buttonChangeName.Enabled = true;
+                buttonResetDeaths.Enabled = true;
             }
             displayPlayerName = _str;
             Refresh(); // Update the screen, including the player name
@@ -478,6 +497,68 @@ namespace ALTTPSRAMEditor
         {
             buttonWrite.Enabled = false;
             UpdatePlayerName();
+        }
+
+        private void UpdateArrowsMax()
+        {
+            switch (numericUpDownArrowUpgrades.Value)
+            {
+                default:
+                    numericUpDownArrowsHeld.Maximum = 30;
+                    break;
+                case 1:
+                    numericUpDownArrowsHeld.Maximum = 35;
+                    break;
+                case 2:
+                    numericUpDownArrowsHeld.Maximum = 40;
+                    break;
+                case 3:
+                    numericUpDownArrowsHeld.Maximum = 45;
+                    break;
+                case 4:
+                    numericUpDownArrowsHeld.Maximum = 50;
+                    break;
+                case 5:
+                    numericUpDownArrowsHeld.Maximum = 55;
+                    break;
+                case 6:
+                    numericUpDownArrowsHeld.Maximum = 60;
+                    break;
+                case 7:
+                    numericUpDownArrowsHeld.Maximum = 70;
+                    break;
+            }
+        }
+
+        private void UpdateBombsMax()
+        {
+            switch (numericUpDownBombUpgrades.Value)
+            {
+                default:
+                    numericUpDownBombsHeld.Maximum = 10;
+                    break;
+                case 1:
+                    numericUpDownBombsHeld.Maximum = 15;
+                    break;
+                case 2:
+                    numericUpDownBombsHeld.Maximum = 20;
+                    break;
+                case 3:
+                    numericUpDownBombsHeld.Maximum = 25;
+                    break;
+                case 4:
+                    numericUpDownBombsHeld.Maximum = 30;
+                    break;
+                case 5:
+                    numericUpDownBombsHeld.Maximum = 35;
+                    break;
+                case 6:
+                    numericUpDownBombsHeld.Maximum = 40;
+                    break;
+                case 7:
+                    numericUpDownBombsHeld.Maximum = 50;
+                    break;
+            }
         }
 
         private void UpdateAllConfigurables(SaveSlot savslot)
@@ -497,7 +578,9 @@ namespace ALTTPSRAMEditor
                 buttonCopy.Enabled = false;
                 buttonErase.Enabled = false;
                 buttonChangeName.Visible = false;
+                buttonResetDeaths.Visible = false;
                 buttonChangeName.Enabled = false;
+                buttonResetDeaths.Enabled = false;
                 pictureBoxMagicBar.Visible = false;
                 numericUpDownHeartContainers.Visible = false;
                 labelHeartContainers.Visible = false;
@@ -520,6 +603,8 @@ namespace ALTTPSRAMEditor
             buttonErase.Enabled = true;
             buttonChangeName.Visible = true;
             buttonChangeName.Enabled = true;
+            buttonResetDeaths.Visible = true;
+            buttonResetDeaths.Enabled = true;
             pictureBoxMagicBar.Visible = true;
             numericUpDownHeartContainers.Visible = true;
             labelHeartContainers.Visible = true;
@@ -580,8 +665,21 @@ namespace ALTTPSRAMEditor
                     break;
             }
 
-            numericUpDownArrowsHeld.Value = player.GetItemEquipment(arrowCount);
-            numericUpDownBombsHeld.Value = player.GetItemEquipment(bombCount);
+            numericUpDownArrowUpgrades.Value = player.GetCurrArrowUpgrades();
+            UpdateArrowsMax();
+            var _arrowCount = player.GetHeldArrows();
+            if (_arrowCount > numericUpDownArrowsHeld.Maximum)
+                _arrowCount = (int) numericUpDownArrowsHeld.Maximum;
+            numericUpDownArrowsHeld.Value = _arrowCount;
+
+            // Bombs
+            numericUpDownBombUpgrades.Value = player.GetCurrBombUpgrades();
+            UpdateBombsMax();
+            var _bombCount = player.GetHeldBombs();
+            if (_bombCount > numericUpDownBombsHeld.Maximum)
+                _bombCount = (int) numericUpDownBombsHeld.Maximum;
+            numericUpDownBombsHeld.Value = _bombCount;
+
             if (numericUpDownBombsHeld.Value <= 0)
                 pictureBombs.Image = ALTTPSRAMEditor.Properties.Resources.D_Bomb;
             else
@@ -827,15 +925,25 @@ namespace ALTTPSRAMEditor
                     break;
             }
 
-
-            if (player.GetItemEquipment(bottle1Contents) <= 0 &&
-             player.GetItemEquipment(bottle2Contents) <= 0 &&
-             player.GetItemEquipment(bottle3Contents) <= 0 &&
-             player.GetItemEquipment(bottle4Contents) <= 0
-            )
-                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            // Update the picture so it represents what the inventory bottle should actually have
+            var _inventoryBottleFill = 0;
+            if (player.GetItemEquipment(bottle1Contents) > 0)
+                _inventoryBottleFill = player.GetItemEquipment(bottle1Contents);
+            else if (player.GetItemEquipment(bottle2Contents) > 0)
+                _inventoryBottleFill = player.GetItemEquipment(bottle2Contents);
+            else if (player.GetItemEquipment(bottle3Contents) > 0)
+                _inventoryBottleFill = player.GetItemEquipment(bottle3Contents);
+            else if (player.GetItemEquipment(bottle4Contents) > 0)
+                _inventoryBottleFill = player.GetItemEquipment(bottle4Contents);
             else
-                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.Bottle;
+                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
+            
+            if (_inventoryBottleFill == 1)
+                _inventoryBottleFill = 9;
+            if (_inventoryBottleFill - 1 < 0)
+                _inventoryBottleFill = 1;
+
+            pictureBottles.Image = bottleContentsImg[bottleContents[_inventoryBottleFill - 1]];
 
             // Fill the 1st bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
             int fillContents = player.GetItemEquipment(bottle1Contents);
@@ -1048,7 +1156,7 @@ namespace ALTTPSRAMEditor
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (!fname.Equals(""))
+            if (!fname.Equals("") && fileOpen)
             {
                 SaveSlot savslot = GetSaveSlot();
 
@@ -1444,14 +1552,41 @@ namespace ALTTPSRAMEditor
 
         private void CheckForBottles()
         {
-            if (bottleContents[comboBoxBottle1.SelectedIndex] <= 0 &&
-             bottleContents[comboBoxBottle2.SelectedIndex] <= 0 &&
-             bottleContents[comboBoxBottle3.SelectedIndex] <= 0 &&
-             bottleContents[comboBoxBottle4.SelectedIndex] <= 0
-            )
-                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            else
-                pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.Bottle;
+            Link player = GetSaveSlot().GetPlayer();
+            // Update the picture so it represents what the inventory bottle should actually have
+            var _inventoryBottleFill = 0;
+
+            if (player.GetItemEquipment(bottle1Contents) > 0)
+            {
+                _inventoryBottleFill = player.GetItemEquipment(bottle1Contents);
+                player.SetSelectedBottle(1);
+            }
+            else if (player.GetItemEquipment(bottle2Contents) > 0)
+            {
+                _inventoryBottleFill = player.GetItemEquipment(bottle2Contents);
+                player.SetSelectedBottle(2);
+            }
+            else if (player.GetItemEquipment(bottle3Contents) > 0)
+            {
+                _inventoryBottleFill = player.GetItemEquipment(bottle3Contents);
+                player.SetSelectedBottle(3);
+            }
+            else if (player.GetItemEquipment(bottle4Contents) > 0)
+            {
+                _inventoryBottleFill = player.GetItemEquipment(bottle4Contents);
+                player.SetSelectedBottle(4);
+            }
+            else {
+                _inventoryBottleFill = 0;
+                player.SetSelectedBottle(0);
+            }
+
+            if (_inventoryBottleFill == 1)
+                _inventoryBottleFill = 9;
+            if (_inventoryBottleFill - 1 < 0)
+                _inventoryBottleFill = 1;
+
+            pictureBottles.Image = bottleContentsImg[bottleContents[_inventoryBottleFill - 1]];
         }
 
         private void comboBoxBottle1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1462,9 +1597,9 @@ namespace ALTTPSRAMEditor
             // Update the picture so it represents what the bottle actually has
             pictureBottle1.Image = bottleContentsImg[fillContents];
 
-            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle1Contents, (byte)fillContents);
+            CheckForBottles();
         }
 
         private void pictureBottles_Click(object sender, EventArgs e)
@@ -1480,9 +1615,9 @@ namespace ALTTPSRAMEditor
             // Update the picture so it represents what the bottle actually has
             pictureBottle2.Image = bottleContentsImg[fillContents];
 
-            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle2Contents, (byte)fillContents);
+            CheckForBottles();
         }
 
         private void comboBoxBottle3_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1493,9 +1628,9 @@ namespace ALTTPSRAMEditor
             // Update the picture so it represents what the bottle actually has
             pictureBottle3.Image = bottleContentsImg[fillContents];
 
-            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle3Contents, (byte)fillContents);
+            CheckForBottles();
         }
 
         private void comboBoxBottle4_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1506,9 +1641,9 @@ namespace ALTTPSRAMEditor
             // Update the picture so it represents what the bottle actually has
             pictureBottle4.Image = bottleContentsImg[fillContents];
 
-            CheckForBottles();
             Link player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle4Contents, (byte)fillContents);
+            CheckForBottles();
         }
 
         private void pictureBoots_Click(object sender, EventArgs e)
@@ -1921,6 +2056,52 @@ namespace ALTTPSRAMEditor
                     break;
             }
             Refresh();
+        }
+
+        private void numericUpDownBombUpgrades_ValueChanged(object sender, EventArgs e)
+        {
+            // Get the player
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetCurrBombUpgrades((int) numericUpDownBombUpgrades.Value);
+
+            // Update Max bombs
+            UpdateBombsMax();
+            var _bombCount = numericUpDownBombsHeld.Value;
+            if (_bombCount > numericUpDownBombsHeld.Maximum)
+                _bombCount = (int)numericUpDownBombsHeld.Maximum;
+            numericUpDownBombsHeld.Value = _bombCount;
+        }
+
+        private void numericUpDownArrowUpgrades_ValueChanged(object sender, EventArgs e)
+        {
+            // Get the player
+            Link player = GetSaveSlot().GetPlayer();
+            player.SetCurrArrowUpgrades((int)numericUpDownArrowUpgrades.Value);
+
+            // Update Max arrows
+            UpdateArrowsMax();
+            var _bombCount = numericUpDownArrowsHeld.Value;
+            if (_bombCount > numericUpDownArrowsHeld.Maximum)
+                _bombCount = (int)numericUpDownArrowsHeld.Maximum;
+            numericUpDownArrowsHeld.Value = _bombCount;
+        }
+
+        private void buttonResetDeaths_Click(object sender, EventArgs e)
+        {
+            SaveSlot savslot = GetSaveSlot();
+            DialogResult dialogResult = MessageBox.Show("Reset all deaths/saves for this save file?", "Reset Deaths/Saves?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DialogResult postGame = MessageBox.Show("Show the deaths on the File Select Screen?", "Show on File Select Screen?", MessageBoxButtons.YesNo);
+                if (postGame == DialogResult.No)
+                {
+                    savslot.ResetFileDeaths(false);
+                }
+                else
+                {
+                    savslot.ResetFileDeaths(true);
+                }
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ namespace ALTTPSRAMEditor
         private byte pendants;
         private byte crystals;
         private bool isValid;
+        private int deathCounter = 0;
+        private int liveSaveCounter = 0;
         int slotIndex;
         Form1.SaveRegion saveRegion;
         byte[] itemsAndEquipment;
@@ -36,6 +38,10 @@ namespace ALTTPSRAMEditor
             else
                 saveRegion = Form1.SaveRegion.EUR;
 
+            // Set death/live/save counter values
+            deathCounter = 0;
+            liveSaveCounter = 0;
+
             isValid = SaveIsValid();
             // Copy global save data's Item&Equipment data to this Save Slot
 
@@ -54,6 +60,54 @@ namespace ALTTPSRAMEditor
             player = new Link(itemsAndEquipment);
 
             getRawPlayerName();
+        }
+
+        public void ResetFileDeaths(bool showOnFileSelect)
+        {
+            var _deathCounterAddr = 0x0;
+            var _liveSaveCounterAddr = 0x0;
+            var _deathTotalsTableAddr = 0x0;
+
+            switch (saveRegion)
+            {
+                default:
+                case Form1.SaveRegion.EUR:
+                case Form1.SaveRegion.USA:
+                    _deathCounterAddr = 0x405;
+                    _liveSaveCounterAddr = 0x403;
+                    _deathTotalsTableAddr = 0x3E7;
+                    break;
+                case Form1.SaveRegion.JPN:
+                    _deathCounterAddr = 0x401;
+                    _liveSaveCounterAddr = 0x3FF;
+                    _deathTotalsTableAddr = 0x3E3;
+                    break;
+            }
+            for (var i = 0x0; i < 0x1B; i += 2)
+            {
+                data[_deathTotalsTableAddr + i] = 0x0;
+                data[_deathTotalsTableAddr + i + 1] = 0x0;
+            }
+
+            data[_liveSaveCounterAddr] = 0x0;
+            data[_liveSaveCounterAddr + 1] = 0x0;
+            liveSaveCounter = 0;
+            
+            deathCounter = 0;
+            
+            if (showOnFileSelect)
+            {
+                data[_deathCounterAddr] = 0x0;
+                data[_deathCounterAddr + 1] = 0x0;
+            }
+            else
+            {
+                data[_deathCounterAddr] = 0xFF;
+                data[_deathCounterAddr + 1] = 0xFF;
+            }
+
+            if (isValid)
+                ValidateSave();
         }
 
         public void CommitPlayerName()
@@ -249,7 +303,7 @@ namespace ALTTPSRAMEditor
             // Update pendant and crystal data before merging this save
             itemsAndEquipment[0x34] = pendants;
             itemsAndEquipment[0x3A] = crystals;
-
+            itemsAndEquipment[0xF] = (byte) player.GetSelectedBottle();
             int len = itemsAndEquipment.Length;
             for (int i = 0x0; i < len; i++)
             {

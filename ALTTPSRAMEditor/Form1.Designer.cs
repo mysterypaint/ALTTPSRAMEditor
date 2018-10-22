@@ -159,11 +159,12 @@
             this.pictureBluePendant = new System.Windows.Forms.PictureBox();
             this.pictureGreenPendant = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMagicBar = new System.Windows.Forms.PictureBox();
             this.groupInventory = new System.Windows.Forms.GroupBox();
             this.groupBoxHUD = new System.Windows.Forms.GroupBox();
             this.pictureBoxHeartContainerPreview = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMagicBar = new System.Windows.Forms.PictureBox();
             this.groupBoxAreas = new System.Windows.Forms.GroupBox();
+            this.buttonResetDeaths = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupFileSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRupeeCounter)).BeginInit();
@@ -229,10 +230,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBluePendant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGreenPendant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).BeginInit();
             this.groupInventory.SuspendLayout();
             this.groupBoxHUD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHeartContainerPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).BeginInit();
             this.groupBoxAreas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -961,12 +962,13 @@
             this.numericUpDownArrowUpgrades.Name = "numericUpDownArrowUpgrades";
             this.numericUpDownArrowUpgrades.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownArrowUpgrades.TabIndex = 6;
+            this.numericUpDownArrowUpgrades.ValueChanged += new System.EventHandler(this.numericUpDownArrowUpgrades_ValueChanged);
             // 
             // numericUpDownArrowsHeld
             // 
             this.numericUpDownArrowsHeld.Location = new System.Drawing.Point(176, 43);
             this.numericUpDownArrowsHeld.Maximum = new decimal(new int[] {
-            255,
+            30,
             0,
             0,
             0});
@@ -1139,12 +1141,13 @@
             this.numericUpDownBombUpgrades.Name = "numericUpDownBombUpgrades";
             this.numericUpDownBombUpgrades.Size = new System.Drawing.Size(61, 20);
             this.numericUpDownBombUpgrades.TabIndex = 1;
+            this.numericUpDownBombUpgrades.ValueChanged += new System.EventHandler(this.numericUpDownBombUpgrades_ValueChanged);
             // 
             // numericUpDownBombsHeld
             // 
             this.numericUpDownBombsHeld.Location = new System.Drawing.Point(12, 19);
             this.numericUpDownBombsHeld.Maximum = new decimal(new int[] {
-            255,
+            10,
             0,
             0,
             0});
@@ -1855,18 +1858,6 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBoxMagicBar
-            // 
-            this.pictureBoxMagicBar.InitialImage = null;
-            this.pictureBoxMagicBar.Location = new System.Drawing.Point(96, 72);
-            this.pictureBoxMagicBar.Name = "pictureBoxMagicBar";
-            this.pictureBoxMagicBar.Size = new System.Drawing.Size(16, 45);
-            this.pictureBoxMagicBar.TabIndex = 40;
-            this.pictureBoxMagicBar.TabStop = false;
-            this.pictureBoxMagicBar.Visible = false;
-            this.pictureBoxMagicBar.Click += new System.EventHandler(this.pictureBoxMagicBar_Click);
-            this.pictureBoxMagicBar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMagicBar_MouseClick);
-            // 
             // groupInventory
             // 
             this.groupInventory.Controls.Add(this.tableLayoutPanelInventory);
@@ -1906,6 +1897,18 @@
             this.pictureBoxHeartContainerPreview.TabIndex = 42;
             this.pictureBoxHeartContainerPreview.TabStop = false;
             // 
+            // pictureBoxMagicBar
+            // 
+            this.pictureBoxMagicBar.InitialImage = null;
+            this.pictureBoxMagicBar.Location = new System.Drawing.Point(96, 72);
+            this.pictureBoxMagicBar.Name = "pictureBoxMagicBar";
+            this.pictureBoxMagicBar.Size = new System.Drawing.Size(16, 45);
+            this.pictureBoxMagicBar.TabIndex = 40;
+            this.pictureBoxMagicBar.TabStop = false;
+            this.pictureBoxMagicBar.Visible = false;
+            this.pictureBoxMagicBar.Click += new System.EventHandler(this.pictureBoxMagicBar_Click);
+            this.pictureBoxMagicBar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMagicBar_MouseClick);
+            // 
             // groupBoxAreas
             // 
             this.groupBoxAreas.Controls.Add(this.textBoxDungeonKeys);
@@ -1920,12 +1923,25 @@
             this.groupBoxAreas.Text = "Area";
             this.groupBoxAreas.Visible = false;
             // 
+            // buttonResetDeaths
+            // 
+            this.buttonResetDeaths.Enabled = false;
+            this.buttonResetDeaths.Location = new System.Drawing.Point(221, 101);
+            this.buttonResetDeaths.Name = "buttonResetDeaths";
+            this.buttonResetDeaths.Size = new System.Drawing.Size(101, 23);
+            this.buttonResetDeaths.TabIndex = 47;
+            this.buttonResetDeaths.Text = "Reset Deaths";
+            this.buttonResetDeaths.UseVisualStyleBackColor = true;
+            this.buttonResetDeaths.Visible = false;
+            this.buttonResetDeaths.Click += new System.EventHandler(this.buttonResetDeaths_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(755, 465);
+            this.Controls.Add(this.buttonResetDeaths);
             this.Controls.Add(this.groupBoxAreas);
             this.Controls.Add(this.groupBoxHUD);
             this.Controls.Add(this.groupInventory);
@@ -2034,11 +2050,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBluePendant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGreenPendant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).EndInit();
             this.groupInventory.ResumeLayout(false);
             this.groupBoxHUD.ResumeLayout(false);
             this.groupBoxHUD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHeartContainerPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMagicBar)).EndInit();
             this.groupBoxAreas.ResumeLayout(false);
             this.groupBoxAreas.PerformLayout();
             this.ResumeLayout(false);
@@ -2184,6 +2200,7 @@
         private System.Windows.Forms.GroupBox groupBoxHUD;
         private System.Windows.Forms.PictureBox pictureBoxHeartContainerPreview;
         private System.Windows.Forms.GroupBox groupBoxAreas;
+        private System.Windows.Forms.Button buttonResetDeaths;
     }
 }
 

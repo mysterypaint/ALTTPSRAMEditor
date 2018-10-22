@@ -15,7 +15,12 @@ namespace ALTTPSRAMEditor
         private int heartContainers = 3;
         private int currHealth = 3;
         private int currMagic = 0;
+        private int bombsHeld = 0;
+        private int arrowsHeld = 0;
         private int currMagicUpgrade = 0;
+        private int currArrowUpgrades = 0;
+        private int currBombUpgrades = 0;
+        private int selectedBottle = 1; // The bottle that is currently selected in the inventory screen
 
         public Link(byte[] itemsAndEquipmentInput)
         {
@@ -25,6 +30,72 @@ namespace ALTTPSRAMEditor
             heartContainers = itemsAndEquipment[0x2C];
             currHealth = itemsAndEquipment[0x2D];
             currMagic = itemsAndEquipment[0x2E];
+            currBombUpgrades = itemsAndEquipment[0x30];
+            bombsHeld = itemsAndEquipment[0x3];
+            selectedBottle = itemsAndEquipment[0xF];
+
+            var _bombsMax = 10;
+            switch (currBombUpgrades)
+            {
+                default:
+                    break;
+                case 1:
+                    _bombsMax = 15;
+                    break;
+                case 2:
+                    _bombsMax = 20;
+                    break;
+                case 3:
+                    _bombsMax = 25;
+                    break;
+                case 4:
+                    _bombsMax = 30;
+                    break;
+                case 5:
+                    _bombsMax = 35;
+                    break;
+                case 6:
+                    _bombsMax = 40;
+                    break;
+                case 7:
+                    _bombsMax = 50;
+                    break;
+            }
+            if (bombsHeld > _bombsMax)
+                bombsHeld = _bombsMax;
+
+            currArrowUpgrades = itemsAndEquipment[0x31];
+            arrowsHeld = itemsAndEquipment[0x37];
+
+            var _arrowsMax = 30;
+            switch (currBombUpgrades)
+            {
+                default:
+                    break;
+                case 1:
+                    _arrowsMax = 35;
+                    break;
+                case 2:
+                    _arrowsMax = 40;
+                    break;
+                case 3:
+                    _arrowsMax = 45;
+                    break;
+                case 4:
+                    _arrowsMax = 50;
+                    break;
+                case 5:
+                    _arrowsMax = 55;
+                    break;
+                case 6:
+                    _arrowsMax = 60;
+                    break;
+                case 7:
+                    _arrowsMax = 70;
+                    break;
+            }
+            if (arrowsHeld > _arrowsMax)
+                arrowsHeld = _arrowsMax;
             currMagicUpgrade = itemsAndEquipment[0x3B];
         }
 
@@ -36,6 +107,48 @@ namespace ALTTPSRAMEditor
         public byte GetAbilityFlags()
         {
             return abilityFlags;
+        }
+
+        public int GetSelectedBottle()
+        {
+            return selectedBottle;
+        }
+
+        public void SetSelectedBottle(int _val)
+        {
+            selectedBottle = _val;
+        }
+
+        public int GetHeldBombs()
+        {
+            return bombsHeld;
+        }
+
+        public int GetHeldArrows()
+        {
+            return arrowsHeld;
+        }
+
+        public int GetCurrBombUpgrades()
+        {
+            return currBombUpgrades;
+        }
+
+        public int GetCurrArrowUpgrades()
+        {
+            return currArrowUpgrades;
+        }
+
+        public void SetCurrArrowUpgrades(int _val)
+        {
+            currArrowUpgrades = _val;
+            itemsAndEquipment[0x31] = (byte) _val;
+        }
+
+        public void SetCurrBombUpgrades(int _val)
+        {
+            currBombUpgrades = _val;
+            itemsAndEquipment[0x30] = (byte)_val;
         }
 
         public void SetHasItemEquipment(int addr, byte val)
