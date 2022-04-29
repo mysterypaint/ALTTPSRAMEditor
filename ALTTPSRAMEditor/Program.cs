@@ -7,7 +7,7 @@ internal static class Program
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        var form1 = new Form1();
-        Application.Run(form1);
+        var mainForm = new MainForm();
+        Application.Run(mainForm);
     }
 }

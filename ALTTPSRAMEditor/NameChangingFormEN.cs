@@ -9,16 +9,16 @@ public partial class NameChangingFormEN : Form
     private readonly Dictionary<ushort, char> rawENChar;
     private int charPos = 0;
     private bool autoClose;
-    private readonly Form1 form1;
+    private readonly MainForm mainForm;
 
-    public NameChangingFormEN(Form1 _form1)
+    public NameChangingFormEN(MainForm _mainForm)
     {
         InitializeComponent();
-        form1 = _form1;
-        enChar = Form1.GetENChar();
-        rawENChar = Form1.GetRawENChar();
+        mainForm = _mainForm;
+        enChar = MainForm.GetENChar();
+        rawENChar = MainForm.GetRawENChar();
         autoClose = false;
-        currName = new StringBuilder(form1.GetPlayerName()[..6]);
+        currName = new StringBuilder(mainForm.GetPlayerName()[..6]);
         currNameRaw = new ushort[6];
     }
 
@@ -191,22 +191,22 @@ public partial class NameChangingFormEN : Form
 
     private void UpdatePlayerName()
     {
-        // Update Form1 with the changed player name
+        // Update MainForm with the changed player name
         // If the name is too short, fill it with spaces
         for (var k = currName.Length; k < 6; k++)
         {
             currName[k] = ' ';
         }
 
-        form1.SetPlayerName(currName.ToString());
+        mainForm.SetPlayerName(currName.ToString());
         var j = 0;
         for (var i = 0; i < currName.Length; i++)
         {
             currNameRaw[i] = rawENChar.FirstOrDefault(x => x.Value == currName[i]).Key;
             j++;
         }
-        form1.SetPlayerNameRaw(currNameRaw);
-        form1.UpdatePlayerName();
+        mainForm.SetPlayerNameRaw(currNameRaw);
+        mainForm.UpdatePlayerName();
     }
 
     private void kbdENMoveLeft_Click(object sender, EventArgs e)
@@ -380,20 +380,21 @@ public partial class NameChangingFormEN : Form
 
     private void NameChangingFormEN_FormClosing(object sender, FormClosingEventArgs e)
     {
-        if (!autoClose)
+        if (autoClose)
         {
-            var dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
-            if (dialogSave == DialogResult.Yes)
+            return;
+        }
+        var dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
+        if (dialogSave == DialogResult.Yes)
+        {
+            UpdatePlayerName();
+        }
+        else
+        {
+            var dialogCloseConfirm = MessageBox.Show("Continue editing?", "Closing Name Changing Form (USA/EUR)", MessageBoxButtons.YesNo);
+            if (dialogCloseConfirm == DialogResult.Yes)
             {
-                UpdatePlayerName();
-            }
-            else
-            {
-                var dialogCloseConfirm = MessageBox.Show("Continue editing?", "Closing Name Changing Form (USA/EUR)", MessageBoxButtons.YesNo);
-                if (dialogCloseConfirm == DialogResult.Yes)
-                {
-                    e.Cancel = true;
-                }
+                e.Cancel = true;
             }
         }
     }

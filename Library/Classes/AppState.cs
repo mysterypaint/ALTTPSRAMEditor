@@ -8,5 +8,5 @@ public static class AppState
     public static Dictionary<char, int> enChar = new();
     public static Dictionary<char, int> jpChar = new();
 
-    private static readonly Data dataHandler = new Data(enChar, jpChar, rawENChar, rawJPChar);
+    private static readonly Data dataHandler = new(enChar, jpChar, rawENChar, rawJPChar);
 }
