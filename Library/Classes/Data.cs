@@ -7,12 +7,24 @@ public class Data
         // Define Font lookup tables
         // English
         enChar.Add(' ', 0);
-        for (var i = 65; i <= 90; i++) enChar.Add((char)i, i - 64);
-        for (var i = 97; i <= 122; i++) enChar.Add((char)i, i - 69);
+        for (var i = 65; i <= 90; i++)
+        {
+            enChar.Add((char)i, i - 64);
+        }
+
+        for (var i = 97; i <= 122; i++)
+        {
+            enChar.Add((char)i, i - 69);
+        }
+
         enChar.Add('-', 54);
         enChar.Add('.', 55);
         enChar.Add(',', 56);
-        for (var i = 48; i <= 57; i++) enChar.Add((char)i, i + 11);
+        for (var i = 48; i <= 57; i++)
+        {
+            enChar.Add((char)i, i + 11);
+        }
+
         enChar.Add('!', 69);
         enChar.Add('?', 70);
         enChar.Add('(', 71);

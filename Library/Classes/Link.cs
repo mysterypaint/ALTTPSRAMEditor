@@ -56,7 +56,9 @@ public class Link
                 break;
         }
         if (bombsHeld > _bombsMax)
+        {
             bombsHeld = _bombsMax;
+        }
 
         currArrowUpgrades = itemsAndEquipment[0x31];
         arrowsHeld = itemsAndEquipment[0x37];
@@ -89,7 +91,10 @@ public class Link
                 break;
         }
         if (arrowsHeld > _arrowsMax)
+        {
             arrowsHeld = _arrowsMax;
+        }
+
         currMagicUpgrade = itemsAndEquipment[0x3B];
     }
 

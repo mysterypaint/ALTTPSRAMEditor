@@ -25,12 +25,9 @@ public class SaveSlot
         playerNameRaw = new ushort[6];
 
         // Determine which region this save comes from
-        if (data[0x3E5] == 0xAA && data[0x3E6] == 0x55)
-            saveRegion = Enums.SaveRegion.USA;
-        else if (data[0x3E1] == 0xAA && data[0x3E2] == 0x55)
-            saveRegion = Enums.SaveRegion.JPN;
-        else
-            saveRegion = Enums.SaveRegion.EUR;
+        saveRegion = data[0x3E5] == 0xAA && data[0x3E6] == 0x55
+            ? Enums.SaveRegion.USA
+            : data[0x3E1] == 0xAA && data[0x3E2] == 0x55 ? Enums.SaveRegion.JPN : Enums.SaveRegion.EUR;
 
         // Set death/live/save counter values
         deathCounter = 0;
@@ -58,10 +55,9 @@ public class SaveSlot
 
     public void ResetFileDeaths(bool showOnFileSelect)
     {
-        var _deathCounterAddr = 0x0;
-        var _liveSaveCounterAddr = 0x0;
-        var _deathTotalsTableAddr = 0x0;
-
+        int _deathCounterAddr;
+        int _liveSaveCounterAddr;
+        int _deathTotalsTableAddr;
         switch (saveRegion)
         {
             default:
@@ -101,7 +97,9 @@ public class SaveSlot
         }
 
         if (isValid)
+        {
             ValidateSave();
+        }
     }
 
     public void CommitPlayerName()
@@ -142,7 +140,10 @@ public class SaveSlot
     private void getRawPlayerName()
     {
         if (!SaveIsValid())
+        {
             return;
+        }
+
         var j = 0;
 
         switch (saveRegion)
@@ -165,10 +166,10 @@ public class SaveSlot
                 }
                 break;
         }
-        convertPlayerNameRawToString(playerNameRaw);
+        ConvertPlayerNameRawToString(playerNameRaw);
     }
 
-    private void convertPlayerNameRawToString(ushort[] playerNameRaw)
+    private void ConvertPlayerNameRawToString(ushort[] playerNameRaw)
     {
         var j = 1; // Char counter
         foreach (var i in playerNameRaw)
@@ -178,12 +179,18 @@ public class SaveSlot
                 case Enums.SaveRegion.EUR:
                 case Enums.SaveRegion.USA:
                     if (j > 6)
+                    {
                         break;
+                    }
+
                     playerName += AppState.rawENChar[i];
                     break;
                 case Enums.SaveRegion.JPN:
                     if (j > 4)
+                    {
                         break;
+                    }
+
                     playerName += AppState.rawJPChar[i];
                     break;
             }
@@ -247,12 +254,18 @@ public class SaveSlot
         {
             case Enums.SaveRegion.EUR:
             case Enums.SaveRegion.USA:
-                if ((data[0x3E5] != 0xAA) || (data[0x3E6] != 0x55))
+                if (data[0x3E5] != 0xAA || data[0x3E6] != 0x55)
+                {
                     return false;
+                }
+
                 break;
             case Enums.SaveRegion.JPN:
-                if ((data[0x3E1] != 0xAA) || (data[0x3E2] != 0x55))
+                if (data[0x3E1] != 0xAA || data[0x3E2] != 0x55)
+                {
                     return false;
+                }
+
                 break;
         }
 
@@ -298,21 +311,36 @@ public class SaveSlot
             default:
             case Constants.greenPendant:
                 if (GetBit(pendants, Constants.greenPendant))
+                {
                     pendants &= 0xFB; // Turn it off if we already have the pendant
+                }
                 else
+                {
                     pendants |= 0x4; // Turn it on if we don't already have the pendant
+                }
+
                 break;
             case Constants.bluePendant:
                 if (GetBit(pendants, Constants.bluePendant))
+                {
                     pendants &= 0xFD; // Turn it off if we already have the pendant
+                }
                 else
+                {
                     pendants |= 0x2; // Turn it on if we don't already have the pendant
+                }
+
                 break;
             case Constants.redPendant:
                 if (GetBit(pendants, Constants.redPendant))
+                {
                     pendants &= 0xFE; // Turn it off if we already have the pendant
+                }
                 else
+                {
                     pendants |= 0x1; // Turn it on if we don't already have the pendant
+                }
+
                 break;
         }
 
@@ -327,45 +355,80 @@ public class SaveSlot
             default:
             case Constants.crystalPoD:
                 if (GetBit(crystals, Constants.crystalPoD))
+                {
                     crystals &= 0xFD; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x2; // Turn it on if we don't already have the crystal
+                }
+
                 break;
             case Constants.crystalSP:
                 if (GetBit(crystals, Constants.crystalSP))
+                {
                     crystals &= 0xEF; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x10; // Turn it on if we don't already have the crystal
+                }
+
                 break;
             case Constants.crystalSW:
                 if (GetBit(crystals, Constants.crystalSW))
+                {
                     crystals &= 0xBF; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x40; // Turn it on if we don't already have the crystal
+                }
+
                 break;
             case Constants.crystalTT:
                 if (GetBit(crystals, Constants.crystalTT))
+                {
                     crystals &= 0xDF; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x20; // Turn it on if we don't already have the crystal
+                }
+
                 break;
             case Constants.crystalIP:
                 if (GetBit(crystals, Constants.crystalIP))
+                {
                     crystals &= 0xFB; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x4; // Turn it on if we don't already have the crystal
+                }
+
                 break;
             case Constants.crystalMM:
                 if (GetBit(crystals, Constants.crystalMM))
+                {
                     crystals &= 0xFE; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x1; // Turn it on if we don't already have the crystal
+                }
+
                 break;
             case Constants.crystalTR:
                 if (GetBit(crystals, Constants.crystalTR))
+                {
                     crystals &= 0xF7; // Turn it off if we already have the crystal
+                }
                 else
+                {
                     crystals |= 0x8; // Turn it on if we don't already have the crystal
+                }
+
                 break;
         }
 

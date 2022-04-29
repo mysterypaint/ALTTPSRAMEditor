@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Library.Classes;
+﻿namespace Library.Classes;
 
 [Serializable]
 public class SRAM
@@ -46,25 +44,15 @@ public class SRAM
         GenerateSaveSlot(slot3m, slot3m + 0x500, 6);
     }
 
-    public SaveSlot GetSaveSlot(int slot)
+    public static SaveSlot GetSaveSlot(int slot) => slot switch
     {
-        switch (slot)
-        {
-            default:
-            case 1:
-                return savslot1;
-            case 2:
-                return savslot2;
-            case 3:
-                return savslot3;
-            case 4:
-                return savslot1m;
-            case 5:
-                return savslot2m;
-            case 6:
-                return savslot3m;
-        }
-    }
+        2 => savslot2,
+        3 => savslot3,
+        4 => savslot1m,
+        5 => savslot2m,
+        6 => savslot3m,
+        _ => savslot1,
+    };
 
     private void GenerateSaveSlot(int start, int end, int thisSlot)
     {
@@ -107,7 +95,10 @@ public class SRAM
 
 
         if (savslot1.GetIsValid())
+        {
             savslot1.ValidateSave();
+        }
+
         var currData = savslot1.GetData();
         Array.Copy(currData, 0, outsav, slot1, 0x500);
         Array.Copy(currData, 0, outsav, slot1m, 0x500); // Write the actual save slots to the mirror slots, just in case
@@ -115,7 +106,10 @@ public class SRAM
         savslot2.UpdatePlayer();
         savslot2.CommitPlayerName();
         if (savslot2.GetIsValid())
+        {
             savslot2.ValidateSave();
+        }
+
         currData = savslot2.GetData();
         Array.Copy(currData, 0, outsav, slot2, 0x500);
         Array.Copy(currData, 0, outsav, slot2m, 0x500); // Write the actual save slots to the mirror slots, just in case
@@ -123,7 +117,10 @@ public class SRAM
         savslot3.UpdatePlayer();
         savslot3.CommitPlayerName();
         if (savslot3.GetIsValid())
+        {
             savslot3.ValidateSave();
+        }
+
         currData = savslot3.GetData();
         Array.Copy(currData, 0, outsav, slot3, 0x500);
         Array.Copy(currData, 0, outsav, slot3m, 0x500); // Write the actual save slots to the mirror slots, just in case
@@ -139,11 +136,14 @@ public class SRAM
     {
         var hex = new StringBuilder(ba.Length * 2);
         foreach (var b in ba)
+        {
             hex.AppendFormat("{0:x2}", b);
+        }
+
         return hex.ToString();
     }
 
-    public SaveSlot CreateFile(int fileSlot, Enums.SaveRegion _saveRegion)
+    public static SaveSlot CreateFile(int fileSlot, Enums.SaveRegion _saveRegion)
     {
         // Create a clean save file to use, call it "Link" or "LINK" depending on region.
         var _new_save = new byte[0x500];
@@ -189,7 +189,7 @@ public class SRAM
                 break;
         }
 
-        SaveSlot savslot = null;
+        SaveSlot savslot;
         switch (fileSlot)
         {
             default:
@@ -212,14 +212,16 @@ public class SRAM
         return savslot;
     }
 
-    public void CopyFile(int fileSlot)
+    public static void CopyFile(int fileSlot)
     {
         switch (fileSlot)
         {
             default:
             case 1:
                 if (savslot1.SaveIsValid())
+                {
                     savslotTemp = savslot1.Clone();
+                }
                 else
                 {
                     //System.Windows.Forms.MessageBox.Show("Save slot 1 is empty or corrupted. Copying from Mirror Data instead.");
@@ -228,7 +230,9 @@ public class SRAM
                 break;
             case 2:
                 if (savslot2.SaveIsValid())
+                {
                     savslotTemp = savslot2.Clone();
+                }
                 else
                 {
                     //System.Windows.Forms.MessageBox.Show("Save slot 2 is empty or corrupted. Copying from Mirror Data instead.");
@@ -237,7 +241,9 @@ public class SRAM
                 break;
             case 3:
                 if (savslot3.SaveIsValid())
+                {
                     savslotTemp = savslot3.Clone();
+                }
                 else
                 {
                     //System.Windows.Forms.MessageBox.Show("Save slot 3 is empty or corrupted. Copying from Mirror Data instead.");
@@ -247,7 +253,7 @@ public class SRAM
         }
     }
 
-    public SaveSlot WriteFile(int fileSlot)
+    public static SaveSlot WriteFile(int fileSlot)
     {
         switch (fileSlot)
         {
@@ -273,7 +279,7 @@ public class SRAM
         }
     }
 
-    public void EraseFile(int fileSlot)
+    public static void EraseFile(int fileSlot)
     {
         switch (fileSlot)
         {
