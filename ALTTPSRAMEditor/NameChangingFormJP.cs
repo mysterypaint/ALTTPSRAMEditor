@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ALTTPSRAMEditor
@@ -14,13 +11,13 @@ namespace ALTTPSRAMEditor
     public partial class NameChangingFormJP : Form
     {
         private Bitmap jp_fnt;
-        private StringBuilder currName;
-        private UInt16[] currNameRaw;
-        private Dictionary<char, int> jpChar;
-        private Dictionary<UInt16, char> rawJPChar;
+        private readonly StringBuilder currName;
+        private readonly ushort[] currNameRaw;
+        private readonly Dictionary<char, int> jpChar;
+        private readonly Dictionary<ushort, char> rawJPChar;
         private int charPos = 0;
         private bool autoClose;
-        Form1 form1;
+        private readonly Form1 form1;
 
         public NameChangingFormJP(Form1 _form1)
         {
@@ -30,7 +27,7 @@ namespace ALTTPSRAMEditor
             rawJPChar = form1.GetRawJPChar();
             autoClose = false;
             currName = new StringBuilder(form1.GetPlayerName().Substring(0, 4));
-            currNameRaw = new UInt16[6];
+            currNameRaw = new ushort[6];
         }
 
         private void NameChangingFormJP_KeyDown(object sender, KeyEventArgs e)
@@ -216,7 +213,7 @@ namespace ALTTPSRAMEditor
             kbdKatakanaCharGu.Image = GetCharTexture(jp_fnt, 147, false);
             kbdKatakanaCharGe.Image = GetCharTexture(jp_fnt, 148, false);
             kbdKatakanaCharGo.Image = GetCharTexture(jp_fnt, 149, false);
-            
+
             kbdKatakanaCharZa.Image = GetCharTexture(jp_fnt, 150, false);
             kbdKatakanaCharJi.Image = GetCharTexture(jp_fnt, 151, false);
             kbdKatakanaCharZu.Image = GetCharTexture(jp_fnt, 152, false);
@@ -251,7 +248,7 @@ namespace ALTTPSRAMEditor
             kbdKatakanaCharSmallYu.Image = GetCharTexture(jp_fnt, 176, false);
             kbdKatakanaCharSmallYo.Image = GetCharTexture(jp_fnt, 177, false);
             kbdKatakanaCharSmallTsu.Image = GetCharTexture(jp_fnt, 179, false);
-            
+
             // Romaji
 
             kbdRomajiCharA.Image = GetCharTexture(jp_fnt, 180, false);
@@ -301,15 +298,15 @@ namespace ALTTPSRAMEditor
 
         private static Image GetCharTexture(Bitmap jp_fnt, int tileID, bool hugLeft)
         {
-            int tileset_width = 20; // Japanese Font
-            int tile_w = 8;
-            int tile_h = 16;
-            int x = (tileID % tileset_width) * tile_w;
-            int y = (tileID / tileset_width) * tile_h;
-            int width = 8;
-            int height = 16;
-            int scale = 2;
-            Rectangle crop = new Rectangle(x, y, width * scale, height * scale);
+            var tileset_width = 20; // Japanese Font
+            var tile_w = 8;
+            var tile_h = 16;
+            var x = (tileID % tileset_width) * tile_w;
+            var y = (tileID / tileset_width) * tile_h;
+            var width = 8;
+            var height = 16;
+            var scale = 2;
+            var crop = new Rectangle(x, y, width * scale, height * scale);
             var tex = new Bitmap(crop.Width, crop.Height);
 
             using (var gr = Graphics.FromImage(tex))
@@ -350,12 +347,12 @@ namespace ALTTPSRAMEditor
         {
             // Update Form1 with the changed player name
             // If the name is too short, fill it with spaces
-            for (int k = currName.Length; k < 4; k++)
+            for (var k = currName.Length; k < 4; k++)
                 currName[k] = '　';
 
             form1.SetPlayerName(currName.ToString());
-            int j = 0;
-            for (int i = 0; i < currName.Length; i++)
+            var j = 0;
+            for (var i = 0; i < currName.Length; i++)
             {
                 currNameRaw[i] = rawJPChar.FirstOrDefault(x => x.Value == currName[i]).Key;
                 j++;
@@ -368,14 +365,14 @@ namespace ALTTPSRAMEditor
         {
             if (!autoClose)
             {
-                DialogResult dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
+                var dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
                 if (dialogSave == DialogResult.Yes)
                 {
                     UpdatePlayerName();
                 }
                 else
                 {
-                    DialogResult dialogCloseConfirm = MessageBox.Show("Continue editing?", "Closing Name Changing Form (JPN)", MessageBoxButtons.YesNo);
+                    var dialogCloseConfirm = MessageBox.Show("Continue editing?", "Closing Name Changing Form (JPN)", MessageBoxButtons.YesNo);
                     if (dialogCloseConfirm == DialogResult.Yes)
                         e.Cancel = true;
                 }
@@ -405,959 +402,386 @@ namespace ALTTPSRAMEditor
             Close();
         }
 
-        private void kbdHiraganaCharA_Click(object sender, EventArgs e)
-        {
-            TypeChar('あ');
-        }
-
-        private void kbdHiraganaCharI_Click(object sender, EventArgs e)
-        {
-            TypeChar('い');
-        }
-
-        private void kbdHiraganaCharU_Click(object sender, EventArgs e)
-        {
-            TypeChar('う');
-        }
-
-        private void kbdHiraganaCharE_Click(object sender, EventArgs e)
-        {
-            TypeChar('え');
-        }
-
-        private void kbdHiraganaCharO_Click(object sender, EventArgs e)
-        {
-            TypeChar('お');
-        }
-
-        private void kbdHiraganaCharKa_Click(object sender, EventArgs e)
-        {
-            TypeChar('か');
-        }
-
-        private void kbdHiraganaCharKi_Click(object sender, EventArgs e)
-        {
-            TypeChar('き');
-        }
-
-        private void kbdHiraganaCharKu_Click(object sender, EventArgs e)
-        {
-            TypeChar('く');
-        }
-
-        private void kbdHiraganaCharKe_Click(object sender, EventArgs e)
-        {
-            TypeChar('け');
-        }
-
-        private void kbdHiraganaCharKo_Click(object sender, EventArgs e)
-        {
-            TypeChar('こ');
-        }
-
-        private void kbdHiraganaCharSa_Click(object sender, EventArgs e)
-        {
-            TypeChar('さ');
-        }
-
-        private void kbdHiraganaCharShi_Click(object sender, EventArgs e)
-        {
-            TypeChar('し');
-        }
-
-        private void kbdHiraganaCharSu_Click(object sender, EventArgs e)
-        {
-            TypeChar('す');
-        }
-
-        private void kbdHiraganaCharSe_Click(object sender, EventArgs e)
-        {
-            TypeChar('せ');
-        }
-
-        private void kbdHiraganaCharSo_Click(object sender, EventArgs e)
-        {
-            TypeChar('そ');
-        }
-
-        private void kbdHiraganaCharTa_Click(object sender, EventArgs e)
-        {
-            TypeChar('た');
-        }
-
-        private void kbdHiraganaCharChi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ち');
-        }
-
-        private void kbdHiraganaCharTsu_Click(object sender, EventArgs e)
-        {
-            TypeChar('つ');
-        }
-
-        private void kbdHiraganaCharTe_Click(object sender, EventArgs e)
-        {
-            TypeChar('て');
-        }
-
-        private void kbdHiraganaCharTo_Click(object sender, EventArgs e)
-        {
-            TypeChar('と');
-        }
-
-        private void kbdHiraganaCharNa_Click(object sender, EventArgs e)
-        {
-            TypeChar('な');
-        }
-
-        private void kbdHiraganaCharNi_Click(object sender, EventArgs e)
-        {
-            TypeChar('に');
-        }
-
-        private void kbdHiraganaCharNu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぬ');
-        }
-
-        private void kbdHiraganaCharNe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ね');
-        }
-
-        private void kbdHiraganaCharNo_Click(object sender, EventArgs e)
-        {
-            TypeChar('の');
-        }
-
-        private void kbdHiraganaCharHa_Click(object sender, EventArgs e)
-        {
-            TypeChar('は');
-        }
-
-        private void kbdHiraganaCharHi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ひ');
-        }
-
-        private void kbdHiraganaCharFu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ふ');
-        }
-
-        private void kbdHiraganaCharHe_Click(object sender, EventArgs e)
-        {
-            TypeChar('へ');
-        }
-
-        private void kbdHiraganaCharHo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ほ');
-        }
-
-        private void kbdHiraganaCharMa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ま');
-        }
-
-        private void kbdHiraganaCharMi_Click(object sender, EventArgs e)
-        {
-            TypeChar('み');
-        }
-
-        private void kbdHiraganaCharMu_Click(object sender, EventArgs e)
-        {
-            TypeChar('む');
-        }
-
-        private void kbdHiraganaCharMe_Click(object sender, EventArgs e)
-        {
-            TypeChar('め');
-        }
-
-        private void kbdHiraganaCharMo_Click(object sender, EventArgs e)
-        {
-            TypeChar('も');
-        }
-
-        private void kbdHiraganaCharYa_Click(object sender, EventArgs e)
-        {
-            TypeChar('や');
-        }
-
-        private void kbdHiraganaCharYu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゆ');
-        }
-
-        private void kbdHiraganaCharYo_Click(object sender, EventArgs e)
-        {
-            TypeChar('よ');
-        }
-
-        private void kbdHiraganaCharRa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ら');
-        }
-
-        private void kbdHiraganaCharRi_Click(object sender, EventArgs e)
-        {
-            TypeChar('り');
-        }
-
-        private void kbdHiraganaCharRu_Click(object sender, EventArgs e)
-        {
-            TypeChar('る');
-        }
-
-        private void kbdHiraganaCharRe_Click(object sender, EventArgs e)
-        {
-            TypeChar('れ');
-        }
-
-        private void kbdHiraganaCharRo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ろ');
-        }
-
-        private void kbdHiraganaCharWa_Click(object sender, EventArgs e)
-        {
-            TypeChar('わ');
-        }
-
-        private void kbdHiraganaCharWo_Click(object sender, EventArgs e)
-        {
-            TypeChar('を');
-        }
-
-        private void kbdHiraganaCharN_Click(object sender, EventArgs e)
-        {
-            TypeChar('ん');
-        }
-
-        private void kbdHiraganaCharHyphen_Click(object sender, EventArgs e)
-        {
-            TypeChar('ー');
-        }
-
-        private void kbdHiraganaCharGa_Click(object sender, EventArgs e)
-        {
-            TypeChar('が');
-        }
-
-        private void kbdHiraganaCharGi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぎ');
-        }
-
-        private void kbdHiraganaCharGu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぐ');
-        }
-
-        private void kbdHiraganaCharGe_Click(object sender, EventArgs e)
-        {
-            TypeChar('げ');
-        }
-
-        private void kbdHiraganaCharGo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ご');
-        }
-
-        private void kbdHiraganaCharZa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ざ');
-        }
-
-        private void kbdHiraganaCharJi_Click(object sender, EventArgs e)
-        {
-            TypeChar('じ');
-        }
-
-        private void kbdHiraganaCharZu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ず');
-        }
-
-        private void kbdHiraganaCharZe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぜ');
-        }
-
-        private void kbdHiraganaCharZo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぞ');
-        }
-
-        private void kbdHiraganaCharDa_Click(object sender, EventArgs e)
-        {
-            TypeChar('だ');
-        }
-
-        private void kbdHiraganaCharDi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぢ');
-        }
-
-        private void kbdHiraganaCharDu_Click(object sender, EventArgs e)
-        {
-            TypeChar('づ');
-        }
-
-        private void kbdHiraganaCharDe_Click(object sender, EventArgs e)
-        {
-            TypeChar('で');
-        }
-
-        private void kbdHiraganaCharDo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ど');
-        }
-
-        private void kbdHiraganaCharBa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ば');
-        }
-
-        private void kbdHiraganaCharBi_Click(object sender, EventArgs e)
-        {
-            TypeChar('び');
-        }
-
-        private void kbdHiraganaCharBu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぶ');
-        }
-
-        private void kbdHiraganaCharBe_Click(object sender, EventArgs e)
-        {
-            TypeChar('べ');
-        }
-
-        private void kbdHiraganaCharBo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぼ');
-        }
-
-        private void kbdHiraganaCharPa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぱ');
-        }
-
-        private void kbdHiraganaCharPi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぴ');
-        }
-
-        private void kbdHiraganaCharPu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぷ');
-        }
-
-        private void kbdHiraganaCharPe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぺ');
-        }
-
-        private void kbdHiraganaCharPo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぽ');
-        }
-
-        private void kbdHiraganaCharSmallA_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぁ');
-        }
-
-        private void kbdHiraganaCharSmallI_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぃ');
-        }
-
-        private void kbdHiraganaCharSmallU_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぅ');
-        }
-
-        private void kbdHiraganaCharSmallE_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぇ');
-        }
-
-        private void kbdHiraganaCharSmallO_Click(object sender, EventArgs e)
-        {
-            TypeChar('ぉ');
-        }
-
-        private void kbdHiraganaCharSmallYa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゃ');
-        }
-
-        private void kbdHiraganaCharSmallYu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゅ');
-        }
-
-        private void kbdHiraganaCharSmallYo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ょ');
-        }
-
-        private void kbdHiraganaCharSmallTsu_Click(object sender, EventArgs e)
-        {
-            TypeChar('っ');
-        }
-
-        private void kbdKatakanaCharA_Click(object sender, EventArgs e)
-        {
-            TypeChar('ア');
-        }
-
-        private void kbdKatakanaCharI_Click(object sender, EventArgs e)
-        {
-            TypeChar('イ');
-        }
-
-        private void kbdKatakanaCharU_Click(object sender, EventArgs e)
-        {
-            TypeChar('ウ');
-        }
-
-        private void kbdKatakanaCharE_Click(object sender, EventArgs e)
-        {
-            TypeChar('エ');
-        }
-
-        private void kbdKatakanaCharO_Click(object sender, EventArgs e)
-        {
-            TypeChar('オ');
-        }
-
-        private void kbdKatakanaCharKa_Click(object sender, EventArgs e)
-        {
-            TypeChar('カ');
-        }
-
-        private void kbdKatakanaCharKi_Click(object sender, EventArgs e)
-        {
-            TypeChar('キ');
-        }
-
-        private void kbdKatakanaCharKu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ク');
-        }
-
-        private void kbdKatakanaCharKe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ケ');
-        }
-
-        private void kbdKatakanaCharKo_Click(object sender, EventArgs e)
-        {
-            TypeChar('コ');
-        }
-
-        private void kbdKatakanaCharSa_Click(object sender, EventArgs e)
-        {
-            TypeChar('サ');
-        }
-
-        private void kbdKatakanaCharShi_Click(object sender, EventArgs e)
-        {
-            TypeChar('シ');
-        }
-
-        private void kbdKatakanaCharSu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ス');
-        }
-
-        private void kbdKatakanaCharSe_Click(object sender, EventArgs e)
-        {
-            TypeChar('セ');
-        }
-
-        private void kbdKatakanaCharSo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ソ');
-        }
-
-        private void kbdKatakanaCharTa_Click(object sender, EventArgs e)
-        {
-            TypeChar('タ');
-        }
-
-        private void kbdKatakanaCharChi_Click(object sender, EventArgs e)
-        {
-            TypeChar('チ');
-        }
-
-        private void kbdKatakanaCharTsu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ツ');
-        }
-
-        private void kbdKatakanaCharTe_Click(object sender, EventArgs e)
-        {
-            TypeChar('テ');
-        }
-
-        private void kbdKatakanaCharTo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ト');
-        }
-
-        private void kbdKatakanaCharNa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ナ');
-        }
-
-        private void kbdKatakanaCharNi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ニ');
-        }
-
-        private void kbdKatakanaCharNu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヌ');
-        }
-
-        private void kbdKatakanaCharNe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ネ');
-        }
-
-        private void kbdKatakanaCharNo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ノ');
-        }
-
-        private void kbdKatakanaCharHa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ハ');
-        }
-
-        private void kbdKatakanaCharHi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヒ');
-        }
-
-        private void kbdKatakanaCharFu_Click(object sender, EventArgs e)
-        {
-            TypeChar('フ');
-        }
-
-        private void kbdKatakanaCharHe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヘ');
-        }
-
-        private void kbdKatakanaCharHo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ホ');
-        }
-
-        private void kbdKatakanaCharMa_Click(object sender, EventArgs e)
-        {
-            TypeChar('マ');
-        }
-
-        private void kbdKatakanaCharMi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ミ');
-        }
-
-        private void kbdKatakanaCharMu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ム');
-        }
-
-        private void kbdKatakanaCharMe_Click(object sender, EventArgs e)
-        {
-            TypeChar('メ');
-        }
-
-        private void kbdKatakanaCharMo_Click(object sender, EventArgs e)
-        {
-            TypeChar('モ');
-        }
-
-        private void kbdKatakanaCharYa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヤ');
-        }
-
-        private void kbdKatakanaCharYu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ユ');
-        }
-
-        private void kbdKatakanaCharYo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヨ');
-        }
-
-        private void kbdKatakanaCharRa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ラ');
-        }
-
-        private void kbdKatakanaCharRi_Click(object sender, EventArgs e)
-        {
-            TypeChar('リ');
-        }
-
-        private void kbdKatakanaCharRu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ル');
-        }
-
-        private void kbdKatakanaCharRe_Click(object sender, EventArgs e)
-        {
-            TypeChar('レ');
-        }
-
-        private void kbdKatakanaCharRo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ロ');
-        }
-
-        private void kbdKatakanaCharWa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ワ');
-        }
-
-        private void kbdKatakanaCharWo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヲ');
-        }
-
-        private void kbdKatakanaCharN_Click(object sender, EventArgs e)
-        {
-            TypeChar('ン');
-        }
-
-        private void kbdKatakanaCharHyphen_Click(object sender, EventArgs e)
-        {
-            TypeChar('ー');
-        }
-
-        private void kbdKatakanaCharGa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ガ');
-        }
-
-        private void kbdKatakanaCharGi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ギ');
-        }
-
-        private void kbdKatakanaCharGu_Click(object sender, EventArgs e)
-        {
-            TypeChar('グ');
-        }
-
-        private void kbdKatakanaCharGe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゲ');
-        }
-
-        private void kbdKatakanaCharGo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゴ');
-        }
-
-        private void kbdKatakanaCharZa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ザ');
-        }
-
-        private void kbdKatakanaCharJi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ジ');
-        }
-
-        private void kbdKatakanaCharZu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ズ');
-        }
-
-        private void kbdKatakanaCharZe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゼ');
-        }
-
-        private void kbdKatakanaCharZo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゾ');
-        }
-
-        private void kbdKatakanaCharDa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ダ');
-        }
-
-        private void kbdKatakanaCharDi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヂ');
-        }
-
-        private void kbdKatakanaCharDu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ヅ');
-        }
-
-        private void kbdKatakanaCharDe_Click(object sender, EventArgs e)
-        {
-            TypeChar('デ');
-        }
-
-        private void kbdKatakanaCharDo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ド');
-        }
-
-        private void kbdKatakanaCharBa_Click(object sender, EventArgs e)
-        {
-            TypeChar('バ');
-        }
-
-        private void kbdKatakanaCharBi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ビ');
-        }
-
-        private void kbdKatakanaCharBu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ブ');
-        }
-
-        private void kbdKatakanaCharBe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ベ');
-        }
-
-        private void kbdKatakanaCharBo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ボ');
-        }
-
-        private void kbdKatakanaCharPa_Click(object sender, EventArgs e)
-        {
-            TypeChar('パ');
-        }
-
-        private void kbdKatakanaCharPi_Click(object sender, EventArgs e)
-        {
-            TypeChar('ピ');
-        }
-
-        private void kbdKatakanaCharPu_Click(object sender, EventArgs e)
-        {
-            TypeChar('プ');
-        }
-
-        private void kbdKatakanaCharPe_Click(object sender, EventArgs e)
-        {
-            TypeChar('ペ');
-        }
-
-        private void kbdKatakanaCharPo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ポ');
-        }
-
-        private void kbdKatakanaCharSmallA_Click(object sender, EventArgs e)
-        {
-            TypeChar('ァ');
-        }
-
-        private void kbdKatakanaCharSmallI_Click(object sender, EventArgs e)
-        {
-            TypeChar('ィ');
-        }
-
-        private void kbdKatakanaCharSmallU_Click(object sender, EventArgs e)
-        {
-            TypeChar('ゥ');
-        }
-
-        private void kbdKatakanaCharSmallE_Click(object sender, EventArgs e)
-        {
-            TypeChar('ェ');
-        }
-
-        private void kbdKatakanaCharSmallO_Click(object sender, EventArgs e)
-        {
-            TypeChar('ォ');
-        }
-
-        private void kbdKatakanaCharSmallYa_Click(object sender, EventArgs e)
-        {
-            TypeChar('ャ');
-        }
-
-        private void kbdKatakanaCharSmallYu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ュ');
-        }
-
-        private void kbdKatakanaCharSmallYo_Click(object sender, EventArgs e)
-        {
-            TypeChar('ョ');
-        }
-
-        private void kbdKatakanaCharSmallTsu_Click(object sender, EventArgs e)
-        {
-            TypeChar('ッ');
-        }
-
-        private void kbdRomajiCharA_Click(object sender, EventArgs e)
-        {
-            TypeChar('A');
-        }
-
-        private void kbdRomajiCharB_Click(object sender, EventArgs e)
-        {
-            TypeChar('B');
-        }
-
-        private void kbdRomajiCharC_Click(object sender, EventArgs e)
-        {
-            TypeChar('C');
-        }
-
-        private void kbdRomajiCharD_Click(object sender, EventArgs e)
-        {
-            TypeChar('D');
-        }
-
-        private void kbdRomajiCharE_Click(object sender, EventArgs e)
-        {
-            TypeChar('E');
-        }
-
-        private void kbdRomajiCharF_Click(object sender, EventArgs e)
-        {
-            TypeChar('F');
-        }
-
-        private void kbdRomajiCharG_Click(object sender, EventArgs e)
-        {
-            TypeChar('G');
-        }
-
-        private void kbdRomajiCharH_Click(object sender, EventArgs e)
-        {
-            TypeChar('H');
-        }
-
-        private void kbdRomajiCharI_Click(object sender, EventArgs e)
-        {
-            TypeChar('I');
-        }
-
-        private void kbdRomajiCharJ_Click(object sender, EventArgs e)
-        {
-            TypeChar('J');
-        }
-
-        private void kbdRomajiCharK_Click(object sender, EventArgs e)
-        {
-            TypeChar('K');
-        }
-
-        private void kbdRomajiCharL_Click(object sender, EventArgs e)
-        {
-            TypeChar('L');
-        }
-
-        private void kbdRomajiCharM_Click(object sender, EventArgs e)
-        {
-            TypeChar('M');
-        }
-
-        private void kbdRomajiCharN_Click(object sender, EventArgs e)
-        {
-            TypeChar('N');
-        }
-
-        private void kbdRomajiCharO_Click(object sender, EventArgs e)
-        {
-            TypeChar('O');
-        }
-
-        private void kbdRomajiCharP_Click(object sender, EventArgs e)
-        {
-            TypeChar('P');
-        }
-
-        private void kbdRomajiCharQ_Click(object sender, EventArgs e)
-        {
-            TypeChar('Q');
-        }
-
-        private void kbdRomajiCharR_Click(object sender, EventArgs e)
-        {
-            TypeChar('R');
-        }
-
-        private void kbdRomajiCharS_Click(object sender, EventArgs e)
-        {
-            TypeChar('S');
-        }
-
-        private void kbdRomajiCharT_Click(object sender, EventArgs e)
-        {
-            TypeChar('T');
-        }
-
-        private void kbdRomajiCharU_Click(object sender, EventArgs e)
-        {
-            TypeChar('U');
-        }
-
-        private void kbdRomajiCharV_Click(object sender, EventArgs e)
-        {
-            TypeChar('V');
-        }
-
-        private void kbdRomajiCharW_Click(object sender, EventArgs e)
-        {
-            TypeChar('W');
-        }
-
-        private void kbdRomajiCharX_Click(object sender, EventArgs e)
-        {
-            TypeChar('X');
-        }
-
-        private void kbdRomajiCharY_Click(object sender, EventArgs e)
-        {
-            TypeChar('Y');
-        }
-
-        private void kbdRomajiCharZ_Click(object sender, EventArgs e)
-        {
-            TypeChar('Z');
-        }
-
-        private void kbdRomajiCharHyphen_Click(object sender, EventArgs e)
-        {
-            TypeChar('ー');
-        }
-
-        private void kbdRomajiCharTilde_Click(object sender, EventArgs e)
-        {
-            TypeChar('~');
-        }
-
-        private void kbdJPSpace_Click(object sender, EventArgs e)
-        {
-            TypeChar('　');
-        }
+        private void kbdHiraganaCharA_Click(object sender, EventArgs e) => TypeChar('あ');
+
+        private void kbdHiraganaCharI_Click(object sender, EventArgs e) => TypeChar('い');
+
+        private void kbdHiraganaCharU_Click(object sender, EventArgs e) => TypeChar('う');
+
+        private void kbdHiraganaCharE_Click(object sender, EventArgs e) => TypeChar('え');
+
+        private void kbdHiraganaCharO_Click(object sender, EventArgs e) => TypeChar('お');
+
+        private void kbdHiraganaCharKa_Click(object sender, EventArgs e) => TypeChar('か');
+
+        private void kbdHiraganaCharKi_Click(object sender, EventArgs e) => TypeChar('き');
+
+        private void kbdHiraganaCharKu_Click(object sender, EventArgs e) => TypeChar('く');
+
+        private void kbdHiraganaCharKe_Click(object sender, EventArgs e) => TypeChar('け');
+
+        private void kbdHiraganaCharKo_Click(object sender, EventArgs e) => TypeChar('こ');
+
+        private void kbdHiraganaCharSa_Click(object sender, EventArgs e) => TypeChar('さ');
+
+        private void kbdHiraganaCharShi_Click(object sender, EventArgs e) => TypeChar('し');
+
+        private void kbdHiraganaCharSu_Click(object sender, EventArgs e) => TypeChar('す');
+
+        private void kbdHiraganaCharSe_Click(object sender, EventArgs e) => TypeChar('せ');
+
+        private void kbdHiraganaCharSo_Click(object sender, EventArgs e) => TypeChar('そ');
+
+        private void kbdHiraganaCharTa_Click(object sender, EventArgs e) => TypeChar('た');
+
+        private void kbdHiraganaCharChi_Click(object sender, EventArgs e) => TypeChar('ち');
+
+        private void kbdHiraganaCharTsu_Click(object sender, EventArgs e) => TypeChar('つ');
+
+        private void kbdHiraganaCharTe_Click(object sender, EventArgs e) => TypeChar('て');
+
+        private void kbdHiraganaCharTo_Click(object sender, EventArgs e) => TypeChar('と');
+
+        private void kbdHiraganaCharNa_Click(object sender, EventArgs e) => TypeChar('な');
+
+        private void kbdHiraganaCharNi_Click(object sender, EventArgs e) => TypeChar('に');
+
+        private void kbdHiraganaCharNu_Click(object sender, EventArgs e) => TypeChar('ぬ');
+
+        private void kbdHiraganaCharNe_Click(object sender, EventArgs e) => TypeChar('ね');
+
+        private void kbdHiraganaCharNo_Click(object sender, EventArgs e) => TypeChar('の');
+
+        private void kbdHiraganaCharHa_Click(object sender, EventArgs e) => TypeChar('は');
+
+        private void kbdHiraganaCharHi_Click(object sender, EventArgs e) => TypeChar('ひ');
+
+        private void kbdHiraganaCharFu_Click(object sender, EventArgs e) => TypeChar('ふ');
+
+        private void kbdHiraganaCharHe_Click(object sender, EventArgs e) => TypeChar('へ');
+
+        private void kbdHiraganaCharHo_Click(object sender, EventArgs e) => TypeChar('ほ');
+
+        private void kbdHiraganaCharMa_Click(object sender, EventArgs e) => TypeChar('ま');
+
+        private void kbdHiraganaCharMi_Click(object sender, EventArgs e) => TypeChar('み');
+
+        private void kbdHiraganaCharMu_Click(object sender, EventArgs e) => TypeChar('む');
+
+        private void kbdHiraganaCharMe_Click(object sender, EventArgs e) => TypeChar('め');
+
+        private void kbdHiraganaCharMo_Click(object sender, EventArgs e) => TypeChar('も');
+
+        private void kbdHiraganaCharYa_Click(object sender, EventArgs e) => TypeChar('や');
+
+        private void kbdHiraganaCharYu_Click(object sender, EventArgs e) => TypeChar('ゆ');
+
+        private void kbdHiraganaCharYo_Click(object sender, EventArgs e) => TypeChar('よ');
+
+        private void kbdHiraganaCharRa_Click(object sender, EventArgs e) => TypeChar('ら');
+
+        private void kbdHiraganaCharRi_Click(object sender, EventArgs e) => TypeChar('り');
+
+        private void kbdHiraganaCharRu_Click(object sender, EventArgs e) => TypeChar('る');
+
+        private void kbdHiraganaCharRe_Click(object sender, EventArgs e) => TypeChar('れ');
+
+        private void kbdHiraganaCharRo_Click(object sender, EventArgs e) => TypeChar('ろ');
+
+        private void kbdHiraganaCharWa_Click(object sender, EventArgs e) => TypeChar('わ');
+
+        private void kbdHiraganaCharWo_Click(object sender, EventArgs e) => TypeChar('を');
+
+        private void kbdHiraganaCharN_Click(object sender, EventArgs e) => TypeChar('ん');
+
+        private void kbdHiraganaCharHyphen_Click(object sender, EventArgs e) => TypeChar('ー');
+
+        private void kbdHiraganaCharGa_Click(object sender, EventArgs e) => TypeChar('が');
+
+        private void kbdHiraganaCharGi_Click(object sender, EventArgs e) => TypeChar('ぎ');
+
+        private void kbdHiraganaCharGu_Click(object sender, EventArgs e) => TypeChar('ぐ');
+
+        private void kbdHiraganaCharGe_Click(object sender, EventArgs e) => TypeChar('げ');
+
+        private void kbdHiraganaCharGo_Click(object sender, EventArgs e) => TypeChar('ご');
+
+        private void kbdHiraganaCharZa_Click(object sender, EventArgs e) => TypeChar('ざ');
+
+        private void kbdHiraganaCharJi_Click(object sender, EventArgs e) => TypeChar('じ');
+
+        private void kbdHiraganaCharZu_Click(object sender, EventArgs e) => TypeChar('ず');
+
+        private void kbdHiraganaCharZe_Click(object sender, EventArgs e) => TypeChar('ぜ');
+
+        private void kbdHiraganaCharZo_Click(object sender, EventArgs e) => TypeChar('ぞ');
+
+        private void kbdHiraganaCharDa_Click(object sender, EventArgs e) => TypeChar('だ');
+
+        private void kbdHiraganaCharDi_Click(object sender, EventArgs e) => TypeChar('ぢ');
+
+        private void kbdHiraganaCharDu_Click(object sender, EventArgs e) => TypeChar('づ');
+
+        private void kbdHiraganaCharDe_Click(object sender, EventArgs e) => TypeChar('で');
+
+        private void kbdHiraganaCharDo_Click(object sender, EventArgs e) => TypeChar('ど');
+
+        private void kbdHiraganaCharBa_Click(object sender, EventArgs e) => TypeChar('ば');
+
+        private void kbdHiraganaCharBi_Click(object sender, EventArgs e) => TypeChar('び');
+
+        private void kbdHiraganaCharBu_Click(object sender, EventArgs e) => TypeChar('ぶ');
+
+        private void kbdHiraganaCharBe_Click(object sender, EventArgs e) => TypeChar('べ');
+
+        private void kbdHiraganaCharBo_Click(object sender, EventArgs e) => TypeChar('ぼ');
+
+        private void kbdHiraganaCharPa_Click(object sender, EventArgs e) => TypeChar('ぱ');
+
+        private void kbdHiraganaCharPi_Click(object sender, EventArgs e) => TypeChar('ぴ');
+
+        private void kbdHiraganaCharPu_Click(object sender, EventArgs e) => TypeChar('ぷ');
+
+        private void kbdHiraganaCharPe_Click(object sender, EventArgs e) => TypeChar('ぺ');
+
+        private void kbdHiraganaCharPo_Click(object sender, EventArgs e) => TypeChar('ぽ');
+
+        private void kbdHiraganaCharSmallA_Click(object sender, EventArgs e) => TypeChar('ぁ');
+
+        private void kbdHiraganaCharSmallI_Click(object sender, EventArgs e) => TypeChar('ぃ');
+
+        private void kbdHiraganaCharSmallU_Click(object sender, EventArgs e) => TypeChar('ぅ');
+
+        private void kbdHiraganaCharSmallE_Click(object sender, EventArgs e) => TypeChar('ぇ');
+
+        private void kbdHiraganaCharSmallO_Click(object sender, EventArgs e) => TypeChar('ぉ');
+
+        private void kbdHiraganaCharSmallYa_Click(object sender, EventArgs e) => TypeChar('ゃ');
+
+        private void kbdHiraganaCharSmallYu_Click(object sender, EventArgs e) => TypeChar('ゅ');
+
+        private void kbdHiraganaCharSmallYo_Click(object sender, EventArgs e) => TypeChar('ょ');
+
+        private void kbdHiraganaCharSmallTsu_Click(object sender, EventArgs e) => TypeChar('っ');
+
+        private void kbdKatakanaCharA_Click(object sender, EventArgs e) => TypeChar('ア');
+
+        private void kbdKatakanaCharI_Click(object sender, EventArgs e) => TypeChar('イ');
+
+        private void kbdKatakanaCharU_Click(object sender, EventArgs e) => TypeChar('ウ');
+
+        private void kbdKatakanaCharE_Click(object sender, EventArgs e) => TypeChar('エ');
+
+        private void kbdKatakanaCharO_Click(object sender, EventArgs e) => TypeChar('オ');
+
+        private void kbdKatakanaCharKa_Click(object sender, EventArgs e) => TypeChar('カ');
+
+        private void kbdKatakanaCharKi_Click(object sender, EventArgs e) => TypeChar('キ');
+
+        private void kbdKatakanaCharKu_Click(object sender, EventArgs e) => TypeChar('ク');
+
+        private void kbdKatakanaCharKe_Click(object sender, EventArgs e) => TypeChar('ケ');
+
+        private void kbdKatakanaCharKo_Click(object sender, EventArgs e) => TypeChar('コ');
+
+        private void kbdKatakanaCharSa_Click(object sender, EventArgs e) => TypeChar('サ');
+
+        private void kbdKatakanaCharShi_Click(object sender, EventArgs e) => TypeChar('シ');
+
+        private void kbdKatakanaCharSu_Click(object sender, EventArgs e) => TypeChar('ス');
+
+        private void kbdKatakanaCharSe_Click(object sender, EventArgs e) => TypeChar('セ');
+
+        private void kbdKatakanaCharSo_Click(object sender, EventArgs e) => TypeChar('ソ');
+
+        private void kbdKatakanaCharTa_Click(object sender, EventArgs e) => TypeChar('タ');
+
+        private void kbdKatakanaCharChi_Click(object sender, EventArgs e) => TypeChar('チ');
+
+        private void kbdKatakanaCharTsu_Click(object sender, EventArgs e) => TypeChar('ツ');
+
+        private void kbdKatakanaCharTe_Click(object sender, EventArgs e) => TypeChar('テ');
+
+        private void kbdKatakanaCharTo_Click(object sender, EventArgs e) => TypeChar('ト');
+
+        private void kbdKatakanaCharNa_Click(object sender, EventArgs e) => TypeChar('ナ');
+
+        private void kbdKatakanaCharNi_Click(object sender, EventArgs e) => TypeChar('ニ');
+
+        private void kbdKatakanaCharNu_Click(object sender, EventArgs e) => TypeChar('ヌ');
+
+        private void kbdKatakanaCharNe_Click(object sender, EventArgs e) => TypeChar('ネ');
+
+        private void kbdKatakanaCharNo_Click(object sender, EventArgs e) => TypeChar('ノ');
+
+        private void kbdKatakanaCharHa_Click(object sender, EventArgs e) => TypeChar('ハ');
+
+        private void kbdKatakanaCharHi_Click(object sender, EventArgs e) => TypeChar('ヒ');
+
+        private void kbdKatakanaCharFu_Click(object sender, EventArgs e) => TypeChar('フ');
+
+        private void kbdKatakanaCharHe_Click(object sender, EventArgs e) => TypeChar('ヘ');
+
+        private void kbdKatakanaCharHo_Click(object sender, EventArgs e) => TypeChar('ホ');
+
+        private void kbdKatakanaCharMa_Click(object sender, EventArgs e) => TypeChar('マ');
+
+        private void kbdKatakanaCharMi_Click(object sender, EventArgs e) => TypeChar('ミ');
+
+        private void kbdKatakanaCharMu_Click(object sender, EventArgs e) => TypeChar('ム');
+
+        private void kbdKatakanaCharMe_Click(object sender, EventArgs e) => TypeChar('メ');
+
+        private void kbdKatakanaCharMo_Click(object sender, EventArgs e) => TypeChar('モ');
+
+        private void kbdKatakanaCharYa_Click(object sender, EventArgs e) => TypeChar('ヤ');
+
+        private void kbdKatakanaCharYu_Click(object sender, EventArgs e) => TypeChar('ユ');
+
+        private void kbdKatakanaCharYo_Click(object sender, EventArgs e) => TypeChar('ヨ');
+
+        private void kbdKatakanaCharRa_Click(object sender, EventArgs e) => TypeChar('ラ');
+
+        private void kbdKatakanaCharRi_Click(object sender, EventArgs e) => TypeChar('リ');
+
+        private void kbdKatakanaCharRu_Click(object sender, EventArgs e) => TypeChar('ル');
+
+        private void kbdKatakanaCharRe_Click(object sender, EventArgs e) => TypeChar('レ');
+
+        private void kbdKatakanaCharRo_Click(object sender, EventArgs e) => TypeChar('ロ');
+
+        private void kbdKatakanaCharWa_Click(object sender, EventArgs e) => TypeChar('ワ');
+
+        private void kbdKatakanaCharWo_Click(object sender, EventArgs e) => TypeChar('ヲ');
+
+        private void kbdKatakanaCharN_Click(object sender, EventArgs e) => TypeChar('ン');
+
+        private void kbdKatakanaCharHyphen_Click(object sender, EventArgs e) => TypeChar('ー');
+
+        private void kbdKatakanaCharGa_Click(object sender, EventArgs e) => TypeChar('ガ');
+
+        private void kbdKatakanaCharGi_Click(object sender, EventArgs e) => TypeChar('ギ');
+
+        private void kbdKatakanaCharGu_Click(object sender, EventArgs e) => TypeChar('グ');
+
+        private void kbdKatakanaCharGe_Click(object sender, EventArgs e) => TypeChar('ゲ');
+
+        private void kbdKatakanaCharGo_Click(object sender, EventArgs e) => TypeChar('ゴ');
+
+        private void kbdKatakanaCharZa_Click(object sender, EventArgs e) => TypeChar('ザ');
+
+        private void kbdKatakanaCharJi_Click(object sender, EventArgs e) => TypeChar('ジ');
+
+        private void kbdKatakanaCharZu_Click(object sender, EventArgs e) => TypeChar('ズ');
+
+        private void kbdKatakanaCharZe_Click(object sender, EventArgs e) => TypeChar('ゼ');
+
+        private void kbdKatakanaCharZo_Click(object sender, EventArgs e) => TypeChar('ゾ');
+
+        private void kbdKatakanaCharDa_Click(object sender, EventArgs e) => TypeChar('ダ');
+
+        private void kbdKatakanaCharDi_Click(object sender, EventArgs e) => TypeChar('ヂ');
+
+        private void kbdKatakanaCharDu_Click(object sender, EventArgs e) => TypeChar('ヅ');
+
+        private void kbdKatakanaCharDe_Click(object sender, EventArgs e) => TypeChar('デ');
+
+        private void kbdKatakanaCharDo_Click(object sender, EventArgs e) => TypeChar('ド');
+
+        private void kbdKatakanaCharBa_Click(object sender, EventArgs e) => TypeChar('バ');
+
+        private void kbdKatakanaCharBi_Click(object sender, EventArgs e) => TypeChar('ビ');
+
+        private void kbdKatakanaCharBu_Click(object sender, EventArgs e) => TypeChar('ブ');
+
+        private void kbdKatakanaCharBe_Click(object sender, EventArgs e) => TypeChar('ベ');
+
+        private void kbdKatakanaCharBo_Click(object sender, EventArgs e) => TypeChar('ボ');
+
+        private void kbdKatakanaCharPa_Click(object sender, EventArgs e) => TypeChar('パ');
+
+        private void kbdKatakanaCharPi_Click(object sender, EventArgs e) => TypeChar('ピ');
+
+        private void kbdKatakanaCharPu_Click(object sender, EventArgs e) => TypeChar('プ');
+
+        private void kbdKatakanaCharPe_Click(object sender, EventArgs e) => TypeChar('ペ');
+
+        private void kbdKatakanaCharPo_Click(object sender, EventArgs e) => TypeChar('ポ');
+
+        private void kbdKatakanaCharSmallA_Click(object sender, EventArgs e) => TypeChar('ァ');
+
+        private void kbdKatakanaCharSmallI_Click(object sender, EventArgs e) => TypeChar('ィ');
+
+        private void kbdKatakanaCharSmallU_Click(object sender, EventArgs e) => TypeChar('ゥ');
+
+        private void kbdKatakanaCharSmallE_Click(object sender, EventArgs e) => TypeChar('ェ');
+
+        private void kbdKatakanaCharSmallO_Click(object sender, EventArgs e) => TypeChar('ォ');
+
+        private void kbdKatakanaCharSmallYa_Click(object sender, EventArgs e) => TypeChar('ャ');
+
+        private void kbdKatakanaCharSmallYu_Click(object sender, EventArgs e) => TypeChar('ュ');
+
+        private void kbdKatakanaCharSmallYo_Click(object sender, EventArgs e) => TypeChar('ョ');
+
+        private void kbdKatakanaCharSmallTsu_Click(object sender, EventArgs e) => TypeChar('ッ');
+
+        private void kbdRomajiCharA_Click(object sender, EventArgs e) => TypeChar('A');
+
+        private void kbdRomajiCharB_Click(object sender, EventArgs e) => TypeChar('B');
+
+        private void kbdRomajiCharC_Click(object sender, EventArgs e) => TypeChar('C');
+
+        private void kbdRomajiCharD_Click(object sender, EventArgs e) => TypeChar('D');
+
+        private void kbdRomajiCharE_Click(object sender, EventArgs e) => TypeChar('E');
+
+        private void kbdRomajiCharF_Click(object sender, EventArgs e) => TypeChar('F');
+
+        private void kbdRomajiCharG_Click(object sender, EventArgs e) => TypeChar('G');
+
+        private void kbdRomajiCharH_Click(object sender, EventArgs e) => TypeChar('H');
+
+        private void kbdRomajiCharI_Click(object sender, EventArgs e) => TypeChar('I');
+
+        private void kbdRomajiCharJ_Click(object sender, EventArgs e) => TypeChar('J');
+
+        private void kbdRomajiCharK_Click(object sender, EventArgs e) => TypeChar('K');
+
+        private void kbdRomajiCharL_Click(object sender, EventArgs e) => TypeChar('L');
+
+        private void kbdRomajiCharM_Click(object sender, EventArgs e) => TypeChar('M');
+
+        private void kbdRomajiCharN_Click(object sender, EventArgs e) => TypeChar('N');
+
+        private void kbdRomajiCharO_Click(object sender, EventArgs e) => TypeChar('O');
+
+        private void kbdRomajiCharP_Click(object sender, EventArgs e) => TypeChar('P');
+
+        private void kbdRomajiCharQ_Click(object sender, EventArgs e) => TypeChar('Q');
+
+        private void kbdRomajiCharR_Click(object sender, EventArgs e) => TypeChar('R');
+
+        private void kbdRomajiCharS_Click(object sender, EventArgs e) => TypeChar('S');
+
+        private void kbdRomajiCharT_Click(object sender, EventArgs e) => TypeChar('T');
+
+        private void kbdRomajiCharU_Click(object sender, EventArgs e) => TypeChar('U');
+
+        private void kbdRomajiCharV_Click(object sender, EventArgs e) => TypeChar('V');
+
+        private void kbdRomajiCharW_Click(object sender, EventArgs e) => TypeChar('W');
+
+        private void kbdRomajiCharX_Click(object sender, EventArgs e) => TypeChar('X');
+
+        private void kbdRomajiCharY_Click(object sender, EventArgs e) => TypeChar('Y');
+
+        private void kbdRomajiCharZ_Click(object sender, EventArgs e) => TypeChar('Z');
+
+        private void kbdRomajiCharHyphen_Click(object sender, EventArgs e) => TypeChar('ー');
+
+        private void kbdRomajiCharTilde_Click(object sender, EventArgs e) => TypeChar('~');
+
+        private void kbdJPSpace_Click(object sender, EventArgs e) => TypeChar('　');
     }
 }

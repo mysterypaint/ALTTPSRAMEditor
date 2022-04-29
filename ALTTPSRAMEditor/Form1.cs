@@ -1,70 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
 using System.Drawing.Drawing2D;
+using System.IO;
+using System.Windows.Forms;
 
 namespace ALTTPSRAMEditor
 {
     public partial class Form1 : Form
     {
-        const int srm_size = 0x2000;
-        const int srm_randomizer_size = 16 * 1024;
-        const int srm_randomizer_size_2 = 32 * 1024;
+        private const int srm_size = 0x2000;
+        private const int srm_randomizer_size = 16 * 1024;
+        private const int srm_randomizer_size_2 = 32 * 1024;
 
         // Various events
-        const int birdStatueKakariko = 0x298; // Freed from Statue if set to 0x20 (Maybe?)
+        private const int birdStatueKakariko = 0x298; // Freed from Statue if set to 0x20 (Maybe?)
 
         // Items and Equipment (All these values are relative, just subtract 0x340 from their actual SRAM values
-        const int bow = 0x0;
-        const int boomerang = 0x1;
-        const int hookshot = 0x2;
-        const int bombCount = 0x3;
-        const int mushroomPowder = 0x4;
-        const int fireRod = 0x5;
-        const int iceRod = 0x6;
-        const int bombosMedallion = 0x7;
-        const int etherMedallion = 0x8;
-        const int quakeMedallion = 0x9;
-        const int lamp = 0xA;
-        const int magicHammer = 0xB;
-        const int shovelFlute = 0xC;
-        const int bugNet = 0xD;
-        const int book = 0xE;
-        const int bottle = 0xF;
-        const int caneOfSomaria = 0x10;
-        const int caneOfByrna = 0x11;
-        const int magicCape = 0x12;
-        const int magicMirror = 0x13;
-        const int gloves = 0x14;
-        const int pegasusBoots = 0x15;
-        const int zorasFlippers = 0x16;
-        const int moonPearl = 0x17;
-        const int skipthis = 0x18;
-        const int sword = 0x19;
-        const int shield = 0x1A;
-        const int armor = 0x1B;
-        const int bottle1Contents = 0x1C;
-        const int bottle2Contents = 0x1D;
-        const int bottle3Contents = 0x1E;
-        const int bottle4Contents = 0x1F;
-        const int wallet = 0x20; // 2 bytes
-        const int rupees = 0x22; // 2 bytes
+        private const int bow = 0x0;
+        private const int boomerang = 0x1;
+        private const int hookshot = 0x2;
+        private const int bombCount = 0x3;
+        private const int mushroomPowder = 0x4;
+        private const int fireRod = 0x5;
+        private const int iceRod = 0x6;
+        private const int bombosMedallion = 0x7;
+        private const int etherMedallion = 0x8;
+        private const int quakeMedallion = 0x9;
+        private const int lamp = 0xA;
+        private const int magicHammer = 0xB;
+        private const int shovelFlute = 0xC;
+        private const int bugNet = 0xD;
+        private const int book = 0xE;
+        private const int bottle = 0xF;
+        private const int caneOfSomaria = 0x10;
+        private const int caneOfByrna = 0x11;
+        private const int magicCape = 0x12;
+        private const int magicMirror = 0x13;
+        private const int gloves = 0x14;
+        private const int pegasusBoots = 0x15;
+        private const int zorasFlippers = 0x16;
+        private const int moonPearl = 0x17;
+        private const int skipthis = 0x18;
+        private const int sword = 0x19;
+        private const int shield = 0x1A;
+        private const int armor = 0x1B;
+        private const int bottle1Contents = 0x1C;
+        private const int bottle2Contents = 0x1D;
+        private const int bottle3Contents = 0x1E;
+        private const int bottle4Contents = 0x1F;
+        private const int wallet = 0x20; // 2 bytes
+        private const int rupees = 0x22; // 2 bytes
 
-        const int abilityFlags = 0x39;
-        const int arrowCount = 0x37;
-        const int bombUpgrades = 0x30;
-        const int arrowUpgrades = 0x31;
-        const int magicPower = 0x2E;
-        const int magicUpgrades = 0x3B;
-        const int maxHearts = 0x2C;
-        const int currHearts = 0x2D;
+        private const int abilityFlags = 0x39;
+        private const int arrowCount = 0x37;
+        private const int bombUpgrades = 0x30;
+        private const int arrowUpgrades = 0x31;
+        private const int magicPower = 0x2E;
+        private const int magicUpgrades = 0x3B;
+        private const int maxHearts = 0x2C;
+        private const int currHearts = 0x2D;
 
         public const int greenPendant = 0x2;
         public const int bluePendant = 0x1;
@@ -80,9 +75,8 @@ namespace ALTTPSRAMEditor
 
         private bool canRefresh = true;
         private bool fileOpen = false;
-
-        static int[] bottleContents = new int[9];
-        static System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
+        private static readonly int[] bottleContents = new int[9];
+        private static readonly System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
 
         public enum SaveRegion : int
         {
@@ -104,74 +98,58 @@ namespace ALTTPSRAMEditor
             GOOD_BEE
         };
 
-        static int pos = 0;
-        static int saveRegion = (int)SaveRegion.USA;
-        static SRAM sdat;
-        static String fname = "";
-        static String displayPlayerName = "";
+        private static int pos = 0;
+        private static int saveRegion = (int)SaveRegion.USA;
+        private static SRAM sdat;
+        private static string fname = "";
+        private static string displayPlayerName = "";
 
         // Initialize some assets
-        Image imgHeartContainerFull = ALTTPSRAMEditor.Properties.Resources.HeartContainerFull;
-        Image imgHeartContainerPartial = ALTTPSRAMEditor.Properties.Resources.HeartContainerPartial;
-        
+        private readonly Image imgHeartContainerFull = ALTTPSRAMEditor.Properties.Resources.HeartContainerFull;
+        private readonly Image imgHeartContainerPartial = ALTTPSRAMEditor.Properties.Resources.HeartContainerPartial;
+
         // Initialize the font data
-        Image en_fnt = ALTTPSRAMEditor.Properties.Resources.en_font;
-        Image jpn_fnt = ALTTPSRAMEditor.Properties.Resources.jpn_font;
+        private readonly Image en_fnt = ALTTPSRAMEditor.Properties.Resources.en_font;
+        private readonly Image jpn_fnt = ALTTPSRAMEditor.Properties.Resources.jpn_font;
         public static Dictionary<char, int> enChar = new Dictionary<char, int>();
         public static Dictionary<char, int> jpChar = new Dictionary<char, int>();
-        public static Dictionary<UInt16, char> rawENChar = new Dictionary<UInt16, char>();
-        public static Dictionary<UInt16, char> rawJPChar = new Dictionary<UInt16, char>();
-        static Data dataHandler = new Data(enChar, jpChar, rawENChar, rawJPChar);
+        public static Dictionary<ushort, char> rawENChar = new Dictionary<ushort, char>();
+        public static Dictionary<ushort, char> rawJPChar = new Dictionary<ushort, char>();
+        private static readonly Data dataHandler = new Data(enChar, jpChar, rawENChar, rawJPChar);
 
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        public Form1() => InitializeComponent();
 
-        public Dictionary<char, int> GetENChar()
-        {
-            return enChar;
-        }
+        public Dictionary<char, int> GetENChar() => enChar;
 
-        public Dictionary<UInt16, char> GetRawENChar()
-        {
-            return rawENChar;
-        }
+        public Dictionary<ushort, char> GetRawENChar() => rawENChar;
 
-        public Dictionary<char, int> GetJPChar()
-        {
-            return jpChar;
-        }
+        public Dictionary<char, int> GetJPChar() => jpChar;
 
-        public Dictionary<UInt16, char> GetRawJPChar()
-        {
-            return rawJPChar;
-        }
+        public Dictionary<ushort, char> GetRawJPChar() => rawJPChar;
 
-        private void opensrmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenSRM();
-        }
+        private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
         private void OpenSRM()
         {
-            OpenFileDialog fd1 = new OpenFileDialog();
-            fd1.Filter = "SRAM|*.srm|SaveRAM|*.SaveRAM|All Files|*.*"; // Filter to show.srm files only.
+            var fd1 = new OpenFileDialog
+            {
+                Filter = "SRAM|*.srm|SaveRAM|*.SaveRAM|All Files|*.*" // Filter to show.srm files only.
+            };
             if (fd1.ShowDialog().Equals(DialogResult.OK))
             { // Prompt the user to open a file, then check if a valid file was opened.
                 fname = fd1.FileName;
 
                 try
                 { // Open the text file using a File Stream
-                    byte[] bytes = File.ReadAllBytes(fname);
-                    long fileSize = new System.IO.FileInfo(fname).Length;
+                    var bytes = File.ReadAllBytes(fname);
+                    var fileSize = new System.IO.FileInfo(fname).Length;
                     if (fileSize == srm_size)
                     {
                         OpenSRMGoodSize(bytes);
                     }
                     else if (fileSize > srm_size)
                     {
-                        bool validFile = true;
+                        var validFile = true;
 
                         if (fileSize <= 0x8000)
                         {
@@ -216,9 +194,9 @@ namespace ALTTPSRAMEditor
             radioFile3.Enabled = true;
 
             // Determine the overall region of the .srm and initialize the save slots
-            SaveSlot savslot = sdat.GetSaveSlot(1);
-            SaveSlot savslot2 = sdat.GetSaveSlot(2);
-            SaveSlot savslot3 = sdat.GetSaveSlot(3);
+            var savslot = sdat.GetSaveSlot(1);
+            var savslot2 = sdat.GetSaveSlot(2);
+            var savslot3 = sdat.GetSaveSlot(3);
             if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
             {
                 Console.WriteLine(" - USA Save Detected");
@@ -248,7 +226,7 @@ namespace ALTTPSRAMEditor
             if (thisSlot.SaveIsValid())
             {
                 UpdatePlayerName();
-                Link player = thisSlot.GetPlayer();
+                var player = thisSlot.GetPlayer();
                 UpdateAllConfigurables(thisSlot);
             }
             else
@@ -275,7 +253,7 @@ namespace ALTTPSRAMEditor
                 return; // Abort saving if there isn't a valid file open.
             }
 
-            byte[] outputData = sdat.MergeSaveData();
+            var outputData = sdat.MergeSaveData();
 
             try
             {
@@ -291,16 +269,11 @@ namespace ALTTPSRAMEditor
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) { }
 
-        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e) =>
             // Terminate the program if we select "Exit" in the Menu Bar
             System.Windows.Forms.Application.Exit();
-        }
 
-        private void saveCTRLSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveSRM();
-        }
+        private void saveCTRLSToolStripMenuItem_Click(object sender, EventArgs e) => SaveSRM();
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -350,7 +323,7 @@ namespace ALTTPSRAMEditor
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
+            var toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
             MessageBox.Show(toolCredits);
         }
 
@@ -360,22 +333,22 @@ namespace ALTTPSRAMEditor
 
             if (radioFile1.Checked)
             {
-                savslot = sdat.CreateFile(1, (SaveRegion) saveRegion);
+                savslot = sdat.CreateFile(1, (SaveRegion)saveRegion);
                 helperText.Text = "Created File 1!";
             }
             else if (radioFile2.Checked)
             {
-                savslot = sdat.CreateFile(2, (SaveRegion) saveRegion);
+                savslot = sdat.CreateFile(2, (SaveRegion)saveRegion);
                 helperText.Text = "Created File 2!";
             }
             else if (radioFile3.Checked)
             {
-                savslot = sdat.CreateFile(3, (SaveRegion) saveRegion);
+                savslot = sdat.CreateFile(3, (SaveRegion)saveRegion);
                 helperText.Text = "Created File 3!";
             }
 
             UpdatePlayerName();
-            Link player = savslot.GetPlayer();
+            var player = savslot.GetPlayer();
             UpdateAllConfigurables(savslot);
 
             Refresh();
@@ -404,7 +377,7 @@ namespace ALTTPSRAMEditor
 
         private void buttonWrite_Click(object sender, EventArgs e)
         {
-            SaveSlot savslot = sdat.WriteFile(1);
+            var savslot = sdat.WriteFile(1);
             if (radioFile1.Checked)
             {
                 helperText.Text = "Wrote to File 1!";
@@ -425,41 +398,32 @@ namespace ALTTPSRAMEditor
 
         private void buttonErase_Click(object sender, EventArgs e)
         {
-            int selFile = 1;
+            var selFile = 1;
             if (radioFile1.Checked) selFile = 1;
             else if (radioFile2.Checked) selFile = 2;
             else if (radioFile3.Checked) selFile = 3;
-            DialogResult dialogResult = MessageBox.Show("You are about to PERMANENTLY ERASE File " + selFile + "! Are you sure you want to erase it? There is no undo!", "Erase File " + selFile + "?", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show("You are about to PERMANENTLY ERASE File " + selFile + "! Are you sure you want to erase it? There is no undo!", "Erase File " + selFile + "?", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
                 sdat.EraseFile(selFile);
                 helperText.Text = "Erased File " + selFile + ".";
-                SaveSlot savslot = sdat.GetSaveSlot(selFile);
+                var savslot = sdat.GetSaveSlot(selFile);
                 savslot.SetIsValid(false);
                 canRefresh = true;
                 UpdateAllConfigurables(savslot);
             }
         }
 
-        public void SetPlayerName(String _str)
-        {
-            GetSaveSlot().SetPlayerName(_str);
-        }
+        public void SetPlayerName(string _str) => GetSaveSlot().SetPlayerName(_str);
 
-        public void SetPlayerNameRaw(UInt16[] _newName)
-        {
-            GetSaveSlot().SetPlayerNameRaw(_newName);
-        }
+        public void SetPlayerNameRaw(ushort[] _newName) => GetSaveSlot().SetPlayerNameRaw(_newName);
 
-        public String GetPlayerName()
-        {
-            return GetSaveSlot().GetPlayerName();
-        }
+        public string GetPlayerName() => GetSaveSlot().GetPlayerName();
 
         public void UpdatePlayerName()
         {
-            SaveSlot savslot = GetSaveSlot();
+            var savslot = GetSaveSlot();
             if (!savslot.SaveIsValid())
             {
                 displayPlayerName = "";
@@ -475,9 +439,9 @@ namespace ALTTPSRAMEditor
             Refresh(); // Update the screen, including the player name
         }
 
-        public void UpdatePlayerName(String _str)
+        public void UpdatePlayerName(string _str)
         {
-            SaveSlot savslot = GetSaveSlot();
+            var savslot = GetSaveSlot();
             if (!savslot.SaveIsValid())
             {
                 displayPlayerName = "";
@@ -613,7 +577,7 @@ namespace ALTTPSRAMEditor
             labelMagic.Enabled = false;
             groupPendantsCrystals.Visible = true;
 
-            Link player = savslot.GetPlayer();
+            var player = savslot.GetPlayer();
             displayPlayerName = savslot.GetPlayerName();
             numericUpDownRupeeCounter.Value = player.GetRupeeValue();
             numericUpDownHeartContainers.Value = player.GetHeartContainers();
@@ -624,7 +588,7 @@ namespace ALTTPSRAMEditor
                 textQuarterMagic.Visible = false;
 
             // Magic Bar Upgrades
-            
+
             switch (player.GetItemEquipment(magicUpgrades))
             {
                 default:
@@ -669,7 +633,7 @@ namespace ALTTPSRAMEditor
             UpdateArrowsMax();
             var _arrowCount = player.GetHeldArrows();
             if (_arrowCount > numericUpDownArrowsHeld.Maximum)
-                _arrowCount = (int) numericUpDownArrowsHeld.Maximum;
+                _arrowCount = (int)numericUpDownArrowsHeld.Maximum;
             numericUpDownArrowsHeld.Value = _arrowCount;
 
             // Bombs
@@ -677,7 +641,7 @@ namespace ALTTPSRAMEditor
             UpdateBombsMax();
             var _bombCount = player.GetHeldBombs();
             if (_bombCount > numericUpDownBombsHeld.Maximum)
-                _bombCount = (int) numericUpDownBombsHeld.Maximum;
+                _bombCount = (int)numericUpDownBombsHeld.Maximum;
             numericUpDownBombsHeld.Value = _bombCount;
 
             if (numericUpDownBombsHeld.Value <= 0)
@@ -833,7 +797,7 @@ namespace ALTTPSRAMEditor
             else
                 pictureMoonPearl.Image = ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl;
 
-            byte aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
+            var aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
 
             if (GetBit(aflags, 0x2) && player.GetItemEquipment(pegasusBoots) > 0x0) // Test for Pegasus Boots
                 pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.Pegasus_Boots;
@@ -937,7 +901,7 @@ namespace ALTTPSRAMEditor
                 _inventoryBottleFill = player.GetItemEquipment(bottle4Contents);
             else
                 pictureBottles.Image = ALTTPSRAMEditor.Properties.Resources.D_Bottle;
-            
+
             if (_inventoryBottleFill == 1)
                 _inventoryBottleFill = 9;
             if (_inventoryBottleFill - 1 < 0)
@@ -946,7 +910,7 @@ namespace ALTTPSRAMEditor
             pictureBottles.Image = bottleContentsImg[bottleContents[_inventoryBottleFill - 1]];
 
             // Fill the 1st bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
-            int fillContents = player.GetItemEquipment(bottle1Contents);
+            var fillContents = player.GetItemEquipment(bottle1Contents);
             if (fillContents == 1)
                 fillContents = 9;
             if (fillContents - 1 < 0)
@@ -1006,7 +970,7 @@ namespace ALTTPSRAMEditor
             pictureBottle4.Image = bottleContentsImg[bottleContents[fillContents - 1]];
 
             // Update the pendants
-            byte _pendants = GetSaveSlot().GetPendants();
+            var _pendants = GetSaveSlot().GetPendants();
 
             if (!GetBit(_pendants, greenPendant)) // Test for green pendant
                 pictureGreenPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
@@ -1024,7 +988,7 @@ namespace ALTTPSRAMEditor
                 pictureRedPendant.Image = ALTTPSRAMEditor.Properties.Resources.Red_Pendant;
 
             // Update the crystals
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (!GetBit(_crystals, crystalPoD)) // Test for PoD Crystal
                 pictureCrystalPoD.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -1065,10 +1029,7 @@ namespace ALTTPSRAMEditor
             UpdatePlayerName();
         }
 
-        private void pictureBow_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxBowConfig);
-        }
+        private void pictureBow_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBowConfig);
 
         private SaveSlot GetSaveSlot()
         {
@@ -1091,11 +1052,11 @@ namespace ALTTPSRAMEditor
 
         private void bowRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
 
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
 
                 switch (btn.Name)
                 {
@@ -1125,21 +1086,21 @@ namespace ALTTPSRAMEditor
 
         private void numericUpDownRupeeCounter_ValueChanged(object sender, EventArgs e)
         {
-            SaveSlot savslot = GetSaveSlot();
-            Link player = savslot.GetPlayer();
-            UInt16 val = (UInt16)numericUpDownRupeeCounter.Value;
+            var savslot = GetSaveSlot();
+            var player = savslot.GetPlayer();
+            var val = (ushort)numericUpDownRupeeCounter.Value;
             player.SetRupees(val);
         }
 
         private void fileRadio(object sender, EventArgs e)
         {
             // User clicked a radio button to change file save slots
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
 
             if (btn != null && btn.Checked)
             {
-                SaveSlot savslot = GetSaveSlot();
-                Link player = savslot.GetPlayer();
+                var savslot = GetSaveSlot();
+                var player = savslot.GetPlayer();
                 UpdatePlayerName();
                 numericUpDownRupeeCounter.Value = player.GetRupeeValue();
                 UpdateAllConfigurables(savslot);
@@ -1158,7 +1119,7 @@ namespace ALTTPSRAMEditor
         {
             if (!fname.Equals("") && fileOpen)
             {
-                SaveSlot savslot = GetSaveSlot();
+                var savslot = GetSaveSlot();
 
                 if (!savslot.SaveIsValid() || !savslot.GetIsValid())
                 {
@@ -1172,16 +1133,16 @@ namespace ALTTPSRAMEditor
                 }
 
                 // Initialize the brush for drawing, then draw the black box behind the player name
-                SolidBrush rectBrush = new SolidBrush(Color.Black);
-                int border = 2;
+                var rectBrush = new SolidBrush(Color.Black);
+                var border = 2;
                 e.Graphics.FillRectangle(rectBrush, new Rectangle(223 - border, 49 - border, (8 * 8) + (border * 2), 16 + (border * 2)));
-                
+
                 // Grab the player so we can get their info
-                Link player = savslot.GetPlayer();
+                var player = savslot.GetPlayer();
 
                 // Now we'll loop through and draw all the hearts as required to represent the player's health
                 // First, create a blank canvas so we can draw to it (this is abstract, won't show up on the screen, it's just in the computer memory)
-                Rectangle fillRect = new Rectangle(0, 0, 84, 20);
+                var fillRect = new Rectangle(0, 0, 84, 20);
                 var tex = new Bitmap(fillRect.Width, fillRect.Height);
 
                 // Draw onto the blank canvas we created
@@ -1195,8 +1156,8 @@ namespace ALTTPSRAMEditor
                     double heartContainers = player.GetHeartContainers();
                     for (var i = 0; i < heartContainers / 8; i++)
                     {
-                        int xOff = (i % 10) * 8;
-                        int yOff = (i / 10) * 8;
+                        var xOff = (i % 10) * 8;
+                        var yOff = (i / 10) * 8;
                         if (i >= (heartContainers / 8.0f - 1.0f) && heartContainers % 8 != 0)
                             gr.DrawImage(imgHeartContainerPartial, 2 + xOff, 2 + yOff);
                         else
@@ -1236,12 +1197,12 @@ namespace ALTTPSRAMEditor
                     gr.PixelOffsetMode = PixelOffsetMode.Half;
 
                     // Draw the empty magic bar container into the canvas (not to the screen)
-                    int currMagic = player.GetCurrMagic();
+                    var currMagic = player.GetCurrMagic();
                     gr.DrawImage(magicContainer, 0, 0);
 
                     // Using a colored rectangle, fill the magic bar with a bar representing magic, based on what the player's current magic value is
                     rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
-                    fillRect = new Rectangle(0 + 4, 0 - ((currMagic + 3) / 4) + 40, 8, ((currMagic+3) / 4));
+                    fillRect = new Rectangle(0 + 4, 0 - ((currMagic + 3) / 4) + 40, 8, ((currMagic + 3) / 4));
                     gr.FillRectangle(rectBrush, fillRect);
 
                     // If necessary, draw the white "1-pixel-line" part of the magic bar fill, for aesthetic purposes
@@ -1267,10 +1228,10 @@ namespace ALTTPSRAMEditor
             if (saveRegion == (int)SaveRegion.JPN)
             {
                 pos = 0;
-                int i = 0;
-                foreach (char c in displayPlayerName)
+                var i = 0;
+                foreach (var c in displayPlayerName)
                 {
-                    char letter = c;
+                    var letter = c;
                     if (c == ' ')
                     {
                         letter = '　';
@@ -1287,7 +1248,7 @@ namespace ALTTPSRAMEditor
             else if (saveRegion == (int)SaveRegion.USA)
             {
                 pos = 0;
-                foreach (char c in displayPlayerName)
+                foreach (var c in displayPlayerName)
                 {
                     DrawTile(en_fnt, enChar[c], e, pos);
                     pos += 8;
@@ -1297,17 +1258,17 @@ namespace ALTTPSRAMEditor
 
         public static void DrawTile(Image source, int tileID, PaintEventArgs e, int pos)
         {
-            int tileset_width = 27; // English Font
+            var tileset_width = 27; // English Font
             if (saveRegion == (int)SaveRegion.JPN)
                 tileset_width = 20; // Japanese Font
 
-            int tile_w = 8;
-            int tile_h = 16;
-            int x = (tileID % tileset_width) * tile_w;
-            int y = (tileID / tileset_width) * tile_h;
-            int width = 8;
-            int height = 16;
-            Rectangle crop = new Rectangle(x, y, width, height);
+            var tile_w = 8;
+            var tile_h = 16;
+            var x = (tileID % tileset_width) * tile_w;
+            var y = (tileID / tileset_width) * tile_h;
+            var width = 8;
+            var height = 16;
+            var crop = new Rectangle(x, y, width, height);
             var bmp = new Bitmap(crop.Width, crop.Height);
 
             using (var gr = Graphics.FromImage(bmp))
@@ -1334,14 +1295,11 @@ namespace ALTTPSRAMEditor
 
         private void numericUpDownArrowsHeld_ValueChanged(object sender, EventArgs e)
         {
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(arrowCount, (byte)numericUpDownArrowsHeld.Value); // Set the new arrow count value
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxBoomerangConfig);
-        }
+        private void pictureBox1_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBoomerangConfig);
 
         private void HideAllGroupBoxesExcept(GroupBox currentGroupBox)
         {
@@ -1358,10 +1316,10 @@ namespace ALTTPSRAMEditor
 
         private void boomerangRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     default:
@@ -1381,14 +1339,11 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        private void pictureHookshot_Click(object sender, EventArgs e)
-        {
-            ToggleItem(hookshot, 0x1, pictureHookshot, ALTTPSRAMEditor.Properties.Resources.Hookshot, ALTTPSRAMEditor.Properties.Resources.D_Hookshot);
-        }
+        private void pictureHookshot_Click(object sender, EventArgs e) => ToggleItem(hookshot, 0x1, pictureHookshot, ALTTPSRAMEditor.Properties.Resources.Hookshot, ALTTPSRAMEditor.Properties.Resources.D_Hookshot);
 
         private void ToggleItem(int addr, int enabledVal, PictureBox picObj, Bitmap imgOn, Bitmap imgOff)
         {
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             if (player.GetItemEquipment(addr) == enabledVal)
             {
                 player.SetHasItemEquipment(addr, 0x0); // Give the item if we don't already have it
@@ -1403,7 +1358,7 @@ namespace ALTTPSRAMEditor
 
         private void numericUpDownBombsHeld_ValueChanged(object sender, EventArgs e)
         {
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bombCount, (byte)numericUpDownBombsHeld.Value); // Set the new bomb count value
 
             // Update the UI picture if necessary
@@ -1413,22 +1368,16 @@ namespace ALTTPSRAMEditor
                 pictureBombs.Image = ALTTPSRAMEditor.Properties.Resources.Bomb;
         }
 
-        private void pictureBombs_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxBombs);
-        }
+        private void pictureBombs_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBombs);
 
-        private void pictureMushPowd_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxMushroomPowder);
-        }
+        private void pictureMushPowd_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxMushroomPowder);
 
         private void mushPowdRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     default:
@@ -1450,10 +1399,10 @@ namespace ALTTPSRAMEditor
 
         private void swordRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     default:
@@ -1481,17 +1430,14 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        private void pictureSword_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxSword);
-        }
+        private void pictureSword_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxSword);
 
         private void radioShield(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     default:
@@ -1515,22 +1461,16 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        private void pictureShield_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxShield);
-        }
+        private void pictureShield_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxShield);
 
-        private void pictureMail_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxMails);
-        }
+        private void pictureMail_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxMails);
 
         private void mailRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     default:
@@ -1552,7 +1492,7 @@ namespace ALTTPSRAMEditor
 
         private void CheckForBottles()
         {
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             // Update the picture so it represents what the inventory bottle should actually have
             var _inventoryBottleFill = 0;
 
@@ -1576,7 +1516,8 @@ namespace ALTTPSRAMEditor
                 _inventoryBottleFill = player.GetItemEquipment(bottle4Contents);
                 player.SetSelectedBottle(4);
             }
-            else {
+            else
+            {
                 _inventoryBottleFill = 0;
                 player.SetSelectedBottle(0);
             }
@@ -1592,30 +1533,27 @@ namespace ALTTPSRAMEditor
         private void comboBoxBottle1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
-            int fillContents = bottleContents[comboBoxBottle1.SelectedIndex];
+            var fillContents = bottleContents[comboBoxBottle1.SelectedIndex];
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle1.Image = bottleContentsImg[fillContents];
 
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle1Contents, (byte)fillContents);
             CheckForBottles();
         }
 
-        private void pictureBottles_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxBottles);
-        }
+        private void pictureBottles_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBottles);
 
         private void comboBoxBottle2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
-            int fillContents = bottleContents[comboBoxBottle2.SelectedIndex];
+            var fillContents = bottleContents[comboBoxBottle2.SelectedIndex];
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle2.Image = bottleContentsImg[fillContents];
 
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle2Contents, (byte)fillContents);
             CheckForBottles();
         }
@@ -1623,12 +1561,12 @@ namespace ALTTPSRAMEditor
         private void comboBoxBottle3_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
-            int fillContents = bottleContents[comboBoxBottle3.SelectedIndex];
+            var fillContents = bottleContents[comboBoxBottle3.SelectedIndex];
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle3.Image = bottleContentsImg[fillContents];
 
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle3Contents, (byte)fillContents);
             CheckForBottles();
         }
@@ -1636,20 +1574,20 @@ namespace ALTTPSRAMEditor
         private void comboBoxBottle4_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Fill the bottle with the value the user selected in the UI; Remap to actual game values by referring to the bottleContents[] array
-            int fillContents = bottleContents[comboBoxBottle4.SelectedIndex];
+            var fillContents = bottleContents[comboBoxBottle4.SelectedIndex];
 
             // Update the picture so it represents what the bottle actually has
             pictureBottle4.Image = bottleContentsImg[fillContents];
 
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetHasItemEquipment(bottle4Contents, (byte)fillContents);
             CheckForBottles();
         }
 
         private void pictureBoots_Click(object sender, EventArgs e)
         {
-            Link player = GetSaveSlot().GetPlayer();
-            byte flags = player.GetAbilityFlags();
+            var player = GetSaveSlot().GetPlayer();
+            var flags = player.GetAbilityFlags();
             if (player.GetItemEquipment(pegasusBoots) == 1)
             {
                 pictureBoots.Image = ALTTPSRAMEditor.Properties.Resources.D_Pegasus_Boots;
@@ -1668,8 +1606,8 @@ namespace ALTTPSRAMEditor
 
         private void pictureZorasFlippers_Click(object sender, EventArgs e)
         {
-            Link player = GetSaveSlot().GetPlayer();
-            byte flags = player.GetAbilityFlags();
+            var player = GetSaveSlot().GetPlayer();
+            var flags = player.GetAbilityFlags();
             if (player.GetItemEquipment(zorasFlippers) == 1)
             {
                 pictureZorasFlippers.Image = ALTTPSRAMEditor.Properties.Resources.D_Zora_s_Flippers;
@@ -1692,79 +1630,37 @@ namespace ALTTPSRAMEditor
             return (b & (1 << bitNumber - 1)) != 0;
         }
 
-        private void pictureMagicMirror_Click(object sender, EventArgs e)
-        {
-            ToggleItem(magicMirror, 0x2, pictureMagicMirror, ALTTPSRAMEditor.Properties.Resources.Magic_Mirror, ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror);
-        }
+        private void pictureMagicMirror_Click(object sender, EventArgs e) => ToggleItem(magicMirror, 0x2, pictureMagicMirror, ALTTPSRAMEditor.Properties.Resources.Magic_Mirror, ALTTPSRAMEditor.Properties.Resources.D_Magic_Mirror);
 
-        private void pictureFireRod_Click(object sender, EventArgs e)
-        {
-            ToggleItem(fireRod, 0x1, pictureFireRod, ALTTPSRAMEditor.Properties.Resources.Fire_Rod, ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod);
-        }
+        private void pictureFireRod_Click(object sender, EventArgs e) => ToggleItem(fireRod, 0x1, pictureFireRod, ALTTPSRAMEditor.Properties.Resources.Fire_Rod, ALTTPSRAMEditor.Properties.Resources.D_Fire_Rod);
 
-        private void pictureIceRod_Click(object sender, EventArgs e)
-        {
-            ToggleItem(iceRod, 0x1, pictureIceRod, ALTTPSRAMEditor.Properties.Resources.Ice_Rod, ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod);
-        }
+        private void pictureIceRod_Click(object sender, EventArgs e) => ToggleItem(iceRod, 0x1, pictureIceRod, ALTTPSRAMEditor.Properties.Resources.Ice_Rod, ALTTPSRAMEditor.Properties.Resources.D_Ice_Rod);
 
-        private void pictureBombos_Click(object sender, EventArgs e)
-        {
-            ToggleItem(bombosMedallion, 0x1, pictureBombos, ALTTPSRAMEditor.Properties.Resources.Bombos, ALTTPSRAMEditor.Properties.Resources.D_Bombos);
-        }
+        private void pictureBombos_Click(object sender, EventArgs e) => ToggleItem(bombosMedallion, 0x1, pictureBombos, ALTTPSRAMEditor.Properties.Resources.Bombos, ALTTPSRAMEditor.Properties.Resources.D_Bombos);
 
-        private void pictureEther_Click(object sender, EventArgs e)
-        {
-            ToggleItem(etherMedallion, 0x1, pictureEther, ALTTPSRAMEditor.Properties.Resources.Ether, ALTTPSRAMEditor.Properties.Resources.D_Ether);
-        }
+        private void pictureEther_Click(object sender, EventArgs e) => ToggleItem(etherMedallion, 0x1, pictureEther, ALTTPSRAMEditor.Properties.Resources.Ether, ALTTPSRAMEditor.Properties.Resources.D_Ether);
 
-        private void pictureQuake_Click(object sender, EventArgs e)
-        {
-            ToggleItem(quakeMedallion, 0x1, pictureQuake, ALTTPSRAMEditor.Properties.Resources.Quake, ALTTPSRAMEditor.Properties.Resources.D_Quake);
-        }
+        private void pictureQuake_Click(object sender, EventArgs e) => ToggleItem(quakeMedallion, 0x1, pictureQuake, ALTTPSRAMEditor.Properties.Resources.Quake, ALTTPSRAMEditor.Properties.Resources.D_Quake);
 
-        private void pictureLamp_Click(object sender, EventArgs e)
-        {
-            ToggleItem(lamp, 0x1, pictureLamp, ALTTPSRAMEditor.Properties.Resources.Lamp, ALTTPSRAMEditor.Properties.Resources.D_Lamp);
-        }
+        private void pictureLamp_Click(object sender, EventArgs e) => ToggleItem(lamp, 0x1, pictureLamp, ALTTPSRAMEditor.Properties.Resources.Lamp, ALTTPSRAMEditor.Properties.Resources.D_Lamp);
 
-        private void pictureMagicHammer_Click(object sender, EventArgs e)
-        {
-            ToggleItem(magicHammer, 0x1, pictureMagicHammer, ALTTPSRAMEditor.Properties.Resources.Magic_Hammer, ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer);
-        }
+        private void pictureMagicHammer_Click(object sender, EventArgs e) => ToggleItem(magicHammer, 0x1, pictureMagicHammer, ALTTPSRAMEditor.Properties.Resources.Magic_Hammer, ALTTPSRAMEditor.Properties.Resources.D_Magic_Hammer);
 
-        private void pictureBugCatchingNet_Click(object sender, EventArgs e)
-        {
-            ToggleItem(bugNet, 0x1, pictureBugCatchingNet, ALTTPSRAMEditor.Properties.Resources.Bug_Catching_Net, ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net);
-        }
+        private void pictureBugCatchingNet_Click(object sender, EventArgs e) => ToggleItem(bugNet, 0x1, pictureBugCatchingNet, ALTTPSRAMEditor.Properties.Resources.Bug_Catching_Net, ALTTPSRAMEditor.Properties.Resources.D_Bug_Catching_Net);
 
-        private void pictureBookOfMudora_Click(object sender, EventArgs e)
-        {
-            ToggleItem(book, 0x1, pictureBookOfMudora, ALTTPSRAMEditor.Properties.Resources.Book_of_Mudora, ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora);
-        }
+        private void pictureBookOfMudora_Click(object sender, EventArgs e) => ToggleItem(book, 0x1, pictureBookOfMudora, ALTTPSRAMEditor.Properties.Resources.Book_of_Mudora, ALTTPSRAMEditor.Properties.Resources.D_Book_of_Mudora);
 
-        private void pictureCaneOfSomaria_Click(object sender, EventArgs e)
-        {
-            ToggleItem(caneOfSomaria, 0x1, pictureCaneOfSomaria, ALTTPSRAMEditor.Properties.Resources.Cane_of_Somaria, ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria);
-        }
+        private void pictureCaneOfSomaria_Click(object sender, EventArgs e) => ToggleItem(caneOfSomaria, 0x1, pictureCaneOfSomaria, ALTTPSRAMEditor.Properties.Resources.Cane_of_Somaria, ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Somaria);
 
-        private void pictureCaneOfByrna_Click(object sender, EventArgs e)
-        {
-            ToggleItem(caneOfByrna, 0x1, pictureCaneOfByrna, ALTTPSRAMEditor.Properties.Resources.Cane_of_Byrna, ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna);
-        }
+        private void pictureCaneOfByrna_Click(object sender, EventArgs e) => ToggleItem(caneOfByrna, 0x1, pictureCaneOfByrna, ALTTPSRAMEditor.Properties.Resources.Cane_of_Byrna, ALTTPSRAMEditor.Properties.Resources.D_Cane_of_Byrna);
 
-        private void pictureMagicCape_Click(object sender, EventArgs e)
-        {
-            ToggleItem(magicCape, 0x1, pictureMagicCape, ALTTPSRAMEditor.Properties.Resources.Magic_Cape, ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape);
-        }
+        private void pictureMagicCape_Click(object sender, EventArgs e) => ToggleItem(magicCape, 0x1, pictureMagicCape, ALTTPSRAMEditor.Properties.Resources.Magic_Cape, ALTTPSRAMEditor.Properties.Resources.D_Magic_Cape);
 
-        private void pictureMoonPearl_Click(object sender, EventArgs e)
-        {
-            ToggleItem(moonPearl, 0x1, pictureMoonPearl, ALTTPSRAMEditor.Properties.Resources.Moon_Pearl, ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl);
-        }
+        private void pictureMoonPearl_Click(object sender, EventArgs e) => ToggleItem(moonPearl, 0x1, pictureMoonPearl, ALTTPSRAMEditor.Properties.Resources.Moon_Pearl, ALTTPSRAMEditor.Properties.Resources.D_Moon_Pearl);
 
         private void numericUpDownHeartContainers_ValueChanged(object sender, EventArgs e)
         {
-            GetSaveSlot().GetPlayer().SetHeartContainers((int) numericUpDownHeartContainers.Value);
+            GetSaveSlot().GetPlayer().SetHeartContainers((int)numericUpDownHeartContainers.Value);
             Refresh();
         }
 
@@ -1774,22 +1670,16 @@ namespace ALTTPSRAMEditor
             Refresh();
         }
 
-        private void pictureShovelFlute_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxShovelFlute);
-        }
+        private void pictureShovelFlute_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxShovelFlute);
 
-        private void picturePowerGlove_Click(object sender, EventArgs e)
-        {
-            HideAllGroupBoxesExcept(groupBoxGloves);
-        }
+        private void picturePowerGlove_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxGloves);
 
         private void shovelFluteRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     case "radioButtonNoShovelOrFlute":
@@ -1814,10 +1704,10 @@ namespace ALTTPSRAMEditor
 
         private void gloveUpgradesRadio(object sender, EventArgs e)
         {
-            RadioButton btn = sender as RadioButton;
+            var btn = sender as RadioButton;
             if (btn != null && btn.Checked)
             {
-                Link player = GetSaveSlot().GetPlayer();
+                var player = GetSaveSlot().GetPlayer();
                 switch (btn.Name)
                 {
                     case "radioButtonNoGloves":
@@ -1847,7 +1737,7 @@ namespace ALTTPSRAMEditor
         private void UpdateHeartPieceUI()
         {
             Image outImg;
-            int heartPieces = GetSaveSlot().GetPlayer().GetHeartPieces();
+            var heartPieces = GetSaveSlot().GetPlayer().GetHeartPieces();
             switch (heartPieces % 4)
             {
                 default:
@@ -1870,9 +1760,9 @@ namespace ALTTPSRAMEditor
 
         private void pictureHeartPieces_MouseClick(object sender, MouseEventArgs e)
         {
-            Link player = GetSaveSlot().GetPlayer();
-            int playerCurrHearts = player.GetHeartContainers();
-            int playerCurrHeartPieces = player.GetHeartPieces();
+            var player = GetSaveSlot().GetPlayer();
+            var playerCurrHearts = player.GetHeartContainers();
+            var playerCurrHeartPieces = player.GetHeartPieces();
             if (e.Button == MouseButtons.Left)
             {
                 if (playerCurrHearts <= 152 && playerCurrHeartPieces < 24)
@@ -1910,7 +1800,7 @@ namespace ALTTPSRAMEditor
 
         private void pictureGreenPendant_Click(object sender, EventArgs e)
         {
-            byte _pendants = GetSaveSlot().GetPendants();
+            var _pendants = GetSaveSlot().GetPendants();
 
             if (GetBit(_pendants, greenPendant)) // Test for green pendant
                 pictureGreenPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
@@ -1922,7 +1812,7 @@ namespace ALTTPSRAMEditor
 
         private void pictureBluePendant_Click(object sender, EventArgs e)
         {
-            byte _pendants = GetSaveSlot().GetPendants();
+            var _pendants = GetSaveSlot().GetPendants();
 
             if (GetBit(_pendants, bluePendant)) // Test for blue pendant
                 pictureBluePendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
@@ -1934,7 +1824,7 @@ namespace ALTTPSRAMEditor
 
         private void pictureRedPendant_Click(object sender, EventArgs e)
         {
-            byte _pendants = GetSaveSlot().GetPendants();
+            var _pendants = GetSaveSlot().GetPendants();
 
             if (GetBit(_pendants, redPendant)) // Test for red pendant
                 pictureRedPendant.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Pendant;
@@ -1946,7 +1836,7 @@ namespace ALTTPSRAMEditor
 
         private void pictureCrystalPoD_Click(object sender, EventArgs e)
         {
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalPoD)) // Test for PoD Crystal
                 pictureCrystalPoD.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -1958,7 +1848,7 @@ namespace ALTTPSRAMEditor
 
         private void pictureCrystalSP_Click(object sender, EventArgs e)
         {
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalSP)) // Test for SP Crystal
                 pictureCrystalSP.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -1970,7 +1860,7 @@ namespace ALTTPSRAMEditor
 
         private void pictureCrystalSW_Click(object sender, EventArgs e)
         {
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalSW)) // Test for SW Crystal
                 pictureCrystalSW.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -1983,7 +1873,7 @@ namespace ALTTPSRAMEditor
         private void pictureCrystalTT_Click(object sender, EventArgs e)
         {
 
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalTT)) // Test for TT Crystal
                 pictureCrystalTT.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -1996,7 +1886,7 @@ namespace ALTTPSRAMEditor
         private void pictureCrystalIP_Click(object sender, EventArgs e)
         {
 
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalIP)) // Test for IP Crystal
                 pictureCrystalIP.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -2009,7 +1899,7 @@ namespace ALTTPSRAMEditor
         private void pictureCrystalMM_Click(object sender, EventArgs e)
         {
 
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalMM)) // Test for MM Crystal
                 pictureCrystalMM.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -2022,7 +1912,7 @@ namespace ALTTPSRAMEditor
         private void pictureCrystalTR_Click(object sender, EventArgs e)
         {
 
-            byte _crystals = GetSaveSlot().GetCrystals();
+            var _crystals = GetSaveSlot().GetCrystals();
 
             if (GetBit(_crystals, crystalTR)) // Test for TR Crystal
                 pictureCrystalTR.Image = ALTTPSRAMEditor.Properties.Resources.Clear_Crystal;
@@ -2034,8 +1924,8 @@ namespace ALTTPSRAMEditor
 
         private void pictureBoxMagicBar_Click(object sender, EventArgs e)
         {
-            Link player = GetSaveSlot().GetPlayer();
-            int currMagicUpgrade = player.GetCurrMagicUpgrade();
+            var player = GetSaveSlot().GetPlayer();
+            var currMagicUpgrade = player.GetCurrMagicUpgrade();
             switch (currMagicUpgrade)
             {
                 default:
@@ -2061,8 +1951,8 @@ namespace ALTTPSRAMEditor
         private void numericUpDownBombUpgrades_ValueChanged(object sender, EventArgs e)
         {
             // Get the player
-            Link player = GetSaveSlot().GetPlayer();
-            player.SetCurrBombUpgrades((int) numericUpDownBombUpgrades.Value);
+            var player = GetSaveSlot().GetPlayer();
+            player.SetCurrBombUpgrades((int)numericUpDownBombUpgrades.Value);
 
             // Update Max bombs
             UpdateBombsMax();
@@ -2075,7 +1965,7 @@ namespace ALTTPSRAMEditor
         private void numericUpDownArrowUpgrades_ValueChanged(object sender, EventArgs e)
         {
             // Get the player
-            Link player = GetSaveSlot().GetPlayer();
+            var player = GetSaveSlot().GetPlayer();
             player.SetCurrArrowUpgrades((int)numericUpDownArrowUpgrades.Value);
 
             // Update Max arrows
@@ -2088,11 +1978,11 @@ namespace ALTTPSRAMEditor
 
         private void buttonResetDeaths_Click(object sender, EventArgs e)
         {
-            SaveSlot savslot = GetSaveSlot();
-            DialogResult dialogResult = MessageBox.Show("Reset all deaths/saves for this save file?", "Reset Deaths/Saves?", MessageBoxButtons.YesNo);
+            var savslot = GetSaveSlot();
+            var dialogResult = MessageBox.Show("Reset all deaths/saves for this save file?", "Reset Deaths/Saves?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DialogResult postGame = MessageBox.Show("Show the deaths on the File Select Screen?", "Show on File Select Screen?", MessageBoxButtons.YesNo);
+                var postGame = MessageBox.Show("Show the deaths on the File Select Screen?", "Show on File Select Screen?", MessageBoxButtons.YesNo);
                 if (postGame == DialogResult.No)
                 {
                     savslot.ResetFileDeaths(false);

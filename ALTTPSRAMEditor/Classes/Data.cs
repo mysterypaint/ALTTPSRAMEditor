@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ALTTPSRAMEditor
 {
-    class Data
+    internal class Data
     {
-        public Data(Dictionary<char, int> enChar, Dictionary<char, int> jpChar, Dictionary<UInt16, char> rawENChar, Dictionary<UInt16, char> rawJPChar)
+        public Data(Dictionary<char, int> enChar, Dictionary<char, int> jpChar, Dictionary<ushort, char> rawENChar, Dictionary<ushort, char> rawJPChar)
         {
             // Define Font lookup tables
             // English
             enChar.Add(' ', 0);
-            for (int i = 65; i <= 90; i++) enChar.Add((char)i, i - 64);
-            for (int i = 97; i <= 122; i++) enChar.Add((char)i, i - 69);
+            for (var i = 65; i <= 90; i++) enChar.Add((char)i, i - 64);
+            for (var i = 97; i <= 122; i++) enChar.Add((char)i, i - 69);
             enChar.Add('-', 54);
             enChar.Add('.', 55);
             enChar.Add(',', 56);
-            for (int i = 48; i <= 57; i++) enChar.Add((char)i, i + 11);
+            for (var i = 48; i <= 57; i++) enChar.Add((char)i, i + 11);
             enChar.Add('!', 69);
             enChar.Add('?', 70);
             enChar.Add('(', 71);

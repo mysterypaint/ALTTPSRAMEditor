@@ -1,34 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
     [Serializable]
-    class SaveSlot
+    internal class SaveSlot
     {
         private byte[] data;
-        private String playerName = "";
-        private UInt16[] playerNameRaw;
-        private UInt16 total_checksum = 0;
-        private Link player;
+        private string playerName = "";
+        private ushort[] playerNameRaw;
+        private ushort total_checksum = 0;
+        private readonly Link player;
         private byte pendants;
         private byte crystals;
         private bool isValid;
         private int deathCounter = 0;
         private int liveSaveCounter = 0;
-        int slotIndex;
-        Form1.SaveRegion saveRegion;
-        byte[] itemsAndEquipment;
+        private int slotIndex;
+        private readonly Form1.SaveRegion saveRegion;
+        private readonly byte[] itemsAndEquipment;
 
         public SaveSlot(byte[] data_in, int _slot)
         {
             // Import this save slot's data from the larger global save data
             data = data_in.ToArray();
             slotIndex = _slot;
-            playerNameRaw = new UInt16[6];
+            playerNameRaw = new ushort[6];
 
             // Determine which region this save comes from
             if (data[0x3E5] == 0xAA && data[0x3E6] == 0x55)
@@ -47,7 +44,7 @@ namespace ALTTPSRAMEditor
 
             itemsAndEquipment = new byte[0x4B];
 
-            for (int i = 0x0; i < itemsAndEquipment.Length; i++)
+            for (var i = 0x0; i < itemsAndEquipment.Length; i++)
             {
                 itemsAndEquipment[i] = data[0x340 + i];
             }
@@ -92,9 +89,9 @@ namespace ALTTPSRAMEditor
             data[_liveSaveCounterAddr] = 0x0;
             data[_liveSaveCounterAddr + 1] = 0x0;
             liveSaveCounter = 0;
-            
+
             deathCounter = 0;
-            
+
             if (showOnFileSelect)
             {
                 data[_deathCounterAddr] = 0x0;
@@ -113,14 +110,14 @@ namespace ALTTPSRAMEditor
         public void CommitPlayerName()
         {
             // Set the actual player name in data[] just before writing to SRAM
-            int j = 0;
+            var j = 0;
 
             switch (saveRegion)
             {
                 default:
                 case Form1.SaveRegion.USA:
                 case Form1.SaveRegion.EUR:
-                    for (int i = 0x3D9; i <= 0x3E4; i += 2)
+                    for (var i = 0x3D9; i <= 0x3E4; i += 2)
                     {
                         data[i] = (byte)(playerNameRaw[j] & 0xff);
                         data[i + 1] = (byte)(playerNameRaw[j] >> 8);
@@ -128,7 +125,7 @@ namespace ALTTPSRAMEditor
                     }
                     break;
                 case Form1.SaveRegion.JPN:
-                    for (int i = 0x3D9; i <= 0x3E0; i += 2)
+                    for (var i = 0x3D9; i <= 0x3E0; i += 2)
                     {
                         data[i] = (byte)(playerNameRaw[j] & 0xff);
                         data[i + 1] = (byte)(playerNameRaw[j] >> 8);
@@ -138,47 +135,35 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        public void SetSaveSlot(int _slot)
-        {
-            slotIndex = _slot;
-        }
+        public void SetSaveSlot(int _slot) => slotIndex = _slot;
 
-        public void SetIsValid(bool _val)
-        {
-            isValid = _val;
-        }
+        public void SetIsValid(bool _val) => isValid = _val;
 
-        public bool GetIsValid()
-        {
-            return isValid;
-        }
+        public bool GetIsValid() => isValid;
 
-        public override String ToString()
-        {
-            return slotIndex.ToString();
-        }
+        public override string ToString() => slotIndex.ToString();
         private void getRawPlayerName()
         {
             if (!SaveIsValid())
                 return;
-            int j = 0;
+            var j = 0;
 
             switch (saveRegion)
             {
                 default:
                 case Form1.SaveRegion.EUR:
                 case Form1.SaveRegion.USA:
-                    for (int i = 0x3D9; i <= 0x3E4; i += 2)
+                    for (var i = 0x3D9; i <= 0x3E4; i += 2)
                     {
-                        playerNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
+                        playerNameRaw[j] = (ushort)((data[i + 1] << 8) | data[i]);
                         j++;
                     }
                     break;
                 case Form1.SaveRegion.JPN:
-                    playerNameRaw = new UInt16[4];
-                    for (int i = 0x3D9; i < 0x3E1; i += 2)
+                    playerNameRaw = new ushort[4];
+                    for (var i = 0x3D9; i < 0x3E1; i += 2)
                     {
-                        playerNameRaw[j] = (UInt16)((data[i + 1] << 8) | data[i]);
+                        playerNameRaw[j] = (ushort)((data[i + 1] << 8) | data[i]);
                         j++;
                     }
                     break;
@@ -186,10 +171,10 @@ namespace ALTTPSRAMEditor
             convertPlayerNameRawToString(playerNameRaw);
         }
 
-        private void convertPlayerNameRawToString(UInt16[] playerNameRaw)
+        private void convertPlayerNameRawToString(ushort[] playerNameRaw)
         {
-            int j = 1; // Char counter
-            foreach (UInt16 i in playerNameRaw)
+            var j = 1; // Char counter
+            foreach (var i in playerNameRaw)
             {
                 switch (saveRegion)
                 {
@@ -209,32 +194,26 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        public Link GetPlayer()
-        {
-            return player;
-        }
+        public Link GetPlayer() => player;
 
-        public UInt16[] GetPlayerNameRaw()
-        {
-            return playerNameRaw;
-        }
+        public ushort[] GetPlayerNameRaw() => playerNameRaw;
 
-        public void SetPlayerNameRaw(UInt16[] _newName)
+        public void SetPlayerNameRaw(ushort[] _newName)
         {
-            int j = 0;
+            var j = 0;
             switch (saveRegion)
             {
                 default:
                 case Form1.SaveRegion.EUR:
                 case Form1.SaveRegion.USA:
-                    for (int i = 0x3D9; i <= 0x3E4; i += 2)
+                    for (var i = 0x3D9; i <= 0x3E4; i += 2)
                     {
                         playerNameRaw[j] = _newName[j];
                         j++;
                     }
                     break;
                 case Form1.SaveRegion.JPN:
-                    for (int i = 0x3D9; i <= 0x3DF; i += 2)
+                    for (var i = 0x3D9; i <= 0x3DF; i += 2)
                     {
                         playerNameRaw[j] = _newName[j];
                         j++;
@@ -243,15 +222,9 @@ namespace ALTTPSRAMEditor
             }
         }
 
-        public Form1.SaveRegion GetRegion()
-        {
-            return saveRegion;
-        }
+        public Form1.SaveRegion GetRegion() => saveRegion;
 
-        public byte[] GetData()
-        {
-            return data.ToArray();
-        }
+        public byte[] GetData() => data.ToArray();
 
         public void ValidateSave()
         {
@@ -259,12 +232,12 @@ namespace ALTTPSRAMEditor
             // It sums up every 16-bit value in the save slot, except for the final one
             // And then it writes the calculated checksum to the final two bytes (in little-endian order)
             // Before it writes that value it calculates, it does this(roughly, not literally): UInt16 total = 0x5A5A - checksum
-            UInt16 checksum = 0;
-            for (int i = 0; i < 0x4fe; i += 2)
+            ushort checksum = 0;
+            for (var i = 0; i < 0x4fe; i += 2)
             {
-                checksum += (UInt16)((data[i + 1] << 8) | data[i]);
+                checksum += (ushort)((data[i + 1] << 8) | data[i]);
             }
-            total_checksum = (UInt16)(0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
+            total_checksum = (ushort)(0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
 
             data[0x4FE] = (byte)(total_checksum & 0xff);
             data[0x4FF] = (byte)(total_checksum >> 8);
@@ -286,10 +259,10 @@ namespace ALTTPSRAMEditor
                     break;
             }
 
-            UInt16 checksum = 0;
-            for (int i = 0x0; i < 0x500; i += 2)
+            ushort checksum = 0;
+            for (var i = 0x0; i < 0x500; i += 2)
             {
-                UInt16 word = (UInt16)((data[i + 1] << 8) | data[i]);
+                var word = (ushort)((data[i + 1] << 8) | data[i]);
                 checksum += word;
             }
             return checksum == 0x5A5A; // The save is valid if the checksum total is exactly 0x5A5A
@@ -298,28 +271,22 @@ namespace ALTTPSRAMEditor
         public void UpdatePlayer()
         {
             // Take player's equipment and update the local data
-            byte[] itemsAndEquipment = player.GetItemsAndEquipmentArray();
+            var itemsAndEquipment = player.GetItemsAndEquipmentArray();
 
             // Update pendant and crystal data before merging this save
             itemsAndEquipment[0x34] = pendants;
             itemsAndEquipment[0x3A] = crystals;
-            itemsAndEquipment[0xF] = (byte) player.GetSelectedBottle();
-            int len = itemsAndEquipment.Length;
-            for (int i = 0x0; i < len; i++)
+            itemsAndEquipment[0xF] = (byte)player.GetSelectedBottle();
+            var len = itemsAndEquipment.Length;
+            for (var i = 0x0; i < len; i++)
             {
-                data[0x340 + i] = (byte)itemsAndEquipment[i];
+                data[0x340 + i] = itemsAndEquipment[i];
             }
         }
 
-        public byte GetPendants()
-        {
-            return pendants;
-        }
+        public byte GetPendants() => pendants;
 
-        public byte GetCrystals()
-        {
-            return crystals;
-        }
+        public byte GetCrystals() => crystals;
 
         public void TogglePendant(int _val)
         {
@@ -403,20 +370,11 @@ namespace ALTTPSRAMEditor
             itemsAndEquipment[0x3A] = crystals;
         }
 
-        public String GetPlayerName()
-        {
-            return playerName;
-        }
+        public string GetPlayerName() => playerName;
 
-        public void SetPlayerName(String str)
-        {
-            playerName = str;
-        }
+        public void SetPlayerName(string str) => playerName = str;
 
-        public void SetData(byte[] in_data)
-        {
-            data = in_data.ToArray();
-        }
+        public void SetData(byte[] in_data) => data = in_data.ToArray();
 
         public void ClearData()
         {

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
     [Serializable]
-    class Link
+    internal class Link
     {
-        private byte[] itemsAndEquipment;
-        private byte abilityFlags;
+        private readonly byte[] itemsAndEquipment;
+        private readonly byte abilityFlags;
         private int heartPieces = 0;
         private int heartContainers = 3;
-        private int currHealth = 3;
+        private readonly int currHealth = 3;
         private int currMagic = 0;
-        private int bombsHeld = 0;
-        private int arrowsHeld = 0;
+        private readonly int bombsHeld = 0;
+        private readonly int arrowsHeld = 0;
         private int currMagicUpgrade = 0;
         private int currArrowUpgrades = 0;
         private int currBombUpgrades = 0;
@@ -99,50 +96,26 @@ namespace ALTTPSRAMEditor
             currMagicUpgrade = itemsAndEquipment[0x3B];
         }
 
-        public byte[] GetItemsAndEquipmentArray()
-        {
-            return itemsAndEquipment;
-        }
+        public byte[] GetItemsAndEquipmentArray() => itemsAndEquipment;
 
-        public byte GetAbilityFlags()
-        {
-            return abilityFlags;
-        }
+        public byte GetAbilityFlags() => abilityFlags;
 
-        public int GetSelectedBottle()
-        {
-            return selectedBottle;
-        }
+        public int GetSelectedBottle() => selectedBottle;
 
-        public void SetSelectedBottle(int _val)
-        {
-            selectedBottle = _val;
-        }
+        public void SetSelectedBottle(int _val) => selectedBottle = _val;
 
-        public int GetHeldBombs()
-        {
-            return bombsHeld;
-        }
+        public int GetHeldBombs() => bombsHeld;
 
-        public int GetHeldArrows()
-        {
-            return arrowsHeld;
-        }
+        public int GetHeldArrows() => arrowsHeld;
 
-        public int GetCurrBombUpgrades()
-        {
-            return currBombUpgrades;
-        }
+        public int GetCurrBombUpgrades() => currBombUpgrades;
 
-        public int GetCurrArrowUpgrades()
-        {
-            return currArrowUpgrades;
-        }
+        public int GetCurrArrowUpgrades() => currArrowUpgrades;
 
         public void SetCurrArrowUpgrades(int _val)
         {
             currArrowUpgrades = _val;
-            itemsAndEquipment[0x31] = (byte) _val;
+            itemsAndEquipment[0x31] = (byte)_val;
         }
 
         public void SetCurrBombUpgrades(int _val)
@@ -151,10 +124,7 @@ namespace ALTTPSRAMEditor
             itemsAndEquipment[0x30] = (byte)_val;
         }
 
-        public void SetHasItemEquipment(int addr, byte val)
-        {
-            itemsAndEquipment[addr] = val;
-        }
+        public void SetHasItemEquipment(int addr, byte val) => itemsAndEquipment[addr] = val;
 
         public void SetHeartContainers(int val)
         {
@@ -173,40 +143,28 @@ namespace ALTTPSRAMEditor
         public void SetMagicUpgrade(int val)
         {
             currMagicUpgrade = val;
-            itemsAndEquipment[0x3B] = (byte) val; // Set the Magic Upgrade value
+            itemsAndEquipment[0x3B] = (byte)val; // Set the Magic Upgrade value
         }
 
         public void IncrementHeartPieces()
         {
             heartPieces++;
-            itemsAndEquipment[0x2B] = (byte) (heartPieces % 4);
+            itemsAndEquipment[0x2B] = (byte)(heartPieces % 4);
         }
 
         public void DecrementHeartPieces()
         {
             heartPieces--;
-            itemsAndEquipment[0x2B] = (byte) (heartPieces % 4);
+            itemsAndEquipment[0x2B] = (byte)(heartPieces % 4);
         }
 
-        public int GetHeartPieces()
-        {
-            return heartPieces;
-        }
+        public int GetHeartPieces() => heartPieces;
 
-        public int GetHeartContainers()
-        {
-            return heartContainers;
-        }
+        public int GetHeartContainers() => heartContainers;
 
-        public int GetCurrMagic()
-        {
-            return currMagic;
-        }
+        public int GetCurrMagic() => currMagic;
 
-        public int GetCurrMagicUpgrade()
-        {
-            return currMagicUpgrade;
-        }
+        public int GetCurrMagicUpgrade() => currMagicUpgrade;
 
         public void SetRupees(int val)
         {
@@ -225,14 +183,8 @@ namespace ALTTPSRAMEditor
             itemsAndEquipment[0x23] = bytes[0];
         }
 
-        public int GetRupeeValue()
-        {
-            return (itemsAndEquipment[0x23] << 8) | itemsAndEquipment[0x22];
-        }
+        public int GetRupeeValue() => (itemsAndEquipment[0x23] << 8) | itemsAndEquipment[0x22];
 
-        public int GetItemEquipment(int addr)
-        {
-            return itemsAndEquipment[addr];
-        }
+        public int GetItemEquipment(int addr) => itemsAndEquipment[addr];
     }
 }

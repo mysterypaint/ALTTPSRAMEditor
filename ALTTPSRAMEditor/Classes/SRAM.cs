@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ALTTPSRAMEditor
 {
     [Serializable]
-    class SRAM
+    internal class SRAM
     {
         private byte[] data;
         private
@@ -22,7 +20,7 @@ namespace ALTTPSRAMEditor
         const int slot3 = 0xA00;
         private
         const int slot3m = 0x1900;
-        private byte[] outsav = new byte[0x2000];
+        private readonly byte[] outsav = new byte[0x2000];
         //Addresses $1E00 to $1FFE in SRAM are not used.
         private
         const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
@@ -72,10 +70,10 @@ namespace ALTTPSRAMEditor
 
         private void GenerateSaveSlot(int start, int end, int thisSlot)
         {
-            byte[] in_dat = new byte[0x500];
+            var in_dat = new byte[0x500];
 
-            int j = 0;
-            for (int i = start; i < end; i++)
+            var j = 0;
+            for (var i = start; i < end; i++)
             {
                 in_dat[j] = data[i];
                 j++;
@@ -112,7 +110,7 @@ namespace ALTTPSRAMEditor
 
             if (savslot1.GetIsValid())
                 savslot1.ValidateSave();
-            byte[] currData = savslot1.GetData();
+            var currData = savslot1.GetData();
             Array.Copy(currData, 0, outsav, slot1, 0x500);
             Array.Copy(currData, 0, outsav, slot1m, 0x500); // Write the actual save slots to the mirror slots, just in case
 
@@ -141,8 +139,8 @@ namespace ALTTPSRAMEditor
 
         public static string ByteArrayToString(byte[] ba)
         {
-            StringBuilder hex = new StringBuilder(ba.Length * 2);
-            foreach (byte b in ba)
+            var hex = new StringBuilder(ba.Length * 2);
+            foreach (var b in ba)
                 hex.AppendFormat("{0:x2}", b);
             return hex.ToString();
         }
@@ -150,7 +148,7 @@ namespace ALTTPSRAMEditor
         public SaveSlot CreateFile(int fileSlot, Form1.SaveRegion _saveRegion)
         {
             // Create a clean save file to use, call it "Link" or "LINK" depending on region.
-            byte[] _new_save = new byte[0x500];
+            var _new_save = new byte[0x500];
             _new_save[0x20D] = 0xF0;
             _new_save[0x20F] = 0xF0;
             _new_save[0x36C] = 0x18;
@@ -296,7 +294,7 @@ namespace ALTTPSRAMEditor
                     break;
             }
         }
-        
+
         /*
         private String HexBlock(int start, int end)
         {
