@@ -1,102 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using Library.Classes;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Windows.Forms;
+using static Library.Classes.Constants;
+using static Library.Classes.Enums;
 
 namespace ALTTPSRAMEditor
 {
     public partial class Form1 : Form
     {
-        private const int srm_size = 0x2000;
-        private const int srm_randomizer_size = 16 * 1024;
-        private const int srm_randomizer_size_2 = 32 * 1024;
-
-        // Various events
-        private const int birdStatueKakariko = 0x298; // Freed from Statue if set to 0x20 (Maybe?)
-
-        // Items and Equipment (All these values are relative, just subtract 0x340 from their actual SRAM values
-        private const int bow = 0x0;
-        private const int boomerang = 0x1;
-        private const int hookshot = 0x2;
-        private const int bombCount = 0x3;
-        private const int mushroomPowder = 0x4;
-        private const int fireRod = 0x5;
-        private const int iceRod = 0x6;
-        private const int bombosMedallion = 0x7;
-        private const int etherMedallion = 0x8;
-        private const int quakeMedallion = 0x9;
-        private const int lamp = 0xA;
-        private const int magicHammer = 0xB;
-        private const int shovelFlute = 0xC;
-        private const int bugNet = 0xD;
-        private const int book = 0xE;
-        private const int bottle = 0xF;
-        private const int caneOfSomaria = 0x10;
-        private const int caneOfByrna = 0x11;
-        private const int magicCape = 0x12;
-        private const int magicMirror = 0x13;
-        private const int gloves = 0x14;
-        private const int pegasusBoots = 0x15;
-        private const int zorasFlippers = 0x16;
-        private const int moonPearl = 0x17;
-        private const int skipthis = 0x18;
-        private const int sword = 0x19;
-        private const int shield = 0x1A;
-        private const int armor = 0x1B;
-        private const int bottle1Contents = 0x1C;
-        private const int bottle2Contents = 0x1D;
-        private const int bottle3Contents = 0x1E;
-        private const int bottle4Contents = 0x1F;
-        private const int wallet = 0x20; // 2 bytes
-        private const int rupees = 0x22; // 2 bytes
-
-        private const int abilityFlags = 0x39;
-        private const int arrowCount = 0x37;
-        private const int bombUpgrades = 0x30;
-        private const int arrowUpgrades = 0x31;
-        private const int magicPower = 0x2E;
-        private const int magicUpgrades = 0x3B;
-        private const int maxHearts = 0x2C;
-        private const int currHearts = 0x2D;
-
-        public const int greenPendant = 0x2;
-        public const int bluePendant = 0x1;
-        public const int redPendant = 0x0;
-
-        public const int crystalPoD = 0x1;
-        public const int crystalSP = 0x4;
-        public const int crystalSW = 0x6;
-        public const int crystalTT = 0x5;
-        public const int crystalIP = 0x2;
-        public const int crystalMM = 0x0;
-        public const int crystalTR = 0x3;
-
         private bool canRefresh = true;
         private bool fileOpen = false;
         private static readonly int[] bottleContents = new int[9];
         private static readonly System.Drawing.Bitmap[] bottleContentsImg = new System.Drawing.Bitmap[9];
-
-        public enum SaveRegion : int
-        {
-            USA,
-            JPN,
-            EUR
-        };
-
-        public enum BottleContents : int
-        {
-            NONE,
-            MUSHROOM,
-            EMPTY,
-            RED_POTION,
-            GREEN_POTION,
-            BLUE_POTION,
-            FAERIE,
-            BEE,
-            GOOD_BEE
-        };
 
         private static int pos = 0;
         private static int saveRegion = (int)SaveRegion.USA;
@@ -113,19 +27,16 @@ namespace ALTTPSRAMEditor
         private readonly Image jpn_fnt = ALTTPSRAMEditor.Properties.Resources.jpn_font;
         public static Dictionary<char, int> enChar = new Dictionary<char, int>();
         public static Dictionary<char, int> jpChar = new Dictionary<char, int>();
-        public static Dictionary<ushort, char> rawENChar = new Dictionary<ushort, char>();
-        public static Dictionary<ushort, char> rawJPChar = new Dictionary<ushort, char>();
-        private static readonly Data dataHandler = new Data(enChar, jpChar, rawENChar, rawJPChar);
 
         public Form1() => InitializeComponent();
 
         public Dictionary<char, int> GetENChar() => enChar;
 
-        public Dictionary<ushort, char> GetRawENChar() => rawENChar;
+        public Dictionary<ushort, char> GetRawENChar() => AppState.rawENChar;
 
         public Dictionary<char, int> GetJPChar() => jpChar;
 
-        public Dictionary<ushort, char> GetRawJPChar() => rawJPChar;
+        public Dictionary<ushort, char> GetRawJPChar() => AppState.rawJPChar;
 
         private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
