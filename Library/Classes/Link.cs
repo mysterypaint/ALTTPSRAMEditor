@@ -28,33 +28,18 @@ public class Link
         bombsHeld = itemsAndEquipment[0x3];
         selectedBottle = itemsAndEquipment[0xF];
 
-        var _bombsMax = 10;
-        switch (currBombUpgrades)
+        var _bombsMax = currBombUpgrades switch
         {
-            default:
-                break;
-            case 1:
-                _bombsMax = 15;
-                break;
-            case 2:
-                _bombsMax = 20;
-                break;
-            case 3:
-                _bombsMax = 25;
-                break;
-            case 4:
-                _bombsMax = 30;
-                break;
-            case 5:
-                _bombsMax = 35;
-                break;
-            case 6:
-                _bombsMax = 40;
-                break;
-            case 7:
-                _bombsMax = 50;
-                break;
-        }
+            1 => 15,
+            2 => 20,
+            3 => 25,
+            4 => 30,
+            5 => 35,
+            6 => 40,
+            7 => 50,
+            _ => 10,
+        };
+
         if (bombsHeld > _bombsMax)
         {
             bombsHeld = _bombsMax;
@@ -63,33 +48,18 @@ public class Link
         currArrowUpgrades = itemsAndEquipment[0x31];
         arrowsHeld = itemsAndEquipment[0x37];
 
-        var _arrowsMax = 30;
-        switch (currBombUpgrades)
+        var _arrowsMax = currArrowUpgrades switch
         {
-            default:
-                break;
-            case 1:
-                _arrowsMax = 35;
-                break;
-            case 2:
-                _arrowsMax = 40;
-                break;
-            case 3:
-                _arrowsMax = 45;
-                break;
-            case 4:
-                _arrowsMax = 50;
-                break;
-            case 5:
-                _arrowsMax = 55;
-                break;
-            case 6:
-                _arrowsMax = 60;
-                break;
-            case 7:
-                _arrowsMax = 70;
-                break;
-        }
+            1 => 35,
+            2 => 40,
+            3 => 45,
+            4 => 50,
+            5 => 55,
+            6 => 60,
+            7 => 70,
+            _ => 30,
+        };
+
         if (arrowsHeld > _arrowsMax)
         {
             arrowsHeld = _arrowsMax;
