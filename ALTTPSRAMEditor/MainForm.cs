@@ -24,13 +24,13 @@ public partial class MainForm : Form
 
     public MainForm() => InitializeComponent();
 
-    public static Dictionary<char, int> GetENChar() => AppState.enChar;
+    //public static Dictionary<char, int> GetEnChar() => AppState.enChar;
 
-    public static Dictionary<ushort, char> GetRawENChar() => AppState.rawENChar;
+    //public static Dictionary<ushort, char> GetRawEnChar() => AppState.rawENChar;
 
-    public static Dictionary<char, int> GetJPChar() => AppState.jpChar;
+    //public static Dictionary<char, int> GetJpChar() => AppState.jpChar;
 
-    public static Dictionary<ushort, char> GetRawJPChar() => AppState.rawJPChar;
+    //public static Dictionary<ushort, char> GetRawJpChar() => AppState.rawJPChar;
 
     private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
@@ -1067,8 +1067,8 @@ public partial class MainForm : Form
     private void buttonChangeName_Click(object sender, EventArgs e)
     {
         var nameForm = saveRegion == (int)SaveRegion.JPN
-            ? (Form)new NameChangingFormJP(this)
-            : new NameChangingFormEN(this);
+            ? (Form)new NameChangingFormJp(this)
+            : new NameChangingFormEn(this);
         nameForm.ShowDialog();
     }
 

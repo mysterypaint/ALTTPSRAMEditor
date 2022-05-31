@@ -174,7 +174,7 @@ public class SaveSlot
                         break;
                     }
 
-                    playerName += AppState.rawENChar[i];
+                    playerName += AppState.rawEnChar[i];
                     break;
                 case Enums.SaveRegion.JPN:
                     if (j > 4)
@@ -182,7 +182,7 @@ public class SaveSlot
                         break;
                     }
 
-                    playerName += AppState.rawJPChar[i];
+                    playerName += AppState.rawJpChar[i];
                     break;
             }
             j++;
