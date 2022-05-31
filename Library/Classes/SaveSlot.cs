@@ -11,8 +11,6 @@ public class SaveSlot
     private byte pendants;
     private byte crystals;
     private bool isValid;
-    private int deathCounter = 0;
-    private int liveSaveCounter = 0;
     private int slotIndex;
     private readonly Enums.SaveRegion saveRegion;
     private readonly byte[] itemsAndEquipment;
@@ -28,10 +26,6 @@ public class SaveSlot
         saveRegion = data[0x3E5] == 0xAA && data[0x3E6] == 0x55
             ? Enums.SaveRegion.USA
             : data[0x3E1] == 0xAA && data[0x3E2] == 0x55 ? Enums.SaveRegion.JPN : Enums.SaveRegion.EUR;
-
-        // Set death/live/save counter values
-        deathCounter = 0;
-        liveSaveCounter = 0;
 
         isValid = SaveIsValid();
         // Copy global save data's Item&Equipment data to this Save Slot
@@ -50,7 +44,7 @@ public class SaveSlot
         // Initialize a player object upon creating this save slot.
         player = new Link(itemsAndEquipment);
 
-        getRawPlayerName();
+        GetRawPlayerName();
     }
 
     public void ResetFileDeaths(bool showOnFileSelect)
@@ -81,9 +75,6 @@ public class SaveSlot
 
         data[_liveSaveCounterAddr] = 0x0;
         data[_liveSaveCounterAddr + 1] = 0x0;
-        liveSaveCounter = 0;
-
-        deathCounter = 0;
 
         if (showOnFileSelect)
         {
@@ -137,7 +128,7 @@ public class SaveSlot
     public bool GetIsValid() => isValid;
 
     public override string ToString() => slotIndex.ToString();
-    private void getRawPlayerName()
+    private void GetRawPlayerName()
     {
         if (!SaveIsValid())
         {

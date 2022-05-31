@@ -298,18 +298,4 @@ public class SRAM
                 break;
         }
     }
-
-    /*
-    private String HexBlock(int start, int end)
-    {
-        BinaryReader br = new BinaryReader(File.OpenRead(f_in));
-
-        String str = null;
-        for (int i = start; i <= end; i++)
-        {
-            br.BaseStream.Position = i;
-            str = br.ReadByte().ToString("X2");
-        }
-        return str;
-    }*/
 }

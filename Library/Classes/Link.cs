@@ -7,7 +7,6 @@ public class Link
     private readonly byte abilityFlags;
     private int heartPieces = 0;
     private int heartContainers = 3;
-    private readonly int currHealth = 3;
     private int currMagic = 0;
     private readonly int bombsHeld = 0;
     private readonly int arrowsHeld = 0;
@@ -22,7 +21,6 @@ public class Link
         abilityFlags = itemsAndEquipment[0x39];
         heartPieces = itemsAndEquipment[0x2B];
         heartContainers = itemsAndEquipment[0x2C];
-        currHealth = itemsAndEquipment[0x2D];
         currMagic = itemsAndEquipment[0x2E];
         currBombUpgrades = itemsAndEquipment[0x30];
         bombsHeld = itemsAndEquipment[0x3];

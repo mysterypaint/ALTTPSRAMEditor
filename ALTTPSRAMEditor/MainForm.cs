@@ -89,19 +89,19 @@ public partial class MainForm : Form
         }
         catch (IOException)
         {
-            helperText.Text = "File reading conflict: " + fname + ".\nIs it open in another program?";
+            helperText.Text = $"File reading conflict: {fname}.\nIs it open in another program?";
         }
         catch (Exception e)
         {
-            MessageBox.Show("The file could not be read:\n" + e.Message);
+            MessageBox.Show($"The file could not be read:\n{e.Message}");
         }
     }
 
     private void OpenSRMGoodSize(byte[] _bytes)
     {
-        Console.Write("Opened " + fname);
+        Console.Write($"Opened {fname}");
         fileOpen = true;
-        helperText.Text = "Opened " + fname;
+        helperText.Text = $"Opened {fname}";
         sdat = new SRAM(_bytes);
         radioFile1.Enabled = true;
         radioFile2.Enabled = true;
@@ -163,12 +163,12 @@ public partial class MainForm : Form
         try
         {
             File.WriteAllBytes(fname, outputData);
-            helperText.Text = "Saved file at " + fname;
+            helperText.Text = $"Saved file at {fname}";
             buttonWrite.Enabled = false;
         }
         catch (IOException)
         {
-            helperText.Text = "File writing conflict: " + fname + ".\nIs it open in another program?";
+            helperText.Text = $"File writing conflict: {fname}.\nIs it open in another program?";
         }
     }
 
@@ -318,12 +318,13 @@ public partial class MainForm : Form
             selFile = 3;
         }
 
-        var dialogResult = MessageBox.Show("You are about to PERMANENTLY ERASE File " + selFile + "! Are you sure you want to erase it? There is no undo!", "Erase File " + selFile + "?", MessageBoxButtons.YesNo);
+        var dialogResult = MessageBox.Show($"You are about to PERMANENTLY ERASE File {selFile}! Are you sure you want to erase it? There is no undo!",
+            $"Erase File {selFile}?", MessageBoxButtons.YesNo);
 
         if (dialogResult == DialogResult.Yes)
         {
             SRAM.EraseFile(selFile);
-            helperText.Text = "Erased File " + selFile + ".";
+            helperText.Text = $"Erased File {selFile}.";
             var savslot = SRAM.GetSaveSlot(selFile);
             savslot.SetIsValid(false);
             canRefresh = true;
@@ -337,7 +338,7 @@ public partial class MainForm : Form
 
     public string GetPlayerName() => GetSaveSlot().GetPlayerName();
 
-    public void UpdatePlayerName()
+    public void UpdatePlayerName(string? _str = null)
     {
         var savslot = GetSaveSlot();
         if (!savslot.SaveIsValid())
@@ -351,25 +352,7 @@ public partial class MainForm : Form
             buttonChangeName.Enabled = true;
             buttonResetDeaths.Enabled = true;
         }
-        displayPlayerName = savslot.GetPlayerName();
-        Refresh(); // Update the screen, including the player name
-    }
-
-    public void UpdatePlayerName(string _str)
-    {
-        var savslot = GetSaveSlot();
-        if (!savslot.SaveIsValid())
-        {
-            displayPlayerName = "";
-            buttonChangeName.Enabled = false;
-            buttonResetDeaths.Enabled = false;
-        }
-        else
-        {
-            buttonChangeName.Enabled = true;
-            buttonResetDeaths.Enabled = true;
-        }
-        displayPlayerName = _str;
+        displayPlayerName = _str ?? savslot.GetPlayerName();
         Refresh(); // Update the screen, including the player name
     }
 
@@ -920,8 +903,8 @@ public partial class MainForm : Form
         numericUpDownRupeeCounter.Value = player.GetRupeeValue();
         UpdateAllConfigurables(savslot);
         helperText.Text = !savslot.SaveIsValid()
-            ? "Save slot " + savslot.ToString() + " is empty or invalid."
-            : "Editing Save slot " + savslot.ToString() + ".";
+            ? $"Save slot {savslot.ToString()} is empty or invalid."
+            : $"Editing Save slot {savslot.ToString()}.";
     }
 
     protected override void OnPaint(PaintEventArgs e)
