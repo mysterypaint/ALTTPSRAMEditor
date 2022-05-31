@@ -43,248 +43,248 @@ public partial class NameChangingFormJp : Form
 
         // Hiragana
 
-        kbdHiraganaCharA.Image = GetCharTexture(jpFnt, 5, SaveRegion.JPN);
-        kbdHiraganaCharI.Image = GetCharTexture(jpFnt, 6, SaveRegion.JPN);
-        kbdHiraganaCharU.Image = GetCharTexture(jpFnt, 7, SaveRegion.JPN);
-        kbdHiraganaCharE.Image = GetCharTexture(jpFnt, 8, SaveRegion.JPN);
-        kbdHiraganaCharO.Image = GetCharTexture(jpFnt, 9, SaveRegion.JPN);
+        kbdHiraganaCharA.Image = GetCharTexture(jpFnt, 5);
+        kbdHiraganaCharI.Image = GetCharTexture(jpFnt, 6);
+        kbdHiraganaCharU.Image = GetCharTexture(jpFnt, 7);
+        kbdHiraganaCharE.Image = GetCharTexture(jpFnt, 8);
+        kbdHiraganaCharO.Image = GetCharTexture(jpFnt, 9);
 
-        kbdHiraganaCharKa.Image = GetCharTexture(jpFnt, 10, SaveRegion.JPN);
-        kbdHiraganaCharKi.Image = GetCharTexture(jpFnt, 11, SaveRegion.JPN);
-        kbdHiraganaCharKu.Image = GetCharTexture(jpFnt, 12, SaveRegion.JPN);
-        kbdHiraganaCharKe.Image = GetCharTexture(jpFnt, 13, SaveRegion.JPN);
-        kbdHiraganaCharKo.Image = GetCharTexture(jpFnt, 14, SaveRegion.JPN);
+        kbdHiraganaCharKa.Image = GetCharTexture(jpFnt, 10);
+        kbdHiraganaCharKi.Image = GetCharTexture(jpFnt, 11);
+        kbdHiraganaCharKu.Image = GetCharTexture(jpFnt, 12);
+        kbdHiraganaCharKe.Image = GetCharTexture(jpFnt, 13);
+        kbdHiraganaCharKo.Image = GetCharTexture(jpFnt, 14);
 
-        kbdHiraganaCharSa.Image = GetCharTexture(jpFnt, 15, SaveRegion.JPN);
-        kbdHiraganaCharShi.Image = GetCharTexture(jpFnt, 16, SaveRegion.JPN);
-        kbdHiraganaCharSu.Image = GetCharTexture(jpFnt, 17, SaveRegion.JPN);
-        kbdHiraganaCharSe.Image = GetCharTexture(jpFnt, 18, SaveRegion.JPN);
-        kbdHiraganaCharSo.Image = GetCharTexture(jpFnt, 19, SaveRegion.JPN);
+        kbdHiraganaCharSa.Image = GetCharTexture(jpFnt, 15);
+        kbdHiraganaCharShi.Image = GetCharTexture(jpFnt, 16);
+        kbdHiraganaCharSu.Image = GetCharTexture(jpFnt, 17);
+        kbdHiraganaCharSe.Image = GetCharTexture(jpFnt, 18);
+        kbdHiraganaCharSo.Image = GetCharTexture(jpFnt, 19);
 
-        kbdHiraganaCharTa.Image = GetCharTexture(jpFnt, 20, SaveRegion.JPN);
-        kbdHiraganaCharChi.Image = GetCharTexture(jpFnt, 21, SaveRegion.JPN);
-        kbdHiraganaCharTsu.Image = GetCharTexture(jpFnt, 22, SaveRegion.JPN);
-        kbdHiraganaCharTe.Image = GetCharTexture(jpFnt, 23, SaveRegion.JPN);
-        kbdHiraganaCharTo.Image = GetCharTexture(jpFnt, 24, SaveRegion.JPN);
+        kbdHiraganaCharTa.Image = GetCharTexture(jpFnt, 20);
+        kbdHiraganaCharChi.Image = GetCharTexture(jpFnt, 21);
+        kbdHiraganaCharTsu.Image = GetCharTexture(jpFnt, 22);
+        kbdHiraganaCharTe.Image = GetCharTexture(jpFnt, 23);
+        kbdHiraganaCharTo.Image = GetCharTexture(jpFnt, 24);
 
-        kbdHiraganaCharNa.Image = GetCharTexture(jpFnt, 25, SaveRegion.JPN);
-        kbdHiraganaCharNi.Image = GetCharTexture(jpFnt, 26, SaveRegion.JPN);
-        kbdHiraganaCharNu.Image = GetCharTexture(jpFnt, 27, SaveRegion.JPN);
-        kbdHiraganaCharNe.Image = GetCharTexture(jpFnt, 28, SaveRegion.JPN);
-        kbdHiraganaCharNo.Image = GetCharTexture(jpFnt, 29, SaveRegion.JPN);
+        kbdHiraganaCharNa.Image = GetCharTexture(jpFnt, 25);
+        kbdHiraganaCharNi.Image = GetCharTexture(jpFnt, 26);
+        kbdHiraganaCharNu.Image = GetCharTexture(jpFnt, 27);
+        kbdHiraganaCharNe.Image = GetCharTexture(jpFnt, 28);
+        kbdHiraganaCharNo.Image = GetCharTexture(jpFnt, 29);
 
-        kbdHiraganaCharHa.Image = GetCharTexture(jpFnt, 30, SaveRegion.JPN);
-        kbdHiraganaCharHi.Image = GetCharTexture(jpFnt, 31, SaveRegion.JPN);
-        kbdHiraganaCharFu.Image = GetCharTexture(jpFnt, 32, SaveRegion.JPN);
-        kbdHiraganaCharHe.Image = GetCharTexture(jpFnt, 33, SaveRegion.JPN);
-        kbdHiraganaCharHo.Image = GetCharTexture(jpFnt, 34, SaveRegion.JPN);
+        kbdHiraganaCharHa.Image = GetCharTexture(jpFnt, 30);
+        kbdHiraganaCharHi.Image = GetCharTexture(jpFnt, 31);
+        kbdHiraganaCharFu.Image = GetCharTexture(jpFnt, 32);
+        kbdHiraganaCharHe.Image = GetCharTexture(jpFnt, 33);
+        kbdHiraganaCharHo.Image = GetCharTexture(jpFnt, 34);
 
-        kbdHiraganaCharMa.Image = GetCharTexture(jpFnt, 35, SaveRegion.JPN);
-        kbdHiraganaCharMi.Image = GetCharTexture(jpFnt, 36, SaveRegion.JPN);
-        kbdHiraganaCharMu.Image = GetCharTexture(jpFnt, 37, SaveRegion.JPN);
-        kbdHiraganaCharMe.Image = GetCharTexture(jpFnt, 38, SaveRegion.JPN);
-        kbdHiraganaCharMo.Image = GetCharTexture(jpFnt, 39, SaveRegion.JPN);
+        kbdHiraganaCharMa.Image = GetCharTexture(jpFnt, 35);
+        kbdHiraganaCharMi.Image = GetCharTexture(jpFnt, 36);
+        kbdHiraganaCharMu.Image = GetCharTexture(jpFnt, 37);
+        kbdHiraganaCharMe.Image = GetCharTexture(jpFnt, 38);
+        kbdHiraganaCharMo.Image = GetCharTexture(jpFnt, 39);
 
-        kbdHiraganaCharYa.Image = GetCharTexture(jpFnt, 40, SaveRegion.JPN);
-        kbdHiraganaCharYu.Image = GetCharTexture(jpFnt, 42, SaveRegion.JPN);
-        kbdHiraganaCharYo.Image = GetCharTexture(jpFnt, 44, SaveRegion.JPN);
+        kbdHiraganaCharYa.Image = GetCharTexture(jpFnt, 40);
+        kbdHiraganaCharYu.Image = GetCharTexture(jpFnt, 42);
+        kbdHiraganaCharYo.Image = GetCharTexture(jpFnt, 44);
 
-        kbdHiraganaCharRa.Image = GetCharTexture(jpFnt, 45, SaveRegion.JPN);
-        kbdHiraganaCharRi.Image = GetCharTexture(jpFnt, 46, SaveRegion.JPN);
-        kbdHiraganaCharRu.Image = GetCharTexture(jpFnt, 47, SaveRegion.JPN);
-        kbdHiraganaCharRe.Image = GetCharTexture(jpFnt, 48, SaveRegion.JPN);
-        kbdHiraganaCharRo.Image = GetCharTexture(jpFnt, 49, SaveRegion.JPN);
+        kbdHiraganaCharRa.Image = GetCharTexture(jpFnt, 45);
+        kbdHiraganaCharRi.Image = GetCharTexture(jpFnt, 46);
+        kbdHiraganaCharRu.Image = GetCharTexture(jpFnt, 47);
+        kbdHiraganaCharRe.Image = GetCharTexture(jpFnt, 48);
+        kbdHiraganaCharRo.Image = GetCharTexture(jpFnt, 49);
 
-        kbdHiraganaCharWa.Image = GetCharTexture(jpFnt, 50, SaveRegion.JPN);
-        kbdHiraganaCharWo.Image = GetCharTexture(jpFnt, 51, SaveRegion.JPN);
-        kbdHiraganaCharN.Image = GetCharTexture(jpFnt, 52, SaveRegion.JPN);
-        kbdHiraganaCharHyphen.Image = GetCharTexture(jpFnt, 54, SaveRegion.JPN);
+        kbdHiraganaCharWa.Image = GetCharTexture(jpFnt, 50);
+        kbdHiraganaCharWo.Image = GetCharTexture(jpFnt, 51);
+        kbdHiraganaCharN.Image = GetCharTexture(jpFnt, 52);
+        kbdHiraganaCharHyphen.Image = GetCharTexture(jpFnt, 54);
 
-        kbdHiraganaCharGa.Image = GetCharTexture(jpFnt, 55, SaveRegion.JPN);
-        kbdHiraganaCharGi.Image = GetCharTexture(jpFnt, 56, SaveRegion.JPN);
-        kbdHiraganaCharGu.Image = GetCharTexture(jpFnt, 57, SaveRegion.JPN);
-        kbdHiraganaCharGe.Image = GetCharTexture(jpFnt, 58, SaveRegion.JPN);
-        kbdHiraganaCharGo.Image = GetCharTexture(jpFnt, 59, SaveRegion.JPN);
+        kbdHiraganaCharGa.Image = GetCharTexture(jpFnt, 55);
+        kbdHiraganaCharGi.Image = GetCharTexture(jpFnt, 56);
+        kbdHiraganaCharGu.Image = GetCharTexture(jpFnt, 57);
+        kbdHiraganaCharGe.Image = GetCharTexture(jpFnt, 58);
+        kbdHiraganaCharGo.Image = GetCharTexture(jpFnt, 59);
 
 
-        kbdHiraganaCharZa.Image = GetCharTexture(jpFnt, 60, SaveRegion.JPN);
-        kbdHiraganaCharJi.Image = GetCharTexture(jpFnt, 61, SaveRegion.JPN);
-        kbdHiraganaCharZu.Image = GetCharTexture(jpFnt, 62, SaveRegion.JPN);
-        kbdHiraganaCharZe.Image = GetCharTexture(jpFnt, 63, SaveRegion.JPN);
-        kbdHiraganaCharZo.Image = GetCharTexture(jpFnt, 64, SaveRegion.JPN);
+        kbdHiraganaCharZa.Image = GetCharTexture(jpFnt, 60);
+        kbdHiraganaCharJi.Image = GetCharTexture(jpFnt, 61);
+        kbdHiraganaCharZu.Image = GetCharTexture(jpFnt, 62);
+        kbdHiraganaCharZe.Image = GetCharTexture(jpFnt, 63);
+        kbdHiraganaCharZo.Image = GetCharTexture(jpFnt, 64);
 
-        kbdHiraganaCharDa.Image = GetCharTexture(jpFnt, 65, SaveRegion.JPN);
-        kbdHiraganaCharDi.Image = GetCharTexture(jpFnt, 66, SaveRegion.JPN);
-        kbdHiraganaCharDu.Image = GetCharTexture(jpFnt, 67, SaveRegion.JPN);
-        kbdHiraganaCharDe.Image = GetCharTexture(jpFnt, 68, SaveRegion.JPN);
-        kbdHiraganaCharDo.Image = GetCharTexture(jpFnt, 69, SaveRegion.JPN);
+        kbdHiraganaCharDa.Image = GetCharTexture(jpFnt, 65);
+        kbdHiraganaCharDi.Image = GetCharTexture(jpFnt, 66);
+        kbdHiraganaCharDu.Image = GetCharTexture(jpFnt, 67);
+        kbdHiraganaCharDe.Image = GetCharTexture(jpFnt, 68);
+        kbdHiraganaCharDo.Image = GetCharTexture(jpFnt, 69);
 
-        kbdHiraganaCharBa.Image = GetCharTexture(jpFnt, 70, SaveRegion.JPN);
-        kbdHiraganaCharBi.Image = GetCharTexture(jpFnt, 71, SaveRegion.JPN);
-        kbdHiraganaCharBu.Image = GetCharTexture(jpFnt, 72, SaveRegion.JPN);
-        kbdHiraganaCharBe.Image = GetCharTexture(jpFnt, 73, SaveRegion.JPN);
-        kbdHiraganaCharBo.Image = GetCharTexture(jpFnt, 74, SaveRegion.JPN);
+        kbdHiraganaCharBa.Image = GetCharTexture(jpFnt, 70);
+        kbdHiraganaCharBi.Image = GetCharTexture(jpFnt, 71);
+        kbdHiraganaCharBu.Image = GetCharTexture(jpFnt, 72);
+        kbdHiraganaCharBe.Image = GetCharTexture(jpFnt, 73);
+        kbdHiraganaCharBo.Image = GetCharTexture(jpFnt, 74);
 
-        kbdHiraganaCharPa.Image = GetCharTexture(jpFnt, 75, SaveRegion.JPN);
-        kbdHiraganaCharPi.Image = GetCharTexture(jpFnt, 76, SaveRegion.JPN);
-        kbdHiraganaCharPu.Image = GetCharTexture(jpFnt, 77, SaveRegion.JPN);
-        kbdHiraganaCharPe.Image = GetCharTexture(jpFnt, 78, SaveRegion.JPN);
-        kbdHiraganaCharPo.Image = GetCharTexture(jpFnt, 79, SaveRegion.JPN);
+        kbdHiraganaCharPa.Image = GetCharTexture(jpFnt, 75);
+        kbdHiraganaCharPi.Image = GetCharTexture(jpFnt, 76);
+        kbdHiraganaCharPu.Image = GetCharTexture(jpFnt, 77);
+        kbdHiraganaCharPe.Image = GetCharTexture(jpFnt, 78);
+        kbdHiraganaCharPo.Image = GetCharTexture(jpFnt, 79);
 
-        kbdHiraganaCharSmallA.Image = GetCharTexture(jpFnt, 80, SaveRegion.JPN);
-        kbdHiraganaCharSmallI.Image = GetCharTexture(jpFnt, 81, SaveRegion.JPN);
-        kbdHiraganaCharSmallU.Image = GetCharTexture(jpFnt, 82, SaveRegion.JPN);
-        kbdHiraganaCharSmallE.Image = GetCharTexture(jpFnt, 83, SaveRegion.JPN);
-        kbdHiraganaCharSmallO.Image = GetCharTexture(jpFnt, 84, SaveRegion.JPN);
+        kbdHiraganaCharSmallA.Image = GetCharTexture(jpFnt, 80);
+        kbdHiraganaCharSmallI.Image = GetCharTexture(jpFnt, 81);
+        kbdHiraganaCharSmallU.Image = GetCharTexture(jpFnt, 82);
+        kbdHiraganaCharSmallE.Image = GetCharTexture(jpFnt, 83);
+        kbdHiraganaCharSmallO.Image = GetCharTexture(jpFnt, 84);
 
-        kbdHiraganaCharSmallYa.Image = GetCharTexture(jpFnt, 85, SaveRegion.JPN);
-        kbdHiraganaCharSmallYu.Image = GetCharTexture(jpFnt, 86, SaveRegion.JPN);
-        kbdHiraganaCharSmallYo.Image = GetCharTexture(jpFnt, 87, SaveRegion.JPN);
-        kbdHiraganaCharSmallTsu.Image = GetCharTexture(jpFnt, 89, SaveRegion.JPN);
+        kbdHiraganaCharSmallYa.Image = GetCharTexture(jpFnt, 85);
+        kbdHiraganaCharSmallYu.Image = GetCharTexture(jpFnt, 86);
+        kbdHiraganaCharSmallYo.Image = GetCharTexture(jpFnt, 87);
+        kbdHiraganaCharSmallTsu.Image = GetCharTexture(jpFnt, 89);
 
         // Katakana
 
-        kbdKatakanaCharA.Image = GetCharTexture(jpFnt, 95, SaveRegion.JPN);
-        kbdKatakanaCharI.Image = GetCharTexture(jpFnt, 96, SaveRegion.JPN);
-        kbdKatakanaCharU.Image = GetCharTexture(jpFnt, 97, SaveRegion.JPN);
-        kbdKatakanaCharE.Image = GetCharTexture(jpFnt, 98, SaveRegion.JPN);
-        kbdKatakanaCharO.Image = GetCharTexture(jpFnt, 99, SaveRegion.JPN);
+        kbdKatakanaCharA.Image = GetCharTexture(jpFnt, 95);
+        kbdKatakanaCharI.Image = GetCharTexture(jpFnt, 96);
+        kbdKatakanaCharU.Image = GetCharTexture(jpFnt, 97);
+        kbdKatakanaCharE.Image = GetCharTexture(jpFnt, 98);
+        kbdKatakanaCharO.Image = GetCharTexture(jpFnt, 99);
 
-        kbdKatakanaCharKa.Image = GetCharTexture(jpFnt, 100, SaveRegion.JPN);
-        kbdKatakanaCharKi.Image = GetCharTexture(jpFnt, 101, SaveRegion.JPN);
-        kbdKatakanaCharKu.Image = GetCharTexture(jpFnt, 102, SaveRegion.JPN);
-        kbdKatakanaCharKe.Image = GetCharTexture(jpFnt, 103, SaveRegion.JPN);
-        kbdKatakanaCharKo.Image = GetCharTexture(jpFnt, 104, SaveRegion.JPN);
+        kbdKatakanaCharKa.Image = GetCharTexture(jpFnt, 100);
+        kbdKatakanaCharKi.Image = GetCharTexture(jpFnt, 101);
+        kbdKatakanaCharKu.Image = GetCharTexture(jpFnt, 102);
+        kbdKatakanaCharKe.Image = GetCharTexture(jpFnt, 103);
+        kbdKatakanaCharKo.Image = GetCharTexture(jpFnt, 104);
 
-        kbdKatakanaCharSa.Image = GetCharTexture(jpFnt, 105, SaveRegion.JPN);
-        kbdKatakanaCharShi.Image = GetCharTexture(jpFnt, 106, SaveRegion.JPN);
-        kbdKatakanaCharSu.Image = GetCharTexture(jpFnt, 107, SaveRegion.JPN);
-        kbdKatakanaCharSe.Image = GetCharTexture(jpFnt, 108, SaveRegion.JPN);
-        kbdKatakanaCharSo.Image = GetCharTexture(jpFnt, 109, SaveRegion.JPN);
+        kbdKatakanaCharSa.Image = GetCharTexture(jpFnt, 105);
+        kbdKatakanaCharShi.Image = GetCharTexture(jpFnt, 106);
+        kbdKatakanaCharSu.Image = GetCharTexture(jpFnt, 107);
+        kbdKatakanaCharSe.Image = GetCharTexture(jpFnt, 108);
+        kbdKatakanaCharSo.Image = GetCharTexture(jpFnt, 109);
 
-        kbdKatakanaCharTa.Image = GetCharTexture(jpFnt, 110, SaveRegion.JPN);
-        kbdKatakanaCharChi.Image = GetCharTexture(jpFnt, 111, SaveRegion.JPN);
-        kbdKatakanaCharTsu.Image = GetCharTexture(jpFnt, 112, SaveRegion.JPN);
-        kbdKatakanaCharTe.Image = GetCharTexture(jpFnt, 113, SaveRegion.JPN);
-        kbdKatakanaCharTo.Image = GetCharTexture(jpFnt, 114, SaveRegion.JPN);
+        kbdKatakanaCharTa.Image = GetCharTexture(jpFnt, 110);
+        kbdKatakanaCharChi.Image = GetCharTexture(jpFnt, 111);
+        kbdKatakanaCharTsu.Image = GetCharTexture(jpFnt, 112);
+        kbdKatakanaCharTe.Image = GetCharTexture(jpFnt, 113);
+        kbdKatakanaCharTo.Image = GetCharTexture(jpFnt, 114);
 
-        kbdKatakanaCharNa.Image = GetCharTexture(jpFnt, 115, SaveRegion.JPN);
-        kbdKatakanaCharNi.Image = GetCharTexture(jpFnt, 116, SaveRegion.JPN);
-        kbdKatakanaCharNu.Image = GetCharTexture(jpFnt, 117, SaveRegion.JPN);
-        kbdKatakanaCharNe.Image = GetCharTexture(jpFnt, 118, SaveRegion.JPN);
-        kbdKatakanaCharNo.Image = GetCharTexture(jpFnt, 119, SaveRegion.JPN);
+        kbdKatakanaCharNa.Image = GetCharTexture(jpFnt, 115);
+        kbdKatakanaCharNi.Image = GetCharTexture(jpFnt, 116);
+        kbdKatakanaCharNu.Image = GetCharTexture(jpFnt, 117);
+        kbdKatakanaCharNe.Image = GetCharTexture(jpFnt, 118);
+        kbdKatakanaCharNo.Image = GetCharTexture(jpFnt, 119);
 
-        kbdKatakanaCharHa.Image = GetCharTexture(jpFnt, 120, SaveRegion.JPN);
-        kbdKatakanaCharHi.Image = GetCharTexture(jpFnt, 121, SaveRegion.JPN);
-        kbdKatakanaCharFu.Image = GetCharTexture(jpFnt, 122, SaveRegion.JPN);
-        kbdKatakanaCharHe.Image = GetCharTexture(jpFnt, 123, SaveRegion.JPN);
-        kbdKatakanaCharHo.Image = GetCharTexture(jpFnt, 124, SaveRegion.JPN);
+        kbdKatakanaCharHa.Image = GetCharTexture(jpFnt, 120);
+        kbdKatakanaCharHi.Image = GetCharTexture(jpFnt, 121);
+        kbdKatakanaCharFu.Image = GetCharTexture(jpFnt, 122);
+        kbdKatakanaCharHe.Image = GetCharTexture(jpFnt, 123);
+        kbdKatakanaCharHo.Image = GetCharTexture(jpFnt, 124);
 
-        kbdKatakanaCharMa.Image = GetCharTexture(jpFnt, 125, SaveRegion.JPN);
-        kbdKatakanaCharMi.Image = GetCharTexture(jpFnt, 126, SaveRegion.JPN);
-        kbdKatakanaCharMu.Image = GetCharTexture(jpFnt, 127, SaveRegion.JPN);
-        kbdKatakanaCharMe.Image = GetCharTexture(jpFnt, 128, SaveRegion.JPN);
-        kbdKatakanaCharMo.Image = GetCharTexture(jpFnt, 129, SaveRegion.JPN);
+        kbdKatakanaCharMa.Image = GetCharTexture(jpFnt, 125);
+        kbdKatakanaCharMi.Image = GetCharTexture(jpFnt, 126);
+        kbdKatakanaCharMu.Image = GetCharTexture(jpFnt, 127);
+        kbdKatakanaCharMe.Image = GetCharTexture(jpFnt, 128);
+        kbdKatakanaCharMo.Image = GetCharTexture(jpFnt, 129);
 
-        kbdKatakanaCharYa.Image = GetCharTexture(jpFnt, 130, SaveRegion.JPN);
-        kbdKatakanaCharYu.Image = GetCharTexture(jpFnt, 132, SaveRegion.JPN);
-        kbdKatakanaCharYo.Image = GetCharTexture(jpFnt, 134, SaveRegion.JPN);
+        kbdKatakanaCharYa.Image = GetCharTexture(jpFnt, 130);
+        kbdKatakanaCharYu.Image = GetCharTexture(jpFnt, 132);
+        kbdKatakanaCharYo.Image = GetCharTexture(jpFnt, 134);
 
-        kbdKatakanaCharRa.Image = GetCharTexture(jpFnt, 135, SaveRegion.JPN);
-        kbdKatakanaCharRi.Image = GetCharTexture(jpFnt, 136, SaveRegion.JPN);
-        kbdKatakanaCharRu.Image = GetCharTexture(jpFnt, 137, SaveRegion.JPN);
-        kbdKatakanaCharRe.Image = GetCharTexture(jpFnt, 138, SaveRegion.JPN);
-        kbdKatakanaCharRo.Image = GetCharTexture(jpFnt, 139, SaveRegion.JPN);
+        kbdKatakanaCharRa.Image = GetCharTexture(jpFnt, 135);
+        kbdKatakanaCharRi.Image = GetCharTexture(jpFnt, 136);
+        kbdKatakanaCharRu.Image = GetCharTexture(jpFnt, 137);
+        kbdKatakanaCharRe.Image = GetCharTexture(jpFnt, 138);
+        kbdKatakanaCharRo.Image = GetCharTexture(jpFnt, 139);
 
-        kbdKatakanaCharWa.Image = GetCharTexture(jpFnt, 140, SaveRegion.JPN);
-        kbdKatakanaCharWo.Image = GetCharTexture(jpFnt, 141, SaveRegion.JPN);
-        kbdKatakanaCharN.Image = GetCharTexture(jpFnt, 142, SaveRegion.JPN);
-        kbdKatakanaCharHyphen.Image = GetCharTexture(jpFnt, 144, SaveRegion.JPN);
+        kbdKatakanaCharWa.Image = GetCharTexture(jpFnt, 140);
+        kbdKatakanaCharWo.Image = GetCharTexture(jpFnt, 141);
+        kbdKatakanaCharN.Image = GetCharTexture(jpFnt, 142);
+        kbdKatakanaCharHyphen.Image = GetCharTexture(jpFnt, 144);
 
-        kbdKatakanaCharGa.Image = GetCharTexture(jpFnt, 145, SaveRegion.JPN);
-        kbdKatakanaCharGi.Image = GetCharTexture(jpFnt, 146, SaveRegion.JPN);
-        kbdKatakanaCharGu.Image = GetCharTexture(jpFnt, 147, SaveRegion.JPN);
-        kbdKatakanaCharGe.Image = GetCharTexture(jpFnt, 148, SaveRegion.JPN);
-        kbdKatakanaCharGo.Image = GetCharTexture(jpFnt, 149, SaveRegion.JPN);
+        kbdKatakanaCharGa.Image = GetCharTexture(jpFnt, 145);
+        kbdKatakanaCharGi.Image = GetCharTexture(jpFnt, 146);
+        kbdKatakanaCharGu.Image = GetCharTexture(jpFnt, 147);
+        kbdKatakanaCharGe.Image = GetCharTexture(jpFnt, 148);
+        kbdKatakanaCharGo.Image = GetCharTexture(jpFnt, 149);
 
-        kbdKatakanaCharZa.Image = GetCharTexture(jpFnt, 150, SaveRegion.JPN);
-        kbdKatakanaCharJi.Image = GetCharTexture(jpFnt, 151, SaveRegion.JPN);
-        kbdKatakanaCharZu.Image = GetCharTexture(jpFnt, 152, SaveRegion.JPN);
-        kbdKatakanaCharZe.Image = GetCharTexture(jpFnt, 153, SaveRegion.JPN);
-        kbdKatakanaCharZo.Image = GetCharTexture(jpFnt, 154, SaveRegion.JPN);
+        kbdKatakanaCharZa.Image = GetCharTexture(jpFnt, 150);
+        kbdKatakanaCharJi.Image = GetCharTexture(jpFnt, 151);
+        kbdKatakanaCharZu.Image = GetCharTexture(jpFnt, 152);
+        kbdKatakanaCharZe.Image = GetCharTexture(jpFnt, 153);
+        kbdKatakanaCharZo.Image = GetCharTexture(jpFnt, 154);
 
-        kbdKatakanaCharDa.Image = GetCharTexture(jpFnt, 155, SaveRegion.JPN);
-        kbdKatakanaCharDi.Image = GetCharTexture(jpFnt, 156, SaveRegion.JPN);
-        kbdKatakanaCharDu.Image = GetCharTexture(jpFnt, 157, SaveRegion.JPN);
-        kbdKatakanaCharDe.Image = GetCharTexture(jpFnt, 158, SaveRegion.JPN);
-        kbdKatakanaCharDo.Image = GetCharTexture(jpFnt, 159, SaveRegion.JPN);
+        kbdKatakanaCharDa.Image = GetCharTexture(jpFnt, 155);
+        kbdKatakanaCharDi.Image = GetCharTexture(jpFnt, 156);
+        kbdKatakanaCharDu.Image = GetCharTexture(jpFnt, 157);
+        kbdKatakanaCharDe.Image = GetCharTexture(jpFnt, 158);
+        kbdKatakanaCharDo.Image = GetCharTexture(jpFnt, 159);
 
-        kbdKatakanaCharBa.Image = GetCharTexture(jpFnt, 160, SaveRegion.JPN);
-        kbdKatakanaCharBi.Image = GetCharTexture(jpFnt, 161, SaveRegion.JPN);
-        kbdKatakanaCharBu.Image = GetCharTexture(jpFnt, 162, SaveRegion.JPN);
-        kbdKatakanaCharBe.Image = GetCharTexture(jpFnt, 163, SaveRegion.JPN);
-        kbdKatakanaCharBo.Image = GetCharTexture(jpFnt, 164, SaveRegion.JPN);
+        kbdKatakanaCharBa.Image = GetCharTexture(jpFnt, 160);
+        kbdKatakanaCharBi.Image = GetCharTexture(jpFnt, 161);
+        kbdKatakanaCharBu.Image = GetCharTexture(jpFnt, 162);
+        kbdKatakanaCharBe.Image = GetCharTexture(jpFnt, 163);
+        kbdKatakanaCharBo.Image = GetCharTexture(jpFnt, 164);
 
-        kbdKatakanaCharPa.Image = GetCharTexture(jpFnt, 165, SaveRegion.JPN);
-        kbdKatakanaCharPi.Image = GetCharTexture(jpFnt, 166, SaveRegion.JPN);
-        kbdKatakanaCharPu.Image = GetCharTexture(jpFnt, 167, SaveRegion.JPN);
-        kbdKatakanaCharPe.Image = GetCharTexture(jpFnt, 168, SaveRegion.JPN);
-        kbdKatakanaCharPo.Image = GetCharTexture(jpFnt, 169, SaveRegion.JPN);
+        kbdKatakanaCharPa.Image = GetCharTexture(jpFnt, 165);
+        kbdKatakanaCharPi.Image = GetCharTexture(jpFnt, 166);
+        kbdKatakanaCharPu.Image = GetCharTexture(jpFnt, 167);
+        kbdKatakanaCharPe.Image = GetCharTexture(jpFnt, 168);
+        kbdKatakanaCharPo.Image = GetCharTexture(jpFnt, 169);
 
-        kbdKatakanaCharSmallA.Image = GetCharTexture(jpFnt, 170, SaveRegion.JPN);
-        kbdKatakanaCharSmallI.Image = GetCharTexture(jpFnt, 171, SaveRegion.JPN);
-        kbdKatakanaCharSmallU.Image = GetCharTexture(jpFnt, 172, SaveRegion.JPN);
-        kbdKatakanaCharSmallE.Image = GetCharTexture(jpFnt, 173, SaveRegion.JPN);
-        kbdKatakanaCharSmallO.Image = GetCharTexture(jpFnt, 174, SaveRegion.JPN);
+        kbdKatakanaCharSmallA.Image = GetCharTexture(jpFnt, 170);
+        kbdKatakanaCharSmallI.Image = GetCharTexture(jpFnt, 171);
+        kbdKatakanaCharSmallU.Image = GetCharTexture(jpFnt, 172);
+        kbdKatakanaCharSmallE.Image = GetCharTexture(jpFnt, 173);
+        kbdKatakanaCharSmallO.Image = GetCharTexture(jpFnt, 174);
 
-        kbdKatakanaCharSmallYa.Image = GetCharTexture(jpFnt, 175, SaveRegion.JPN);
-        kbdKatakanaCharSmallYu.Image = GetCharTexture(jpFnt, 176, SaveRegion.JPN);
-        kbdKatakanaCharSmallYo.Image = GetCharTexture(jpFnt, 177, SaveRegion.JPN);
-        kbdKatakanaCharSmallTsu.Image = GetCharTexture(jpFnt, 179, SaveRegion.JPN);
+        kbdKatakanaCharSmallYa.Image = GetCharTexture(jpFnt, 175);
+        kbdKatakanaCharSmallYu.Image = GetCharTexture(jpFnt, 176);
+        kbdKatakanaCharSmallYo.Image = GetCharTexture(jpFnt, 177);
+        kbdKatakanaCharSmallTsu.Image = GetCharTexture(jpFnt, 179);
 
         // Romaji
 
-        kbdRomajiCharA.Image = GetCharTexture(jpFnt, 180, SaveRegion.JPN);
-        kbdRomajiCharB.Image = GetCharTexture(jpFnt, 181, SaveRegion.JPN);
-        kbdRomajiCharC.Image = GetCharTexture(jpFnt, 182, SaveRegion.JPN);
-        kbdRomajiCharD.Image = GetCharTexture(jpFnt, 183, SaveRegion.JPN);
-        kbdRomajiCharE.Image = GetCharTexture(jpFnt, 184, SaveRegion.JPN);
-        kbdRomajiCharF.Image = GetCharTexture(jpFnt, 185, SaveRegion.JPN);
-        kbdRomajiCharG.Image = GetCharTexture(jpFnt, 186, SaveRegion.JPN);
-        kbdRomajiCharH.Image = GetCharTexture(jpFnt, 187, SaveRegion.JPN);
-        kbdRomajiCharI.Image = GetCharTexture(jpFnt, 188, SaveRegion.JPN);
-        kbdRomajiCharJ.Image = GetCharTexture(jpFnt, 189, SaveRegion.JPN);
-        kbdRomajiCharK.Image = GetCharTexture(jpFnt, 190, SaveRegion.JPN);
-        kbdRomajiCharL.Image = GetCharTexture(jpFnt, 191, SaveRegion.JPN);
-        kbdRomajiCharM.Image = GetCharTexture(jpFnt, 192, SaveRegion.JPN);
-        kbdRomajiCharN.Image = GetCharTexture(jpFnt, 193, SaveRegion.JPN);
-        kbdRomajiCharO.Image = GetCharTexture(jpFnt, 194, SaveRegion.JPN);
-        kbdRomajiCharP.Image = GetCharTexture(jpFnt, 195, SaveRegion.JPN);
-        kbdRomajiCharQ.Image = GetCharTexture(jpFnt, 196, SaveRegion.JPN);
-        kbdRomajiCharR.Image = GetCharTexture(jpFnt, 197, SaveRegion.JPN);
-        kbdRomajiCharS.Image = GetCharTexture(jpFnt, 198, SaveRegion.JPN);
-        kbdRomajiCharT.Image = GetCharTexture(jpFnt, 199, SaveRegion.JPN);
-        kbdRomajiCharU.Image = GetCharTexture(jpFnt, 200, SaveRegion.JPN);
-        kbdRomajiCharV.Image = GetCharTexture(jpFnt, 201, SaveRegion.JPN);
-        kbdRomajiCharW.Image = GetCharTexture(jpFnt, 202, SaveRegion.JPN);
-        kbdRomajiCharX.Image = GetCharTexture(jpFnt, 203, SaveRegion.JPN);
-        kbdRomajiCharY.Image = GetCharTexture(jpFnt, 204, SaveRegion.JPN);
-        kbdRomajiCharZ.Image = GetCharTexture(jpFnt, 205, SaveRegion.JPN);
+        kbdRomajiCharA.Image = GetCharTexture(jpFnt, 180);
+        kbdRomajiCharB.Image = GetCharTexture(jpFnt, 181);
+        kbdRomajiCharC.Image = GetCharTexture(jpFnt, 182);
+        kbdRomajiCharD.Image = GetCharTexture(jpFnt, 183);
+        kbdRomajiCharE.Image = GetCharTexture(jpFnt, 184);
+        kbdRomajiCharF.Image = GetCharTexture(jpFnt, 185);
+        kbdRomajiCharG.Image = GetCharTexture(jpFnt, 186);
+        kbdRomajiCharH.Image = GetCharTexture(jpFnt, 187);
+        kbdRomajiCharI.Image = GetCharTexture(jpFnt, 188);
+        kbdRomajiCharJ.Image = GetCharTexture(jpFnt, 189);
+        kbdRomajiCharK.Image = GetCharTexture(jpFnt, 190);
+        kbdRomajiCharL.Image = GetCharTexture(jpFnt, 191);
+        kbdRomajiCharM.Image = GetCharTexture(jpFnt, 192);
+        kbdRomajiCharN.Image = GetCharTexture(jpFnt, 193);
+        kbdRomajiCharO.Image = GetCharTexture(jpFnt, 194);
+        kbdRomajiCharP.Image = GetCharTexture(jpFnt, 195);
+        kbdRomajiCharQ.Image = GetCharTexture(jpFnt, 196);
+        kbdRomajiCharR.Image = GetCharTexture(jpFnt, 197);
+        kbdRomajiCharS.Image = GetCharTexture(jpFnt, 198);
+        kbdRomajiCharT.Image = GetCharTexture(jpFnt, 199);
+        kbdRomajiCharU.Image = GetCharTexture(jpFnt, 200);
+        kbdRomajiCharV.Image = GetCharTexture(jpFnt, 201);
+        kbdRomajiCharW.Image = GetCharTexture(jpFnt, 202);
+        kbdRomajiCharX.Image = GetCharTexture(jpFnt, 203);
+        kbdRomajiCharY.Image = GetCharTexture(jpFnt, 204);
+        kbdRomajiCharZ.Image = GetCharTexture(jpFnt, 205);
 
-        kbdRomajiCharHyphen.Image = GetCharTexture(jpFnt, 206, SaveRegion.JPN);
-        kbdRomajiCharTilde.Image = GetCharTexture(jpFnt, 207, SaveRegion.JPN);
+        kbdRomajiCharHyphen.Image = GetCharTexture(jpFnt, 206);
+        kbdRomajiCharTilde.Image = GetCharTexture(jpFnt, 207);
 
-        kbdJPMoveLeft.Image = GetCharTexture(jpFnt, 90, SaveRegion.JPN);
-        kbdJPMoveRight.Image = GetCharTexture(jpFnt, 91, SaveRegion.JPN);
+        kbdJPMoveLeft.Image = GetCharTexture(jpFnt, 90);
+        kbdJPMoveRight.Image = GetCharTexture(jpFnt, 91);
         Refresh();
     }
 
     private void UpdateDisplayName()
     {
-        pictureJPNameChar0.Image = GetCharTexture(jpFnt, jpChar[currName[0]], SaveRegion.JPN);
-        pictureJPNameChar1.Image = GetCharTexture(jpFnt, jpChar[currName[1]], SaveRegion.JPN);
-        pictureJPNameChar2.Image = GetCharTexture(jpFnt, jpChar[currName[2]], SaveRegion.JPN);
-        pictureJPNameChar3.Image = GetCharTexture(jpFnt, jpChar[currName[3]], SaveRegion.JPN);
+        pictureJPNameChar0.Image = GetCharTexture(jpFnt, jpChar[currName[0]]);
+        pictureJPNameChar1.Image = GetCharTexture(jpFnt, jpChar[currName[1]]);
+        pictureJPNameChar2.Image = GetCharTexture(jpFnt, jpChar[currName[2]]);
+        pictureJPNameChar3.Image = GetCharTexture(jpFnt, jpChar[currName[3]]);
 
         pictureJPCharHeart.Location = new Point(880 + charPos * 32, 36);
     }
