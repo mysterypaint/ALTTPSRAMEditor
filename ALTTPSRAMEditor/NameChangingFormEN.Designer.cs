@@ -921,7 +921,7 @@
             this.kbdENMoveLeft.Size = new System.Drawing.Size(32, 32);
             this.kbdENMoveLeft.TabIndex = 73;
             this.kbdENMoveLeft.TabStop = false;
-            this.kbdENMoveLeft.Click += new System.EventHandler(this.kbdENMoveLeft_Click);
+            this.kbdENMoveLeft.Click += new System.EventHandler(this.kbdEnMoveLeft_Click);
             // 
             // kbdENMoveRight
             // 
@@ -931,7 +931,7 @@
             this.kbdENMoveRight.Size = new System.Drawing.Size(32, 32);
             this.kbdENMoveRight.TabIndex = 74;
             this.kbdENMoveRight.TabStop = false;
-            this.kbdENMoveRight.Click += new System.EventHandler(this.kbdENMoveRight_Click);
+            this.kbdENMoveRight.Click += new System.EventHandler(this.kbdEnMoveRight_Click);
             // 
             // kbdENEnd
             // 
@@ -942,7 +942,7 @@
             this.kbdENEnd.Size = new System.Drawing.Size(52, 40);
             this.kbdENEnd.TabIndex = 75;
             this.kbdENEnd.TabStop = false;
-            this.kbdENEnd.Click += new System.EventHandler(this.kbdENEnd_Click);
+            this.kbdENEnd.Click += new System.EventHandler(this.kbdEnEnd_Click);
             // 
             // kbdENCharHyphen
             // 

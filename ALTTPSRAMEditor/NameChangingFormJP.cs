@@ -344,7 +344,7 @@ public partial class NameChangingFormJp : Form
         }
     }
 
-    private void kbdJPMoveLeft_Click(object sender, EventArgs e)
+    private void kbdJpMoveLeft_Click(object sender, EventArgs e)
     {
         charPos--;
         if (charPos < 0)
@@ -355,7 +355,7 @@ public partial class NameChangingFormJp : Form
         pictureJPCharHeart.Location = new Point(880 + charPos * 32, 36);
     }
 
-    private void kbdJPMoveRight_Click(object sender, EventArgs e)
+    private void kbdJpMoveRight_Click(object sender, EventArgs e)
     {
         charPos++;
         if (charPos > 3)
@@ -580,7 +580,7 @@ public partial class NameChangingFormJp : Form
         }
     }
 
-    private void kbdJPEnd_Click(object sender, EventArgs e)
+    private void kbdJpEnd_Click(object sender, EventArgs e)
     {
         UpdatePlayerName();
         autoClose = true;

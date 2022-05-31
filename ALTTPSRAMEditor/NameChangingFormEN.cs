@@ -185,7 +185,7 @@ public partial class NameChangingFormEn : Form
         }
     }
 
-    private void kbdENMoveLeft_Click(object sender, EventArgs e)
+    private void kbdEnMoveLeft_Click(object sender, EventArgs e)
     {
         charPos--;
         if (charPos < 0)
@@ -196,7 +196,7 @@ public partial class NameChangingFormEn : Form
         pictureENCharHeart.Location = new Point(62 + charPos * 32, 174);
     }
 
-    private void kbdENMoveRight_Click(object sender, EventArgs e)
+    private void kbdEnMoveRight_Click(object sender, EventArgs e)
     {
         charPos++;
         if (charPos > 5)
@@ -293,7 +293,7 @@ public partial class NameChangingFormEn : Form
         }
     }
 
-    private void kbdENEnd_Click(object sender, EventArgs e)
+    private void kbdEnEnd_Click(object sender, EventArgs e)
     {
         UpdatePlayerName();
         autoClose = true;

@@ -9,7 +9,7 @@ public partial class MainForm : Form
     private static readonly Bitmap[] bottleContentsImg = new Bitmap[9];
 
     private static int pos = 0;
-    private static int saveRegion = (int)SaveRegion.USA;
+    private static SaveRegion saveRegion = SaveRegion.JPN;
     private static SRAM? sdat;
     private static string fname = "";
     private static string displayPlayerName = "";
@@ -112,19 +112,19 @@ public partial class MainForm : Form
         var savslot = SRAM.GetSaveSlot(1);
         var savslot2 = SRAM.GetSaveSlot(2);
         var savslot3 = SRAM.GetSaveSlot(3);
-        if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
-        {
-            Console.WriteLine(" - USA Save Detected");
-            saveRegion = (int)SaveRegion.USA;
-        }
-        else if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
+        if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
         {
             Console.WriteLine(" - JPN Save Detected");
-            saveRegion = (int)SaveRegion.JPN;
+            saveRegion = SaveRegion.JPN;
+        }
+        else if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
+        {
+            Console.WriteLine(" - USA Save Detected");
+            saveRegion = SaveRegion.USA;
         }
         else
         {
-            saveRegion = (int)SaveRegion.EUR;
+            saveRegion = SaveRegion.EUR;
         }
 
         // Determine which save slot we have opened
@@ -240,17 +240,17 @@ public partial class MainForm : Form
 
         if (radioFile1.Checked)
         {
-            savslot = SRAM.CreateFile(1, (SaveRegion)saveRegion);
+            savslot = SRAM.CreateFile(1, saveRegion);
             helperText.Text = "Created File 1!";
         }
         else if (radioFile2.Checked)
         {
-            savslot = SRAM.CreateFile(2, (SaveRegion)saveRegion);
+            savslot = SRAM.CreateFile(2, saveRegion);
             helperText.Text = "Created File 2!";
         }
         else if (radioFile3.Checked)
         {
-            savslot = SRAM.CreateFile(3, (SaveRegion)saveRegion);
+            savslot = SRAM.CreateFile(3, saveRegion);
             helperText.Text = "Created File 3!";
         }
 
@@ -1008,7 +1008,7 @@ public partial class MainForm : Form
 
     public void DrawDisplayPlayerName(PaintEventArgs e)
     {
-        if (saveRegion == (int)SaveRegion.JPN)
+        if (saveRegion == SaveRegion.JPN)
         {
             pos = 0;
             var i = 0;
@@ -1028,7 +1028,7 @@ public partial class MainForm : Form
                 i++;
             }
         }
-        else if (saveRegion == (int)SaveRegion.USA)
+        else if (saveRegion == SaveRegion.USA)
         {
             pos = 0;
             foreach (var c in displayPlayerName)
@@ -1042,7 +1042,7 @@ public partial class MainForm : Form
     public static void DrawTile(Image source, int tileID, PaintEventArgs e, int pos)
     {
         var tileset_width = 27; // English Font
-        if (saveRegion == (int)SaveRegion.JPN)
+        if (saveRegion == SaveRegion.JPN)
         {
             tileset_width = 20; // Japanese Font
         }
@@ -1066,7 +1066,7 @@ public partial class MainForm : Form
 
     private void buttonChangeName_Click(object sender, EventArgs e)
     {
-        var nameForm = saveRegion == (int)SaveRegion.JPN
+        var nameForm = saveRegion == SaveRegion.JPN
             ? (Form)new NameChangingFormJp(this)
             : new NameChangingFormEn(this);
         nameForm.ShowDialog();
