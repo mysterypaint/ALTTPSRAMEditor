@@ -1,8 +1,9 @@
 ﻿namespace ALTTPSRAMEditor;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class NameChangingFormEN : Form
 {
-    private Bitmap en_fnt;
+    private Bitmap en_fnt = default!;
     private readonly StringBuilder currName;
     private readonly ushort[] currNameRaw;
     private readonly Dictionary<char, int> enChar;
@@ -231,145 +232,91 @@ public partial class NameChangingFormEN : Form
         pictureENCharHeart.Location = new Point(62 + charPos * 32, 174);
     }
 
-    private void kbdENCharA_Click(object sender, EventArgs e) => TypeChar('A');
-
-    private void kbdENCharB_Click(object sender, EventArgs e) => TypeChar('B');
-
-    private void kbdENCharC_Click(object sender, EventArgs e) => TypeChar('C');
-
-    private void kbdENCharD_Click(object sender, EventArgs e) => TypeChar('D');
-
-    private void kbdENCharE_Click(object sender, EventArgs e) => TypeChar('E');
-
-    private void kbdENCharF_Click(object sender, EventArgs e) => TypeChar('F');
-
-    private void kbdENCharG_Click(object sender, EventArgs e) => TypeChar('G');
-
-    private void kbdENCharH_Click(object sender, EventArgs e) => TypeChar('H');
-
-    private void kbdENCharI_Click(object sender, EventArgs e) => TypeChar('I');
-
-    private void kbdENCharJ_Click(object sender, EventArgs e) => TypeChar('J');
-
-    private void kbdENCharK_Click(object sender, EventArgs e) => TypeChar('K');
-
-    private void kbdENCharL_Click(object sender, EventArgs e) => TypeChar('L');
-
-    private void kbdENCharM_Click(object sender, EventArgs e) => TypeChar('M');
-
-    private void kbdENCharN_Click(object sender, EventArgs e) => TypeChar('N');
-
-    private void kbdENCharO_Click(object sender, EventArgs e) => TypeChar('O');
-
-    private void kbdENCharP_Click(object sender, EventArgs e) => TypeChar('P');
-
-    private void kbdENCharQ_Click(object sender, EventArgs e) => TypeChar('Q');
-
-    private void kbdENCharR_Click(object sender, EventArgs e) => TypeChar('R');
-
-    private void kbdENCharS_Click(object sender, EventArgs e) => TypeChar('S');
-
-    private void kbdENCharT_Click(object sender, EventArgs e) => TypeChar('T');
-
-    private void kbdENCharU_Click(object sender, EventArgs e) => TypeChar('U');
-
-    private void kbdENCharV_Click(object sender, EventArgs e) => TypeChar('V');
-
-    private void kbdENCharW_Click(object sender, EventArgs e) => TypeChar('W');
-
-    private void kbdENCharX_Click(object sender, EventArgs e) => TypeChar('X');
-
-    private void kbdENCharY_Click(object sender, EventArgs e) => TypeChar('Y');
-
-    private void kbdENCharZ_Click(object sender, EventArgs e) => TypeChar('Z');
-
-    private void kbdENCharSmallA_Click(object sender, EventArgs e) => TypeChar('a');
-
-    private void kbdENCharSmallB_Click(object sender, EventArgs e) => TypeChar('b');
-
-    private void kbdENCharSmallC_Click(object sender, EventArgs e) => TypeChar('c');
-
-    private void kbdENCharSmallD_Click(object sender, EventArgs e) => TypeChar('d');
-
-    private void kbdENCharSmallE_Click(object sender, EventArgs e) => TypeChar('e');
-
-    private void kbdENCharSmallF_Click(object sender, EventArgs e) => TypeChar('f');
-
-    private void kbdENCharSmallG_Click(object sender, EventArgs e) => TypeChar('g');
-
-    private void kbdENCharSmallH_Click(object sender, EventArgs e) => TypeChar('h');
-
-    private void kbdENCharSmallI_Click(object sender, EventArgs e) => TypeChar('i');
-
-    private void kbdENCharSmallJ_Click(object sender, EventArgs e) => TypeChar('j');
-
-    private void kbdENCharSmallK_Click(object sender, EventArgs e) => TypeChar('k');
-
-    private void kbdENCharSmallL_Click(object sender, EventArgs e) => TypeChar('l');
-
-    private void kbdENCharSmallM_Click(object sender, EventArgs e) => TypeChar('m');
-
-    private void kbdENCharSmallN_Click(object sender, EventArgs e) => TypeChar('n');
-
-    private void kbdENCharSmallO_Click(object sender, EventArgs e) => TypeChar('o');
-
-    private void kbdENCharSmallP_Click(object sender, EventArgs e) => TypeChar('p');
-
-    private void kbdENCharSmallQ_Click(object sender, EventArgs e) => TypeChar('q');
-
-    private void kbdENCharSmallR_Click(object sender, EventArgs e) => TypeChar('r');
-
-    private void kbdENCharSmallS_Click(object sender, EventArgs e) => TypeChar('s');
-
-    private void kbdENCharSmallT_Click(object sender, EventArgs e) => TypeChar('t');
-
-    private void kbdENCharSmallU_Click(object sender, EventArgs e) => TypeChar('u');
-
-    private void kbdENCharSmallV_Click(object sender, EventArgs e) => TypeChar('v');
-
-    private void kbdENCharSmallW_Click(object sender, EventArgs e) => TypeChar('w');
-
-    private void kbdENCharSmallX_Click(object sender, EventArgs e) => TypeChar('x');
-
-    private void kbdENCharSmallY_Click(object sender, EventArgs e) => TypeChar('y');
-
-    private void kbdENCharSmallZ_Click(object sender, EventArgs e) => TypeChar('z');
-
-    private void kbdENCharHyphen_Click(object sender, EventArgs e) => TypeChar('-');
-
-    private void kbdENCharPeriod_Click(object sender, EventArgs e) => TypeChar('.');
-
-    private void kbdENCharComma_Click(object sender, EventArgs e) => TypeChar(',');
-
-    private void kbdENChar0_Click(object sender, EventArgs e) => TypeChar('0');
-
-    private void kbdENChar1_Click(object sender, EventArgs e) => TypeChar('1');
-
-    private void kbdENChar2_Click(object sender, EventArgs e) => TypeChar('2');
-
-    private void kbdENChar3_Click(object sender, EventArgs e) => TypeChar('3');
-
-    private void kbdENChar4_Click(object sender, EventArgs e) => TypeChar('4');
-
-    private void kbdENChar5_Click(object sender, EventArgs e) => TypeChar('5');
-
-    private void kbdENChar6_Click(object sender, EventArgs e) => TypeChar('6');
-
-    private void kbdENChar7_Click(object sender, EventArgs e) => TypeChar('7');
-
-    private void kbdENChar8_Click(object sender, EventArgs e) => TypeChar('8');
-
-    private void kbdENChar9_Click(object sender, EventArgs e) => TypeChar('9');
-
-    private void kbdENCharExclamation_Click(object sender, EventArgs e) => TypeChar('!');
-
-    private void kbdENCharQuestion_Click(object sender, EventArgs e) => TypeChar('?');
-
-    private void kbdENCharParenthaseesLeft_Click(object sender, EventArgs e) => TypeChar('(');
-
-    private void kbdENCharParenthaseesRight_Click(object sender, EventArgs e) => TypeChar(')');
-
-    private void kbdENSpace_Click(object sender, EventArgs e) => TypeChar(' ');
+    private void KbdEnCharClick(object sender, EventArgs e)
+    {
+        char? charToType = (sender as PictureBox)?.Name switch
+        {
+            nameof(kbdENCharA) => 'A',
+            nameof(kbdENCharB) => 'B',
+            nameof(kbdENCharC) => 'C',
+            nameof(kbdENCharD) => 'D',
+            nameof(kbdENCharE) => 'E',
+            nameof(kbdENCharF) => 'F',
+            nameof(kbdENCharG) => 'G',
+            nameof(kbdENCharH) => 'H',
+            nameof(kbdENCharI) => 'I',
+            nameof(kbdENCharJ) => 'J',
+            nameof(kbdENCharK) => 'K',
+            nameof(kbdENCharL) => 'L',
+            nameof(kbdENCharM) => 'M',
+            nameof(kbdENCharN) => 'N',
+            nameof(kbdENCharO) => 'O',
+            nameof(kbdENCharP) => 'P',
+            nameof(kbdENCharQ) => 'Q',
+            nameof(kbdENCharR) => 'R',
+            nameof(kbdENCharS) => 'S',
+            nameof(kbdENCharT) => 'T',
+            nameof(kbdENCharU) => 'U',
+            nameof(kbdENCharV) => 'V',
+            nameof(kbdENCharW) => 'W',
+            nameof(kbdENCharX) => 'X',
+            nameof(kbdENCharY) => 'Y',
+            nameof(kbdENCharZ) => 'Z',
+
+            nameof(kbdENCharSmallA) => 'a',
+            nameof(kbdENCharSmallB) => 'b',
+            nameof(kbdENCharSmallC) => 'c',
+            nameof(kbdENCharSmallD) => 'd',
+            nameof(kbdENCharSmallE) => 'e',
+            nameof(kbdENCharSmallF) => 'f',
+            nameof(kbdENCharSmallG) => 'g',
+            nameof(kbdENCharSmallH) => 'h',
+            nameof(kbdENCharSmallI) => 'i',
+            nameof(kbdENCharSmallJ) => 'j',
+            nameof(kbdENCharSmallK) => 'k',
+            nameof(kbdENCharSmallL) => 'l',
+            nameof(kbdENCharSmallM) => 'm',
+            nameof(kbdENCharSmallN) => 'n',
+            nameof(kbdENCharSmallO) => 'o',
+            nameof(kbdENCharSmallP) => 'p',
+            nameof(kbdENCharSmallQ) => 'q',
+            nameof(kbdENCharSmallR) => 'r',
+            nameof(kbdENCharSmallS) => 's',
+            nameof(kbdENCharSmallT) => 't',
+            nameof(kbdENCharSmallU) => 'u',
+            nameof(kbdENCharSmallV) => 'v',
+            nameof(kbdENCharSmallW) => 'w',
+            nameof(kbdENCharSmallX) => 'x',
+            nameof(kbdENCharSmallY) => 'y',
+            nameof(kbdENCharSmallZ) => 'z',
+
+            nameof(kbdENChar0) => '0',
+            nameof(kbdENChar1) => '1',
+            nameof(kbdENChar2) => '2',
+            nameof(kbdENChar3) => '3',
+            nameof(kbdENChar4) => '4',
+            nameof(kbdENChar5) => '5',
+            nameof(kbdENChar6) => '6',
+            nameof(kbdENChar7) => '7',
+            nameof(kbdENChar8) => '8',
+            nameof(kbdENChar9) => '9',
+
+            nameof(kbdENCharHyphen) => '-',
+            nameof(kbdENCharPeriod) => '.',
+            nameof(kbdENCharComma) => ',',
+            nameof(kbdENCharExclamation) => '!',
+            nameof(kbdENCharQuestion) => '?',
+            nameof(kbdENCharParenthaseesLeft) => '(',
+            nameof(kbdENCharParenthaseesRight) => ')',
+            nameof(kbdENSpace) => ' ',
+
+            _ => null
+        };
+        if (charToType is not null)
+        {
+            TypeChar(charToType.Value);
+        }
+    }
 
     private void kbdENEnd_Click(object sender, EventArgs e)
     {

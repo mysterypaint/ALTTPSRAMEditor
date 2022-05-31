@@ -1,5 +1,6 @@
 ﻿namespace ALTTPSRAMEditor;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class MainForm : Form
 {
     private bool canRefresh = true;
@@ -9,7 +10,7 @@ public partial class MainForm : Form
 
     private static int pos = 0;
     private static int saveRegion = (int)SaveRegion.USA;
-    private static SRAM sdat;
+    private static SRAM? sdat;
     private static string fname = "";
     private static string displayPlayerName = "";
 
@@ -131,7 +132,7 @@ public partial class MainForm : Form
         if (thisSlot.SaveIsValid())
         {
             UpdatePlayerName();
-            var player = thisSlot.GetPlayer();
+            _ = thisSlot.GetPlayer();
             UpdateAllConfigurables(thisSlot);
         }
         else
@@ -152,7 +153,7 @@ public partial class MainForm : Form
 
     private void SaveSRM()
     {
-        if (fname.Equals("") || fname.Equals(null))
+        if (sdat is null || fname.Equals("") || fname.Equals(null))
         {
             helperText.Text = "Load a file first!";
             return; // Abort saving if there isn't a valid file open.
@@ -235,7 +236,7 @@ public partial class MainForm : Form
 
     private void buttonCreate_Click(object sender, EventArgs e)
     {
-        SaveSlot savslot = null;
+        SaveSlot? savslot = null;
 
         if (radioFile1.Checked)
         {
@@ -254,7 +255,7 @@ public partial class MainForm : Form
         }
 
         UpdatePlayerName();
-        var player = savslot.GetPlayer();
+        _ = savslot?.GetPlayer();
         UpdateAllConfigurables(savslot);
 
         Refresh();
@@ -386,9 +387,9 @@ public partial class MainForm : Form
         _ => 10,
     };
 
-    private void UpdateAllConfigurables(SaveSlot savslot)
+    private void UpdateAllConfigurables(SaveSlot? savslot)
     {
-        if (!savslot.SaveIsValid())
+        if (savslot is null || !savslot.SaveIsValid())
         {
             HideAllGroupBoxesExcept(groupFileSelect);
 
@@ -843,11 +844,7 @@ public partial class MainForm : Form
 
     private void pictureBow_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBowConfig);
 
-    private SaveSlot GetSaveSlot()
-    {
-        var savslot = radioFile2.Checked ? SRAM.GetSaveSlot(2) : radioFile3.Checked ? SRAM.GetSaveSlot(3) : SRAM.GetSaveSlot(1);
-        return savslot;
-    }
+    private SaveSlot GetSaveSlot() => radioFile2.Checked ? SRAM.GetSaveSlot(2) : radioFile3.Checked ? SRAM.GetSaveSlot(3) : SRAM.GetSaveSlot(1);
 
     private void bowRadio(object sender, EventArgs e)
     {

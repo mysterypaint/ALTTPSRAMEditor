@@ -198,7 +198,7 @@
             this.kbdENCharA.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharA.TabIndex = 0;
             this.kbdENCharA.TabStop = false;
-            this.kbdENCharA.Click += new System.EventHandler(this.kbdENCharA_Click);
+            this.kbdENCharA.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharB
             // 
@@ -208,7 +208,7 @@
             this.kbdENCharB.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharB.TabIndex = 1;
             this.kbdENCharB.TabStop = false;
-            this.kbdENCharB.Click += new System.EventHandler(this.kbdENCharB_Click);
+            this.kbdENCharB.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // pictureENNameChar0
             // 
@@ -281,7 +281,7 @@
             this.kbdENCharC.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharC.TabIndex = 9;
             this.kbdENCharC.TabStop = false;
-            this.kbdENCharC.Click += new System.EventHandler(this.kbdENCharC_Click);
+            this.kbdENCharC.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharD
             // 
@@ -291,7 +291,7 @@
             this.kbdENCharD.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharD.TabIndex = 10;
             this.kbdENCharD.TabStop = false;
-            this.kbdENCharD.Click += new System.EventHandler(this.kbdENCharD_Click);
+            this.kbdENCharD.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharE
             // 
@@ -301,7 +301,7 @@
             this.kbdENCharE.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharE.TabIndex = 11;
             this.kbdENCharE.TabStop = false;
-            this.kbdENCharE.Click += new System.EventHandler(this.kbdENCharE_Click);
+            this.kbdENCharE.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharF
             // 
@@ -311,7 +311,7 @@
             this.kbdENCharF.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharF.TabIndex = 12;
             this.kbdENCharF.TabStop = false;
-            this.kbdENCharF.Click += new System.EventHandler(this.kbdENCharF_Click);
+            this.kbdENCharF.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharG
             // 
@@ -321,7 +321,7 @@
             this.kbdENCharG.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharG.TabIndex = 13;
             this.kbdENCharG.TabStop = false;
-            this.kbdENCharG.Click += new System.EventHandler(this.kbdENCharG_Click);
+            this.kbdENCharG.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharH
             // 
@@ -331,7 +331,7 @@
             this.kbdENCharH.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharH.TabIndex = 14;
             this.kbdENCharH.TabStop = false;
-            this.kbdENCharH.Click += new System.EventHandler(this.kbdENCharH_Click);
+            this.kbdENCharH.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharI
             // 
@@ -341,7 +341,7 @@
             this.kbdENCharI.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharI.TabIndex = 15;
             this.kbdENCharI.TabStop = false;
-            this.kbdENCharI.Click += new System.EventHandler(this.kbdENCharI_Click);
+            this.kbdENCharI.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharJ
             // 
@@ -351,7 +351,7 @@
             this.kbdENCharJ.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharJ.TabIndex = 16;
             this.kbdENCharJ.TabStop = false;
-            this.kbdENCharJ.Click += new System.EventHandler(this.kbdENCharJ_Click);
+            this.kbdENCharJ.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharK
             // 
@@ -361,7 +361,7 @@
             this.kbdENCharK.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharK.TabIndex = 17;
             this.kbdENCharK.TabStop = false;
-            this.kbdENCharK.Click += new System.EventHandler(this.kbdENCharK_Click);
+            this.kbdENCharK.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharL
             // 
@@ -371,7 +371,7 @@
             this.kbdENCharL.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharL.TabIndex = 18;
             this.kbdENCharL.TabStop = false;
-            this.kbdENCharL.Click += new System.EventHandler(this.kbdENCharL_Click);
+            this.kbdENCharL.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharM
             // 
@@ -381,7 +381,7 @@
             this.kbdENCharM.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharM.TabIndex = 19;
             this.kbdENCharM.TabStop = false;
-            this.kbdENCharM.Click += new System.EventHandler(this.kbdENCharM_Click);
+            this.kbdENCharM.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharN
             // 
@@ -391,7 +391,7 @@
             this.kbdENCharN.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharN.TabIndex = 20;
             this.kbdENCharN.TabStop = false;
-            this.kbdENCharN.Click += new System.EventHandler(this.kbdENCharN_Click);
+            this.kbdENCharN.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharO
             // 
@@ -401,7 +401,7 @@
             this.kbdENCharO.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharO.TabIndex = 21;
             this.kbdENCharO.TabStop = false;
-            this.kbdENCharO.Click += new System.EventHandler(this.kbdENCharO_Click);
+            this.kbdENCharO.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharP
             // 
@@ -411,7 +411,7 @@
             this.kbdENCharP.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharP.TabIndex = 22;
             this.kbdENCharP.TabStop = false;
-            this.kbdENCharP.Click += new System.EventHandler(this.kbdENCharP_Click);
+            this.kbdENCharP.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharQ
             // 
@@ -421,7 +421,7 @@
             this.kbdENCharQ.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharQ.TabIndex = 23;
             this.kbdENCharQ.TabStop = false;
-            this.kbdENCharQ.Click += new System.EventHandler(this.kbdENCharQ_Click);
+            this.kbdENCharQ.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharR
             // 
@@ -431,7 +431,7 @@
             this.kbdENCharR.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharR.TabIndex = 24;
             this.kbdENCharR.TabStop = false;
-            this.kbdENCharR.Click += new System.EventHandler(this.kbdENCharR_Click);
+            this.kbdENCharR.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharS
             // 
@@ -441,7 +441,7 @@
             this.kbdENCharS.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharS.TabIndex = 25;
             this.kbdENCharS.TabStop = false;
-            this.kbdENCharS.Click += new System.EventHandler(this.kbdENCharS_Click);
+            this.kbdENCharS.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharT
             // 
@@ -451,7 +451,7 @@
             this.kbdENCharT.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharT.TabIndex = 26;
             this.kbdENCharT.TabStop = false;
-            this.kbdENCharT.Click += new System.EventHandler(this.kbdENCharT_Click);
+            this.kbdENCharT.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharU
             // 
@@ -461,7 +461,7 @@
             this.kbdENCharU.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharU.TabIndex = 27;
             this.kbdENCharU.TabStop = false;
-            this.kbdENCharU.Click += new System.EventHandler(this.kbdENCharU_Click);
+            this.kbdENCharU.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharV
             // 
@@ -471,7 +471,7 @@
             this.kbdENCharV.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharV.TabIndex = 28;
             this.kbdENCharV.TabStop = false;
-            this.kbdENCharV.Click += new System.EventHandler(this.kbdENCharV_Click);
+            this.kbdENCharV.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharW
             // 
@@ -481,7 +481,7 @@
             this.kbdENCharW.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharW.TabIndex = 29;
             this.kbdENCharW.TabStop = false;
-            this.kbdENCharW.Click += new System.EventHandler(this.kbdENCharW_Click);
+            this.kbdENCharW.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharX
             // 
@@ -491,7 +491,7 @@
             this.kbdENCharX.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharX.TabIndex = 30;
             this.kbdENCharX.TabStop = false;
-            this.kbdENCharX.Click += new System.EventHandler(this.kbdENCharX_Click);
+            this.kbdENCharX.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharY
             // 
@@ -501,7 +501,7 @@
             this.kbdENCharY.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharY.TabIndex = 31;
             this.kbdENCharY.TabStop = false;
-            this.kbdENCharY.Click += new System.EventHandler(this.kbdENCharY_Click);
+            this.kbdENCharY.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharZ
             // 
@@ -511,7 +511,7 @@
             this.kbdENCharZ.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharZ.TabIndex = 32;
             this.kbdENCharZ.TabStop = false;
-            this.kbdENCharZ.Click += new System.EventHandler(this.kbdENCharZ_Click);
+            this.kbdENCharZ.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallA
             // 
@@ -521,7 +521,7 @@
             this.kbdENCharSmallA.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallA.TabIndex = 33;
             this.kbdENCharSmallA.TabStop = false;
-            this.kbdENCharSmallA.Click += new System.EventHandler(this.kbdENCharSmallA_Click);
+            this.kbdENCharSmallA.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallB
             // 
@@ -531,7 +531,7 @@
             this.kbdENCharSmallB.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallB.TabIndex = 34;
             this.kbdENCharSmallB.TabStop = false;
-            this.kbdENCharSmallB.Click += new System.EventHandler(this.kbdENCharSmallB_Click);
+            this.kbdENCharSmallB.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallK
             // 
@@ -541,7 +541,7 @@
             this.kbdENCharSmallK.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallK.TabIndex = 35;
             this.kbdENCharSmallK.TabStop = false;
-            this.kbdENCharSmallK.Click += new System.EventHandler(this.kbdENCharSmallK_Click);
+            this.kbdENCharSmallK.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallU
             // 
@@ -551,7 +551,7 @@
             this.kbdENCharSmallU.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallU.TabIndex = 36;
             this.kbdENCharSmallU.TabStop = false;
-            this.kbdENCharSmallU.Click += new System.EventHandler(this.kbdENCharSmallU_Click);
+            this.kbdENCharSmallU.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar0
             // 
@@ -561,7 +561,7 @@
             this.kbdENChar0.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar0.TabIndex = 37;
             this.kbdENChar0.TabStop = false;
-            this.kbdENChar0.Click += new System.EventHandler(this.kbdENChar0_Click);
+            this.kbdENChar0.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar5
             // 
@@ -571,7 +571,7 @@
             this.kbdENChar5.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar5.TabIndex = 38;
             this.kbdENChar5.TabStop = false;
-            this.kbdENChar5.Click += new System.EventHandler(this.kbdENChar5_Click);
+            this.kbdENChar5.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharExclamation
             // 
@@ -581,7 +581,7 @@
             this.kbdENCharExclamation.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharExclamation.TabIndex = 39;
             this.kbdENCharExclamation.TabStop = false;
-            this.kbdENCharExclamation.Click += new System.EventHandler(this.kbdENCharExclamation_Click);
+            this.kbdENCharExclamation.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallC
             // 
@@ -591,7 +591,7 @@
             this.kbdENCharSmallC.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallC.TabIndex = 40;
             this.kbdENCharSmallC.TabStop = false;
-            this.kbdENCharSmallC.Click += new System.EventHandler(this.kbdENCharSmallC_Click);
+            this.kbdENCharSmallC.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallD
             // 
@@ -601,7 +601,7 @@
             this.kbdENCharSmallD.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallD.TabIndex = 41;
             this.kbdENCharSmallD.TabStop = false;
-            this.kbdENCharSmallD.Click += new System.EventHandler(this.kbdENCharSmallD_Click);
+            this.kbdENCharSmallD.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallE
             // 
@@ -611,7 +611,7 @@
             this.kbdENCharSmallE.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallE.TabIndex = 42;
             this.kbdENCharSmallE.TabStop = false;
-            this.kbdENCharSmallE.Click += new System.EventHandler(this.kbdENCharSmallE_Click);
+            this.kbdENCharSmallE.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallF
             // 
@@ -621,7 +621,7 @@
             this.kbdENCharSmallF.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallF.TabIndex = 43;
             this.kbdENCharSmallF.TabStop = false;
-            this.kbdENCharSmallF.Click += new System.EventHandler(this.kbdENCharSmallF_Click);
+            this.kbdENCharSmallF.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallG
             // 
@@ -631,7 +631,7 @@
             this.kbdENCharSmallG.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallG.TabIndex = 44;
             this.kbdENCharSmallG.TabStop = false;
-            this.kbdENCharSmallG.Click += new System.EventHandler(this.kbdENCharSmallG_Click);
+            this.kbdENCharSmallG.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallH
             // 
@@ -641,7 +641,7 @@
             this.kbdENCharSmallH.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallH.TabIndex = 45;
             this.kbdENCharSmallH.TabStop = false;
-            this.kbdENCharSmallH.Click += new System.EventHandler(this.kbdENCharSmallH_Click);
+            this.kbdENCharSmallH.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallI
             // 
@@ -651,7 +651,7 @@
             this.kbdENCharSmallI.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallI.TabIndex = 46;
             this.kbdENCharSmallI.TabStop = false;
-            this.kbdENCharSmallI.Click += new System.EventHandler(this.kbdENCharSmallI_Click);
+            this.kbdENCharSmallI.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallJ
             // 
@@ -661,7 +661,7 @@
             this.kbdENCharSmallJ.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallJ.TabIndex = 47;
             this.kbdENCharSmallJ.TabStop = false;
-            this.kbdENCharSmallJ.Click += new System.EventHandler(this.kbdENCharSmallJ_Click);
+            this.kbdENCharSmallJ.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallL
             // 
@@ -671,7 +671,7 @@
             this.kbdENCharSmallL.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallL.TabIndex = 48;
             this.kbdENCharSmallL.TabStop = false;
-            this.kbdENCharSmallL.Click += new System.EventHandler(this.kbdENCharSmallL_Click);
+            this.kbdENCharSmallL.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallM
             // 
@@ -681,7 +681,7 @@
             this.kbdENCharSmallM.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallM.TabIndex = 49;
             this.kbdENCharSmallM.TabStop = false;
-            this.kbdENCharSmallM.Click += new System.EventHandler(this.kbdENCharSmallM_Click);
+            this.kbdENCharSmallM.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallN
             // 
@@ -691,7 +691,7 @@
             this.kbdENCharSmallN.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallN.TabIndex = 50;
             this.kbdENCharSmallN.TabStop = false;
-            this.kbdENCharSmallN.Click += new System.EventHandler(this.kbdENCharSmallN_Click);
+            this.kbdENCharSmallN.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallO
             // 
@@ -701,7 +701,7 @@
             this.kbdENCharSmallO.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallO.TabIndex = 51;
             this.kbdENCharSmallO.TabStop = false;
-            this.kbdENCharSmallO.Click += new System.EventHandler(this.kbdENCharSmallO_Click);
+            this.kbdENCharSmallO.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallP
             // 
@@ -711,7 +711,7 @@
             this.kbdENCharSmallP.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallP.TabIndex = 52;
             this.kbdENCharSmallP.TabStop = false;
-            this.kbdENCharSmallP.Click += new System.EventHandler(this.kbdENCharSmallP_Click);
+            this.kbdENCharSmallP.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallQ
             // 
@@ -721,7 +721,7 @@
             this.kbdENCharSmallQ.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallQ.TabIndex = 53;
             this.kbdENCharSmallQ.TabStop = false;
-            this.kbdENCharSmallQ.Click += new System.EventHandler(this.kbdENCharSmallQ_Click);
+            this.kbdENCharSmallQ.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallR
             // 
@@ -731,7 +731,7 @@
             this.kbdENCharSmallR.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallR.TabIndex = 54;
             this.kbdENCharSmallR.TabStop = false;
-            this.kbdENCharSmallR.Click += new System.EventHandler(this.kbdENCharSmallR_Click);
+            this.kbdENCharSmallR.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallS
             // 
@@ -741,7 +741,7 @@
             this.kbdENCharSmallS.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallS.TabIndex = 55;
             this.kbdENCharSmallS.TabStop = false;
-            this.kbdENCharSmallS.Click += new System.EventHandler(this.kbdENCharSmallS_Click);
+            this.kbdENCharSmallS.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallT
             // 
@@ -751,7 +751,7 @@
             this.kbdENCharSmallT.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallT.TabIndex = 56;
             this.kbdENCharSmallT.TabStop = false;
-            this.kbdENCharSmallT.Click += new System.EventHandler(this.kbdENCharSmallT_Click);
+            this.kbdENCharSmallT.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallV
             // 
@@ -761,7 +761,7 @@
             this.kbdENCharSmallV.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallV.TabIndex = 57;
             this.kbdENCharSmallV.TabStop = false;
-            this.kbdENCharSmallV.Click += new System.EventHandler(this.kbdENCharSmallV_Click);
+            this.kbdENCharSmallV.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallW
             // 
@@ -771,7 +771,7 @@
             this.kbdENCharSmallW.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallW.TabIndex = 58;
             this.kbdENCharSmallW.TabStop = false;
-            this.kbdENCharSmallW.Click += new System.EventHandler(this.kbdENCharSmallW_Click);
+            this.kbdENCharSmallW.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallX
             // 
@@ -781,7 +781,7 @@
             this.kbdENCharSmallX.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallX.TabIndex = 59;
             this.kbdENCharSmallX.TabStop = false;
-            this.kbdENCharSmallX.Click += new System.EventHandler(this.kbdENCharSmallX_Click);
+            this.kbdENCharSmallX.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallY
             // 
@@ -791,7 +791,7 @@
             this.kbdENCharSmallY.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallY.TabIndex = 60;
             this.kbdENCharSmallY.TabStop = false;
-            this.kbdENCharSmallY.Click += new System.EventHandler(this.kbdENCharSmallY_Click);
+            this.kbdENCharSmallY.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharSmallZ
             // 
@@ -801,7 +801,7 @@
             this.kbdENCharSmallZ.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharSmallZ.TabIndex = 61;
             this.kbdENCharSmallZ.TabStop = false;
-            this.kbdENCharSmallZ.Click += new System.EventHandler(this.kbdENCharSmallZ_Click);
+            this.kbdENCharSmallZ.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar1
             // 
@@ -811,7 +811,7 @@
             this.kbdENChar1.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar1.TabIndex = 62;
             this.kbdENChar1.TabStop = false;
-            this.kbdENChar1.Click += new System.EventHandler(this.kbdENChar1_Click);
+            this.kbdENChar1.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar2
             // 
@@ -821,7 +821,7 @@
             this.kbdENChar2.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar2.TabIndex = 63;
             this.kbdENChar2.TabStop = false;
-            this.kbdENChar2.Click += new System.EventHandler(this.kbdENChar2_Click);
+            this.kbdENChar2.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar3
             // 
@@ -831,7 +831,7 @@
             this.kbdENChar3.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar3.TabIndex = 64;
             this.kbdENChar3.TabStop = false;
-            this.kbdENChar3.Click += new System.EventHandler(this.kbdENChar3_Click);
+            this.kbdENChar3.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar4
             // 
@@ -841,7 +841,7 @@
             this.kbdENChar4.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar4.TabIndex = 65;
             this.kbdENChar4.TabStop = false;
-            this.kbdENChar4.Click += new System.EventHandler(this.kbdENChar4_Click);
+            this.kbdENChar4.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar6
             // 
@@ -851,7 +851,7 @@
             this.kbdENChar6.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar6.TabIndex = 66;
             this.kbdENChar6.TabStop = false;
-            this.kbdENChar6.Click += new System.EventHandler(this.kbdENChar6_Click);
+            this.kbdENChar6.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar7
             // 
@@ -861,7 +861,7 @@
             this.kbdENChar7.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar7.TabIndex = 67;
             this.kbdENChar7.TabStop = false;
-            this.kbdENChar7.Click += new System.EventHandler(this.kbdENChar7_Click);
+            this.kbdENChar7.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar8
             // 
@@ -871,7 +871,7 @@
             this.kbdENChar8.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar8.TabIndex = 68;
             this.kbdENChar8.TabStop = false;
-            this.kbdENChar8.Click += new System.EventHandler(this.kbdENChar8_Click);
+            this.kbdENChar8.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENChar9
             // 
@@ -881,7 +881,7 @@
             this.kbdENChar9.Size = new System.Drawing.Size(32, 32);
             this.kbdENChar9.TabIndex = 69;
             this.kbdENChar9.TabStop = false;
-            this.kbdENChar9.Click += new System.EventHandler(this.kbdENChar9_Click);
+            this.kbdENChar9.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharQuestion
             // 
@@ -891,7 +891,7 @@
             this.kbdENCharQuestion.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharQuestion.TabIndex = 70;
             this.kbdENCharQuestion.TabStop = false;
-            this.kbdENCharQuestion.Click += new System.EventHandler(this.kbdENCharQuestion_Click);
+            this.kbdENCharQuestion.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharParenthaseesLeft
             // 
@@ -901,7 +901,7 @@
             this.kbdENCharParenthaseesLeft.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharParenthaseesLeft.TabIndex = 71;
             this.kbdENCharParenthaseesLeft.TabStop = false;
-            this.kbdENCharParenthaseesLeft.Click += new System.EventHandler(this.kbdENCharParenthaseesLeft_Click);
+            this.kbdENCharParenthaseesLeft.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharParenthaseesRight
             // 
@@ -911,7 +911,7 @@
             this.kbdENCharParenthaseesRight.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharParenthaseesRight.TabIndex = 72;
             this.kbdENCharParenthaseesRight.TabStop = false;
-            this.kbdENCharParenthaseesRight.Click += new System.EventHandler(this.kbdENCharParenthaseesRight_Click);
+            this.kbdENCharParenthaseesRight.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENMoveLeft
             // 
@@ -952,7 +952,7 @@
             this.kbdENCharHyphen.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharHyphen.TabIndex = 76;
             this.kbdENCharHyphen.TabStop = false;
-            this.kbdENCharHyphen.Click += new System.EventHandler(this.kbdENCharHyphen_Click);
+            this.kbdENCharHyphen.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharPeriod
             // 
@@ -962,7 +962,7 @@
             this.kbdENCharPeriod.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharPeriod.TabIndex = 77;
             this.kbdENCharPeriod.TabStop = false;
-            this.kbdENCharPeriod.Click += new System.EventHandler(this.kbdENCharPeriod_Click);
+            this.kbdENCharPeriod.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENCharComma
             // 
@@ -972,7 +972,7 @@
             this.kbdENCharComma.Size = new System.Drawing.Size(32, 32);
             this.kbdENCharComma.TabIndex = 78;
             this.kbdENCharComma.TabStop = false;
-            this.kbdENCharComma.Click += new System.EventHandler(this.kbdENCharComma_Click);
+            this.kbdENCharComma.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // kbdENSpace
             // 
@@ -983,7 +983,7 @@
             this.kbdENSpace.Size = new System.Drawing.Size(84, 40);
             this.kbdENSpace.TabIndex = 79;
             this.kbdENSpace.TabStop = false;
-            this.kbdENSpace.Click += new System.EventHandler(this.kbdENSpace_Click);
+            this.kbdENSpace.Click += new System.EventHandler(this.KbdEnCharClick);
             // 
             // NameChangingFormEN
             // 

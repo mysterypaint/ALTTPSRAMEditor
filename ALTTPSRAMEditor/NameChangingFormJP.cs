@@ -1,8 +1,9 @@
 ﻿namespace ALTTPSRAMEditor;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class NameChangingFormJP : Form
 {
-    private Bitmap jp_fnt;
+    private Bitmap jp_fnt = default!;
     private readonly StringBuilder currName;
     private readonly ushort[] currNameRaw;
     private readonly Dictionary<char, int> jpChar;

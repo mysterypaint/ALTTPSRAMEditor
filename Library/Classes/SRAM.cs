@@ -18,10 +18,16 @@ public class SRAM
     const int slot3m = 0x1900;
     private readonly byte[] outsav = new byte[0x2000];
     //Addresses $1E00 to $1FFE in SRAM are not used.
-    private
-    const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
-                                   //private int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
-    private static SaveSlot savslot1, savslot2, savslot3, savslot1m, savslot2m, savslot3m, savslotTemp;
+    //private const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
+    //private int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
+    private static SaveSlot
+        savslot1 = default!,
+        savslot2 = default!,
+        savslot3 = default!,
+        savslot1m = default!,
+        savslot2m = default!,
+        savslot3m = default!,
+        savslotTemp = default!;
     /*
      * These offsets directly correspond to $7E:F for a particular save file is being played.
      * When the game is finished it writes the information into bank $70 in the corresponding slot + offsets presented here.
@@ -220,58 +226,58 @@ public class SRAM
             case 1:
                 if (savslot1.SaveIsValid())
                 {
-                    savslotTemp = savslot1.Clone();
+                    savslotTemp = savslot1.Clone() ?? default!;
                 }
                 else
                 {
                     //System.Windows.Forms.MessageBox.Show("Save slot 1 is empty or corrupted. Copying from Mirror Data instead.");
-                    savslotTemp = savslot1m.Clone();
+                    savslotTemp = savslot1m.Clone() ?? default!;
                 }
                 break;
             case 2:
                 if (savslot2.SaveIsValid())
                 {
-                    savslotTemp = savslot2.Clone();
+                    savslotTemp = savslot2.Clone() ?? default!;
                 }
                 else
                 {
                     //System.Windows.Forms.MessageBox.Show("Save slot 2 is empty or corrupted. Copying from Mirror Data instead.");
-                    savslotTemp = savslot2m.Clone();
+                    savslotTemp = savslot2m.Clone() ?? default!;
                 }
                 break;
             case 3:
                 if (savslot3.SaveIsValid())
                 {
-                    savslotTemp = savslot3.Clone();
+                    savslotTemp = savslot3.Clone() ?? default!;
                 }
                 else
                 {
                     //System.Windows.Forms.MessageBox.Show("Save slot 3 is empty or corrupted. Copying from Mirror Data instead.");
-                    savslotTemp = savslot3m.Clone();
+                    savslotTemp = savslot3m.Clone() ?? default!;
                 }
                 break;
         }
     }
 
-    public static SaveSlot WriteFile(int fileSlot)
+    public static SaveSlot? WriteFile(int fileSlot)
     {
         switch (fileSlot)
         {
             default:
             case 1:
-                savslot1 = savslotTemp.Clone();
+                savslot1 = savslotTemp.Clone() ?? default!;
                 savslot1.SetSaveSlot(1);
                 savslot1m = savslot1;
                 savslot1m.SetSaveSlot(1);
                 return savslot1;
             case 2:
-                savslot2 = savslotTemp.Clone();
+                savslot2 = savslotTemp.Clone() ?? default!;
                 savslot2.SetSaveSlot(2);
                 savslot2m = savslot2;
                 savslot2m.SetSaveSlot(2);
                 return savslot2;
             case 3:
-                savslot3 = savslotTemp.Clone();
+                savslot3 = savslotTemp.Clone() ?? default!;
                 savslot3.SetSaveSlot(3);
                 savslot3m = savslot3;
                 savslot3m.SetSaveSlot(3);
