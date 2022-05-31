@@ -24,14 +24,6 @@ public partial class MainForm : Form
 
     public MainForm() => InitializeComponent();
 
-    //public static Dictionary<char, int> GetEnChar() => AppState.enChar;
-
-    //public static Dictionary<ushort, char> GetRawEnChar() => AppState.rawENChar;
-
-    //public static Dictionary<char, int> GetJpChar() => AppState.jpChar;
-
-    //public static Dictionary<ushort, char> GetRawJpChar() => AppState.rawJPChar;
-
     private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
     private void OpenSRM()
@@ -900,8 +892,8 @@ public partial class MainForm : Form
         numericUpDownRupeeCounter.Value = player.GetRupeeValue();
         UpdateAllConfigurables(savslot);
         helperText.Text = !savslot.SaveIsValid()
-            ? $"Save slot {savslot.ToString()} is empty or invalid."
-            : $"Editing Save slot {savslot.ToString()}.";
+            ? $"Save slot {savslot} is empty or invalid."
+            : $"Editing Save slot {savslot}.";
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -935,26 +927,24 @@ public partial class MainForm : Form
             var tex = new Bitmap(fillRect.Width, fillRect.Height);
 
             // Draw onto the blank canvas we created
-            using (var gr = Graphics.FromImage(tex))
-            {
-                // Apply some pixel-perfect settings before we draw anything...
-                gr.Clear(Color.Transparent);
-                gr.InterpolationMode = InterpolationMode.NearestNeighbor;
-                gr.PixelOffsetMode = PixelOffsetMode.Half;
+            using var heartContainersGr = Graphics.FromImage(tex);
+            // Apply some pixel-perfect settings before we draw anything...
+            heartContainersGr.Clear(Color.Transparent);
+            heartContainersGr.InterpolationMode = InterpolationMode.NearestNeighbor;
+            heartContainersGr.PixelOffsetMode = PixelOffsetMode.Half;
 
-                double heartContainers = player.GetHeartContainers();
-                for (var i = 0; i < heartContainers / 8; i++)
+            double heartContainers = player.GetHeartContainers();
+            for (var i = 0; i < heartContainers / 8; i++)
+            {
+                var xOff = i % 10 * 8;
+                var yOff = i / 10 * 8;
+                if (i >= heartContainers / 8.0f - 1.0f && heartContainers % 8 != 0)
                 {
-                    var xOff = i % 10 * 8;
-                    var yOff = i / 10 * 8;
-                    if (i >= heartContainers / 8.0f - 1.0f && heartContainers % 8 != 0)
-                    {
-                        gr.DrawImage(imgHeartContainerPartial, 2 + xOff, 2 + yOff);
-                    }
-                    else
-                    {
-                        gr.DrawImage(imgHeartContainerFull, 2 + xOff, 2 + yOff);
-                    }
+                    heartContainersGr.DrawImage(imgHeartContainerPartial, 2 + xOff, 2 + yOff);
+                }
+                else
+                {
+                    heartContainersGr.DrawImage(imgHeartContainerFull, 2 + xOff, 2 + yOff);
                 }
             }
 
@@ -972,29 +962,27 @@ public partial class MainForm : Form
             tex = new Bitmap(fillRect.Width, fillRect.Height);
 
             // Draw onto the blank canvas we created
-            using (var gr = Graphics.FromImage(tex))
+            using var magicMeterGr = Graphics.FromImage(tex);
+            // Apply some pixel-perfect settings before we draw anything...
+            magicMeterGr.Clear(Color.Transparent);
+            magicMeterGr.InterpolationMode = InterpolationMode.NearestNeighbor;
+            magicMeterGr.PixelOffsetMode = PixelOffsetMode.Half;
+
+            // Draw the empty magic bar container into the canvas (not to the screen)
+            var currMagic = player.GetCurrMagic();
+            magicMeterGr.DrawImage(magicContainer, 0, 0);
+
+            // Using a colored rectangle, fill the magic bar with a bar representing magic, based on what the player's current magic value is
+            rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
+            fillRect = new Rectangle(0 + 4, 0 - (currMagic + 3) / 4 + 40, 8, (currMagic + 3) / 4);
+            magicMeterGr.FillRectangle(rectBrush, fillRect);
+
+            // If necessary, draw the white "1-pixel-line" part of the magic bar fill, for aesthetic purposes
+            if (currMagic > 0)
             {
-                // Apply some pixel-perfect settings before we draw anything...
-                gr.Clear(Color.Transparent);
-                gr.InterpolationMode = InterpolationMode.NearestNeighbor;
-                gr.PixelOffsetMode = PixelOffsetMode.Half;
-
-                // Draw the empty magic bar container into the canvas (not to the screen)
-                var currMagic = player.GetCurrMagic();
-                gr.DrawImage(magicContainer, 0, 0);
-
-                // Using a colored rectangle, fill the magic bar with a bar representing magic, based on what the player's current magic value is
-                rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
-                fillRect = new Rectangle(0 + 4, 0 - (currMagic + 3) / 4 + 40, 8, (currMagic + 3) / 4);
-                gr.FillRectangle(rectBrush, fillRect);
-
-                // If necessary, draw the white "1-pixel-line" part of the magic bar fill, for aesthetic purposes
-                if (currMagic > 0)
-                {
-                    rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
-                    fillRect = new Rectangle(5, -((currMagic + 3) / 4) + 40, 6, 1);
-                    gr.FillRectangle(rectBrush, fillRect); // Could probably use a pen w/ DrawLine() here, but might as well recycle the rectangle
-                }
+                rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
+                fillRect = new Rectangle(5, -((currMagic + 3) / 4) + 40, 6, 1);
+                magicMeterGr.FillRectangle(rectBrush, fillRect); // Could probably use a pen w/ DrawLine() here, but might as well recycle the rectangle
             }
 
             // Write all the contents of the canvas into the magic bar's PictureBox on the Form
@@ -1056,10 +1044,8 @@ public partial class MainForm : Form
         var crop = new Rectangle(x, y, width, height);
         var bmp = new Bitmap(crop.Width, crop.Height);
 
-        using (var gr = Graphics.FromImage(bmp))
-        {
-            gr.DrawImage(source, new Rectangle(0, 0, bmp.Width, bmp.Height), crop, GraphicsUnit.Pixel);
-        }
+        using var gr = Graphics.FromImage(bmp);
+        gr.DrawImage(source, new Rectangle(0, 0, bmp.Width, bmp.Height), crop, GraphicsUnit.Pixel);
 
         e.Graphics.DrawImage(bmp, 223 + pos, 49);
     }
