@@ -16,8 +16,8 @@ public partial class NameChangingFormJp : Form
     {
         InitializeComponent();
         this.mainForm = mainForm;
-        jpChar = AppState.jpChar;
-        rawJpChar = AppState.rawJpChar;
+        jpChar = mainForm.TextCharacterData.JpChar;
+        rawJpChar = mainForm.TextCharacterData.RawJpChar;
         autoClose = false;
         currName = new StringBuilder(this.mainForm.GetPlayerName()[..4]);
         currNameRaw = new ushort[6];

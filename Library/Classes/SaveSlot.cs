@@ -12,14 +12,16 @@ public class SaveSlot
     private byte crystals;
     private bool isValid;
     private int slotIndex;
+    private readonly TextCharacterData textCharacterData;
     private readonly Enums.SaveRegion saveRegion;
     private readonly byte[] itemsAndEquipment;
 
-    public SaveSlot(byte[] data_in, int _slot)
+    public SaveSlot(byte[] data_in, int _slot, TextCharacterData textCharacterData)
     {
         // Import this save slot's data from the larger global save data
         data = data_in.ToArray();
         slotIndex = _slot;
+        this.textCharacterData = textCharacterData;
         playerNameRaw = new ushort[6];
 
         // Determine which region this save comes from
@@ -174,7 +176,7 @@ public class SaveSlot
                         break;
                     }
 
-                    playerName += AppState.rawEnChar[i];
+                    playerName += textCharacterData.RawEnChar[i];
                     break;
                 case Enums.SaveRegion.JPN:
                     if (j > 4)
@@ -182,7 +184,7 @@ public class SaveSlot
                         break;
                     }
 
-                    playerName += AppState.rawJpChar[i];
+                    playerName += textCharacterData.RawJpChar[i];
                     break;
             }
             j++;

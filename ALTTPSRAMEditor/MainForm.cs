@@ -22,7 +22,13 @@ public partial class MainForm : Form
     private readonly Image en_fnt = Properties.Resources.en_font;
     private readonly Image jpn_fnt = Properties.Resources.jpn_font;
 
-    public MainForm() => InitializeComponent();
+    public TextCharacterData TextCharacterData { get; init; }
+
+    public MainForm(TextCharacterData textCharacterData)
+    {
+        InitializeComponent();
+        TextCharacterData = textCharacterData;
+    }
 
     private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
@@ -95,7 +101,7 @@ public partial class MainForm : Form
         Console.Write($"Opened {fname}");
         fileOpen = true;
         helperText.Text = $"Opened {fname}";
-        sdat = new SRAM(_bytes);
+        sdat = new SRAM(_bytes, TextCharacterData);
         radioFile1.Enabled = true;
         radioFile2.Enabled = true;
         radioFile3.Enabled = true;
@@ -232,17 +238,17 @@ public partial class MainForm : Form
 
         if (radioFile1.Checked)
         {
-            savslot = SRAM.CreateFile(1, saveRegion);
+            savslot = SRAM.CreateFile(1, saveRegion, TextCharacterData);
             helperText.Text = "Created File 1!";
         }
         else if (radioFile2.Checked)
         {
-            savslot = SRAM.CreateFile(2, saveRegion);
+            savslot = SRAM.CreateFile(2, saveRegion, TextCharacterData);
             helperText.Text = "Created File 2!";
         }
         else if (radioFile3.Checked)
         {
-            savslot = SRAM.CreateFile(3, saveRegion);
+            savslot = SRAM.CreateFile(3, saveRegion, TextCharacterData);
             helperText.Text = "Created File 3!";
         }
 
@@ -1011,7 +1017,7 @@ public partial class MainForm : Form
                 {
                     letter = 'ー'; // Replace katanana － and/or Romaji - to hiragana ー because they're exactly the same in the game code
                 }
-                DrawTile(jpn_fnt, AppState.jpChar[letter], e, pos);
+                DrawTile(jpn_fnt, TextCharacterData.JpChar[letter], e, pos);
                 pos += 16;
                 i++;
             }
@@ -1021,7 +1027,7 @@ public partial class MainForm : Form
             pos = 0;
             foreach (var c in displayPlayerName)
             {
-                DrawTile(en_fnt, AppState.enChar[c], e, pos);
+                DrawTile(en_fnt, TextCharacterData.EnChar[c], e, pos);
                 pos += 8;
             }
         }
