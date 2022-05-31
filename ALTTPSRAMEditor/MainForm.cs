@@ -11,8 +11,8 @@ public partial class MainForm : Form
     private static int pos = 0;
     private static SaveRegion saveRegion = SaveRegion.JPN;
     private static SRAM? sdat;
-    private static string fname = "";
-    private static string displayPlayerName = "";
+    private static string fname = string.Empty;
+    private static string displayPlayerName = string.Empty;
 
     // Initialize some assets
     private readonly Image imgHeartContainerFull = Properties.Resources.HeartContainerFull;
@@ -153,7 +153,7 @@ public partial class MainForm : Form
 
     private void SaveSRM()
     {
-        if (sdat is null || fname.Equals("") || fname.Equals(null))
+        if (sdat is null || string.IsNullOrEmpty(fname))
         {
             helperText.Text = "Load a file first!";
             return; // Abort saving if there isn't a valid file open.
@@ -344,7 +344,7 @@ public partial class MainForm : Form
         var savslot = GetSaveSlot();
         if (!savslot.SaveIsValid())
         {
-            displayPlayerName = "";
+            displayPlayerName = string.Empty;
             buttonChangeName.Enabled = false;
             buttonResetDeaths.Enabled = false;
         }
@@ -906,7 +906,7 @@ public partial class MainForm : Form
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        if (!fname.Equals("") && fileOpen)
+        if (!string.IsNullOrEmpty(fname) && fileOpen)
         {
             var savslot = GetSaveSlot();
 

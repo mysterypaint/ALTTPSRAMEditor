@@ -4,7 +4,7 @@
 public class SaveSlot
 {
     private byte[] data;
-    private string playerName = "";
+    private string playerName = string.Empty;
     private ushort[] playerNameRaw;
     private ushort total_checksum = 0;
     private readonly Link player;
