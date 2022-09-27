@@ -1,355 +1,355 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <RootNamespace>ALTTPSRAMEditor</RootNamespace>
-    <AssemblyName>ALTTPSRAMEditor</AssemblyName>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<RootNamespace>ALTTPSRAMEditor</RootNamespace>
+		<AssemblyName>ALTTPSRAMEditor</AssemblyName>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="Resources\Bee.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Big Key and Chest.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Big Key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Blue Potion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Blue Tunic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bomb.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bombos.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Book of Mudora.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Boomerang.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Boss Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bottle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bow and Arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bow and Light Arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bug-Catching Net.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Cane of Byrna.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Cane of Somaria.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Compass.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Dungeon Map.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Ether.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Fairy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Fighter%27s Shield.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Fighter%27s Sword.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Fire Rod.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Flute.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Golden Sword.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Green Potion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Green Tunic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Hookshot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Ice Rod.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Lamp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Link Icon 1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Link Icon 2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magic Cape.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magic Hammer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magic Mirror.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magic Powder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magical Boomerang.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Master Sword.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Mirror Shield.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Moon Pearl.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Mushroom.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pegasus Boots.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pendant of Courage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pendant of Power.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pendant of Wisdom.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Piece of Heart Empty.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Piece of Heart Full.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Piece of Heart Half.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Piece of Heart Quarter.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Piece of Heart Three Quarters.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Power Glove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Quake.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Red Potion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Red Shield.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Red Tunic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shovel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Tempered Sword.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Titan%27s Mitt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Zora%27s Flippers.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\en_font2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\jpn_font2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Big Key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Bomb.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Bombos.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Book of Mudora.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Boomerang.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Bottle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Bow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Bug-Catching Net.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Cane of Byrna.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Cane of Somaria.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Compass.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Dungeon Map.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Ether.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Fighter%27s Shield.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Fighter%27s Sword.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Fire Rod.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Hookshot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Ice Rod.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Lamp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Magic Cape.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Magic Hammer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Magic Mirror.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Moon Pearl.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Mushroom.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Pegasus Boots.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Power Glove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Quake.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Shovel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\D Zora%27s Flippers.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HeartContainerFull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HeartContainerPartial.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lttp_magic_bar_halved.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lttp_magic_bar_quarter.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lttp_magic_bar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Blue Crystal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Blue Pendant.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Clear Crystal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Clear Pendant.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Green Pendant.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Red Crystal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Red Pendant.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\filename_USA.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\filename_JP.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Player Name Heart.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\en_font_end.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\en_font_space.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\jpn_font_end.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\jp_font_space.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Library\Library.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bee.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Big Key and Chest.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Big Key.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Blue Potion.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Blue Tunic.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bomb.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bombos.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Book of Mudora.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Boomerang.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Boss Icon.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bottle.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bow and Arrow.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bow and Light Arrow.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bow.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Bug-Catching Net.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Cane of Byrna.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Cane of Somaria.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Compass.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Dungeon Map.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Ether.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Fairy.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Fighter%27s Shield.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Fighter%27s Sword.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Fire Rod.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Flute.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Golden Sword.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Green Potion.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Green Tunic.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Hookshot.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Ice Rod.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Lamp.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Link Icon 1.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Link Icon 2.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Magic Cape.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Magic Hammer.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Magic Mirror.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Magic Powder.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Magical Boomerang.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Master Sword.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Mirror Shield.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Moon Pearl.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Mushroom.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Pegasus Boots.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Pendant of Courage.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Pendant of Power.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Pendant of Wisdom.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Piece of Heart Empty.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Piece of Heart Full.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Piece of Heart Half.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Piece of Heart Quarter.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Piece of Heart Three Quarters.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Power Glove.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Quake.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Red Potion.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Red Shield.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Red Tunic.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Shovel.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Tempered Sword.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Titan%27s Mitt.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Zora%27s Flippers.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\en_font2.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\jpn_font2.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Big Key.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Bomb.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Bombos.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Book of Mudora.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Boomerang.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Bottle.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Bow.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Bug-Catching Net.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Cane of Byrna.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Cane of Somaria.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Compass.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Dungeon Map.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Ether.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Fighter%27s Shield.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Fighter%27s Sword.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Fire Rod.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Hookshot.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Ice Rod.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Lamp.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Magic Cape.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Magic Hammer.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Magic Mirror.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Moon Pearl.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Mushroom.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Pegasus Boots.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Power Glove.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Quake.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Shovel.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\D Zora%27s Flippers.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\HeartContainerFull.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\HeartContainerPartial.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\lttp_magic_bar_halved.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\lttp_magic_bar_quarter.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\lttp_magic_bar.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Blue Crystal.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Blue Pendant.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Clear Crystal.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Clear Pendant.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Green Pendant.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Red Crystal.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Red Pendant.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\filename_USA.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\filename_JP.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Player Name Heart.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\en_font_end.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\en_font_space.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\jpn_font_end.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\jp_font_space.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Library\Library.csproj" />
+	</ItemGroup>
 
 </Project>
