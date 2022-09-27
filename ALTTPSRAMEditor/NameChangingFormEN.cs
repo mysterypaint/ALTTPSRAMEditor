@@ -1,6 +1,6 @@
 ﻿namespace ALTTPSRAMEditor;
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class NameChangingFormEn : Form
 {
     private Bitmap enFnt = default!;

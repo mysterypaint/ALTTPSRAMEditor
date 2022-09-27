@@ -1,6 +1,6 @@
 ﻿namespace ALTTPSRAMEditor;
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class DrawCharHelper
 {
     public static Image GetCharTexture(Bitmap fnt, int tileId, SaveRegion saveRegion = SaveRegion.JPN, bool hugLeft = false)

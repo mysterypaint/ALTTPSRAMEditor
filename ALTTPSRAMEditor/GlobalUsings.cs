@@ -1,4 +1,6 @@
-﻿global using Library.Classes;
+﻿global using ALTTPSRAMEditor;
+global using Library.Classes;
+global using System.Diagnostics.CodeAnalysis;
 global using System.Drawing.Drawing2D;
 global using System.Reflection;
 global using System.Runtime.InteropServices;

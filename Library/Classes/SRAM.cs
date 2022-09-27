@@ -32,15 +32,16 @@ public class SRAM
     public TextCharacterData TextCharacterData { get; }
 
     /*
-* These offsets directly correspond to $7E:F for a particular save file is being played.
-* When the game is finished it writes the information into bank $70 in the corresponding slot + offsets presented here.
-* (e.g. For the second save file, the information will be saved to $70:0500 to $70:09FF, and mirrored at $70:1400 to $70:18FF.)
-*/
+    * These offsets directly correspond to $7E:F for a particular save file is being played.
+    * When the game is finished it writes the information into bank $70 in the corresponding slot + offsets presented here.
+    * (e.g. For the second save file, the information will be saved to $70:0500 to $70:09FF, and mirrored at $70:1400 to $70:18FF.)
+    */
 
 
     public SRAM(byte[] data_in, TextCharacterData textCharacterData)
     {
         data = data_in.ToArray();
+        TextCharacterData = textCharacterData;
 
         // Initialize the save slot data based on the larger .srm chunk
         GenerateSaveSlot(slot1, slot2, 1);
@@ -51,7 +52,6 @@ public class SRAM
         GenerateSaveSlot(slot1m, slot2m, 4);
         GenerateSaveSlot(slot2m, slot3m, 5);
         GenerateSaveSlot(slot3m, slot3m + 0x500, 6);
-        TextCharacterData = textCharacterData;
     }
 
     public static SaveSlot GetSaveSlot(int slot) => slot switch
@@ -75,27 +75,16 @@ public class SRAM
             j++;
         }
 
-        switch (thisSlot)
+        _ = thisSlot switch
         {
-            case 1:
-                savslot1 = new SaveSlot(in_dat, 1, TextCharacterData);
-                break;
-            case 2:
-                savslot2 = new SaveSlot(in_dat, 2, TextCharacterData);
-                break;
-            case 3:
-                savslot3 = new SaveSlot(in_dat, 3, TextCharacterData);
-                break;
-            case 4:
-                savslot1m = new SaveSlot(in_dat, 4, TextCharacterData);
-                break;
-            case 5:
-                savslot2m = new SaveSlot(in_dat, 5, TextCharacterData);
-                break;
-            case 6:
-                savslot3m = new SaveSlot(in_dat, 6, TextCharacterData);
-                break;
-        }
+            1 => savslot1 = new SaveSlot(in_dat, 1, TextCharacterData),
+            2 => savslot2 = new SaveSlot(in_dat, 2, TextCharacterData),
+            3 => savslot3 = new SaveSlot(in_dat, 3, TextCharacterData),
+            4 => savslot1m = new SaveSlot(in_dat, 4, TextCharacterData),
+            5 => savslot2m = new SaveSlot(in_dat, 5, TextCharacterData),
+            6 => savslot3m = new SaveSlot(in_dat, 6, TextCharacterData),
+            _ => null
+        };
     }
 
     public byte[] MergeSaveData()

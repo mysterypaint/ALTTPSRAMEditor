@@ -51,24 +51,11 @@ public class SaveSlot
 
     public void ResetFileDeaths(bool showOnFileSelect)
     {
-        int _deathCounterAddr;
-        int _liveSaveCounterAddr;
-        int _deathTotalsTableAddr;
-        switch (saveRegion)
+        (var _deathCounterAddr, var _liveSaveCounterAddr, var _deathTotalsTableAddr) = saveRegion switch
         {
-            default:
-            case Enums.SaveRegion.EUR:
-            case Enums.SaveRegion.USA:
-                _deathCounterAddr = 0x405;
-                _liveSaveCounterAddr = 0x403;
-                _deathTotalsTableAddr = 0x3E7;
-                break;
-            case Enums.SaveRegion.JPN:
-                _deathCounterAddr = 0x401;
-                _liveSaveCounterAddr = 0x3FF;
-                _deathTotalsTableAddr = 0x3E3;
-                break;
-        }
+            Enums.SaveRegion.JPN => (0x401, 0x3FF, 0x3E3),
+            _ => (0x405, 0x403, 0x3E7)
+        };
         for (var i = 0x0; i < 0x1B; i += 2)
         {
             data[_deathTotalsTableAddr + i] = 0x0;
@@ -130,6 +117,7 @@ public class SaveSlot
     public bool GetIsValid() => isValid;
 
     public override string ToString() => slotIndex.ToString();
+
     private void GetRawPlayerName()
     {
         if (!SaveIsValid())

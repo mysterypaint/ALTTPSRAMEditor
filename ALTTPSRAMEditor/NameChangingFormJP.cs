@@ -1,6 +1,6 @@
 ﻿namespace ALTTPSRAMEditor;
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class NameChangingFormJp : Form
 {
     private Bitmap jpFnt = default!;
@@ -34,7 +34,6 @@ public partial class NameChangingFormJp : Form
 
     private void NameChangingFormJp_Load(object sender, EventArgs e)
     {
-
         // Name Changing Form Initialization
         jpFnt = new Bitmap(Properties.Resources.jpn_font);
 
@@ -42,7 +41,6 @@ public partial class NameChangingFormJp : Form
         UpdateDisplayName();
 
         // Hiragana
-
         kbdHiraganaCharA.Image = GetCharTexture(jpFnt, 5);
         kbdHiraganaCharI.Image = GetCharTexture(jpFnt, 6);
         kbdHiraganaCharU.Image = GetCharTexture(jpFnt, 7);
