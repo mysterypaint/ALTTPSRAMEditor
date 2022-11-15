@@ -1,5 +1,6 @@
 ﻿namespace ALTTPSRAMEditor;
 
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class MainForm : Form
 {
     private bool canRefresh = true;
@@ -8,10 +9,10 @@ public partial class MainForm : Form
     private static readonly Bitmap[] bottleContentsImg = new Bitmap[9];
 
     private static int pos = 0;
-    private static int saveRegion = (int)SaveRegion.USA;
-    private static SRAM sdat;
-    private static string fname = "";
-    private static string displayPlayerName = "";
+    private static SaveRegion saveRegion = SaveRegion.JPN;
+    private static SRAM? sdat;
+    private static string fname = string.Empty;
+    private static string displayPlayerName = string.Empty;
 
     // Initialize some assets
     private readonly Image imgHeartContainerFull = Properties.Resources.HeartContainerFull;
@@ -21,15 +22,13 @@ public partial class MainForm : Form
     private readonly Image en_fnt = Properties.Resources.en_font;
     private readonly Image jpn_fnt = Properties.Resources.jpn_font;
 
-    public MainForm() => InitializeComponent();
+    public TextCharacterData TextCharacterData { get; init; }
 
-    public static Dictionary<char, int> GetENChar() => AppState.enChar;
-
-    public static Dictionary<ushort, char> GetRawENChar() => AppState.rawENChar;
-
-    public static Dictionary<char, int> GetJPChar() => AppState.jpChar;
-
-    public static Dictionary<ushort, char> GetRawJPChar() => AppState.rawJPChar;
+    public MainForm(TextCharacterData textCharacterData)
+    {
+        InitializeComponent();
+        TextCharacterData = textCharacterData;
+    }
 
     private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
@@ -89,20 +88,20 @@ public partial class MainForm : Form
         }
         catch (IOException)
         {
-            helperText.Text = "File reading conflict: " + fname + ".\nIs it open in another program?";
+            helperText.Text = $"File reading conflict: {fname}.\nIs it open in another program?";
         }
         catch (Exception e)
         {
-            MessageBox.Show("The file could not be read:\n" + e.Message);
+            MessageBox.Show($"The file could not be read:\n{e.Message}");
         }
     }
 
     private void OpenSRMGoodSize(byte[] _bytes)
     {
-        Console.Write("Opened " + fname);
+        Console.Write($"Opened {fname}");
         fileOpen = true;
-        helperText.Text = "Opened " + fname;
-        sdat = new SRAM(_bytes);
+        helperText.Text = $"Opened {fname}";
+        sdat = new SRAM(_bytes, TextCharacterData);
         radioFile1.Enabled = true;
         radioFile2.Enabled = true;
         radioFile3.Enabled = true;
@@ -111,19 +110,19 @@ public partial class MainForm : Form
         var savslot = SRAM.GetSaveSlot(1);
         var savslot2 = SRAM.GetSaveSlot(2);
         var savslot3 = SRAM.GetSaveSlot(3);
-        if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
-        {
-            Console.WriteLine(" - USA Save Detected");
-            saveRegion = (int)SaveRegion.USA;
-        }
-        else if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
+        if (savslot.GetRegion() == SaveRegion.JPN || savslot2.GetRegion() == SaveRegion.JPN || savslot3.GetRegion() == SaveRegion.JPN)
         {
             Console.WriteLine(" - JPN Save Detected");
-            saveRegion = (int)SaveRegion.JPN;
+            saveRegion = SaveRegion.JPN;
+        }
+        else if (savslot.GetRegion() == SaveRegion.USA || savslot2.GetRegion() == SaveRegion.USA || savslot3.GetRegion() == SaveRegion.USA)
+        {
+            Console.WriteLine(" - USA Save Detected");
+            saveRegion = SaveRegion.USA;
         }
         else
         {
-            saveRegion = (int)SaveRegion.EUR;
+            saveRegion = SaveRegion.EUR;
         }
 
         // Determine which save slot we have opened
@@ -131,7 +130,7 @@ public partial class MainForm : Form
         if (thisSlot.SaveIsValid())
         {
             UpdatePlayerName();
-            var player = thisSlot.GetPlayer();
+            _ = thisSlot.GetPlayer();
             UpdateAllConfigurables(thisSlot);
         }
         else
@@ -152,7 +151,7 @@ public partial class MainForm : Form
 
     private void SaveSRM()
     {
-        if (fname.Equals("") || fname.Equals(null))
+        if (sdat is null || string.IsNullOrEmpty(fname))
         {
             helperText.Text = "Load a file first!";
             return; // Abort saving if there isn't a valid file open.
@@ -163,18 +162,16 @@ public partial class MainForm : Form
         try
         {
             File.WriteAllBytes(fname, outputData);
-            helperText.Text = "Saved file at " + fname;
+            helperText.Text = $"Saved file at {fname}";
             buttonWrite.Enabled = false;
         }
         catch (IOException)
         {
-            helperText.Text = "File writing conflict: " + fname + ".\nIs it open in another program?";
+            helperText.Text = $"File writing conflict: {fname}.\nIs it open in another program?";
         }
     }
 
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e) { }
-
-    private void exitToolStripMenuItem_Click_1(object sender, EventArgs e) =>
+    private void exitToolStripMenuItem_Click(object sender, EventArgs e) =>
         // Terminate the program if we select "Exit" in the Menu Bar
         Application.Exit();
 
@@ -235,26 +232,26 @@ public partial class MainForm : Form
 
     private void buttonCreate_Click(object sender, EventArgs e)
     {
-        SaveSlot savslot = null;
+        SaveSlot? savslot = null;
 
         if (radioFile1.Checked)
         {
-            savslot = SRAM.CreateFile(1, (SaveRegion)saveRegion);
+            savslot = SRAM.CreateFile(1, saveRegion, TextCharacterData);
             helperText.Text = "Created File 1!";
         }
         else if (radioFile2.Checked)
         {
-            savslot = SRAM.CreateFile(2, (SaveRegion)saveRegion);
+            savslot = SRAM.CreateFile(2, saveRegion, TextCharacterData);
             helperText.Text = "Created File 2!";
         }
         else if (radioFile3.Checked)
         {
-            savslot = SRAM.CreateFile(3, (SaveRegion)saveRegion);
+            savslot = SRAM.CreateFile(3, saveRegion, TextCharacterData);
             helperText.Text = "Created File 3!";
         }
 
         UpdatePlayerName();
-        var player = savslot.GetPlayer();
+        _ = savslot?.GetPlayer();
         UpdateAllConfigurables(savslot);
 
         Refresh();
@@ -318,12 +315,13 @@ public partial class MainForm : Form
             selFile = 3;
         }
 
-        var dialogResult = MessageBox.Show("You are about to PERMANENTLY ERASE File " + selFile + "! Are you sure you want to erase it? There is no undo!", "Erase File " + selFile + "?", MessageBoxButtons.YesNo);
+        var dialogResult = MessageBox.Show($"You are about to PERMANENTLY ERASE File {selFile}! Are you sure you want to erase it? There is no undo!",
+            $"Erase File {selFile}?", MessageBoxButtons.YesNo);
 
         if (dialogResult == DialogResult.Yes)
         {
             SRAM.EraseFile(selFile);
-            helperText.Text = "Erased File " + selFile + ".";
+            helperText.Text = $"Erased File {selFile}.";
             var savslot = SRAM.GetSaveSlot(selFile);
             savslot.SetIsValid(false);
             canRefresh = true;
@@ -337,12 +335,12 @@ public partial class MainForm : Form
 
     public string GetPlayerName() => GetSaveSlot().GetPlayerName();
 
-    public void UpdatePlayerName()
+    public void UpdatePlayerName(string? _str = null)
     {
         var savslot = GetSaveSlot();
         if (!savslot.SaveIsValid())
         {
-            displayPlayerName = "";
+            displayPlayerName = string.Empty;
             buttonChangeName.Enabled = false;
             buttonResetDeaths.Enabled = false;
         }
@@ -351,25 +349,7 @@ public partial class MainForm : Form
             buttonChangeName.Enabled = true;
             buttonResetDeaths.Enabled = true;
         }
-        displayPlayerName = savslot.GetPlayerName();
-        Refresh(); // Update the screen, including the player name
-    }
-
-    public void UpdatePlayerName(string _str)
-    {
-        var savslot = GetSaveSlot();
-        if (!savslot.SaveIsValid())
-        {
-            displayPlayerName = "";
-            buttonChangeName.Enabled = false;
-            buttonResetDeaths.Enabled = false;
-        }
-        else
-        {
-            buttonChangeName.Enabled = true;
-            buttonResetDeaths.Enabled = true;
-        }
-        displayPlayerName = _str;
+        displayPlayerName = _str ?? savslot.GetPlayerName();
         Refresh(); // Update the screen, including the player name
     }
 
@@ -403,9 +383,9 @@ public partial class MainForm : Form
         _ => 10,
     };
 
-    private void UpdateAllConfigurables(SaveSlot savslot)
+    private void UpdateAllConfigurables(SaveSlot? savslot)
     {
-        if (!savslot.SaveIsValid())
+        if (savslot is null || !savslot.SaveIsValid())
         {
             HideAllGroupBoxesExcept(groupFileSelect);
 
@@ -526,15 +506,15 @@ public partial class MainForm : Form
             default:
             case 0x0:
                 radioButtonNoBoomerang.Checked = true;
-                pictureBox1.Image = Properties.Resources.D_Boomerang;
+                pictureBoomerang.Image = Properties.Resources.D_Boomerang;
                 break;
             case 0x1:
                 radioButtonBlueBoomerang.Checked = true;
-                pictureBox1.Image = Properties.Resources.Boomerang;
+                pictureBoomerang.Image = Properties.Resources.Boomerang;
                 break;
             case 0x2:
                 radioButtonRedBoomerang.Checked = true;
-                pictureBox1.Image = Properties.Resources.Magical_Boomerang;
+                pictureBoomerang.Image = Properties.Resources.Magical_Boomerang;
                 break;
         }
 
@@ -625,7 +605,7 @@ public partial class MainForm : Form
 
         var aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
 
-        pictureBoots.Image = GetBit(aflags, 0x2) && player.GetItemEquipment(pegasusBoots) > 0x0
+        pictureBoots.Image = GetBit(aflags, 0x4) && player.GetItemEquipment(pegasusBoots) > 0x0
             ? Properties.Resources.Pegasus_Boots
             : (Image)Properties.Resources.D_Pegasus_Boots;
 
@@ -860,11 +840,7 @@ public partial class MainForm : Form
 
     private void pictureBow_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBowConfig);
 
-    private SaveSlot GetSaveSlot()
-    {
-        var savslot = radioFile2.Checked ? SRAM.GetSaveSlot(2) : radioFile3.Checked ? SRAM.GetSaveSlot(3) : SRAM.GetSaveSlot(1);
-        return savslot;
-    }
+    private SaveSlot GetSaveSlot() => radioFile2.Checked ? SRAM.GetSaveSlot(2) : radioFile3.Checked ? SRAM.GetSaveSlot(3) : SRAM.GetSaveSlot(1);
 
     private void bowRadio(object sender, EventArgs e)
     {
@@ -873,30 +849,17 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            case "bowOptionNone":
-                player.SetHasItemEquipment(bow, 0x0); // Give No Bow
-                pictureBow.Image = Properties.Resources.D_Bow;
-                break;
-            case "bowOption1":
-                player.SetHasItemEquipment(bow, 0x1); // Give Bow
-                pictureBow.Image = Properties.Resources.Bow;
-                break;
-            case "bowOption2":
-                player.SetHasItemEquipment(bow, 0x2); // Give Bow & Arrows
-                pictureBow.Image = Properties.Resources.Bow_and_Arrow;
-                break;
-            case "bowOption3":
-                player.SetHasItemEquipment(bow, 0x3); // Give Silver Bow
-                pictureBow.Image = Properties.Resources.Bow_and_Light_Arrow;
-                break;
-            case "bowOption4":
-                player.SetHasItemEquipment(bow, 0x4); // Give Bow & Silver Arrows
-                pictureBow.Image = Properties.Resources.Bow_and_Light_Arrow;
-                break;
-        }
+            nameof(radioButtonNoSword) => (0x0, Properties.Resources.D_Bow), // Give No Bow
+            nameof(radioButtonFighterSword) => (0x1, Properties.Resources.Bow), // Give Bow
+            nameof(radioButtonMasterSword) => (0x2, Properties.Resources.Bow_and_Arrow), // Give Bow & Arrows
+            nameof(radioButtonTemperedSword) => (0x3, Properties.Resources.Bow_and_Light_Arrow), // Give Silver Bow
+            nameof(radioButtonGoldenSword) => (0x4, Properties.Resources.Bow_and_Light_Arrow), // Give Bow & Silver Arrows
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(bow, (byte)flag);
+        pictureBow.Image = image;
     }
 
     private void numericUpDownRupeeCounter_ValueChanged(object sender, EventArgs e)
@@ -920,13 +883,13 @@ public partial class MainForm : Form
         numericUpDownRupeeCounter.Value = player.GetRupeeValue();
         UpdateAllConfigurables(savslot);
         helperText.Text = !savslot.SaveIsValid()
-            ? "Save slot " + savslot.ToString() + " is empty or invalid."
-            : "Editing Save slot " + savslot.ToString() + ".";
+            ? $"Save slot {savslot} is empty or invalid."
+            : $"Editing Save slot {savslot}.";
     }
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        if (!fname.Equals("") && fileOpen)
+        if (!string.IsNullOrEmpty(fname) && fileOpen)
         {
             var savslot = GetSaveSlot();
 
@@ -955,26 +918,24 @@ public partial class MainForm : Form
             var tex = new Bitmap(fillRect.Width, fillRect.Height);
 
             // Draw onto the blank canvas we created
-            using (var gr = Graphics.FromImage(tex))
-            {
-                // Apply some pixel-perfect settings before we draw anything...
-                gr.Clear(Color.Transparent);
-                gr.InterpolationMode = InterpolationMode.NearestNeighbor;
-                gr.PixelOffsetMode = PixelOffsetMode.Half;
+            using var heartContainersGr = Graphics.FromImage(tex);
+            // Apply some pixel-perfect settings before we draw anything...
+            heartContainersGr.Clear(Color.Transparent);
+            heartContainersGr.InterpolationMode = InterpolationMode.NearestNeighbor;
+            heartContainersGr.PixelOffsetMode = PixelOffsetMode.Half;
 
-                double heartContainers = player.GetHeartContainers();
-                for (var i = 0; i < heartContainers / 8; i++)
+            double heartContainers = player.GetHeartContainers();
+            for (var i = 0; i < heartContainers / 8; i++)
+            {
+                var xOff = i % 10 * 8;
+                var yOff = i / 10 * 8;
+                if (i >= heartContainers / 8.0f - 1.0f && heartContainers % 8 != 0)
                 {
-                    var xOff = i % 10 * 8;
-                    var yOff = i / 10 * 8;
-                    if (i >= heartContainers / 8.0f - 1.0f && heartContainers % 8 != 0)
-                    {
-                        gr.DrawImage(imgHeartContainerPartial, 2 + xOff, 2 + yOff);
-                    }
-                    else
-                    {
-                        gr.DrawImage(imgHeartContainerFull, 2 + xOff, 2 + yOff);
-                    }
+                    heartContainersGr.DrawImage(imgHeartContainerPartial, 2 + xOff, 2 + yOff);
+                }
+                else
+                {
+                    heartContainersGr.DrawImage(imgHeartContainerFull, 2 + xOff, 2 + yOff);
                 }
             }
 
@@ -992,29 +953,27 @@ public partial class MainForm : Form
             tex = new Bitmap(fillRect.Width, fillRect.Height);
 
             // Draw onto the blank canvas we created
-            using (var gr = Graphics.FromImage(tex))
+            using var magicMeterGr = Graphics.FromImage(tex);
+            // Apply some pixel-perfect settings before we draw anything...
+            magicMeterGr.Clear(Color.Transparent);
+            magicMeterGr.InterpolationMode = InterpolationMode.NearestNeighbor;
+            magicMeterGr.PixelOffsetMode = PixelOffsetMode.Half;
+
+            // Draw the empty magic bar container into the canvas (not to the screen)
+            var currMagic = player.GetCurrMagic();
+            magicMeterGr.DrawImage(magicContainer, 0, 0);
+
+            // Using a colored rectangle, fill the magic bar with a bar representing magic, based on what the player's current magic value is
+            rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
+            fillRect = new Rectangle(0 + 4, 0 - (currMagic + 3) / 4 + 40, 8, (currMagic + 3) / 4);
+            magicMeterGr.FillRectangle(rectBrush, fillRect);
+
+            // If necessary, draw the white "1-pixel-line" part of the magic bar fill, for aesthetic purposes
+            if (currMagic > 0)
             {
-                // Apply some pixel-perfect settings before we draw anything...
-                gr.Clear(Color.Transparent);
-                gr.InterpolationMode = InterpolationMode.NearestNeighbor;
-                gr.PixelOffsetMode = PixelOffsetMode.Half;
-
-                // Draw the empty magic bar container into the canvas (not to the screen)
-                var currMagic = player.GetCurrMagic();
-                gr.DrawImage(magicContainer, 0, 0);
-
-                // Using a colored rectangle, fill the magic bar with a bar representing magic, based on what the player's current magic value is
-                rectBrush.Color = ColorTranslator.FromHtml("#FF21C329");
-                fillRect = new Rectangle(0 + 4, 0 - (currMagic + 3) / 4 + 40, 8, (currMagic + 3) / 4);
-                gr.FillRectangle(rectBrush, fillRect);
-
-                // If necessary, draw the white "1-pixel-line" part of the magic bar fill, for aesthetic purposes
-                if (currMagic > 0)
-                {
-                    rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
-                    fillRect = new Rectangle(5, -((currMagic + 3) / 4) + 40, 6, 1);
-                    gr.FillRectangle(rectBrush, fillRect); // Could probably use a pen w/ DrawLine() here, but might as well recycle the rectangle
-                }
+                rectBrush.Color = ColorTranslator.FromHtml("#FFFFFBFF");
+                fillRect = new Rectangle(5, -((currMagic + 3) / 4) + 40, 6, 1);
+                magicMeterGr.FillRectangle(rectBrush, fillRect); // Could probably use a pen w/ DrawLine() here, but might as well recycle the rectangle
             }
 
             // Write all the contents of the canvas into the magic bar's PictureBox on the Form
@@ -1028,7 +987,7 @@ public partial class MainForm : Form
 
     public void DrawDisplayPlayerName(PaintEventArgs e)
     {
-        if (saveRegion == (int)SaveRegion.JPN)
+        if (saveRegion == SaveRegion.JPN)
         {
             pos = 0;
             var i = 0;
@@ -1043,17 +1002,17 @@ public partial class MainForm : Form
                 {
                     letter = 'ー'; // Replace katanana － and/or Romaji - to hiragana ー because they're exactly the same in the game code
                 }
-                DrawTile(jpn_fnt, AppState.jpChar[letter], e, pos);
+                DrawTile(jpn_fnt, TextCharacterData.JpChar[letter], e, pos);
                 pos += 16;
                 i++;
             }
         }
-        else if (saveRegion == (int)SaveRegion.USA)
+        else if (saveRegion == SaveRegion.USA)
         {
             pos = 0;
             foreach (var c in displayPlayerName)
             {
-                DrawTile(en_fnt, AppState.enChar[c], e, pos);
+                DrawTile(en_fnt, TextCharacterData.EnChar[c], e, pos);
                 pos += 8;
             }
         }
@@ -1062,7 +1021,7 @@ public partial class MainForm : Form
     public static void DrawTile(Image source, int tileID, PaintEventArgs e, int pos)
     {
         var tileset_width = 27; // English Font
-        if (saveRegion == (int)SaveRegion.JPN)
+        if (saveRegion == SaveRegion.JPN)
         {
             tileset_width = 20; // Japanese Font
         }
@@ -1076,19 +1035,17 @@ public partial class MainForm : Form
         var crop = new Rectangle(x, y, width, height);
         var bmp = new Bitmap(crop.Width, crop.Height);
 
-        using (var gr = Graphics.FromImage(bmp))
-        {
-            gr.DrawImage(source, new Rectangle(0, 0, bmp.Width, bmp.Height), crop, GraphicsUnit.Pixel);
-        }
+        using var gr = Graphics.FromImage(bmp);
+        gr.DrawImage(source, new Rectangle(0, 0, bmp.Width, bmp.Height), crop, GraphicsUnit.Pixel);
 
         e.Graphics.DrawImage(bmp, 223 + pos, 49);
     }
 
     private void buttonChangeName_Click(object sender, EventArgs e)
     {
-        var nameForm = saveRegion == (int)SaveRegion.JPN
-            ? (Form)new NameChangingFormJP(this)
-            : new NameChangingFormEN(this);
+        var nameForm = saveRegion == SaveRegion.JPN
+            ? (Form)new NameChangingFormJp(this)
+            : new NameChangingFormEn(this);
         nameForm.ShowDialog();
     }
 
@@ -1119,22 +1076,15 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            default:
-            case "radioButtonNoBoomerang":
-                player.SetHasItemEquipment(boomerang, 0x0); // Give No Boomerang
-                pictureBox1.Image = Properties.Resources.D_Boomerang;
-                break;
-            case "radioButtonBlueBoomerang":
-                player.SetHasItemEquipment(boomerang, 0x1); // Give Blue Boomerang
-                pictureBox1.Image = Properties.Resources.Boomerang;
-                break;
-            case "radioButtonRedBoomerang":
-                player.SetHasItemEquipment(boomerang, 0x2); // Give Red Boomerang
-                pictureBox1.Image = Properties.Resources.Magical_Boomerang;
-                break;
-        }
+            nameof(radioButtonNoBoomerang) => (0x0, Properties.Resources.D_Boomerang), // Give No Boomerang
+            nameof(radioButtonBlueBoomerang) => (0x1, Properties.Resources.Boomerang), // Give Blue Boomerang
+            nameof(radioButtonRedBoomerang) => (0x2, Properties.Resources.Magical_Boomerang), // Give Red Boomerang
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(boomerang, (byte)flag);
+        pictureBoomerang.Image = image;
     }
 
     private void pictureHookshot_Click(object sender, EventArgs e) => ToggleItem(hookshot, 0x1, pictureHookshot, Properties.Resources.Hookshot, Properties.Resources.D_Hookshot);
@@ -1174,22 +1124,15 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            default:
-            case "radioButtonNoMushPowd":
-                player.SetHasItemEquipment(mushroomPowder, 0x0); // Give Neither Mushroom nor Powder
-                pictureMushPowd.Image = Properties.Resources.D_Mushroom;
-                break;
-            case "radioButtonMushroom":
-                player.SetHasItemEquipment(mushroomPowder, 0x1); // Give Mushroom
-                pictureMushPowd.Image = Properties.Resources.Mushroom;
-                break;
-            case "radioButtonPowder":
-                player.SetHasItemEquipment(mushroomPowder, 0x2); // Give Magic Powder
-                pictureMushPowd.Image = Properties.Resources.Magic_Powder;
-                break;
-        }
+            nameof(radioButtonNoMushPowd) => (0x0, Properties.Resources.D_Mushroom), // Give Neither Mushroom nor Powder
+            nameof(radioButtonMushroom) => (0x1, Properties.Resources.Mushroom), // Give Mushroom
+            nameof(radioButtonPowder) => (0x2, Properties.Resources.Magic_Powder), // Give Magic Powder
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(mushroomPowder, (byte)flag);
+        pictureMushPowd.Image = image;
     }
 
     private void swordRadio(object sender, EventArgs e)
@@ -1199,30 +1142,17 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            default:
-            case "radioButtonNoSword":
-                player.SetHasItemEquipment(sword, 0x0); // Give No Sword
-                pictureSword.Image = Properties.Resources.D_Fighter_s_Sword;
-                break;
-            case "radioButtonFighterSword":
-                player.SetHasItemEquipment(sword, 0x1); // Give Fighter's Sword
-                pictureSword.Image = Properties.Resources.Fighter_s_Sword;
-                break;
-            case "radioButtonMasterSword":
-                player.SetHasItemEquipment(sword, 0x2); // Give Master Sword
-                pictureSword.Image = Properties.Resources.Master_Sword;
-                break;
-            case "radioButtonTemperedSword":
-                player.SetHasItemEquipment(sword, 0x3); // Give Tempered Sword
-                pictureSword.Image = Properties.Resources.Tempered_Sword;
-                break;
-            case "radioButtonGoldenSword":
-                player.SetHasItemEquipment(sword, 0x4); // Give Golden Sword
-                pictureSword.Image = Properties.Resources.Golden_Sword;
-                break;
-        }
+            nameof(radioButtonNoSword) => (0x0, Properties.Resources.D_Fighter_s_Sword), // Give No Sword
+            nameof(radioButtonFighterSword) => (0x1, Properties.Resources.Fighter_s_Sword), // Give Fighter's Sword
+            nameof(radioButtonMasterSword) => (0x2, Properties.Resources.Master_Sword), // Give Master Sword
+            nameof(radioButtonTemperedSword) => (0x3, Properties.Resources.Tempered_Sword), // Give Tempered Sword
+            nameof(radioButtonGoldenSword) => (0x4, Properties.Resources.Golden_Sword), // Give Golden Sword
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(sword, (byte)flag);
+        pictureSword.Image = image;
     }
 
     private void pictureSword_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxSword);
@@ -1234,26 +1164,16 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            default:
-            case "radioButtonNoShield":
-                player.SetHasItemEquipment(shield, 0x0); // Give No Shield
-                pictureShield.Image = Properties.Resources.D_Fighter_s_Shield;
-                break;
-            case "radioButtonBlueShield":
-                player.SetHasItemEquipment(shield, 0x1); // Give Fighter's Shield
-                pictureShield.Image = Properties.Resources.Fighter_s_Shield;
-                break;
-            case "radioButtonHerosShield":
-                player.SetHasItemEquipment(shield, 0x2); // Give Hero's Shield
-                pictureShield.Image = Properties.Resources.Red_Shield;
-                break;
-            case "radioButtonMirrorShield":
-                player.SetHasItemEquipment(shield, 0x3); // Give Mirror Shield
-                pictureShield.Image = Properties.Resources.Mirror_Shield;
-                break;
-        }
+            nameof(radioButtonNoShield) => (0x0, Properties.Resources.D_Fighter_s_Shield), // Give No Shield
+            nameof(radioButtonBlueShield) => (0x1, Properties.Resources.Fighter_s_Shield), // Give Fighter's Shield
+            nameof(radioButtonHerosShield) => (0x2, Properties.Resources.Red_Shield), // Give Hero's Shield
+            nameof(radioButtonMirrorShield) => (0x3, Properties.Resources.Mirror_Shield), // Give Mirror Shield
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(shield, (byte)flag);
+        pictureShield.Image = image;
     }
 
     private void pictureShield_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxShield);
@@ -1267,22 +1187,15 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            default:
-            case "radioButtonGreenMail":
-                player.SetHasItemEquipment(armor, 0x0); // Give Green Mail
-                pictureMail.Image = Properties.Resources.Green_Tunic;
-                break;
-            case "radioButtonBlueMail":
-                player.SetHasItemEquipment(armor, 0x1); // Give Blue Mail
-                pictureMail.Image = Properties.Resources.Blue_Tunic;
-                break;
-            case "radioButtonRedMail":
-                player.SetHasItemEquipment(armor, 0x2); // Give Red Mail
-                pictureMail.Image = Properties.Resources.Red_Tunic;
-                break;
-        }
+            nameof(radioButtonGreenMail) => (0x0, Properties.Resources.Green_Tunic), // Give Green Mail
+            nameof(radioButtonBlueMail) => (0x1, Properties.Resources.Blue_Tunic), // Give Blue Mail
+            nameof(radioButtonRedMail) => (0x2, Properties.Resources.Red_Tunic), // Give Red Mail
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(armor, (byte)flag);
+        pictureMail.Image = image;
     }
 
     private void CheckForBottles()
@@ -1480,25 +1393,16 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            case "radioButtonNoShovelOrFlute":
-                player.SetHasItemEquipment(shovelFlute, 0x0); // Give neither Shovel nor Flute
-                pictureShovelFlute.Image = Properties.Resources.D_Shovel;
-                break;
-            case "radioButtonShovel":
-                player.SetHasItemEquipment(shovelFlute, 0x1); // Give Shovel
-                pictureShovelFlute.Image = Properties.Resources.Shovel;
-                break;
-            case "radioButtonFlute":
-                player.SetHasItemEquipment(shovelFlute, 0x2); // Give Flute
-                pictureShovelFlute.Image = Properties.Resources.Flute;
-                break;
-            case "radioButtonFluteAndBird":
-                player.SetHasItemEquipment(shovelFlute, 0x3); // Give Flute and Bird
-                pictureShovelFlute.Image = Properties.Resources.Flute;
-                break;
-        }
+            nameof(radioButtonNoShovelOrFlute) => (0x0, Properties.Resources.D_Shovel), // Give neither Shovel nor Flute
+            nameof(radioButtonShovel) => (0x1, Properties.Resources.Shovel), // Give Shovel
+            nameof(radioButtonFlute) => (0x2, Properties.Resources.Flute), // Give Flute
+            nameof(radioButtonFluteAndBird) => (0x3, Properties.Resources.Flute), // Give Flute and Bird
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(shovelFlute, (byte)flag);
+        pictureShovelFlute.Image = image;
     }
 
     private void gloveUpgradesRadio(object sender, EventArgs e)
@@ -1508,21 +1412,15 @@ public partial class MainForm : Form
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        switch (btn.Name)
+        (var flag, var image) = btn.Name switch
         {
-            case "radioButtonNoGloves":
-                player.SetHasItemEquipment(gloves, 0x0); // Give neither Power Glove nor Titan's Mitts
-                picturePowerGlove.Image = Properties.Resources.D_Power_Glove;
-                break;
-            case "radioButtonPowerGloves":
-                player.SetHasItemEquipment(gloves, 0x1); // Give Power Glove
-                picturePowerGlove.Image = Properties.Resources.Power_Glove;
-                break;
-            case "radioButtonTitansMitts":
-                player.SetHasItemEquipment(gloves, 0x2); // Give Titan's Mitts
-                picturePowerGlove.Image = Properties.Resources.Titan_s_Mitt;
-                break;
-        }
+            nameof(radioButtonNoGloves) => (0x0, Properties.Resources.D_Power_Glove), // Give neither Power Glove nor Titan's Mitts
+            nameof(radioButtonPowerGloves) => (0x1, Properties.Resources.Power_Glove), // Give Power Glove
+            nameof(radioButtonTitansMitts) => (0x2, Properties.Resources.Titan_s_Mitt), // Give Titan's Mitts
+            _ => (0, null)
+        };
+        player.SetHasItemEquipment(gloves, (byte)flag);
+        picturePowerGlove.Image = image;
     }
 
     private void pictureHeartPieces_Click(object sender, EventArgs e)

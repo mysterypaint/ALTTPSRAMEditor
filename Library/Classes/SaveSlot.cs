@@ -4,34 +4,30 @@
 public class SaveSlot
 {
     private byte[] data;
-    private string playerName = "";
+    private string playerName = string.Empty;
     private ushort[] playerNameRaw;
     private ushort total_checksum = 0;
     private readonly Link player;
     private byte pendants;
     private byte crystals;
     private bool isValid;
-    private int deathCounter = 0;
-    private int liveSaveCounter = 0;
     private int slotIndex;
+    private readonly TextCharacterData textCharacterData;
     private readonly Enums.SaveRegion saveRegion;
     private readonly byte[] itemsAndEquipment;
 
-    public SaveSlot(byte[] data_in, int _slot)
+    public SaveSlot(byte[] data_in, int _slot, TextCharacterData textCharacterData)
     {
         // Import this save slot's data from the larger global save data
         data = data_in.ToArray();
         slotIndex = _slot;
+        this.textCharacterData = textCharacterData;
         playerNameRaw = new ushort[6];
 
         // Determine which region this save comes from
         saveRegion = data[0x3E5] == 0xAA && data[0x3E6] == 0x55
             ? Enums.SaveRegion.USA
             : data[0x3E1] == 0xAA && data[0x3E2] == 0x55 ? Enums.SaveRegion.JPN : Enums.SaveRegion.EUR;
-
-        // Set death/live/save counter values
-        deathCounter = 0;
-        liveSaveCounter = 0;
 
         isValid = SaveIsValid();
         // Copy global save data's Item&Equipment data to this Save Slot
@@ -50,29 +46,16 @@ public class SaveSlot
         // Initialize a player object upon creating this save slot.
         player = new Link(itemsAndEquipment);
 
-        getRawPlayerName();
+        GetRawPlayerName();
     }
 
     public void ResetFileDeaths(bool showOnFileSelect)
     {
-        int _deathCounterAddr;
-        int _liveSaveCounterAddr;
-        int _deathTotalsTableAddr;
-        switch (saveRegion)
+        (var _deathCounterAddr, var _liveSaveCounterAddr, var _deathTotalsTableAddr) = saveRegion switch
         {
-            default:
-            case Enums.SaveRegion.EUR:
-            case Enums.SaveRegion.USA:
-                _deathCounterAddr = 0x405;
-                _liveSaveCounterAddr = 0x403;
-                _deathTotalsTableAddr = 0x3E7;
-                break;
-            case Enums.SaveRegion.JPN:
-                _deathCounterAddr = 0x401;
-                _liveSaveCounterAddr = 0x3FF;
-                _deathTotalsTableAddr = 0x3E3;
-                break;
-        }
+            Enums.SaveRegion.JPN => (0x401, 0x3FF, 0x3E3),
+            _ => (0x405, 0x403, 0x3E7)
+        };
         for (var i = 0x0; i < 0x1B; i += 2)
         {
             data[_deathTotalsTableAddr + i] = 0x0;
@@ -81,9 +64,6 @@ public class SaveSlot
 
         data[_liveSaveCounterAddr] = 0x0;
         data[_liveSaveCounterAddr + 1] = 0x0;
-        liveSaveCounter = 0;
-
-        deathCounter = 0;
 
         if (showOnFileSelect)
         {
@@ -137,7 +117,8 @@ public class SaveSlot
     public bool GetIsValid() => isValid;
 
     public override string ToString() => slotIndex.ToString();
-    private void getRawPlayerName()
+
+    private void GetRawPlayerName()
     {
         if (!SaveIsValid())
         {
@@ -183,7 +164,7 @@ public class SaveSlot
                         break;
                     }
 
-                    playerName += AppState.rawENChar[i];
+                    playerName += textCharacterData.RawEnChar[i];
                     break;
                 case Enums.SaveRegion.JPN:
                     if (j > 4)
@@ -191,7 +172,7 @@ public class SaveSlot
                         break;
                     }
 
-                    playerName += AppState.rawJPChar[i];
+                    playerName += textCharacterData.RawJpChar[i];
                     break;
             }
             j++;

@@ -1,13 +1,9 @@
-﻿namespace ALTTPSRAMEditor;
-
-internal static class Program
+﻿var thread = new Thread(() =>
 {
-    [STAThread]
-    private static void Main()
-    {
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
-        var mainForm = new MainForm();
-        Application.Run(mainForm);
-    }
-}
+    Application.SetHighDpiMode(HighDpiMode.SystemAware);
+    Application.EnableVisualStyles();
+    Application.SetCompatibleTextRenderingDefault(false);
+    Application.Run(new MainForm(new TextCharacterData()));
+});
+thread.SetApartmentState(ApartmentState.STA);
+thread.Start();

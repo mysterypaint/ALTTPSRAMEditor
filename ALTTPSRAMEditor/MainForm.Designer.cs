@@ -64,7 +64,7 @@
             this.pictureMushPowd = new System.Windows.Forms.PictureBox();
             this.pictureBow = new System.Windows.Forms.PictureBox();
             this.pictureBombs = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoomerang = new System.Windows.Forms.PictureBox();
             this.pictureHookshot = new System.Windows.Forms.PictureBox();
             this.pictureFireRod = new System.Windows.Forms.PictureBox();
             this.pictureIceRod = new System.Windows.Forms.PictureBox();
@@ -177,7 +177,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureMushPowd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBombs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoomerang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHookshot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFireRod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIceRod)).BeginInit();
@@ -277,7 +277,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.exitToolStripMenuItem.Text = "Exit (Ctrl+Q)";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -547,7 +547,7 @@
             this.tableLayoutPanelInventory.Controls.Add(this.pictureMushPowd, 4, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBow, 0, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureBombs, 3, 0);
-            this.tableLayoutPanelInventory.Controls.Add(this.pictureBox1, 1, 0);
+            this.tableLayoutPanelInventory.Controls.Add(this.pictureBoomerang, 1, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureHookshot, 2, 0);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureFireRod, 0, 1);
             this.tableLayoutPanelInventory.Controls.Add(this.pictureIceRod, 1, 1);
@@ -676,15 +676,15 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
-            this.pictureBox1.Location = new System.Drawing.Point(28, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBoomerang.Image = global::ALTTPSRAMEditor.Properties.Resources.D_Boomerang;
+            this.pictureBoomerang.ImageLocation = "";
+            this.pictureBoomerang.InitialImage = global::ALTTPSRAMEditor.Properties.Resources.Boomerang;
+            this.pictureBoomerang.Location = new System.Drawing.Point(28, 3);
+            this.pictureBoomerang.Name = "pictureBox1";
+            this.pictureBoomerang.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoomerang.TabIndex = 0;
+            this.pictureBoomerang.TabStop = false;
+            this.pictureBoomerang.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureHookshot
             // 
@@ -1988,7 +1988,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureMushPowd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBombs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoomerang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHookshot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFireRod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIceRod)).EndInit();
@@ -2090,7 +2090,7 @@
         private System.Windows.Forms.Label labelDungeonKeys;
         private System.Windows.Forms.TextBox textBoxDungeonKeys;
         private System.Windows.Forms.Label labelRupees;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoomerang;
         private System.Windows.Forms.PictureBox pictureBombs;
         private System.Windows.Forms.NumericUpDown numericUpDownRupeeCounter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelInventory;
