@@ -1,4 +1,5 @@
-﻿namespace Library.Classes;
+﻿// ReSharper disable InconsistentNaming
+namespace Library.Classes;
 
 [Serializable]
 public class SaveSlot
@@ -6,7 +7,7 @@ public class SaveSlot
     private byte[] data;
     private string playerName = string.Empty;
     private ushort[] playerNameRaw;
-    private ushort total_checksum = 0;
+    private ushort total_checksum;
     private readonly Link player;
     private byte pendants;
     private byte crystals;
@@ -51,7 +52,7 @@ public class SaveSlot
 
     public void ResetFileDeaths(bool showOnFileSelect)
     {
-        (var _deathCounterAddr, var _liveSaveCounterAddr, var _deathTotalsTableAddr) = saveRegion switch
+        var (_deathCounterAddr, _liveSaveCounterAddr, _deathTotalsTableAddr) = saveRegion switch
         {
             Enums.SaveRegion.JPN => (0x401, 0x3FF, 0x3E3),
             _ => (0x405, 0x403, 0x3E7)
@@ -134,7 +135,7 @@ public class SaveSlot
             case Enums.SaveRegion.USA:
                 for (var i = 0x3D9; i <= 0x3E4; i += 2)
                 {
-                    playerNameRaw[j] = (ushort)((data[i + 1] << 8) | data[i]);
+                    playerNameRaw[j] = (ushort)(data[i + 1] << 8 | data[i]);
                     j++;
                 }
                 break;
@@ -142,7 +143,7 @@ public class SaveSlot
                 playerNameRaw = new ushort[4];
                 for (var i = 0x3D9; i < 0x3E1; i += 2)
                 {
-                    playerNameRaw[j] = (ushort)((data[i + 1] << 8) | data[i]);
+                    playerNameRaw[j] = (ushort)(data[i + 1] << 8 | data[i]);
                     j++;
                 }
                 break;
@@ -150,10 +151,10 @@ public class SaveSlot
         ConvertPlayerNameRawToString(playerNameRaw);
     }
 
-    private void ConvertPlayerNameRawToString(ushort[] playerNameRaw)
+    private void ConvertPlayerNameRawToString(ushort[] _playerNameRaw)
     {
         var j = 1; // Char counter
-        foreach (var i in playerNameRaw)
+        foreach (var i in _playerNameRaw)
         {
             switch (saveRegion)
             {
@@ -220,7 +221,7 @@ public class SaveSlot
         ushort checksum = 0;
         for (var i = 0; i < 0x4fe; i += 2)
         {
-            checksum += (ushort)((data[i + 1] << 8) | data[i]);
+            checksum += (ushort)(data[i + 1] << 8 | data[i]);
         }
         total_checksum = (ushort)(0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
 
@@ -253,7 +254,7 @@ public class SaveSlot
         ushort checksum = 0;
         for (var i = 0x0; i < 0x500; i += 2)
         {
-            var word = (ushort)((data[i + 1] << 8) | data[i]);
+            var word = (ushort)(data[i + 1] << 8 | data[i]);
             checksum += word;
         }
         return checksum == 0x5A5A; // The save is valid if the checksum total is exactly 0x5A5A
@@ -262,23 +263,23 @@ public class SaveSlot
     public void UpdatePlayer()
     {
         // Take player's equipment and update the local data
-        var itemsAndEquipment = player.GetItemsAndEquipmentArray();
+        var _itemsAndEquipment = player.GetItemsAndEquipmentArray();
 
         // Update pendant and crystal data before merging this save
-        itemsAndEquipment[0x34] = pendants;
-        itemsAndEquipment[0x3A] = crystals;
-        itemsAndEquipment[0xF] = (byte)player.GetSelectedBottle();
-        var len = itemsAndEquipment.Length;
+        _itemsAndEquipment[0x34] = pendants;
+        _itemsAndEquipment[0x3A] = crystals;
+        _itemsAndEquipment[0xF] = (byte)player.GetSelectedBottle();
+        var len = _itemsAndEquipment.Length;
         for (var i = 0x0; i < len; i++)
         {
-            data[0x340 + i] = itemsAndEquipment[i];
+            data[0x340 + i] = _itemsAndEquipment[i];
         }
     }
 
     public static bool GetBit(byte b, int bitNumber)
     {
         bitNumber++;
-        return (b & (1 << bitNumber - 1)) != 0;
+        return (b & 1 << bitNumber - 1) != 0;
     }
 
     public byte GetPendants() => pendants;
@@ -290,6 +291,7 @@ public class SaveSlot
         switch (_val)
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case Constants.greenPendant:
                 if (GetBit(pendants, Constants.greenPendant))
                 {
@@ -334,6 +336,7 @@ public class SaveSlot
         switch (_val)
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case Constants.crystalPoD:
                 if (GetBit(crystals, Constants.crystalPoD))
                 {

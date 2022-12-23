@@ -2,14 +2,14 @@
 
 public static class Enums
 {
-    public enum SaveRegion : int
+    public enum SaveRegion
     {
         USA,
         JPN,
         EUR
     };
 
-    public enum BottleContents : int
+    public enum BottleContents
     {
         NONE,
         MUSHROOM,

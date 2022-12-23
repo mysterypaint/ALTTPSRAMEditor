@@ -1,4 +1,5 @@
-﻿namespace Library.Classes;
+﻿// ReSharper disable InconsistentNaming
+namespace Library.Classes;
 
 [Serializable]
 public class SRAM
@@ -192,6 +193,7 @@ public class SRAM
         switch (fileSlot)
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 1:
                 savslot1 = new SaveSlot(_new_save, 1, textCharacterData);
                 savslot1m = savslot1;
@@ -216,6 +218,7 @@ public class SRAM
         switch (fileSlot)
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 1:
                 if (savslot1.SaveIsValid())
                 {
@@ -252,11 +255,12 @@ public class SRAM
         }
     }
 
-    public static SaveSlot? WriteFile(int fileSlot)
+    public static SaveSlot WriteFile(int fileSlot)
     {
         switch (fileSlot)
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 1:
                 savslot1 = savslotTemp.Clone() ?? default!;
                 savslot1.SetSaveSlot(1);
@@ -282,6 +286,7 @@ public class SRAM
     {
         switch (fileSlot)
         {
+            // ReSharper disable once RedundantEmptySwitchSection
             default: break;
             case 1:
                 savslot1.ClearData();

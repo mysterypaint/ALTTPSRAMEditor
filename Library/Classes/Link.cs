@@ -1,19 +1,20 @@
-﻿namespace Library.Classes;
+﻿// ReSharper disable InconsistentNaming
+namespace Library.Classes;
 
 [Serializable]
 public class Link
 {
     private readonly byte[] itemsAndEquipment;
     private readonly byte abilityFlags;
-    private int heartPieces = 0;
-    private int heartContainers = 3;
-    private int currMagic = 0;
-    private readonly int bombsHeld = 0;
-    private readonly int arrowsHeld = 0;
-    private int currMagicUpgrade = 0;
-    private int currArrowUpgrades = 0;
-    private int currBombUpgrades = 0;
-    private int selectedBottle = 1; // The bottle that is currently selected in the inventory screen
+    private int heartPieces;
+    private int heartContainers;
+    private int currMagic;
+    private readonly int bombsHeld;
+    private readonly int arrowsHeld;
+    private int currMagicUpgrade;
+    private int currArrowUpgrades;
+    private int currBombUpgrades;
+    private int selectedBottle; // The bottle that is currently selected in the inventory screen
 
     public Link(byte[] itemsAndEquipmentInput)
     {
@@ -153,7 +154,7 @@ public class Link
         itemsAndEquipment[0x23] = bytes[0];
     }
 
-    public int GetRupeeValue() => (itemsAndEquipment[0x23] << 8) | itemsAndEquipment[0x22];
+    public int GetRupeeValue() => itemsAndEquipment[0x23] << 8 | itemsAndEquipment[0x22];
 
     public int GetItemEquipment(int addr) => itemsAndEquipment[addr];
 }
