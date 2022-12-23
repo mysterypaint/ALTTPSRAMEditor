@@ -19,6 +19,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Library\Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="Resources\Bee.png" />
 	</ItemGroup>
 	<ItemGroup>
@@ -347,9 +351,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Resources\jp_font_space.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Library\Library.csproj" />
 	</ItemGroup>
 
 </Project>
