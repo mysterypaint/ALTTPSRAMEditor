@@ -1,5 +1,7 @@
 ﻿global using ALTTPSRAMEditor;
 global using Library.Classes;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Drawing.Drawing2D;
 global using System.Reflection;
