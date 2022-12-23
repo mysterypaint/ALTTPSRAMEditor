@@ -2,7 +2,8 @@
 // ReSharper disable LocalizableElement
 namespace ALTTPSRAMEditor;
 
-[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application.")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
+ SuppressMessage("Style", "IDE1006:Naming Styles")]
 public partial class MainForm : Form
 {
     private bool canRefresh = true;
@@ -221,7 +222,7 @@ public partial class MainForm : Form
                 SaveSRM();
                 break;
             case "Q": // CTRL+Q: Quit program
-                      // Terminate the program if we select "Exit" in the Menu Bar
+                // Terminate the program if we select "Exit" in the Menu Bar
                 Application.Exit();
                 break;
         }

@@ -1,7 +1,8 @@
 ﻿// ReSharper disable LocalizableElement
 namespace ALTTPSRAMEditor;
 
-[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application.")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
+ SuppressMessage("Style", "IDE1006:Naming Styles")]
 public partial class NameChangingFormJp : Form
 {
     private Bitmap jpFnt = default!;

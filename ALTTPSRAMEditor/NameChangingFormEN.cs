@@ -1,7 +1,8 @@
 ﻿// ReSharper disable LocalizableElement
 namespace ALTTPSRAMEditor;
 
-[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application.")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
+ SuppressMessage("Style", "IDE1006:Naming Styles")]
 public partial class NameChangingFormEn : Form
 {
     private Bitmap enFnt = default!;
@@ -184,7 +185,6 @@ public partial class NameChangingFormEn : Form
         }
     }
 
-    [SuppressMessage("Style", "IDE1006:Naming Styles")]
     private void kbdEnMoveLeft_Click(object sender, EventArgs e)
     {
         charPos--;
@@ -196,7 +196,6 @@ public partial class NameChangingFormEn : Form
         pictureENCharHeart.Location = new Point(62 + charPos * 32, 174);
     }
 
-    [SuppressMessage("Style", "IDE1006:Naming Styles")]
     private void kbdEnMoveRight_Click(object sender, EventArgs e)
     {
         charPos++;
@@ -294,7 +293,6 @@ public partial class NameChangingFormEn : Form
         }
     }
 
-    [SuppressMessage("Style", "IDE1006:Naming Styles")]
     private void kbdEnEnd_Click(object sender, EventArgs e)
     {
         UpdatePlayerName();
