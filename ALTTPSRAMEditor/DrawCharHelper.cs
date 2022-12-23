@@ -3,6 +3,7 @@ namespace ALTTPSRAMEditor;
 
 public static class DrawCharHelper
 {
+    [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application.")]
     public static Image GetCharTexture(Bitmap fnt, int tileId, SaveRegion saveRegion = SaveRegion.JPN, bool hugLeft = false)
     {
         var tileset_width = saveRegion switch

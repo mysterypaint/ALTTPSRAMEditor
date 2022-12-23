@@ -16,6 +16,7 @@ public class Link
     private int currBombUpgrades;
     private int selectedBottle; // The bottle that is currently selected in the inventory screen
 
+    // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public Link(byte[] itemsAndEquipmentInput)
     {
         itemsAndEquipment = itemsAndEquipmentInput.ToArray();

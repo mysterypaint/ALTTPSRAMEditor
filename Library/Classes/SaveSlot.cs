@@ -17,6 +17,7 @@ public class SaveSlot
     private readonly Enums.SaveRegion saveRegion;
     private readonly byte[] itemsAndEquipment;
 
+    // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public SaveSlot(byte[] data_in, int _slot, TextCharacterData textCharacterData)
     {
         // Import this save slot's data from the larger global save data
@@ -151,6 +152,7 @@ public class SaveSlot
         ConvertPlayerNameRawToString(playerNameRaw);
     }
 
+    // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     private void ConvertPlayerNameRawToString(ushort[] _playerNameRaw)
     {
         var j = 1; // Char counter
@@ -175,6 +177,8 @@ public class SaveSlot
 
                     playerName += textCharacterData.RawJpChar[i];
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             j++;
         }
@@ -249,6 +253,8 @@ public class SaveSlot
                 }
 
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         ushort checksum = 0;
@@ -424,6 +430,7 @@ public class SaveSlot
 
     public void SetPlayerName(string str) => playerName = str;
 
+    // ReSharper disable once ParameterTypeCanBeEnumerable.Global
     public void SetData(byte[] in_data) => data = in_data.ToArray();
 
     public void ClearData()

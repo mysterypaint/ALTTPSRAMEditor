@@ -2,7 +2,7 @@
 // ReSharper disable LocalizableElement
 namespace ALTTPSRAMEditor;
 
-[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application.")]
 public partial class MainForm : Form
 {
     private bool canRefresh = true;

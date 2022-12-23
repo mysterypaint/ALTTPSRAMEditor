@@ -5,18 +5,12 @@ namespace Library.Classes;
 public class SRAM
 {
     private byte[] data;
-    private
-    const int slot1 = 0x0;
-    private
-    const int slot1m = 0xF00;
-    private
-    const int slot2 = 0x500;
-    private
-    const int slot2m = 0x1400;
-    private
-    const int slot3 = 0xA00;
-    private
-    const int slot3m = 0x1900;
+    private const int slot1 = 0x0;
+    private const int slot1m = 0xF00;
+    private const int slot2 = 0x500;
+    private const int slot2m = 0x1400;
+    private const int slot3 = 0xA00;
+    private const int slot3m = 0x1900;
     private readonly byte[] outsav = new byte[0x2000];
     //Addresses $1E00 to $1FFE in SRAM are not used.
     //private const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
@@ -39,6 +33,7 @@ public class SRAM
     */
 
 
+    // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public SRAM(byte[] data_in, TextCharacterData textCharacterData)
     {
         data = data_in.ToArray();
@@ -92,7 +87,6 @@ public class SRAM
     {
         savslot1.UpdatePlayer();
         savslot1.CommitPlayerName();
-
 
         if (savslot1.GetIsValid())
         {
