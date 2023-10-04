@@ -1,14 +1,17 @@
-﻿namespace ALTTPSRAMEditor;
+﻿// ReSharper disable InconsistentNaming
+// ReSharper disable LocalizableElement
+namespace ALTTPSRAMEditor;
 
-[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
+ SuppressMessage("Style", "IDE1006:Naming Styles")]
 public partial class MainForm : Form
 {
     private bool canRefresh = true;
-    private bool fileOpen = false;
+    private bool fileOpen;
     private static readonly int[] bottleContents = new int[9];
     private static readonly Bitmap[] bottleContentsImg = new Bitmap[9];
 
-    private static int pos = 0;
+    private static int pos;
     private static SaveRegion saveRegion = SaveRegion.JPN;
     private static SRAM? sdat;
     private static string fname = string.Empty;
@@ -22,7 +25,7 @@ public partial class MainForm : Form
     private readonly Image en_fnt = Properties.Resources.en_font;
     private readonly Image jpn_fnt = Properties.Resources.jpn_font;
 
-    public TextCharacterData TextCharacterData { get; init; }
+    public TextCharacterData TextCharacterData { get; }
 
     public MainForm(TextCharacterData textCharacterData)
     {
@@ -49,41 +52,44 @@ public partial class MainForm : Form
         { // Open the text file using a File Stream
             var bytes = File.ReadAllBytes(fname);
             var fileSize = new FileInfo(fname).Length;
-            if (fileSize == srm_size)
+            switch (fileSize)
             {
-                OpenSRMGoodSize(bytes);
-            }
-            else if (fileSize > srm_size)
-            {
-                var validFile = true;
-
-                if (fileSize <= 0x8000)
-                {
-                    for (var i = 0x2000; i < 0x8000; i++)
+                case srm_size:
+                    OpenSRMGoodSize(bytes);
+                    break;
+                case > srm_size:
                     {
-                        if (bytes[i] != 0x0)
+                        var validFile = true;
+
+                        if (fileSize <= 0x8000)
+                        {
+                            for (var i = 0x2000; i < 0x8000; i++)
+                            {
+                                if (bytes[i] != 0x0)
+                                {
+                                    validFile = false;
+                                }
+                            }
+                        }
+                        else
                         {
                             validFile = false;
                         }
-                    }
-                }
-                else
-                {
-                    validFile = false;
-                }
 
-                if (!validFile)
-                {
-                    MessageBox.Show("Invalid SRAM File. (Randomizer saves aren't supported. Maybe one day...?)");
-                }
-                else
-                {
-                    OpenSRMGoodSize(bytes);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid SRAM File.");
+                        if (!validFile)
+                        {
+                            MessageBox.Show("Invalid SRAM File. (Randomizer saves aren't supported. Maybe one day...?)");
+                        }
+                        else
+                        {
+                            OpenSRMGoodSize(bytes);
+                        }
+
+                        break;
+                    }
+                default:
+                    MessageBox.Show("Invalid SRAM File.");
+                    break;
             }
         }
         catch (IOException)
@@ -216,17 +222,15 @@ public partial class MainForm : Form
                 SaveSRM();
                 break;
             case "Q": // CTRL+Q: Quit program
-                      // Terminate the program if we select "Exit" in the Menu Bar
+                // Terminate the program if we select "Exit" in the Menu Bar
                 Application.Exit();
-                break;
-            default:
                 break;
         }
     }
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        var toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
+        const string toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
         MessageBox.Show(toolCredits);
     }
 
@@ -318,15 +322,17 @@ public partial class MainForm : Form
         var dialogResult = MessageBox.Show($"You are about to PERMANENTLY ERASE File {selFile}! Are you sure you want to erase it? There is no undo!",
             $"Erase File {selFile}?", MessageBoxButtons.YesNo);
 
-        if (dialogResult == DialogResult.Yes)
+        if (dialogResult != DialogResult.Yes)
         {
-            SRAM.EraseFile(selFile);
-            helperText.Text = $"Erased File {selFile}.";
-            var savslot = SRAM.GetSaveSlot(selFile);
-            savslot.SetIsValid(false);
-            canRefresh = true;
-            UpdateAllConfigurables(savslot);
+            return;
         }
+
+        SRAM.EraseFile(selFile);
+        helperText.Text = $"Erased File {selFile}.";
+        var savslot = SRAM.GetSaveSlot(selFile);
+        savslot.SetIsValid(false);
+        canRefresh = true;
+        UpdateAllConfigurables(savslot);
     }
 
     public void SetPlayerName(string _str) => GetSaveSlot().SetPlayerName(_str);
@@ -351,12 +357,6 @@ public partial class MainForm : Form
         }
         displayPlayerName = _str ?? savslot.GetPlayerName();
         Refresh(); // Update the screen, including the player name
-    }
-
-    private void buttonApplyChanges_Click(object sender, EventArgs e)
-    {
-        buttonWrite.Enabled = false;
-        UpdatePlayerName();
     }
 
     private void UpdateArrowsMax() => numericUpDownArrowsHeld.Maximum = numericUpDownArrowUpgrades.Value switch
@@ -455,6 +455,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(bow))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 bowOptionNone.Checked = true;
                 pictureBow.Image = Properties.Resources.D_Bow;
@@ -504,6 +505,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(boomerang))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonNoBoomerang.Checked = true;
                 pictureBoomerang.Image = Properties.Resources.D_Boomerang;
@@ -522,6 +524,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(shovelFlute))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonNoShovelOrFlute.Checked = true;
                 pictureShovelFlute.Image = Properties.Resources.D_Shovel;
@@ -544,6 +547,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(gloves))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonNoGloves.Checked = true;
                 picturePowerGlove.Image = Properties.Resources.D_Power_Glove;
@@ -616,6 +620,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(mushroomPowder))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonNoMushPowd.Checked = true;
                 pictureMushPowd.Image = Properties.Resources.D_Mushroom;
@@ -633,6 +638,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(sword))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonNoSword.Checked = true;
                 pictureSword.Image = Properties.Resources.D_Fighter_s_Sword;
@@ -658,6 +664,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(shield))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonNoShield.Checked = true;
                 pictureShield.Image = Properties.Resources.D_Fighter_s_Shield;
@@ -679,6 +686,7 @@ public partial class MainForm : Form
         switch (player.GetItemEquipment(armor))
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 radioButtonGreenMail.Checked = true;
                 pictureMail.Image = Properties.Resources.Green_Tunic;
@@ -844,12 +852,12 @@ public partial class MainForm : Form
 
     private void bowRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoSword) => (0x0, Properties.Resources.D_Bow), // Give No Bow
             nameof(radioButtonFighterSword) => (0x1, Properties.Resources.Bow), // Give Bow
@@ -873,7 +881,7 @@ public partial class MainForm : Form
     private void fileRadio(object sender, EventArgs e)
     {
         // User clicked a radio button to change file save slots
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true })
         {
             return;
         }
@@ -896,17 +904,19 @@ public partial class MainForm : Form
             if (!savslot.SaveIsValid() || !savslot.GetIsValid())
             {
                 textQuarterMagic.Visible = false;
-                if (canRefresh)
+                if (!canRefresh)
                 {
-                    canRefresh = false;
-                    Refresh();
+                    return;
                 }
+
+                canRefresh = false;
+                Refresh();
                 return;
             }
 
             // Initialize the brush for drawing, then draw the black box behind the player name
             var rectBrush = new SolidBrush(Color.Black);
-            var border = 2;
+            const int border = 2;
             e.Graphics.FillRectangle(rectBrush, new Rectangle(223 - border, 49 - border, 8 * 8 + border * 2, 16 + border * 2));
 
             // Grab the player so we can get their info
@@ -985,40 +995,45 @@ public partial class MainForm : Form
         DrawDisplayPlayerName(e);
     }
 
-    public void DrawDisplayPlayerName(PaintEventArgs e)
+    private void DrawDisplayPlayerName(PaintEventArgs e)
     {
-        if (saveRegion == SaveRegion.JPN)
+        switch (saveRegion)
         {
-            pos = 0;
-            var i = 0;
-            foreach (var c in displayPlayerName)
-            {
-                var letter = c;
-                if (c == ' ')
+            case SaveRegion.JPN:
                 {
-                    letter = '　';
+                    pos = 0;
+                    foreach (var letter in displayPlayerName.Select(c => c switch
+                             {
+                                 ' ' => '　',
+                                 '－' or '-' => 'ー',
+                                 _ => c
+                             }))
+                    {
+                        DrawTile(jpn_fnt, TextCharacterData.JpChar[letter], e, pos);
+                        pos += 16;
+                    }
+
+                    break;
                 }
-                else if (c is '－' or '-')
+            case SaveRegion.USA:
                 {
-                    letter = 'ー'; // Replace katanana － and/or Romaji - to hiragana ー because they're exactly the same in the game code
+                    pos = 0;
+                    foreach (var c in displayPlayerName)
+                    {
+                        DrawTile(en_fnt, TextCharacterData.EnChar[c], e, pos);
+                        pos += 8;
+                    }
+
+                    break;
                 }
-                DrawTile(jpn_fnt, TextCharacterData.JpChar[letter], e, pos);
-                pos += 16;
-                i++;
-            }
-        }
-        else if (saveRegion == SaveRegion.USA)
-        {
-            pos = 0;
-            foreach (var c in displayPlayerName)
-            {
-                DrawTile(en_fnt, TextCharacterData.EnChar[c], e, pos);
-                pos += 8;
-            }
+            case SaveRegion.EUR:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
-    public static void DrawTile(Image source, int tileID, PaintEventArgs e, int pos)
+    private static void DrawTile(Image source, int tileID, PaintEventArgs e, int _pos)
     {
         var tileset_width = 27; // English Font
         if (saveRegion == SaveRegion.JPN)
@@ -1026,19 +1041,19 @@ public partial class MainForm : Form
             tileset_width = 20; // Japanese Font
         }
 
-        var tile_w = 8;
-        var tile_h = 16;
+        const int tile_w = 8;
+        const int tile_h = 16;
         var x = tileID % tileset_width * tile_w;
         var y = tileID / tileset_width * tile_h;
-        var width = 8;
-        var height = 16;
+        const int width = 8;
+        const int height = 16;
         var crop = new Rectangle(x, y, width, height);
         var bmp = new Bitmap(crop.Width, crop.Height);
 
         using var gr = Graphics.FromImage(bmp);
         gr.DrawImage(source, new Rectangle(0, 0, bmp.Width, bmp.Height), crop, GraphicsUnit.Pixel);
 
-        e.Graphics.DrawImage(bmp, 223 + pos, 49);
+        e.Graphics.DrawImage(bmp, 223 + _pos, 49);
     }
 
     private void buttonChangeName_Click(object sender, EventArgs e)
@@ -1071,12 +1086,12 @@ public partial class MainForm : Form
 
     private void boomerangRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoBoomerang) => (0x0, Properties.Resources.D_Boomerang), // Give No Boomerang
             nameof(radioButtonBlueBoomerang) => (0x1, Properties.Resources.Boomerang), // Give Blue Boomerang
@@ -1119,12 +1134,12 @@ public partial class MainForm : Form
 
     private void mushPowdRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoMushPowd) => (0x0, Properties.Resources.D_Mushroom), // Give Neither Mushroom nor Powder
             nameof(radioButtonMushroom) => (0x1, Properties.Resources.Mushroom), // Give Mushroom
@@ -1137,12 +1152,12 @@ public partial class MainForm : Form
 
     private void swordRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoSword) => (0x0, Properties.Resources.D_Fighter_s_Sword), // Give No Sword
             nameof(radioButtonFighterSword) => (0x1, Properties.Resources.Fighter_s_Sword), // Give Fighter's Sword
@@ -1159,12 +1174,12 @@ public partial class MainForm : Form
 
     private void radioShield(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoShield) => (0x0, Properties.Resources.D_Fighter_s_Shield), // Give No Shield
             nameof(radioButtonBlueShield) => (0x1, Properties.Resources.Fighter_s_Shield), // Give Fighter's Shield
@@ -1182,12 +1197,12 @@ public partial class MainForm : Form
 
     private void mailRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonGreenMail) => (0x0, Properties.Resources.Green_Tunic), // Give Green Mail
             nameof(radioButtonBlueMail) => (0x1, Properties.Resources.Blue_Tunic), // Give Blue Mail
@@ -1336,10 +1351,10 @@ public partial class MainForm : Form
         }
     }
 
-    public static bool GetBit(byte b, int bitNumber)
+    private static bool GetBit(byte b, int bitNumber)
     {
         bitNumber++;
-        return (b & (1 << bitNumber - 1)) != 0;
+        return (b & 1 << bitNumber - 1) != 0;
     }
 
     private void pictureMagicMirror_Click(object sender, EventArgs e) => ToggleItem(magicMirror, 0x2, pictureMagicMirror, Properties.Resources.Magic_Mirror, Properties.Resources.D_Magic_Mirror);
@@ -1388,12 +1403,12 @@ public partial class MainForm : Form
 
     private void shovelFluteRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoShovelOrFlute) => (0x0, Properties.Resources.D_Shovel), // Give neither Shovel nor Flute
             nameof(radioButtonShovel) => (0x1, Properties.Resources.Shovel), // Give Shovel
@@ -1407,12 +1422,12 @@ public partial class MainForm : Form
 
     private void gloveUpgradesRadio(object sender, EventArgs e)
     {
-        if (sender is not RadioButton btn || !btn.Checked)
+        if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
         var player = GetSaveSlot().GetPlayer();
-        (var flag, var image) = btn.Name switch
+        var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoGloves) => (0x0, Properties.Resources.D_Power_Glove), // Give neither Power Glove nor Titan's Mitts
             nameof(radioButtonPowerGloves) => (0x1, Properties.Resources.Power_Glove), // Give Power Glove
@@ -1421,10 +1436,6 @@ public partial class MainForm : Form
         };
         player.SetHasItemEquipment(gloves, (byte)flag);
         picturePowerGlove.Image = image;
-    }
-
-    private void pictureHeartPieces_Click(object sender, EventArgs e)
-    {
     }
 
     private void pictureBoxMagicBar_MouseClick(object sender, MouseEventArgs e)
@@ -1450,29 +1461,38 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var playerCurrHearts = player.GetHeartContainers();
         var playerCurrHeartPieces = player.GetHeartPieces();
-        if (e.Button == MouseButtons.Left)
+        switch (e.Button)
         {
-            if (playerCurrHearts <= 152 && playerCurrHeartPieces < 24)
-            {
-                if ((playerCurrHeartPieces + 1) % 4 == 0)
+            case MouseButtons.Left:
                 {
-                    player.SetHeartContainers(playerCurrHearts + 8);
-                }
+                    if (playerCurrHearts <= 152 && playerCurrHeartPieces < 24)
+                    {
+                        if ((playerCurrHeartPieces + 1) % 4 == 0)
+                        {
+                            player.SetHeartContainers(playerCurrHearts + 8);
+                        }
 
-                player.IncrementHeartPieces();
-            }
-        }
-        else if (e.Button == MouseButtons.Right)
-        {
-            if (playerCurrHearts > 8 && playerCurrHeartPieces > 0)
-            {
-                if (player.GetHeartPieces() % 4 == 0)
+                        player.IncrementHeartPieces();
+                    }
+
+                    break;
+                }
+            case MouseButtons.Right:
                 {
-                    player.SetHeartContainers(playerCurrHearts - 8);
-                }
+                    if (playerCurrHearts > 8 && playerCurrHeartPieces > 0)
+                    {
+                        if (player.GetHeartPieces() % 4 == 0)
+                        {
+                            player.SetHeartContainers(playerCurrHearts - 8);
+                        }
 
-                player.DecrementHeartPieces();
-            }
+                        player.DecrementHeartPieces();
+                    }
+
+                    break;
+                }
+            default:
+                throw new ArgumentOutOfRangeException();
         }
         UpdateHeartPieceUI();
         numericUpDownHeartContainers.Value = player.GetHeartContainers();
@@ -1592,6 +1612,7 @@ public partial class MainForm : Form
         switch (currMagicUpgrade)
         {
             default:
+            // ReSharper disable once RedundantCaseLabel
             case 0x0:
                 pictureBoxMagicBar.Image = Properties.Resources.lttp_magic_bar_halved;
                 player.SetMagicUpgrade(0x1);

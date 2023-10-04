@@ -1,7 +1,9 @@
-﻿namespace ALTTPSRAMEditor;
+﻿// ReSharper disable InconsistentNaming
+namespace ALTTPSRAMEditor;
 
 public static class DrawCharHelper
 {
+    [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application.")]
     public static Image GetCharTexture(Bitmap fnt, int tileId, SaveRegion saveRegion = SaveRegion.JPN, bool hugLeft = false)
     {
         var tileset_width = saveRegion switch
@@ -10,13 +12,13 @@ public static class DrawCharHelper
             SaveRegion.USA => 27, // English Font
             _ => 27,
         };
-        var tile_w = 8;
-        var tile_h = 16;
+        const int tile_w = 8;
+        const int tile_h = 16;
         var x = tileId % tileset_width * tile_w;
         var y = tileId / tileset_width * tile_h;
-        var width = 8;
-        var height = 16;
-        var scale = 2;
+        const int width = 8;
+        const int height = 16;
+        const int scale = 2;
         var crop = new Rectangle(x, y, width * scale, height * scale);
         var tex = new Bitmap(crop.Width, crop.Height);
 

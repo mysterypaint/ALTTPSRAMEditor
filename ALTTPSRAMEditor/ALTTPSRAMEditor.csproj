@@ -19,6 +19,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Library\Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="Resources\Bee.png" />
 	</ItemGroup>
 	<ItemGroup>
@@ -347,9 +355,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Resources\jp_font_space.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Library\Library.csproj" />
 	</ItemGroup>
 
 </Project>
