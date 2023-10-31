@@ -19,7 +19,7 @@ public class Link
     // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public Link(byte[] itemsAndEquipmentInput)
     {
-        itemsAndEquipment = itemsAndEquipmentInput.ToArray();
+        itemsAndEquipment = [.. itemsAndEquipmentInput];
         abilityFlags = itemsAndEquipment[0x39];
         heartPieces = itemsAndEquipment[0x2B];
         heartContainers = itemsAndEquipment[0x2C];

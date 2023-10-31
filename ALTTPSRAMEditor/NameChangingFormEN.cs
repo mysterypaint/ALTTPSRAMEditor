@@ -1,4 +1,6 @@
 ﻿// ReSharper disable LocalizableElement
+using static ALTTPSRAMEditor.Properties.Resources;
+
 namespace ALTTPSRAMEditor;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
@@ -37,20 +39,20 @@ public partial class NameChangingFormEn : Form
     private void NameChangingFormEn_Load(object sender, EventArgs e)
     {
         // Name Changing Form Initialization
-        enFnt = new Bitmap(Properties.Resources.en_font);
+        enFnt = new Bitmap(en_font);
 
         // Draw the name to the screen
         UpdateDisplayName();
 
-        kbdENCharA.Image = GetCharTexture(enFnt, 1, SaveRegion.USA);
-        kbdENCharB.Image = GetCharTexture(enFnt, 2, SaveRegion.USA);
-        kbdENCharC.Image = GetCharTexture(enFnt, 3, SaveRegion.USA);
-        kbdENCharD.Image = GetCharTexture(enFnt, 4, SaveRegion.USA);
-        kbdENCharE.Image = GetCharTexture(enFnt, 5, SaveRegion.USA);
-        kbdENCharF.Image = GetCharTexture(enFnt, 6, SaveRegion.USA);
-        kbdENCharG.Image = GetCharTexture(enFnt, 7, SaveRegion.USA);
-        kbdENCharH.Image = GetCharTexture(enFnt, 8, SaveRegion.USA);
-        kbdENCharI.Image = GetCharTexture(enFnt, 9, SaveRegion.USA);
+        kbdENCharA.Image = GetCharTexture(enFnt, 01, SaveRegion.USA);
+        kbdENCharB.Image = GetCharTexture(enFnt, 02, SaveRegion.USA);
+        kbdENCharC.Image = GetCharTexture(enFnt, 03, SaveRegion.USA);
+        kbdENCharD.Image = GetCharTexture(enFnt, 04, SaveRegion.USA);
+        kbdENCharE.Image = GetCharTexture(enFnt, 05, SaveRegion.USA);
+        kbdENCharF.Image = GetCharTexture(enFnt, 06, SaveRegion.USA);
+        kbdENCharG.Image = GetCharTexture(enFnt, 07, SaveRegion.USA);
+        kbdENCharH.Image = GetCharTexture(enFnt, 08, SaveRegion.USA);
+        kbdENCharI.Image = GetCharTexture(enFnt, 09, SaveRegion.USA);
         kbdENCharJ.Image = GetCharTexture(enFnt, 10, SaveRegion.USA);
         kbdENCharK.Image = GetCharTexture(enFnt, 11, SaveRegion.USA);
         kbdENCharL.Image = GetCharTexture(enFnt, 12, SaveRegion.USA);
@@ -170,14 +172,20 @@ public partial class NameChangingFormEn : Form
         {
             return;
         }
-        var dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
+        var dialogSave = MessageBox.Show(
+            "Would you like to save your changes?",
+            "Save Changes?",
+            MessageBoxButtons.YesNo);
         if (dialogSave == DialogResult.Yes)
         {
             UpdatePlayerName();
         }
         else
         {
-            var dialogCloseConfirm = MessageBox.Show("Continue editing?", "Closing Name Changing Form (USA/EUR)", MessageBoxButtons.YesNo);
+            var dialogCloseConfirm = MessageBox.Show(
+                "Continue editing?",
+                "Closing Name Changing Form (USA/EUR)",
+                MessageBoxButtons.YesNo);
             if (dialogCloseConfirm == DialogResult.Yes)
             {
                 e.Cancel = true;

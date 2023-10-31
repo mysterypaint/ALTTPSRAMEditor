@@ -1,4 +1,5 @@
-﻿var thread = new Thread(() =>
+﻿#pragma warning disable CA1416 // Validate platform compatibility
+var thread = new Thread(() =>
 {
     var builder = Host.CreateDefaultBuilder(args);
 
@@ -16,8 +17,7 @@
     Application.Run(host.Services.GetRequiredService<MainForm>());
 });
 
-#pragma warning disable CA1416 // Validate platform compatibility
 thread.SetApartmentState(ApartmentState.STA);
-#pragma warning restore CA1416 // Validate platform compatibility
 
 thread.Start();
+#pragma warning restore CA1416 // Validate platform compatibility
