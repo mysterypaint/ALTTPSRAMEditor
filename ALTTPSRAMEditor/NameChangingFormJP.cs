@@ -1,4 +1,6 @@
 ﻿// ReSharper disable LocalizableElement
+using static ALTTPSRAMEditor.Properties.Resources;
+
 namespace ALTTPSRAMEditor;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
@@ -37,17 +39,17 @@ public partial class NameChangingFormJp : Form
     private void NameChangingFormJp_Load(object sender, EventArgs e)
     {
         // Name Changing Form Initialization
-        jpFnt = new Bitmap(Properties.Resources.jpn_font);
+        jpFnt = new Bitmap(jpn_font);
 
         // Draw the name to the screen
         UpdateDisplayName();
 
         // Hiragana
-        kbdHiraganaCharA.Image = GetCharTexture(jpFnt, 5);
-        kbdHiraganaCharI.Image = GetCharTexture(jpFnt, 6);
-        kbdHiraganaCharU.Image = GetCharTexture(jpFnt, 7);
-        kbdHiraganaCharE.Image = GetCharTexture(jpFnt, 8);
-        kbdHiraganaCharO.Image = GetCharTexture(jpFnt, 9);
+        kbdHiraganaCharA.Image = GetCharTexture(jpFnt, 05);
+        kbdHiraganaCharI.Image = GetCharTexture(jpFnt, 06);
+        kbdHiraganaCharU.Image = GetCharTexture(jpFnt, 07);
+        kbdHiraganaCharE.Image = GetCharTexture(jpFnt, 08);
+        kbdHiraganaCharO.Image = GetCharTexture(jpFnt, 09);
 
         kbdHiraganaCharKa.Image = GetCharTexture(jpFnt, 10);
         kbdHiraganaCharKi.Image = GetCharTexture(jpFnt, 11);
@@ -327,14 +329,20 @@ public partial class NameChangingFormJp : Form
         {
             return;
         }
-        var dialogSave = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo);
+        var dialogSave = MessageBox.Show(
+            "Would you like to save your changes?",
+            "Save Changes?",
+            MessageBoxButtons.YesNo);
         if (dialogSave == DialogResult.Yes)
         {
             UpdatePlayerName();
         }
         else
         {
-            var dialogCloseConfirm = MessageBox.Show("Continue editing?", "Closing Name Changing Form (JPN)", MessageBoxButtons.YesNo);
+            var dialogCloseConfirm = MessageBox.Show(
+                "Continue editing?",
+                "Closing Name Changing Form (JPN)",
+                MessageBoxButtons.YesNo);
             if (dialogCloseConfirm == DialogResult.Yes)
             {
                 e.Cancel = true;

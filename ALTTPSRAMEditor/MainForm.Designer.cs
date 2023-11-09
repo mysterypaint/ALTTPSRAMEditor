@@ -1907,7 +1907,6 @@
             this.pictureBoxMagicBar.TabStop = false;
             this.pictureBoxMagicBar.Visible = false;
             this.pictureBoxMagicBar.Click += new System.EventHandler(this.pictureBoxMagicBar_Click);
-            this.pictureBoxMagicBar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMagicBar_MouseClick);
             // 
             // groupBoxAreas
             // 

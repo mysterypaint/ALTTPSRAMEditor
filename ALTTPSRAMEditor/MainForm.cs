@@ -1,5 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 // ReSharper disable LocalizableElement
+using static ALTTPSRAMEditor.Properties.Resources;
+
 namespace ALTTPSRAMEditor;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows Forms application."),
@@ -18,12 +20,12 @@ public partial class MainForm : Form
     private static string displayPlayerName = string.Empty;
 
     // Initialize some assets
-    private readonly Image imgHeartContainerFull = Properties.Resources.HeartContainerFull;
-    private readonly Image imgHeartContainerPartial = Properties.Resources.HeartContainerPartial;
+    private readonly Image imgHeartContainerFull = HeartContainerFull;
+    private readonly Image imgHeartContainerPartial = HeartContainerPartial;
 
     // Initialize the font data
-    private readonly Image en_fnt = Properties.Resources.en_font;
-    private readonly Image jpn_fnt = Properties.Resources.jpn_font;
+    private readonly Image en_fnt = en_font;
+    private readonly Image jpn_fnt = jpn_font;
 
     public TextCharacterData TextCharacterData { get; }
 
@@ -196,15 +198,15 @@ public partial class MainForm : Form
         bottleContents[7] = (int)BottleContents.GOOD_BEE;
         bottleContents[8] = (int)BottleContents.MUSHROOM;
 
-        bottleContentsImg[bottleContents[0]] = Properties.Resources.D_Bottle;
-        bottleContentsImg[bottleContents[1]] = Properties.Resources.Bottle;
-        bottleContentsImg[bottleContents[2]] = Properties.Resources.Red_Potion;
-        bottleContentsImg[bottleContents[3]] = Properties.Resources.Green_Potion;
-        bottleContentsImg[bottleContents[4]] = Properties.Resources.Blue_Potion;
-        bottleContentsImg[bottleContents[5]] = Properties.Resources.Fairy;
-        bottleContentsImg[bottleContents[6]] = Properties.Resources.Bee;
-        bottleContentsImg[bottleContents[7]] = Properties.Resources.Bee;
-        bottleContentsImg[bottleContents[8]] = Properties.Resources.Mushroom;
+        bottleContentsImg[bottleContents[0]] = D_Bottle;
+        bottleContentsImg[bottleContents[1]] = Bottle;
+        bottleContentsImg[bottleContents[2]] = Red_Potion;
+        bottleContentsImg[bottleContents[3]] = Green_Potion;
+        bottleContentsImg[bottleContents[4]] = Blue_Potion;
+        bottleContentsImg[bottleContents[5]] = Fairy;
+        bottleContentsImg[bottleContents[6]] = Bee;
+        bottleContentsImg[bottleContents[7]] = Bee;
+        bottleContentsImg[bottleContents[8]] = Mushroom;
     }
 
     private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -230,7 +232,12 @@ public partial class MainForm : Form
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        const string toolCredits = "ALTTP SRAM Editor\n- Created by mysterypaint 2018\n\nSpecial thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map";
+        const string toolCredits = """
+            ALTTP SRAM Editor
+            - Created by mysterypaint 2018
+
+            Special thanks to alttp.run for the reverse-engineering documentation. http://alttp.run/hacking/index.php?title=SRAM_Map
+            """;
         MessageBox.Show(toolCredits);
     }
 
@@ -263,22 +270,27 @@ public partial class MainForm : Form
 
     private void buttonCopy_Click(object sender, EventArgs e)
     {
+        var message = string.Empty;
         if (radioFile1.Checked)
         {
-            SRAM.CopyFile(1);
+            message = SRAM.CopyFile(1);
             helperText.Text = "Copied File 1!";
         }
         else if (radioFile2.Checked)
         {
-            SRAM.CopyFile(2);
+            message = SRAM.CopyFile(2);
             helperText.Text = "Copied File 2!";
         }
         else if (radioFile3.Checked)
         {
-            SRAM.CopyFile(3);
+            message = SRAM.CopyFile(3);
             helperText.Text = "Copied File 3!";
         }
 
+        if (message is { Length: > 0 })
+        {
+            MessageBox.Show(message);
+        }
         buttonWrite.Enabled = true;
     }
 
@@ -319,8 +331,10 @@ public partial class MainForm : Form
             selFile = 3;
         }
 
-        var dialogResult = MessageBox.Show($"You are about to PERMANENTLY ERASE File {selFile}! Are you sure you want to erase it? There is no undo!",
-            $"Erase File {selFile}?", MessageBoxButtons.YesNo);
+        var dialogResult = MessageBox.Show(
+            $"You are about to PERMANENTLY ERASE File {selFile}! Are you sure you want to erase it? There is no undo!",
+            $"Erase File {selFile}?",
+            MessageBoxButtons.YesNo);
 
         if (dialogResult != DialogResult.Yes)
         {
@@ -443,40 +457,14 @@ public partial class MainForm : Form
         textQuarterMagic.Visible = player.GetCurrMagicUpgrade() >= 0x2;
 
         // Magic Bar Upgrades
-
         pictureBoxMagicBar.Image = player.GetItemEquipment(magicUpgrades) switch
         {
-            0x1 => Properties.Resources.lttp_magic_bar_halved,
-            0x2 => Properties.Resources.lttp_magic_bar_quarter,
-            _ => Properties.Resources.lttp_magic_bar,
+            0x1 => lttp_magic_bar_halved,
+            0x2 => lttp_magic_bar_quarter,
+            _ => lttp_magic_bar,
         };
 
-        // Bow and Arrows
-        switch (player.GetItemEquipment(bow))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                bowOptionNone.Checked = true;
-                pictureBow.Image = Properties.Resources.D_Bow;
-                break;
-            case 0x1:
-                bowOption1.Checked = true;
-                pictureBow.Image = Properties.Resources.Bow;
-                break;
-            case 0x2:
-                bowOption2.Checked = true;
-                pictureBow.Image = Properties.Resources.Bow_and_Arrow;
-                break;
-            case 0x3:
-                bowOption3.Checked = true;
-                pictureBow.Image = Properties.Resources.Bow_and_Light_Arrow;
-                break;
-            case 0x4:
-                bowOption4.Checked = true;
-                pictureBow.Image = Properties.Resources.Bow_and_Light_Arrow;
-                break;
-        }
+        CheckBowAndArrows();
 
         numericUpDownArrowUpgrades.Value = player.GetCurrArrowUpgrades();
         UpdateArrowsMax();
@@ -499,207 +487,103 @@ public partial class MainForm : Form
 
         numericUpDownBombsHeld.Value = _bombCount;
 
-        pictureBombs.Image = numericUpDownBombsHeld.Value <= 0 ? Properties.Resources.D_Bomb : (Image)Properties.Resources.Bomb;
+        pictureBombs.Image = numericUpDownBombsHeld.Value <= 0
+            ? D_Bomb
+            : (Image)Bomb;
 
-        // Boomerang
-        switch (player.GetItemEquipment(boomerang))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonNoBoomerang.Checked = true;
-                pictureBoomerang.Image = Properties.Resources.D_Boomerang;
-                break;
-            case 0x1:
-                radioButtonBlueBoomerang.Checked = true;
-                pictureBoomerang.Image = Properties.Resources.Boomerang;
-                break;
-            case 0x2:
-                radioButtonRedBoomerang.Checked = true;
-                pictureBoomerang.Image = Properties.Resources.Magical_Boomerang;
-                break;
-        }
-
-        // Shovel and Flute
-        switch (player.GetItemEquipment(shovelFlute))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonNoShovelOrFlute.Checked = true;
-                pictureShovelFlute.Image = Properties.Resources.D_Shovel;
-                break;
-            case 0x1:
-                radioButtonShovel.Checked = true;
-                pictureShovelFlute.Image = Properties.Resources.Shovel;
-                break;
-            case 0x2:
-                radioButtonFlute.Checked = true;
-                pictureShovelFlute.Image = Properties.Resources.Flute;
-                break;
-            case 0x3:
-                radioButtonFluteAndBird.Checked = true;
-                pictureShovelFlute.Image = Properties.Resources.Flute;
-                break;
-        }
-
-        // Glove Upgrades
-        switch (player.GetItemEquipment(gloves))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonNoGloves.Checked = true;
-                picturePowerGlove.Image = Properties.Resources.D_Power_Glove;
-                break;
-            case 0x1:
-                radioButtonPowerGloves.Checked = true;
-                picturePowerGlove.Image = Properties.Resources.Power_Glove;
-                break;
-            case 0x2:
-                radioButtonTitansMitts.Checked = true;
-                picturePowerGlove.Image = Properties.Resources.Titan_s_Mitt;
-                break;
-        }
+        CheckBoomerang();
+        CheckShovelAndFlute();
+        CheckGloves();
 
         // Hookshot
-        pictureHookshot.Image = player.GetItemEquipment(hookshot) == 0x1 ? Properties.Resources.Hookshot : (Image)Properties.Resources.D_Hookshot;
+        pictureHookshot.Image = player.GetItemEquipment(hookshot) == 0x1
+            ? Hookshot
+            : (Image)D_Hookshot;
 
         // Fire Rod
-        pictureFireRod.Image = player.GetItemEquipment(fireRod) == 0x1 ? Properties.Resources.Fire_Rod : (Image)Properties.Resources.D_Fire_Rod;
+        pictureFireRod.Image = player.GetItemEquipment(fireRod) == 0x1
+            ? Fire_Rod
+            : (Image)D_Fire_Rod;
 
         // Ice Rod
-        pictureIceRod.Image = player.GetItemEquipment(iceRod) == 0x1 ? Properties.Resources.Ice_Rod : (Image)Properties.Resources.D_Ice_Rod;
+        pictureIceRod.Image = player.GetItemEquipment(iceRod) == 0x1
+            ? Ice_Rod
+            : (Image)D_Ice_Rod;
 
         // Bombos
-        pictureBombos.Image = player.GetItemEquipment(bombosMedallion) == 0x1 ? Properties.Resources.Bombos : (Image)Properties.Resources.D_Bombos;
+        pictureBombos.Image = player.GetItemEquipment(bombosMedallion) == 0x1
+            ? Bombos
+            : (Image)D_Bombos;
 
         // Ether
-        pictureEther.Image = player.GetItemEquipment(etherMedallion) == 0x1 ? Properties.Resources.Ether : (Image)Properties.Resources.D_Ether;
+        pictureEther.Image = player.GetItemEquipment(etherMedallion) == 0x1
+            ? Ether
+            : (Image)D_Ether;
 
         // Quake
-        pictureQuake.Image = player.GetItemEquipment(quakeMedallion) == 0x1 ? Properties.Resources.Quake : (Image)Properties.Resources.D_Quake;
+        pictureQuake.Image = player.GetItemEquipment(quakeMedallion) == 0x1
+            ? Quake
+            : (Image)D_Quake;
 
         // Lamp
-        pictureLamp.Image = player.GetItemEquipment(lamp) == 0x1 ? Properties.Resources.Lamp : (Image)Properties.Resources.D_Lamp;
+        pictureLamp.Image = player.GetItemEquipment(lamp) == 0x1
+            ? Lamp
+            : (Image)D_Lamp;
 
         // Magic Hammer
-        pictureMagicHammer.Image = player.GetItemEquipment(magicHammer) == 0x1 ? Properties.Resources.Magic_Hammer : (Image)Properties.Resources.D_Magic_Hammer;
+        pictureMagicHammer.Image = player.GetItemEquipment(magicHammer) == 0x1
+            ? Magic_Hammer
+            : (Image)D_Magic_Hammer;
 
         // Bug Catching Net
-        pictureBugCatchingNet.Image = player.GetItemEquipment(bugNet) == 0x1 ? Properties.Resources.Bug_Catching_Net : (Image)Properties.Resources.D_Bug_Catching_Net;
+        pictureBugCatchingNet.Image = player.GetItemEquipment(bugNet) == 0x1
+            ? Bug_Catching_Net
+            : (Image)D_Bug_Catching_Net;
 
         // Book of Mudora
-        pictureBookOfMudora.Image = player.GetItemEquipment(book) == 0x1 ? Properties.Resources.Book_of_Mudora : (Image)Properties.Resources.D_Book_of_Mudora;
+        pictureBookOfMudora.Image = player.GetItemEquipment(book) == 0x1
+            ? Book_of_Mudora
+            : (Image)D_Book_of_Mudora;
 
         // Cane of Somaria
-        pictureCaneOfSomaria.Image = player.GetItemEquipment(caneOfSomaria) == 0x1 ? Properties.Resources.Cane_of_Somaria : (Image)Properties.Resources.D_Cane_of_Somaria;
+        pictureCaneOfSomaria.Image = player.GetItemEquipment(caneOfSomaria) == 0x1
+            ? Cane_of_Somaria
+            : (Image)D_Cane_of_Somaria;
 
         // Cane of Byrna
-        pictureCaneOfByrna.Image = player.GetItemEquipment(caneOfByrna) == 0x1 ? Properties.Resources.Cane_of_Byrna : (Image)Properties.Resources.D_Cane_of_Byrna;
+        pictureCaneOfByrna.Image = player.GetItemEquipment(caneOfByrna) == 0x1
+            ? Cane_of_Byrna
+            : (Image)D_Cane_of_Byrna;
 
         // Magic Cape
-        pictureMagicCape.Image = player.GetItemEquipment(magicCape) == 0x1 ? Properties.Resources.Magic_Cape : (Image)Properties.Resources.D_Magic_Cape;
+        pictureMagicCape.Image = player.GetItemEquipment(magicCape) == 0x1
+            ? Magic_Cape
+            : (Image)D_Magic_Cape;
 
         // Magic Mirror
-        pictureMagicMirror.Image = player.GetItemEquipment(magicMirror) == 0x2 ? Properties.Resources.Magic_Mirror : (Image)Properties.Resources.D_Magic_Mirror;
+        pictureMagicMirror.Image = player.GetItemEquipment(magicMirror) == 0x2
+            ? Magic_Mirror
+            : (Image)D_Magic_Mirror;
 
         // Moon Pearl
-        pictureMoonPearl.Image = player.GetItemEquipment(moonPearl) == 0x1 ? Properties.Resources.Moon_Pearl : (Image)Properties.Resources.D_Moon_Pearl;
+        pictureMoonPearl.Image = player.GetItemEquipment(moonPearl) == 0x1
+            ? Moon_Pearl
+            : (Image)D_Moon_Pearl;
 
         var aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
 
         pictureBoots.Image = GetBit(aflags, 0x4) && player.GetItemEquipment(pegasusBoots) > 0x0
-            ? Properties.Resources.Pegasus_Boots
-            : (Image)Properties.Resources.D_Pegasus_Boots;
+            ? Pegasus_Boots
+            : (Image)D_Pegasus_Boots;
 
         pictureZorasFlippers.Image = GetBit(aflags, 0x1) && player.GetItemEquipment(zorasFlippers) > 0x0
-            ? Properties.Resources.Zora_s_Flippers
-            : (Image)Properties.Resources.D_Zora_s_Flippers;
+            ? Zora_s_Flippers
+            : (Image)D_Zora_s_Flippers;
 
-        switch (player.GetItemEquipment(mushroomPowder))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonNoMushPowd.Checked = true;
-                pictureMushPowd.Image = Properties.Resources.D_Mushroom;
-                break;
-            case 0x1:
-                radioButtonMushroom.Checked = true;
-                pictureMushPowd.Image = Properties.Resources.Mushroom;
-                break;
-            case 0x2:
-                radioButtonPowder.Checked = true;
-                pictureMushPowd.Image = Properties.Resources.Magic_Powder;
-                break;
-        }
-
-        switch (player.GetItemEquipment(sword))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonNoSword.Checked = true;
-                pictureSword.Image = Properties.Resources.D_Fighter_s_Sword;
-                break;
-            case 0x1:
-                radioButtonFighterSword.Checked = true;
-                pictureSword.Image = Properties.Resources.Fighter_s_Sword;
-                break;
-            case 0x2:
-                radioButtonMasterSword.Checked = true;
-                pictureSword.Image = Properties.Resources.Master_Sword;
-                break;
-            case 0x3:
-                radioButtonTemperedSword.Checked = true;
-                pictureSword.Image = Properties.Resources.Tempered_Sword;
-                break;
-            case 0x4:
-                radioButtonGoldenSword.Checked = true;
-                pictureSword.Image = Properties.Resources.Golden_Sword;
-                break;
-        }
-
-        switch (player.GetItemEquipment(shield))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonNoShield.Checked = true;
-                pictureShield.Image = Properties.Resources.D_Fighter_s_Shield;
-                break;
-            case 0x1:
-                radioButtonBlueShield.Checked = true;
-                pictureShield.Image = Properties.Resources.Fighter_s_Shield;
-                break;
-            case 0x2:
-                radioButtonHerosShield.Checked = true;
-                pictureShield.Image = Properties.Resources.Red_Shield;
-                break;
-            case 0x3:
-                radioButtonMirrorShield.Checked = true;
-                pictureShield.Image = Properties.Resources.Mirror_Shield;
-                break;
-        }
-
-        switch (player.GetItemEquipment(armor))
-        {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                radioButtonGreenMail.Checked = true;
-                pictureMail.Image = Properties.Resources.Green_Tunic;
-                break;
-            case 0x1:
-                radioButtonBlueMail.Checked = true;
-                pictureMail.Image = Properties.Resources.Blue_Tunic;
-                break;
-            case 0x2:
-                radioButtonRedMail.Checked = true;
-                pictureMail.Image = Properties.Resources.Red_Tunic;
-                break;
-        }
+        CheckMushroomPowder();
+        CheckSword();
+        CheckShield();
+        CheckArmor();
 
         // Update the picture so it represents what the inventory bottle should actually have
         var _inventoryBottleFill = 0;
@@ -721,7 +605,7 @@ public partial class MainForm : Form
         }
         else
         {
-            pictureBottles.Image = Properties.Resources.D_Bottle;
+            pictureBottles.Image = D_Bottle;
         }
 
         if (_inventoryBottleFill == 1)
@@ -819,36 +703,163 @@ public partial class MainForm : Form
         // Update the pendants
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureGreenPendant.Image = !GetBit(_pendants, greenPendant) ? Properties.Resources.Clear_Pendant : (Image)Properties.Resources.Green_Pendant;
+        pictureGreenPendant.Image = !GetBit(_pendants, greenPendant)
+            ? Clear_Pendant
+            : (Image)Green_Pendant;
 
-        pictureBluePendant.Image = !GetBit(_pendants, bluePendant) ? Properties.Resources.Clear_Pendant : (Image)Properties.Resources.Blue_Pendant;
+        pictureBluePendant.Image = !GetBit(_pendants, bluePendant)
+            ? Clear_Pendant
+            : (Image)Blue_Pendant;
 
-        pictureRedPendant.Image = !GetBit(_pendants, redPendant) ? Properties.Resources.Clear_Pendant : (Image)Properties.Resources.Red_Pendant;
+        pictureRedPendant.Image = !GetBit(_pendants, redPendant)
+            ? Clear_Pendant
+            : (Image)Red_Pendant;
 
         // Update the crystals
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalPoD.Image = !GetBit(_crystals, crystalPoD) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalPoD.Image = !GetBit(_crystals, crystalPoD)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
-        pictureCrystalSP.Image = !GetBit(_crystals, crystalSP) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalSP.Image = !GetBit(_crystals, crystalSP)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
-        pictureCrystalSW.Image = !GetBit(_crystals, crystalSW) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalSW.Image = !GetBit(_crystals, crystalSW)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
-        pictureCrystalTT.Image = !GetBit(_crystals, crystalTT) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalTT.Image = !GetBit(_crystals, crystalTT)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
-        pictureCrystalIP.Image = !GetBit(_crystals, crystalIP) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Red_Crystal;
+        pictureCrystalIP.Image = !GetBit(_crystals, crystalIP)
+            ? Clear_Crystal
+            : (Image)Red_Crystal;
 
-        pictureCrystalMM.Image = !GetBit(_crystals, crystalMM) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Red_Crystal;
+        pictureCrystalMM.Image = !GetBit(_crystals, crystalMM)
+            ? Clear_Crystal
+            : (Image)Red_Crystal;
 
-        pictureCrystalTR.Image = !GetBit(_crystals, crystalTR) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalTR.Image = !GetBit(_crystals, crystalTR)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
         // Update the playerName textbox
         UpdatePlayerName();
+
+        void CheckBowAndArrows()
+        {
+            var (option, image) = player.GetItemEquipment(bow) switch
+            {
+                0x1 => (bowOption1, Bow),
+                0x2 => (bowOption2, Bow_and_Arrow),
+                0x3 => (bowOption3, Bow_and_Light_Arrow),
+                0x4 => (bowOption4, Bow_and_Light_Arrow),
+                _ => (bowOptionNone, D_Bow),
+            };
+            option.Checked = true;
+            pictureBow.Image = image;
+        }
+
+        void CheckBoomerang()
+        {
+            var (option, image) = player.GetItemEquipment(boomerang) switch
+            {
+                0x1 => (radioButtonBlueBoomerang, Boomerang),
+                0x2 => (radioButtonRedBoomerang, Magical_Boomerang),
+                _ => (radioButtonNoBoomerang, D_Boomerang),
+            };
+            option.Checked = true;
+            pictureBoomerang.Image = image;
+        }
+
+        void CheckShovelAndFlute()
+        {
+            var (option, image) = player.GetItemEquipment(shovelFlute) switch
+            {
+                0x1 => (radioButtonShovel, Shovel),
+                0x2 => (radioButtonFlute, Flute),
+                0x3 => (radioButtonFluteAndBird, Flute),
+                _ => (radioButtonNoShovelOrFlute, D_Shovel),
+            };
+            option.Checked = true;
+            pictureShovelFlute.Image = image;
+        }
+
+        void CheckGloves()
+        {
+            var (option, image) = player.GetItemEquipment(gloves) switch
+            {
+                0x1 => (radioButtonPowerGloves, Power_Glove),
+                0x2 => (radioButtonTitansMitts, Titan_s_Mitt),
+                _ => (radioButtonNoGloves, D_Power_Glove),
+            };
+            option.Checked = true;
+            picturePowerGlove.Image = image;
+        }
+
+        void CheckMushroomPowder()
+        {
+            var (option, image) = player.GetItemEquipment(mushroomPowder) switch
+            {
+                0x1 => (radioButtonMushroom, Mushroom),
+                0x2 => (radioButtonPowder, Magic_Powder),
+                _ => (radioButtonNoMushPowd, D_Mushroom),
+            };
+            option.Checked = true;
+            pictureMushPowd.Image = image;
+        }
+
+        void CheckSword()
+        {
+            var (option, image) = player.GetItemEquipment(sword) switch
+            {
+                0x1 => (radioButtonFighterSword, Fighter_s_Sword),
+                0x2 => (radioButtonMasterSword, Master_Sword),
+                0x3 => (radioButtonTemperedSword, Tempered_Sword),
+                0x4 => (radioButtonGoldenSword, Golden_Sword),
+                _ => (radioButtonNoSword, D_Fighter_s_Sword),
+            };
+            option.Checked = true;
+            pictureSword.Image = image;
+        }
+
+        void CheckShield()
+        {
+            var (option, image) = player.GetItemEquipment(shield) switch
+            {
+                0x1 => (radioButtonBlueShield, Fighter_s_Shield),
+                0x2 => (radioButtonHerosShield, Red_Shield),
+                0x3 => (radioButtonMirrorShield, Mirror_Shield),
+                _ => (radioButtonNoShield, D_Fighter_s_Shield),
+            };
+            option.Checked = true;
+            pictureShield.Image = image;
+        }
+
+        void CheckArmor()
+        {
+            var (option, image) = player.GetItemEquipment(armor) switch
+            {
+                0x1 => (radioButtonBlueMail, Blue_Tunic),
+                0x2 => (radioButtonRedMail, Red_Tunic),
+                _ => (radioButtonGreenMail, Green_Tunic),
+            };
+            option.Checked = true;
+            pictureMail.Image = image;
+        }
     }
 
-    private void pictureBow_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBowConfig);
+    private void pictureBow_Click(object sender, EventArgs e) =>
+        HideAllGroupBoxesExcept(groupBoxBowConfig);
 
-    private SaveSlot GetSaveSlot() => radioFile2.Checked ? SRAM.GetSaveSlot(2) : radioFile3.Checked ? SRAM.GetSaveSlot(3) : SRAM.GetSaveSlot(1);
+    private SaveSlot GetSaveSlot() => radioFile2.Checked
+        ? SRAM.GetSaveSlot(2)
+        : radioFile3.Checked
+            ? SRAM.GetSaveSlot(3)
+            : SRAM.GetSaveSlot(1);
 
     private void bowRadio(object sender, EventArgs e)
     {
@@ -859,11 +870,11 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoSword) => (0x0, Properties.Resources.D_Bow), // Give No Bow
-            nameof(radioButtonFighterSword) => (0x1, Properties.Resources.Bow), // Give Bow
-            nameof(radioButtonMasterSword) => (0x2, Properties.Resources.Bow_and_Arrow), // Give Bow & Arrows
-            nameof(radioButtonTemperedSword) => (0x3, Properties.Resources.Bow_and_Light_Arrow), // Give Silver Bow
-            nameof(radioButtonGoldenSword) => (0x4, Properties.Resources.Bow_and_Light_Arrow), // Give Bow & Silver Arrows
+            nameof(bowOptionNone) => (0x0, D_Bow), // Give No Bow
+            nameof(bowOption1) => (0x1, Bow), // Give Bow
+            nameof(bowOption2) => (0x2, Bow_and_Arrow), // Give Bow & Arrows
+            nameof(bowOption3) => (0x3, Bow_and_Light_Arrow), // Give Silver Bow
+            nameof(bowOption4) => (0x4, Bow_and_Light_Arrow), // Give Bow & Silver Arrows
             _ => (0, null)
         };
         player.SetHasItemEquipment(bow, (byte)flag);
@@ -953,9 +964,9 @@ public partial class MainForm : Form
             pictureBoxHeartContainerPreview.Image = tex;
             Image magicContainer = player.GetCurrMagicUpgrade() switch
             {
-                0x1 => Properties.Resources.lttp_magic_bar_halved,
-                0x2 => Properties.Resources.lttp_magic_bar_quarter,
-                _ => Properties.Resources.lttp_magic_bar,
+                0x1 => lttp_magic_bar_halved,
+                0x2 => lttp_magic_bar_quarter,
+                _ => lttp_magic_bar,
             };
 
             // Create another blank canvas so we can draw to it
@@ -1029,7 +1040,9 @@ public partial class MainForm : Form
             case SaveRegion.EUR:
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
+                throw new ArgumentOutOfRangeException(nameof(saveRegion));
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
         }
     }
 
@@ -1059,8 +1072,8 @@ public partial class MainForm : Form
     private void buttonChangeName_Click(object sender, EventArgs e)
     {
         var nameForm = saveRegion == SaveRegion.JPN
-            ? (Form)new NameChangingFormJp(this)
-            : new NameChangingFormEn(this);
+            ? new NameChangingFormJp(this)
+            : (Form)new NameChangingFormEn(this);
         nameForm.ShowDialog();
     }
 
@@ -1070,13 +1083,19 @@ public partial class MainForm : Form
         player.SetHasItemEquipment(arrowCount, (byte)numericUpDownArrowsHeld.Value); // Set the new arrow count value
     }
 
-    private void pictureBox1_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBoomerangConfig);
+    private void pictureBox1_Click(object sender, EventArgs e) =>
+        HideAllGroupBoxesExcept(groupBoxBoomerangConfig);
 
     private void HideAllGroupBoxesExcept(GroupBox currentGroupBox)
     {
         foreach (Control c in Controls)
         {
-            if (c.GetType() == typeof(GroupBox) && !c.Equals(currentGroupBox) && !c.Equals(groupInventory) && !c.Equals(groupFileSelect) && !c.Equals(groupPendantsCrystals) && !c.Equals(groupBoxHUD))
+            if (c.GetType() == typeof(GroupBox) &&
+                !c.Equals(currentGroupBox) &&
+                !c.Equals(groupInventory) &&
+                !c.Equals(groupFileSelect) &&
+                !c.Equals(groupPendantsCrystals) &&
+                !c.Equals(groupBoxHUD))
             {
                 c.Visible = false;
             }
@@ -1093,16 +1112,17 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoBoomerang) => (0x0, Properties.Resources.D_Boomerang), // Give No Boomerang
-            nameof(radioButtonBlueBoomerang) => (0x1, Properties.Resources.Boomerang), // Give Blue Boomerang
-            nameof(radioButtonRedBoomerang) => (0x2, Properties.Resources.Magical_Boomerang), // Give Red Boomerang
+            nameof(radioButtonNoBoomerang) => (0x0, D_Boomerang), // Give No Boomerang
+            nameof(radioButtonBlueBoomerang) => (0x1, Boomerang), // Give Blue Boomerang
+            nameof(radioButtonRedBoomerang) => (0x2, Magical_Boomerang), // Give Red Boomerang
             _ => (0, null)
         };
         player.SetHasItemEquipment(boomerang, (byte)flag);
         pictureBoomerang.Image = image;
     }
 
-    private void pictureHookshot_Click(object sender, EventArgs e) => ToggleItem(hookshot, 0x1, pictureHookshot, Properties.Resources.Hookshot, Properties.Resources.D_Hookshot);
+    private void pictureHookshot_Click(object sender, EventArgs e) =>
+        ToggleItem(hookshot, 0x1, pictureHookshot, Hookshot, D_Hookshot);
 
     private void ToggleItem(int addr, int enabledVal, PictureBox picObj, Bitmap imgOn, Bitmap imgOff)
     {
@@ -1125,7 +1145,7 @@ public partial class MainForm : Form
         player.SetHasItemEquipment(bombCount, (byte)numericUpDownBombsHeld.Value); // Set the new bomb count value
 
         // Update the UI picture if necessary
-        pictureBombs.Image = numericUpDownBombsHeld.Value <= 0 ? Properties.Resources.D_Bomb : (Image)Properties.Resources.Bomb;
+        pictureBombs.Image = numericUpDownBombsHeld.Value <= 0 ? D_Bomb : (Image)Bomb;
     }
 
     private void pictureBombs_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxBombs);
@@ -1141,9 +1161,9 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoMushPowd) => (0x0, Properties.Resources.D_Mushroom), // Give Neither Mushroom nor Powder
-            nameof(radioButtonMushroom) => (0x1, Properties.Resources.Mushroom), // Give Mushroom
-            nameof(radioButtonPowder) => (0x2, Properties.Resources.Magic_Powder), // Give Magic Powder
+            nameof(radioButtonNoMushPowd) => (0x0, D_Mushroom), // Give Neither Mushroom nor Powder
+            nameof(radioButtonMushroom) => (0x1, Mushroom), // Give Mushroom
+            nameof(radioButtonPowder) => (0x2, Magic_Powder), // Give Magic Powder
             _ => (0, null)
         };
         player.SetHasItemEquipment(mushroomPowder, (byte)flag);
@@ -1159,11 +1179,11 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoSword) => (0x0, Properties.Resources.D_Fighter_s_Sword), // Give No Sword
-            nameof(radioButtonFighterSword) => (0x1, Properties.Resources.Fighter_s_Sword), // Give Fighter's Sword
-            nameof(radioButtonMasterSword) => (0x2, Properties.Resources.Master_Sword), // Give Master Sword
-            nameof(radioButtonTemperedSword) => (0x3, Properties.Resources.Tempered_Sword), // Give Tempered Sword
-            nameof(radioButtonGoldenSword) => (0x4, Properties.Resources.Golden_Sword), // Give Golden Sword
+            nameof(radioButtonNoSword) => (0x0, D_Fighter_s_Sword), // Give No Sword
+            nameof(radioButtonFighterSword) => (0x1, Fighter_s_Sword), // Give Fighter's Sword
+            nameof(radioButtonMasterSword) => (0x2, Master_Sword), // Give Master Sword
+            nameof(radioButtonTemperedSword) => (0x3, Tempered_Sword), // Give Tempered Sword
+            nameof(radioButtonGoldenSword) => (0x4, Golden_Sword), // Give Golden Sword
             _ => (0, null)
         };
         player.SetHasItemEquipment(sword, (byte)flag);
@@ -1181,10 +1201,10 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoShield) => (0x0, Properties.Resources.D_Fighter_s_Shield), // Give No Shield
-            nameof(radioButtonBlueShield) => (0x1, Properties.Resources.Fighter_s_Shield), // Give Fighter's Shield
-            nameof(radioButtonHerosShield) => (0x2, Properties.Resources.Red_Shield), // Give Hero's Shield
-            nameof(radioButtonMirrorShield) => (0x3, Properties.Resources.Mirror_Shield), // Give Mirror Shield
+            nameof(radioButtonNoShield) => (0x0, D_Fighter_s_Shield), // Give No Shield
+            nameof(radioButtonBlueShield) => (0x1, Fighter_s_Shield), // Give Fighter's Shield
+            nameof(radioButtonHerosShield) => (0x2, Red_Shield), // Give Hero's Shield
+            nameof(radioButtonMirrorShield) => (0x3, Mirror_Shield), // Give Mirror Shield
             _ => (0, null)
         };
         player.SetHasItemEquipment(shield, (byte)flag);
@@ -1204,9 +1224,9 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonGreenMail) => (0x0, Properties.Resources.Green_Tunic), // Give Green Mail
-            nameof(radioButtonBlueMail) => (0x1, Properties.Resources.Blue_Tunic), // Give Blue Mail
-            nameof(radioButtonRedMail) => (0x2, Properties.Resources.Red_Tunic), // Give Red Mail
+            nameof(radioButtonGreenMail) => (0x0, Green_Tunic), // Give Green Mail
+            nameof(radioButtonBlueMail) => (0x1, Blue_Tunic), // Give Blue Mail
+            nameof(radioButtonRedMail) => (0x2, Red_Tunic), // Give Red Mail
             _ => (0, null)
         };
         player.SetHasItemEquipment(armor, (byte)flag);
@@ -1317,14 +1337,14 @@ public partial class MainForm : Form
         var flags = player.GetAbilityFlags();
         if (player.GetItemEquipment(pegasusBoots) == 1)
         {
-            pictureBoots.Image = Properties.Resources.D_Pegasus_Boots;
+            pictureBoots.Image = D_Pegasus_Boots;
             flags &= 0xFB; // To turn it off, bitwise and with b11111011
             player.SetHasItemEquipment(pegasusBoots, 0x0);
             player.SetHasItemEquipment(abilityFlags, flags);
         }
         else
         {
-            pictureBoots.Image = Properties.Resources.Pegasus_Boots;
+            pictureBoots.Image = Pegasus_Boots;
             flags |= 0x4; // Turn it on, bitwise or with b00000100
             player.SetHasItemEquipment(pegasusBoots, 0x1);
             player.SetHasItemEquipment(abilityFlags, flags);
@@ -1337,14 +1357,14 @@ public partial class MainForm : Form
         var flags = player.GetAbilityFlags();
         if (player.GetItemEquipment(zorasFlippers) == 1)
         {
-            pictureZorasFlippers.Image = Properties.Resources.D_Zora_s_Flippers;
+            pictureZorasFlippers.Image = D_Zora_s_Flippers;
             flags &= 0xFD; // To turn it off, bitwise and with b11111101
             player.SetHasItemEquipment(zorasFlippers, 0x0);
             player.SetHasItemEquipment(abilityFlags, flags);
         }
         else
         {
-            pictureZorasFlippers.Image = Properties.Resources.Zora_s_Flippers;
+            pictureZorasFlippers.Image = Zora_s_Flippers;
             flags |= 0x2; // Turn it on, bitwise or with b00000010
             player.SetHasItemEquipment(zorasFlippers, 0x1);
             player.SetHasItemEquipment(abilityFlags, flags);
@@ -1357,33 +1377,47 @@ public partial class MainForm : Form
         return (b & 1 << bitNumber - 1) != 0;
     }
 
-    private void pictureMagicMirror_Click(object sender, EventArgs e) => ToggleItem(magicMirror, 0x2, pictureMagicMirror, Properties.Resources.Magic_Mirror, Properties.Resources.D_Magic_Mirror);
+    private void pictureMagicMirror_Click(object sender, EventArgs e) =>
+        ToggleItem(magicMirror, 0x2, pictureMagicMirror, Magic_Mirror, D_Magic_Mirror);
 
-    private void pictureFireRod_Click(object sender, EventArgs e) => ToggleItem(fireRod, 0x1, pictureFireRod, Properties.Resources.Fire_Rod, Properties.Resources.D_Fire_Rod);
+    private void pictureFireRod_Click(object sender, EventArgs e) =>
+        ToggleItem(fireRod, 0x1, pictureFireRod, Fire_Rod, D_Fire_Rod);
 
-    private void pictureIceRod_Click(object sender, EventArgs e) => ToggleItem(iceRod, 0x1, pictureIceRod, Properties.Resources.Ice_Rod, Properties.Resources.D_Ice_Rod);
+    private void pictureIceRod_Click(object sender, EventArgs e) =>
+        ToggleItem(iceRod, 0x1, pictureIceRod, Ice_Rod, D_Ice_Rod);
 
-    private void pictureBombos_Click(object sender, EventArgs e) => ToggleItem(bombosMedallion, 0x1, pictureBombos, Properties.Resources.Bombos, Properties.Resources.D_Bombos);
+    private void pictureBombos_Click(object sender, EventArgs e) =>
+        ToggleItem(bombosMedallion, 0x1, pictureBombos, Bombos, D_Bombos);
 
-    private void pictureEther_Click(object sender, EventArgs e) => ToggleItem(etherMedallion, 0x1, pictureEther, Properties.Resources.Ether, Properties.Resources.D_Ether);
+    private void pictureEther_Click(object sender, EventArgs e) =>
+        ToggleItem(etherMedallion, 0x1, pictureEther, Ether, D_Ether);
 
-    private void pictureQuake_Click(object sender, EventArgs e) => ToggleItem(quakeMedallion, 0x1, pictureQuake, Properties.Resources.Quake, Properties.Resources.D_Quake);
+    private void pictureQuake_Click(object sender, EventArgs e) =>
+        ToggleItem(quakeMedallion, 0x1, pictureQuake, Quake, D_Quake);
 
-    private void pictureLamp_Click(object sender, EventArgs e) => ToggleItem(lamp, 0x1, pictureLamp, Properties.Resources.Lamp, Properties.Resources.D_Lamp);
+    private void pictureLamp_Click(object sender, EventArgs e) =>
+        ToggleItem(lamp, 0x1, pictureLamp, Lamp, D_Lamp);
 
-    private void pictureMagicHammer_Click(object sender, EventArgs e) => ToggleItem(magicHammer, 0x1, pictureMagicHammer, Properties.Resources.Magic_Hammer, Properties.Resources.D_Magic_Hammer);
+    private void pictureMagicHammer_Click(object sender, EventArgs e) =>
+        ToggleItem(magicHammer, 0x1, pictureMagicHammer, Magic_Hammer, D_Magic_Hammer);
 
-    private void pictureBugCatchingNet_Click(object sender, EventArgs e) => ToggleItem(bugNet, 0x1, pictureBugCatchingNet, Properties.Resources.Bug_Catching_Net, Properties.Resources.D_Bug_Catching_Net);
+    private void pictureBugCatchingNet_Click(object sender, EventArgs e) =>
+        ToggleItem(bugNet, 0x1, pictureBugCatchingNet, Bug_Catching_Net, D_Bug_Catching_Net);
 
-    private void pictureBookOfMudora_Click(object sender, EventArgs e) => ToggleItem(book, 0x1, pictureBookOfMudora, Properties.Resources.Book_of_Mudora, Properties.Resources.D_Book_of_Mudora);
+    private void pictureBookOfMudora_Click(object sender, EventArgs e) =>
+        ToggleItem(book, 0x1, pictureBookOfMudora, Book_of_Mudora, D_Book_of_Mudora);
 
-    private void pictureCaneOfSomaria_Click(object sender, EventArgs e) => ToggleItem(caneOfSomaria, 0x1, pictureCaneOfSomaria, Properties.Resources.Cane_of_Somaria, Properties.Resources.D_Cane_of_Somaria);
+    private void pictureCaneOfSomaria_Click(object sender, EventArgs e) =>
+        ToggleItem(caneOfSomaria, 0x1, pictureCaneOfSomaria, Cane_of_Somaria, D_Cane_of_Somaria);
 
-    private void pictureCaneOfByrna_Click(object sender, EventArgs e) => ToggleItem(caneOfByrna, 0x1, pictureCaneOfByrna, Properties.Resources.Cane_of_Byrna, Properties.Resources.D_Cane_of_Byrna);
+    private void pictureCaneOfByrna_Click(object sender, EventArgs e) =>
+        ToggleItem(caneOfByrna, 0x1, pictureCaneOfByrna, Cane_of_Byrna, D_Cane_of_Byrna);
 
-    private void pictureMagicCape_Click(object sender, EventArgs e) => ToggleItem(magicCape, 0x1, pictureMagicCape, Properties.Resources.Magic_Cape, Properties.Resources.D_Magic_Cape);
+    private void pictureMagicCape_Click(object sender, EventArgs e) =>
+        ToggleItem(magicCape, 0x1, pictureMagicCape, Magic_Cape, D_Magic_Cape);
 
-    private void pictureMoonPearl_Click(object sender, EventArgs e) => ToggleItem(moonPearl, 0x1, pictureMoonPearl, Properties.Resources.Moon_Pearl, Properties.Resources.D_Moon_Pearl);
+    private void pictureMoonPearl_Click(object sender, EventArgs e) =>
+        ToggleItem(moonPearl, 0x1, pictureMoonPearl, Moon_Pearl, D_Moon_Pearl);
 
     private void numericUpDownHeartContainers_ValueChanged(object sender, EventArgs e)
     {
@@ -1397,9 +1431,11 @@ public partial class MainForm : Form
         Refresh();
     }
 
-    private void pictureShovelFlute_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxShovelFlute);
+    private void pictureShovelFlute_Click(object sender, EventArgs e) =>
+        HideAllGroupBoxesExcept(groupBoxShovelFlute);
 
-    private void picturePowerGlove_Click(object sender, EventArgs e) => HideAllGroupBoxesExcept(groupBoxGloves);
+    private void picturePowerGlove_Click(object sender, EventArgs e) =>
+        HideAllGroupBoxesExcept(groupBoxGloves);
 
     private void shovelFluteRadio(object sender, EventArgs e)
     {
@@ -1410,10 +1446,10 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoShovelOrFlute) => (0x0, Properties.Resources.D_Shovel), // Give neither Shovel nor Flute
-            nameof(radioButtonShovel) => (0x1, Properties.Resources.Shovel), // Give Shovel
-            nameof(radioButtonFlute) => (0x2, Properties.Resources.Flute), // Give Flute
-            nameof(radioButtonFluteAndBird) => (0x3, Properties.Resources.Flute), // Give Flute and Bird
+            nameof(radioButtonNoShovelOrFlute) => (0x0, D_Shovel), // Give neither Shovel nor Flute
+            nameof(radioButtonShovel) => (0x1, Shovel), // Give Shovel
+            nameof(radioButtonFlute) => (0x2, Flute), // Give Flute
+            nameof(radioButtonFluteAndBird) => (0x3, Flute), // Give Flute and Bird
             _ => (0, null)
         };
         player.SetHasItemEquipment(shovelFlute, (byte)flag);
@@ -1429,17 +1465,13 @@ public partial class MainForm : Form
         var player = GetSaveSlot().GetPlayer();
         var (flag, image) = btn.Name switch
         {
-            nameof(radioButtonNoGloves) => (0x0, Properties.Resources.D_Power_Glove), // Give neither Power Glove nor Titan's Mitts
-            nameof(radioButtonPowerGloves) => (0x1, Properties.Resources.Power_Glove), // Give Power Glove
-            nameof(radioButtonTitansMitts) => (0x2, Properties.Resources.Titan_s_Mitt), // Give Titan's Mitts
+            nameof(radioButtonNoGloves) => (0x0, D_Power_Glove), // Give neither Power Glove nor Titan's Mitts
+            nameof(radioButtonPowerGloves) => (0x1, Power_Glove), // Give Power Glove
+            nameof(radioButtonTitansMitts) => (0x2, Titan_s_Mitt), // Give Titan's Mitts
             _ => (0, null)
         };
         player.SetHasItemEquipment(gloves, (byte)flag);
         picturePowerGlove.Image = image;
-    }
-
-    private void pictureBoxMagicBar_MouseClick(object sender, MouseEventArgs e)
-    {
     }
 
     private void UpdateHeartPieceUI()
@@ -1447,10 +1479,10 @@ public partial class MainForm : Form
         var heartPieces = GetSaveSlot().GetPlayer().GetHeartPieces();
         Image outImg = (heartPieces % 4) switch
         {
-            1 => Properties.Resources.Piece_of_Heart_Quarter,
-            2 => Properties.Resources.Piece_of_Heart_Half,
-            3 => Properties.Resources.Piece_of_Heart_Three_Quarters,
-            _ => Properties.Resources.Piece_of_Heart_Empty,
+            1 => Piece_of_Heart_Quarter,
+            2 => Piece_of_Heart_Half,
+            3 => Piece_of_Heart_Three_Quarters,
+            _ => Piece_of_Heart_Empty,
         };
         pictureHeartPieces.Image = outImg;
         Refresh();
@@ -1492,7 +1524,7 @@ public partial class MainForm : Form
                     break;
                 }
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException($"{nameof(e)}.{nameof(e.Button)}");
         }
         UpdateHeartPieceUI();
         numericUpDownHeartContainers.Value = player.GetHeartContainers();
@@ -1515,7 +1547,9 @@ public partial class MainForm : Form
     {
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureGreenPendant.Image = GetBit(_pendants, greenPendant) ? Properties.Resources.Clear_Pendant : (Image)Properties.Resources.Green_Pendant;
+        pictureGreenPendant.Image = GetBit(_pendants, greenPendant)
+            ? Clear_Pendant
+            : (Image)Green_Pendant;
 
         ToggleCrystalPendant(false, greenPendant);
     }
@@ -1524,7 +1558,9 @@ public partial class MainForm : Form
     {
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureBluePendant.Image = GetBit(_pendants, bluePendant) ? Properties.Resources.Clear_Pendant : (Image)Properties.Resources.Blue_Pendant;
+        pictureBluePendant.Image = GetBit(_pendants, bluePendant)
+            ? Clear_Pendant
+            : (Image)Blue_Pendant;
 
         ToggleCrystalPendant(false, bluePendant);
     }
@@ -1533,7 +1569,9 @@ public partial class MainForm : Form
     {
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureRedPendant.Image = GetBit(_pendants, redPendant) ? Properties.Resources.Clear_Pendant : (Image)Properties.Resources.Red_Pendant;
+        pictureRedPendant.Image = GetBit(_pendants, redPendant)
+            ? Clear_Pendant
+            : (Image)Red_Pendant;
 
         ToggleCrystalPendant(false, redPendant);
     }
@@ -1542,7 +1580,9 @@ public partial class MainForm : Form
     {
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalPoD.Image = GetBit(_crystals, crystalPoD) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalPoD.Image = GetBit(_crystals, crystalPoD)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
         ToggleCrystalPendant(true, crystalPoD);
     }
@@ -1551,7 +1591,9 @@ public partial class MainForm : Form
     {
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalSP.Image = GetBit(_crystals, crystalSP) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalSP.Image = GetBit(_crystals, crystalSP)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
         ToggleCrystalPendant(true, crystalSP);
     }
@@ -1560,7 +1602,9 @@ public partial class MainForm : Form
     {
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalSW.Image = GetBit(_crystals, crystalSW) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalSW.Image = GetBit(_crystals, crystalSW)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
         ToggleCrystalPendant(true, crystalSW);
     }
@@ -1570,7 +1614,9 @@ public partial class MainForm : Form
 
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalTT.Image = GetBit(_crystals, crystalTT) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalTT.Image = GetBit(_crystals, crystalTT)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
         ToggleCrystalPendant(true, crystalTT);
     }
@@ -1580,7 +1626,9 @@ public partial class MainForm : Form
 
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalIP.Image = GetBit(_crystals, crystalIP) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Red_Crystal;
+        pictureCrystalIP.Image = GetBit(_crystals, crystalIP)
+            ? Clear_Crystal
+            : (Image)Red_Crystal;
 
         ToggleCrystalPendant(true, crystalIP);
     }
@@ -1590,7 +1638,9 @@ public partial class MainForm : Form
 
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalMM.Image = GetBit(_crystals, crystalMM) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Red_Crystal;
+        pictureCrystalMM.Image = GetBit(_crystals, crystalMM)
+            ? Clear_Crystal
+            : (Image)Red_Crystal;
 
         ToggleCrystalPendant(true, crystalMM);
     }
@@ -1600,7 +1650,9 @@ public partial class MainForm : Form
 
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalTR.Image = GetBit(_crystals, crystalTR) ? Properties.Resources.Clear_Crystal : (Image)Properties.Resources.Blue_Crystal;
+        pictureCrystalTR.Image = GetBit(_crystals, crystalTR)
+            ? Clear_Crystal
+            : (Image)Blue_Crystal;
 
         ToggleCrystalPendant(true, crystalTR);
     }
@@ -1609,26 +1661,18 @@ public partial class MainForm : Form
     {
         var player = GetSaveSlot().GetPlayer();
         var currMagicUpgrade = player.GetCurrMagicUpgrade();
-        switch (currMagicUpgrade)
+
+        var (magicBarImage, magicUpgrade, magicBarTextVisible) = currMagicUpgrade switch
         {
-            default:
-            // ReSharper disable once RedundantCaseLabel
-            case 0x0:
-                pictureBoxMagicBar.Image = Properties.Resources.lttp_magic_bar_halved;
-                player.SetMagicUpgrade(0x1);
-                textQuarterMagic.Visible = false;
-                break;
-            case 0x1:
-                pictureBoxMagicBar.Image = Properties.Resources.lttp_magic_bar_quarter;
-                player.SetMagicUpgrade(0x2);
-                textQuarterMagic.Visible = true;
-                break;
-            case 0x2:
-                pictureBoxMagicBar.Image = Properties.Resources.lttp_magic_bar;
-                player.SetMagicUpgrade(0x0);
-                textQuarterMagic.Visible = false;
-                break;
-        }
+            0x1 => (lttp_magic_bar_quarter, 0x2, true),
+            0x2 => (lttp_magic_bar, 0x0, false),
+            _ => (lttp_magic_bar_halved, 0x1, false),
+        };
+
+        pictureBoxMagicBar.Image = magicBarImage;
+        player.SetMagicUpgrade(magicUpgrade);
+        textQuarterMagic.Visible = magicBarTextVisible;
+
         Refresh();
     }
 

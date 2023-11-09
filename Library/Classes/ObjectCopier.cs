@@ -15,25 +15,12 @@ public static class ObjectCopier
     /// <returns>The copied object.</returns>
     public static T? Clone<T>(this T source)
     {
-        if (!typeof(T).IsSerializable)
-        {
-            throw new ArgumentException("The type must be serializable.", nameof(source));
-        }
-
-        // Don't serialize a null object, simply return the default for that object
         if (source is null)
         {
+            // Don't serialize a null object, simply return the default for that object
             return default;
         }
 
-        IFormatter formatter = new BinaryFormatter();
-        using Stream stream = new MemoryStream();
-#pragma warning disable SYSLIB0011 // Type or member is obsolete
-        formatter.Serialize(stream, source);
-#pragma warning restore SYSLIB0011 // Type or member is obsolete
-        stream.Seek(0, SeekOrigin.Begin);
-#pragma warning disable SYSLIB0011 // Type or member is obsolete
-        return (T)formatter.Deserialize(stream);
-#pragma warning restore SYSLIB0011 // Type or member is obsolete
+        return JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(source));
     }
 }

@@ -21,7 +21,7 @@ public class SaveSlot
     public SaveSlot(byte[] data_in, int _slot, TextCharacterData textCharacterData)
     {
         // Import this save slot's data from the larger global save data
-        data = data_in.ToArray();
+        data = [.. data_in];
         slotIndex = _slot;
         this.textCharacterData = textCharacterData;
         playerNameRaw = new ushort[6];
@@ -29,7 +29,9 @@ public class SaveSlot
         // Determine which region this save comes from
         saveRegion = data[0x3E5] == 0xAA && data[0x3E6] == 0x55
             ? Enums.SaveRegion.USA
-            : data[0x3E1] == 0xAA && data[0x3E2] == 0x55 ? Enums.SaveRegion.JPN : Enums.SaveRegion.EUR;
+            : data[0x3E1] == 0xAA && data[0x3E2] == 0x55
+                ? Enums.SaveRegion.JPN
+                : Enums.SaveRegion.EUR;
 
         isValid = SaveIsValid();
         // Copy global save data's Item&Equipment data to this Save Slot
@@ -431,7 +433,7 @@ public class SaveSlot
     public void SetPlayerName(string str) => playerName = str;
 
     // ReSharper disable once ParameterTypeCanBeEnumerable.Global
-    public void SetData(byte[] in_data) => data = in_data.ToArray();
+    public void SetData(byte[] in_data) => data = [.. in_data];
 
     public void ClearData()
     {

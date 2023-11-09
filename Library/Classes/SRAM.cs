@@ -13,7 +13,8 @@ public class SRAM
     private const int slot3m = 0x1900;
     private readonly byte[] outsav = new byte[0x2000];
     //Addresses $1E00 to $1FFE in SRAM are not used.
-    //private const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM (02 is the first file, 04 the second and 06 the third) 
+    //private const int mempointer = 0x1FFE; // used as the offset to know where the memory will be stored in the SRAM
+    //(02 is the first file, 04 the second and 06 the third) 
     //private int currsave = 00; // 00 - No File, 02 - File 1, 04 - File 2, 06 - File 3
     private static SaveSlot
         savslot1 = default!,
@@ -36,7 +37,7 @@ public class SRAM
     // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public SRAM(byte[] data_in, TextCharacterData textCharacterData)
     {
-        data = data_in.ToArray();
+        data = [.. data_in];
         TextCharacterData = textCharacterData;
 
         // Initialize the save slot data based on the larger .srm chunk
@@ -207,8 +208,9 @@ public class SRAM
         return savslot;
     }
 
-    public static void CopyFile(int fileSlot)
+    public static string CopyFile(int fileSlot)
     {
+        var returnMessage = string.Empty;
         switch (fileSlot)
         {
             default:
@@ -220,7 +222,7 @@ public class SRAM
                 }
                 else
                 {
-                    //System.Windows.Forms.MessageBox.Show("Save slot 1 is empty or corrupted. Copying from Mirror Data instead.");
+                    returnMessage = "Save slot 1 is empty or corrupted. Copying from Mirror Data instead.";
                     savslotTemp = savslot1m.Clone() ?? default!;
                 }
                 break;
@@ -231,7 +233,7 @@ public class SRAM
                 }
                 else
                 {
-                    //System.Windows.Forms.MessageBox.Show("Save slot 2 is empty or corrupted. Copying from Mirror Data instead.");
+                    returnMessage = "Save slot 2 is empty or corrupted. Copying from Mirror Data instead.";
                     savslotTemp = savslot2m.Clone() ?? default!;
                 }
                 break;
@@ -242,11 +244,12 @@ public class SRAM
                 }
                 else
                 {
-                    //System.Windows.Forms.MessageBox.Show("Save slot 3 is empty or corrupted. Copying from Mirror Data instead.");
+                    returnMessage = "Save slot 3 is empty or corrupted. Copying from Mirror Data instead.";
                     savslotTemp = savslot3m.Clone() ?? default!;
                 }
                 break;
         }
+        return returnMessage;
     }
 
     public static SaveSlot WriteFile(int fileSlot)

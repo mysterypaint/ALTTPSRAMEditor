@@ -2,10 +2,10 @@
 
 public class TextCharacterData
 {
-    public Dictionary<char, int> EnChar { get; } = new();
-    public Dictionary<char, int> JpChar { get; } = new();
-    public Dictionary<ushort, char> RawEnChar { get; } = new();
-    public Dictionary<ushort, char> RawJpChar { get; } = new();
+    public Dictionary<char, int> EnChar { get; } = [];
+    public Dictionary<char, int> JpChar { get; } = [];
+    public Dictionary<ushort, char> RawEnChar { get; } = [];
+    public Dictionary<ushort, char> RawJpChar { get; } = [];
 
     public TextCharacterData()
     {
