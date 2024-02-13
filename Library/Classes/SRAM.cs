@@ -33,7 +33,6 @@ public class SRAM
     * (e.g. For the second save file, the information will be saved to $70:0500 to $70:09FF, and mirrored at $70:1400 to $70:18FF.)
     */
 
-
     // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public SRAM(byte[] data_in, TextCharacterData textCharacterData)
     {
@@ -138,7 +137,7 @@ public class SRAM
         return hex.ToString();
     }
 
-    public static SaveSlot CreateFile(int fileSlot, Enums.SaveRegion _saveRegion, TextCharacterData textCharacterData)
+    public static SaveSlot CreateFile(int fileSlot, SaveRegion _saveRegion, TextCharacterData textCharacterData)
     {
         // Create a clean save file to use, call it "Link" or "LINK" depending on region.
         var _new_save = new byte[0x500];
@@ -151,8 +150,8 @@ public class SRAM
         switch (_saveRegion)
         {
             default:
-            case Enums.SaveRegion.USA:
-            case Enums.SaveRegion.EUR:
+            case SaveRegion.USA:
+            case SaveRegion.EUR:
                 _new_save[0x3D9] = 0x0B; // L
                 _new_save[0x3DB] = 0xC0; // i
                 _new_save[0x3DD] = 0x47; // n
@@ -166,7 +165,7 @@ public class SRAM
                 _new_save[0X4FE] = 0xEE;
                 _new_save[0X4FF] = 0x17;
                 break;
-            case Enums.SaveRegion.JPN:
+            case SaveRegion.JPN:
                 _new_save[0x3D9] = 0x65; // L
                 _new_save[0x3DA] = 0x01; //
                 _new_save[0x3DB] = 0x62; // I
@@ -208,9 +207,11 @@ public class SRAM
         return savslot;
     }
 
-    public static string CopyFile(int fileSlot)
+    public static string CopyFile(int fileSlot, TextCharacterData textCharacterData)
     {
         var returnMessage = string.Empty;
+        byte[] copyData;
+
         switch (fileSlot)
         {
             default:
@@ -218,60 +219,66 @@ public class SRAM
             case 1:
                 if (savslot1.SaveIsValid())
                 {
-                    savslotTemp = savslot1.Clone() ?? default!;
+                    copyData = savslot1.GetData();
                 }
                 else
                 {
                     returnMessage = "Save slot 1 is empty or corrupted. Copying from Mirror Data instead.";
-                    savslotTemp = savslot1m.Clone() ?? default!;
+                    copyData = savslot1m.GetData();
                 }
                 break;
             case 2:
                 if (savslot2.SaveIsValid())
                 {
-                    savslotTemp = savslot2.Clone() ?? default!;
+                    copyData = savslot2.GetData();
                 }
                 else
                 {
                     returnMessage = "Save slot 2 is empty or corrupted. Copying from Mirror Data instead.";
-                    savslotTemp = savslot2m.Clone() ?? default!;
+                    copyData = savslot2m.GetData();
                 }
                 break;
             case 3:
                 if (savslot3.SaveIsValid())
                 {
-                    savslotTemp = savslot3.Clone() ?? default!;
+                    copyData = savslot3.GetData();
                 }
                 else
                 {
                     returnMessage = "Save slot 3 is empty or corrupted. Copying from Mirror Data instead.";
-                    savslotTemp = savslot3m.Clone() ?? default!;
+                    copyData = savslot3m.GetData();
                 }
                 break;
         }
+
+        if (copyData.Length > 0)
+        {
+            savslotTemp = new SaveSlot(copyData, fileSlot, textCharacterData);
+        }
+
         return returnMessage;
     }
 
-    public static SaveSlot WriteFile(int fileSlot)
+    public static SaveSlot WriteFile(int fileSlot, TextCharacterData textCharacterData)
     {
         switch (fileSlot)
         {
             default:
             // ReSharper disable once RedundantCaseLabel
             case 1:
-                savslot1 = savslotTemp.Clone() ?? default!;
+                savslot1 = new SaveSlot(savslotTemp.GetData(), fileSlot, textCharacterData);
                 savslot1.SetSaveSlot(1);
                 savslot1m = savslot1;
                 savslot1m.SetSaveSlot(1);
                 return savslot1;
             case 2:
-                savslot2 = savslotTemp.Clone() ?? default!;
+                savslot2 = new SaveSlot(savslotTemp.GetData(), fileSlot, textCharacterData);
                 savslot2.SetSaveSlot(2);
                 savslot2m = savslot2;
                 savslot2m.SetSaveSlot(2);
                 return savslot2;
             case 3:
-                savslot3 = savslotTemp.Clone() ?? default!;
+                savslot3 = new SaveSlot(savslotTemp.GetData(), fileSlot, textCharacterData);
                 savslot3.SetSaveSlot(3);
                 savslot3m = savslot3;
                 savslot3m.SetSaveSlot(3);
