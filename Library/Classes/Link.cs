@@ -138,24 +138,14 @@ public class Link
 
     public int GetCurrMagicUpgrade() => currMagicUpgrade;
 
-    public void SetRupees(int val)
+    public void SetRupeesValue(ushort val)
     {
-        byte[] bytes =
-            [
-                (byte)(val >> 8), // 0x00
-                (byte)val // 0x10
-            ];
-
-        // Set actual rupee value
-        itemsAndEquipment[WalletAddress] = bytes[1];
-        itemsAndEquipment[WalletAddress + 1] = bytes[0];
-
-        // Set rupee "lag counter" value
-        itemsAndEquipment[RupeesAddress] = bytes[1];
-        itemsAndEquipment[RupeesAddress + 1] = bytes[0];
+        var byteArray = BitConverter.GetBytes(val);
+        byteArray.CopyTo(itemsAndEquipment, RupeesAddress);
     }
 
-    public int GetRupeeValue() => itemsAndEquipment[RupeesAddress + 1] << 8 | itemsAndEquipment[RupeesAddress];
+    public ushort GetRupeesValue() =>
+        BitConverter.ToUInt16(itemsAndEquipment, RupeesAddress);
 
     public int GetItemEquipment(int addr) => itemsAndEquipment[addr];
 }

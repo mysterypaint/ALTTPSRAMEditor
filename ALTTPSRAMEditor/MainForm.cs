@@ -472,7 +472,7 @@ public partial class MainForm : Form
 
         var player = savslot.GetPlayer();
         displayPlayerName = savslot.GetPlayerName();
-        numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+        numericUpDownRupeeCounter.Value = player.GetRupeesValue();
         numericUpDownHeartContainers.Value = player.GetHeartContainers();
         numericUpDownMagic.Value = player.GetCurrMagic();
         textQuarterMagic.Visible = player.GetCurrMagicUpgrade() >= 0x2;
@@ -900,7 +900,7 @@ public partial class MainForm : Form
     {
         var player = GetCurrentSlotPlayer();
         var val = (ushort)numericUpDownRupeeCounter.Value;
-        player.SetRupees(val);
+        player.SetRupeesValue(val);
     }
 
     private void fileRadio(object sender, EventArgs e)
@@ -913,7 +913,7 @@ public partial class MainForm : Form
         var savslot = GetSaveSlot();
         var player = savslot.GetPlayer();
         UpdatePlayerName();
-        numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+        numericUpDownRupeeCounter.Value = player.GetRupeesValue();
         UpdateAllConfigurables(savslot);
         helperText.Text = !savslot.SaveIsValid()
             ? $"Save slot {savslot} is empty or invalid."
