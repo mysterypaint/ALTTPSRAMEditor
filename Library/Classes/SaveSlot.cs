@@ -1,86 +1,85 @@
 ﻿// ReSharper disable InconsistentNaming
 namespace Library.Classes;
 
-[Serializable]
 public class SaveSlot
 {
-    private byte[] data;
-    private string playerName = string.Empty;
-    private ushort[] playerNameRaw;
-    private ushort total_checksum;
-    private readonly Link player;
-    private byte pendants;
-    private byte crystals;
-    private bool isValid;
-    private int slotIndex;
-    private readonly TextCharacterData textCharacterData;
-    private readonly Enums.SaveRegion saveRegion;
-    private readonly byte[] itemsAndEquipment;
+    private byte[] Data;
+    private string PlayerName = string.Empty;
+    private ushort[] PlayerNameRaw;
+    private ushort TotalChecksum;
+    private readonly Link Player;
+    private byte Pendants;
+    private byte Crystals;
+    private bool IsValid;
+    private int SlotIndex;
+    private readonly TextCharacterData TextCharacterData;
+    private readonly SaveRegion SaveRegion;
+    private readonly byte[] ItemsAndEquipment;
 
     // ReSharper disable once ParameterTypeCanBeEnumerable.Local
     public SaveSlot(byte[] data_in, int _slot, TextCharacterData textCharacterData)
     {
         // Import this save slot's data from the larger global save data
-        data = [.. data_in];
-        slotIndex = _slot;
-        this.textCharacterData = textCharacterData;
-        playerNameRaw = new ushort[6];
+        Data = [.. data_in];
+        SlotIndex = _slot;
+        this.TextCharacterData = textCharacterData;
+        PlayerNameRaw = new ushort[6];
 
         // Determine which region this save comes from
-        saveRegion = data[0x3E5] == 0xAA && data[0x3E6] == 0x55
-            ? Enums.SaveRegion.USA
-            : data[0x3E1] == 0xAA && data[0x3E2] == 0x55
-                ? Enums.SaveRegion.JPN
-                : Enums.SaveRegion.EUR;
+        SaveRegion = Data[0x3E5] == 0xAA && Data[0x3E6] == 0x55
+            ? SaveRegion.USA
+            : Data[0x3E1] == 0xAA && Data[0x3E2] == 0x55
+                ? SaveRegion.JPN
+                : SaveRegion.EUR;
 
-        isValid = SaveIsValid();
+        IsValid = SaveIsValid();
         // Copy global save data's Item&Equipment data to this Save Slot
 
-        itemsAndEquipment = new byte[0x4B];
+        ItemsAndEquipment = new byte[0x4B];
 
-        for (var i = 0x0; i < itemsAndEquipment.Length; i++)
+        for (var i = 0x0; i < ItemsAndEquipment.Length; i++)
         {
-            itemsAndEquipment[i] = data[0x340 + i];
+            ItemsAndEquipment[i] = Data[0x340 + i];
         }
 
         // Copy pendants and crystals to a private variable for this save slot
-        pendants = itemsAndEquipment[0x34];
-        crystals = itemsAndEquipment[0x3A];
+        Pendants = ItemsAndEquipment[0x34];
+        Crystals = ItemsAndEquipment[0x3A];
 
         // Initialize a player object upon creating this save slot.
-        player = new Link(itemsAndEquipment);
+        Player = new Link(ItemsAndEquipment);
 
         GetRawPlayerName();
     }
 
     public void ResetFileDeaths(bool showOnFileSelect)
     {
-        var (_deathCounterAddr, _liveSaveCounterAddr, _deathTotalsTableAddr) = saveRegion switch
+        var (_deathCounterAddr, _liveSaveCounterAddr, _deathTotalsTableAddr) = SaveRegion switch
         {
-            Enums.SaveRegion.JPN => (0x401, 0x3FF, 0x3E3),
+            SaveRegion.JPN => (0x401, 0x3FF, 0x3E3),
             _ => (0x405, 0x403, 0x3E7)
         };
         for (var i = 0x0; i < 0x1B; i += 2)
         {
-            data[_deathTotalsTableAddr + i] = 0x0;
-            data[_deathTotalsTableAddr + i + 1] = 0x0;
+            Data[_deathTotalsTableAddr + i] = 0x0;
+            Data[_deathTotalsTableAddr + i + 1] = 0x0;
         }
 
-        data[_liveSaveCounterAddr] = 0x0;
-        data[_liveSaveCounterAddr + 1] = 0x0;
+        Data[_liveSaveCounterAddr] = 0x0;
+        Data[_liveSaveCounterAddr + 1] = 0x0;
 
         if (showOnFileSelect)
         {
-            data[_deathCounterAddr] = 0x0;
-            data[_deathCounterAddr + 1] = 0x0;
+            Data[_deathCounterAddr] = 0x0;
+            Data[_deathCounterAddr + 1] = 0x0;
         }
         else
         {
-            data[_deathCounterAddr] = 0xFF;
-            data[_deathCounterAddr + 1] = 0xFF;
+            Data[_deathCounterAddr] = 0xFF;
+            Data[_deathCounterAddr + 1] = 0xFF;
         }
 
-        if (isValid)
+        if (IsValid)
         {
             ValidateSave();
         }
@@ -91,36 +90,36 @@ public class SaveSlot
         // Set the actual player name in data[] just before writing to SRAM
         var j = 0;
 
-        switch (saveRegion)
+        switch (SaveRegion)
         {
             default:
-            case Enums.SaveRegion.USA:
-            case Enums.SaveRegion.EUR:
+            case SaveRegion.USA:
+            case SaveRegion.EUR:
                 for (var i = 0x3D9; i <= 0x3E4; i += 2)
                 {
-                    data[i] = (byte)(playerNameRaw[j] & 0xff);
-                    data[i + 1] = (byte)(playerNameRaw[j] >> 8);
+                    Data[i] = (byte)(PlayerNameRaw[j] & 0xff);
+                    Data[i + 1] = (byte)(PlayerNameRaw[j] >> 8);
                     j++;
                 }
                 break;
-            case Enums.SaveRegion.JPN:
+            case SaveRegion.JPN:
                 for (var i = 0x3D9; i <= 0x3E0; i += 2)
                 {
-                    data[i] = (byte)(playerNameRaw[j] & 0xff);
-                    data[i + 1] = (byte)(playerNameRaw[j] >> 8);
+                    Data[i] = (byte)(PlayerNameRaw[j] & 0xff);
+                    Data[i + 1] = (byte)(PlayerNameRaw[j] >> 8);
                     j++;
                 }
                 break;
         }
     }
 
-    public void SetSaveSlot(int _slot) => slotIndex = _slot;
+    public void SetSaveSlot(int _slot) => SlotIndex = _slot;
 
-    public void SetIsValid(bool _val) => isValid = _val;
+    public void SetIsValid(bool _val) => IsValid = _val;
 
-    public bool GetIsValid() => isValid;
+    public bool GetIsValid() => IsValid;
 
-    public override string ToString() => slotIndex.ToString();
+    public override string ToString() => SlotIndex.ToString();
 
     private void GetRawPlayerName()
     {
@@ -131,27 +130,27 @@ public class SaveSlot
 
         var j = 0;
 
-        switch (saveRegion)
+        switch (SaveRegion)
         {
             default:
-            case Enums.SaveRegion.EUR:
-            case Enums.SaveRegion.USA:
+            case SaveRegion.EUR:
+            case SaveRegion.USA:
                 for (var i = 0x3D9; i <= 0x3E4; i += 2)
                 {
-                    playerNameRaw[j] = (ushort)(data[i + 1] << 8 | data[i]);
+                    PlayerNameRaw[j] = (ushort)(Data[i + 1] << 8 | Data[i]);
                     j++;
                 }
                 break;
-            case Enums.SaveRegion.JPN:
-                playerNameRaw = new ushort[4];
+            case SaveRegion.JPN:
+                PlayerNameRaw = new ushort[4];
                 for (var i = 0x3D9; i < 0x3E1; i += 2)
                 {
-                    playerNameRaw[j] = (ushort)(data[i + 1] << 8 | data[i]);
+                    PlayerNameRaw[j] = (ushort)(Data[i + 1] << 8 | Data[i]);
                     j++;
                 }
                 break;
         }
-        ConvertPlayerNameRawToString(playerNameRaw);
+        ConvertPlayerNameRawToString(PlayerNameRaw);
     }
 
     // ReSharper disable once ParameterTypeCanBeEnumerable.Local
@@ -160,63 +159,63 @@ public class SaveSlot
         var j = 1; // Char counter
         foreach (var i in _playerNameRaw)
         {
-            switch (saveRegion)
+            switch (SaveRegion)
             {
-                case Enums.SaveRegion.EUR:
-                case Enums.SaveRegion.USA:
+                case SaveRegion.EUR:
+                case SaveRegion.USA:
                     if (j > 6)
                     {
                         break;
                     }
 
-                    playerName += textCharacterData.RawEnChar[i];
+                    PlayerName += TextCharacterData.RawEnChar[i];
                     break;
-                case Enums.SaveRegion.JPN:
+                case SaveRegion.JPN:
                     if (j > 4)
                     {
                         break;
                     }
 
-                    playerName += textCharacterData.RawJpChar[i];
+                    PlayerName += TextCharacterData.RawJpChar[i];
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(_playerNameRaw));
             }
             j++;
         }
     }
 
-    public Link GetPlayer() => player;
+    public Link GetPlayer() => Player;
 
-    public ushort[] GetPlayerNameRaw() => playerNameRaw;
+    public ushort[] GetPlayerNameRaw() => PlayerNameRaw;
 
     public void SetPlayerNameRaw(ushort[] _newName)
     {
         var j = 0;
-        switch (saveRegion)
+        switch (SaveRegion)
         {
             default:
-            case Enums.SaveRegion.EUR:
-            case Enums.SaveRegion.USA:
+            case SaveRegion.EUR:
+            case SaveRegion.USA:
                 for (var i = 0x3D9; i <= 0x3E4; i += 2)
                 {
-                    playerNameRaw[j] = _newName[j];
+                    PlayerNameRaw[j] = _newName[j];
                     j++;
                 }
                 break;
-            case Enums.SaveRegion.JPN:
+            case SaveRegion.JPN:
                 for (var i = 0x3D9; i <= 0x3DF; i += 2)
                 {
-                    playerNameRaw[j] = _newName[j];
+                    PlayerNameRaw[j] = _newName[j];
                     j++;
                 }
                 break;
         }
     }
 
-    public Enums.SaveRegion GetRegion() => saveRegion;
+    public SaveRegion GetRegion() => SaveRegion;
 
-    public byte[] GetData() => data.ToArray();
+    public byte[] GetData() => [.. Data];
 
     public void ValidateSave()
     {
@@ -227,42 +226,42 @@ public class SaveSlot
         ushort checksum = 0;
         for (var i = 0; i < 0x4fe; i += 2)
         {
-            checksum += (ushort)(data[i + 1] << 8 | data[i]);
+            checksum += (ushort)(Data[i + 1] << 8 | Data[i]);
         }
-        total_checksum = (ushort)(0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
+        TotalChecksum = (ushort)(0x5A5A - checksum); // Calculate as 32-bit integer, then convert it to a 16-bit unsigned int
 
-        data[0x4FE] = (byte)(total_checksum & 0xff);
-        data[0x4FF] = (byte)(total_checksum >> 8);
+        Data[0x4FE] = (byte)(TotalChecksum & 0xff);
+        Data[0x4FF] = (byte)(TotalChecksum >> 8);
     }
 
     public bool SaveIsValid()
     {
         // Tests if a loaded save is valid or not.
-        switch (saveRegion)
+        switch (SaveRegion)
         {
-            case Enums.SaveRegion.EUR:
-            case Enums.SaveRegion.USA:
-                if (data[0x3E5] != 0xAA || data[0x3E6] != 0x55)
+            case SaveRegion.EUR:
+            case SaveRegion.USA:
+                if (Data[0x3E5] != 0xAA || Data[0x3E6] != 0x55)
                 {
                     return false;
                 }
 
                 break;
-            case Enums.SaveRegion.JPN:
-                if (data[0x3E1] != 0xAA || data[0x3E2] != 0x55)
+            case SaveRegion.JPN:
+                if (Data[0x3E1] != 0xAA || Data[0x3E2] != 0x55)
                 {
                     return false;
                 }
 
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(SaveRegion));
         }
 
         ushort checksum = 0;
         for (var i = 0x0; i < 0x500; i += 2)
         {
-            var word = (ushort)(data[i + 1] << 8 | data[i]);
+            var word = (ushort)(Data[i + 1] << 8 | Data[i]);
             checksum += word;
         }
         return checksum == 0x5A5A; // The save is valid if the checksum total is exactly 0x5A5A
@@ -271,16 +270,16 @@ public class SaveSlot
     public void UpdatePlayer()
     {
         // Take player's equipment and update the local data
-        var _itemsAndEquipment = player.GetItemsAndEquipmentArray();
+        var _itemsAndEquipment = Player.GetItemsAndEquipmentArray();
 
         // Update pendant and crystal data before merging this save
-        _itemsAndEquipment[0x34] = pendants;
-        _itemsAndEquipment[0x3A] = crystals;
-        _itemsAndEquipment[0xF] = (byte)player.GetSelectedBottle();
+        _itemsAndEquipment[0x34] = Pendants;
+        _itemsAndEquipment[0x3A] = Crystals;
+        _itemsAndEquipment[0xF] = (byte)Player.GetSelectedBottle();
         var len = _itemsAndEquipment.Length;
         for (var i = 0x0; i < len; i++)
         {
-            data[0x340 + i] = _itemsAndEquipment[i];
+            Data[0x340 + i] = _itemsAndEquipment[i];
         }
     }
 
@@ -290,9 +289,9 @@ public class SaveSlot
         return (b & 1 << bitNumber - 1) != 0;
     }
 
-    public byte GetPendants() => pendants;
+    public byte GetPendants() => Pendants;
 
-    public byte GetCrystals() => crystals;
+    public byte GetCrystals() => Crystals;
 
     public void TogglePendant(int _val)
     {
@@ -300,43 +299,43 @@ public class SaveSlot
         {
             default:
             // ReSharper disable once RedundantCaseLabel
-            case Constants.greenPendant:
-                if (GetBit(pendants, Constants.greenPendant))
+            case GreenPendantAddress:
+                if (GetBit(Pendants, GreenPendantAddress))
                 {
-                    pendants &= 0xFB; // Turn it off if we already have the pendant
+                    Pendants &= 0xFB; // Turn it off if we already have the pendant
                 }
                 else
                 {
-                    pendants |= 0x4; // Turn it on if we don't already have the pendant
+                    Pendants |= 0x4; // Turn it on if we don't already have the pendant
                 }
 
                 break;
-            case Constants.bluePendant:
-                if (GetBit(pendants, Constants.bluePendant))
+            case BluePendantAddress:
+                if (GetBit(Pendants, BluePendantAddress))
                 {
-                    pendants &= 0xFD; // Turn it off if we already have the pendant
+                    Pendants &= 0xFD; // Turn it off if we already have the pendant
                 }
                 else
                 {
-                    pendants |= 0x2; // Turn it on if we don't already have the pendant
+                    Pendants |= 0x2; // Turn it on if we don't already have the pendant
                 }
 
                 break;
-            case Constants.redPendant:
-                if (GetBit(pendants, Constants.redPendant))
+            case RedPendantAddress:
+                if (GetBit(Pendants, RedPendantAddress))
                 {
-                    pendants &= 0xFE; // Turn it off if we already have the pendant
+                    Pendants &= 0xFE; // Turn it off if we already have the pendant
                 }
                 else
                 {
-                    pendants |= 0x1; // Turn it on if we don't already have the pendant
+                    Pendants |= 0x1; // Turn it on if we don't already have the pendant
                 }
 
                 break;
         }
 
         // Update pendant data for this save slot
-        itemsAndEquipment[0x34] = pendants;
+        ItemsAndEquipment[0x34] = Pendants;
     }
 
     public void ToggleCrystal(int _val)
@@ -345,99 +344,99 @@ public class SaveSlot
         {
             default:
             // ReSharper disable once RedundantCaseLabel
-            case Constants.crystalPoD:
-                if (GetBit(crystals, Constants.crystalPoD))
+            case CrystalPoD:
+                if (GetBit(Crystals, CrystalPoD))
                 {
-                    crystals &= 0xFD; // Turn it off if we already have the crystal
+                    Crystals &= 0xFD; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x2; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x2; // Turn it on if we don't already have the crystal
                 }
 
                 break;
-            case Constants.crystalSP:
-                if (GetBit(crystals, Constants.crystalSP))
+            case CrystalSPAddress:
+                if (GetBit(Crystals, CrystalSPAddress))
                 {
-                    crystals &= 0xEF; // Turn it off if we already have the crystal
+                    Crystals &= 0xEF; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x10; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x10; // Turn it on if we don't already have the crystal
                 }
 
                 break;
-            case Constants.crystalSW:
-                if (GetBit(crystals, Constants.crystalSW))
+            case CrystalSWAddress:
+                if (GetBit(Crystals, CrystalSWAddress))
                 {
-                    crystals &= 0xBF; // Turn it off if we already have the crystal
+                    Crystals &= 0xBF; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x40; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x40; // Turn it on if we don't already have the crystal
                 }
 
                 break;
-            case Constants.crystalTT:
-                if (GetBit(crystals, Constants.crystalTT))
+            case CrystalTTAddress:
+                if (GetBit(Crystals, CrystalTTAddress))
                 {
-                    crystals &= 0xDF; // Turn it off if we already have the crystal
+                    Crystals &= 0xDF; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x20; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x20; // Turn it on if we don't already have the crystal
                 }
 
                 break;
-            case Constants.crystalIP:
-                if (GetBit(crystals, Constants.crystalIP))
+            case CrystalIPAddress:
+                if (GetBit(Crystals, CrystalIPAddress))
                 {
-                    crystals &= 0xFB; // Turn it off if we already have the crystal
+                    Crystals &= 0xFB; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x4; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x4; // Turn it on if we don't already have the crystal
                 }
 
                 break;
-            case Constants.crystalMM:
-                if (GetBit(crystals, Constants.crystalMM))
+            case CrystalMMAddress:
+                if (GetBit(Crystals, CrystalMMAddress))
                 {
-                    crystals &= 0xFE; // Turn it off if we already have the crystal
+                    Crystals &= 0xFE; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x1; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x1; // Turn it on if we don't already have the crystal
                 }
 
                 break;
-            case Constants.crystalTR:
-                if (GetBit(crystals, Constants.crystalTR))
+            case CrystalTRAddress:
+                if (GetBit(Crystals, CrystalTRAddress))
                 {
-                    crystals &= 0xF7; // Turn it off if we already have the crystal
+                    Crystals &= 0xF7; // Turn it off if we already have the crystal
                 }
                 else
                 {
-                    crystals |= 0x8; // Turn it on if we don't already have the crystal
+                    Crystals |= 0x8; // Turn it on if we don't already have the crystal
                 }
 
                 break;
         }
 
         // Update crystal data for this save slot
-        itemsAndEquipment[0x3A] = crystals;
+        ItemsAndEquipment[0x3A] = Crystals;
     }
 
-    public string GetPlayerName() => playerName;
+    public string GetPlayerName() => PlayerName;
 
-    public void SetPlayerName(string str) => playerName = str;
+    public void SetPlayerName(string str) => PlayerName = str;
 
     // ReSharper disable once ParameterTypeCanBeEnumerable.Global
-    public void SetData(byte[] in_data) => data = [.. in_data];
+    public void SetData(byte[] in_data) => Data = [.. in_data];
 
     public void ClearData()
     {
-        Array.Clear(data, 0, data.Length - 2); // Invalidate the data by storing 0 to everything besides the checksum check
-        isValid = false;
+        Array.Clear(Data, 0, Data.Length - 2); // Invalidate the data by storing 0 to everything besides the checksum check
+        IsValid = false;
     }
 }

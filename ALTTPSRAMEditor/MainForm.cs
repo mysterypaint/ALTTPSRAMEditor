@@ -10,8 +10,33 @@ public partial class MainForm : Form
 {
     private bool canRefresh = true;
     private bool fileOpen;
-    private static readonly int[] bottleContents = new int[9];
-    private static readonly Bitmap[] bottleContentsImg = new Bitmap[9];
+
+    // Define bottle array
+    private static readonly int[] bottleContents =
+        [
+            (int)BottleContents.NONE,
+            (int)BottleContents.EMPTY,
+            (int)BottleContents.RED_POTION,
+            (int)BottleContents.GREEN_POTION,
+            (int)BottleContents.BLUE_POTION,
+            (int)BottleContents.FAERIE,
+            (int)BottleContents.BEE,
+            (int)BottleContents.GOOD_BEE,
+            (int)BottleContents.MUSHROOM
+        ];
+
+    private static readonly Bitmap[] bottleContentsImg =
+        [
+            D_Bottle,
+            Bottle,
+            Red_Potion,
+            Green_Potion,
+            Blue_Potion,
+            Fairy,
+            Bee,
+            Bee,
+            Mushroom
+        ];
 
     private static int pos;
     private static SaveRegion saveRegion = SaveRegion.JPN;
@@ -35,6 +60,15 @@ public partial class MainForm : Form
         TextCharacterData = textCharacterData;
     }
 
+    private SaveSlot GetSaveSlot() => radioFile2.Checked
+    ? SRAM.GetSaveSlot(2)
+    : radioFile3.Checked
+        ? SRAM.GetSaveSlot(3)
+        : SRAM.GetSaveSlot(1);
+
+    private Link GetCurrentSlotPlayer() =>
+        GetSaveSlot().GetPlayer();
+
     private void opensrmToolStripMenuItem_Click(object sender, EventArgs e) => OpenSRM();
 
     private void OpenSRM()
@@ -43,6 +77,7 @@ public partial class MainForm : Form
         {
             Filter = "SRAM|*.srm|SaveRAM|*.SaveRAM|All Files|*.*" // Filter to show.srm files only.
         };
+
         // Prompt the user to open a file, then check if a valid file was opened.
         if (!fd1.ShowDialog().Equals(DialogResult.OK))
         {
@@ -51,7 +86,8 @@ public partial class MainForm : Form
         fname = fd1.FileName;
 
         try
-        { // Open the text file using a File Stream
+        { 
+            // Open the text file using a File Stream
             var bytes = File.ReadAllBytes(fname);
             var fileSize = new FileInfo(fname).Length;
             switch (fileSize)
@@ -96,11 +132,17 @@ public partial class MainForm : Form
         }
         catch (IOException)
         {
-            helperText.Text = $"File reading conflict: {fname}.\nIs it open in another program?";
+            helperText.Text = $"""
+                File reading conflict: {fname}.
+                Is it open in another program?
+                """;
         }
         catch (Exception e)
         {
-            MessageBox.Show($"The file could not be read:\n{e.Message}");
+            MessageBox.Show($"""
+                The file could not be read:
+                {e.Message}
+                """);
         }
     }
 
@@ -138,7 +180,7 @@ public partial class MainForm : Form
         if (thisSlot.SaveIsValid())
         {
             UpdatePlayerName();
-            _ = thisSlot.GetPlayer();
+            thisSlot.GetPlayer();
             UpdateAllConfigurables(thisSlot);
         }
         else
@@ -175,7 +217,10 @@ public partial class MainForm : Form
         }
         catch (IOException)
         {
-            helperText.Text = $"File writing conflict: {fname}.\nIs it open in another program?";
+            helperText.Text = $"""
+                File writing conflict: {fname}.
+                Is it open in another program?
+                """;
         }
     }
 
@@ -184,30 +229,6 @@ public partial class MainForm : Form
         Application.Exit();
 
     private void saveCTRLSToolStripMenuItem_Click(object sender, EventArgs e) => SaveSRM();
-
-    private void MainForm_Load(object sender, EventArgs e)
-    {
-        // Define bottle array
-        bottleContents[0] = (int)BottleContents.NONE;
-        bottleContents[1] = (int)BottleContents.EMPTY;
-        bottleContents[2] = (int)BottleContents.RED_POTION;
-        bottleContents[3] = (int)BottleContents.GREEN_POTION;
-        bottleContents[4] = (int)BottleContents.BLUE_POTION;
-        bottleContents[5] = (int)BottleContents.FAERIE;
-        bottleContents[6] = (int)BottleContents.BEE;
-        bottleContents[7] = (int)BottleContents.GOOD_BEE;
-        bottleContents[8] = (int)BottleContents.MUSHROOM;
-
-        bottleContentsImg[bottleContents[0]] = D_Bottle;
-        bottleContentsImg[bottleContents[1]] = Bottle;
-        bottleContentsImg[bottleContents[2]] = Red_Potion;
-        bottleContentsImg[bottleContents[3]] = Green_Potion;
-        bottleContentsImg[bottleContents[4]] = Blue_Potion;
-        bottleContentsImg[bottleContents[5]] = Fairy;
-        bottleContentsImg[bottleContents[6]] = Bee;
-        bottleContentsImg[bottleContents[7]] = Bee;
-        bottleContentsImg[bottleContents[8]] = Mushroom;
-    }
 
     private void MainForm_KeyDown(object sender, KeyEventArgs e)
     {
@@ -262,7 +283,7 @@ public partial class MainForm : Form
         }
 
         UpdatePlayerName();
-        _ = savslot?.GetPlayer();
+        savslot?.GetPlayer();
         UpdateAllConfigurables(savslot);
 
         Refresh();
@@ -273,17 +294,17 @@ public partial class MainForm : Form
         var message = string.Empty;
         if (radioFile1.Checked)
         {
-            message = SRAM.CopyFile(1);
+            message = SRAM.CopyFile(1, TextCharacterData);
             helperText.Text = "Copied File 1!";
         }
         else if (radioFile2.Checked)
         {
-            message = SRAM.CopyFile(2);
+            message = SRAM.CopyFile(2, TextCharacterData);
             helperText.Text = "Copied File 2!";
         }
         else if (radioFile3.Checked)
         {
-            message = SRAM.CopyFile(3);
+            message = SRAM.CopyFile(3, TextCharacterData);
             helperText.Text = "Copied File 3!";
         }
 
@@ -296,19 +317,19 @@ public partial class MainForm : Form
 
     private void buttonWrite_Click(object sender, EventArgs e)
     {
-        var savslot = SRAM.WriteFile(1);
+        var savslot = SRAM.WriteFile(1, TextCharacterData);
         if (radioFile1.Checked)
         {
             helperText.Text = "Wrote to File 1!";
         }
         else if (radioFile2.Checked)
         {
-            savslot = SRAM.WriteFile(2);
+            savslot = SRAM.WriteFile(2, TextCharacterData);
             helperText.Text = "Wrote to File 2!";
         }
         else if (radioFile3.Checked)
         {
-            savslot = SRAM.WriteFile(3);
+            savslot = SRAM.WriteFile(3, TextCharacterData);
             helperText.Text = "Wrote to File 3!";
         }
         UpdateAllConfigurables(savslot);
@@ -451,13 +472,13 @@ public partial class MainForm : Form
 
         var player = savslot.GetPlayer();
         displayPlayerName = savslot.GetPlayerName();
-        numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+        numericUpDownRupeeCounter.Value = player.GetRupeesValue();
         numericUpDownHeartContainers.Value = player.GetHeartContainers();
         numericUpDownMagic.Value = player.GetCurrMagic();
         textQuarterMagic.Visible = player.GetCurrMagicUpgrade() >= 0x2;
 
         // Magic Bar Upgrades
-        pictureBoxMagicBar.Image = player.GetItemEquipment(magicUpgrades) switch
+        pictureBoxMagicBar.Image = player.GetItemEquipment(MagicUpgradesAddress) switch
         {
             0x1 => lttp_magic_bar_halved,
             0x2 => lttp_magic_bar_quarter,
@@ -496,87 +517,87 @@ public partial class MainForm : Form
         CheckGloves();
 
         // Hookshot
-        pictureHookshot.Image = player.GetItemEquipment(hookshot) == 0x1
+        pictureHookshot.Image = player.GetItemEquipment(HookshotAddress) == 0x1
             ? Hookshot
             : (Image)D_Hookshot;
 
         // Fire Rod
-        pictureFireRod.Image = player.GetItemEquipment(fireRod) == 0x1
+        pictureFireRod.Image = player.GetItemEquipment(FireRodAddress) == 0x1
             ? Fire_Rod
             : (Image)D_Fire_Rod;
 
         // Ice Rod
-        pictureIceRod.Image = player.GetItemEquipment(iceRod) == 0x1
+        pictureIceRod.Image = player.GetItemEquipment(IceRodAddress) == 0x1
             ? Ice_Rod
             : (Image)D_Ice_Rod;
 
         // Bombos
-        pictureBombos.Image = player.GetItemEquipment(bombosMedallion) == 0x1
+        pictureBombos.Image = player.GetItemEquipment(BombosMedallionAddress) == 0x1
             ? Bombos
             : (Image)D_Bombos;
 
         // Ether
-        pictureEther.Image = player.GetItemEquipment(etherMedallion) == 0x1
+        pictureEther.Image = player.GetItemEquipment(EtherMedallionAddress) == 0x1
             ? Ether
             : (Image)D_Ether;
 
         // Quake
-        pictureQuake.Image = player.GetItemEquipment(quakeMedallion) == 0x1
+        pictureQuake.Image = player.GetItemEquipment(QuakeMedallionAddress) == 0x1
             ? Quake
             : (Image)D_Quake;
 
         // Lamp
-        pictureLamp.Image = player.GetItemEquipment(lamp) == 0x1
+        pictureLamp.Image = player.GetItemEquipment(LampAddress) == 0x1
             ? Lamp
             : (Image)D_Lamp;
 
         // Magic Hammer
-        pictureMagicHammer.Image = player.GetItemEquipment(magicHammer) == 0x1
+        pictureMagicHammer.Image = player.GetItemEquipment(MagicHammerAddress) == 0x1
             ? Magic_Hammer
             : (Image)D_Magic_Hammer;
 
         // Bug Catching Net
-        pictureBugCatchingNet.Image = player.GetItemEquipment(bugNet) == 0x1
+        pictureBugCatchingNet.Image = player.GetItemEquipment(BugNetAddress) == 0x1
             ? Bug_Catching_Net
             : (Image)D_Bug_Catching_Net;
 
         // Book of Mudora
-        pictureBookOfMudora.Image = player.GetItemEquipment(book) == 0x1
+        pictureBookOfMudora.Image = player.GetItemEquipment(BookAddress) == 0x1
             ? Book_of_Mudora
             : (Image)D_Book_of_Mudora;
 
         // Cane of Somaria
-        pictureCaneOfSomaria.Image = player.GetItemEquipment(caneOfSomaria) == 0x1
+        pictureCaneOfSomaria.Image = player.GetItemEquipment(CaneOfSomariaAddress) == 0x1
             ? Cane_of_Somaria
             : (Image)D_Cane_of_Somaria;
 
         // Cane of Byrna
-        pictureCaneOfByrna.Image = player.GetItemEquipment(caneOfByrna) == 0x1
+        pictureCaneOfByrna.Image = player.GetItemEquipment(CaneOfByrnaAddress) == 0x1
             ? Cane_of_Byrna
             : (Image)D_Cane_of_Byrna;
 
         // Magic Cape
-        pictureMagicCape.Image = player.GetItemEquipment(magicCape) == 0x1
+        pictureMagicCape.Image = player.GetItemEquipment(MagicCapeAddress) == 0x1
             ? Magic_Cape
             : (Image)D_Magic_Cape;
 
         // Magic Mirror
-        pictureMagicMirror.Image = player.GetItemEquipment(magicMirror) == 0x2
+        pictureMagicMirror.Image = player.GetItemEquipment(MagicMirrorAddress) == 0x2
             ? Magic_Mirror
             : (Image)D_Magic_Mirror;
 
         // Moon Pearl
-        pictureMoonPearl.Image = player.GetItemEquipment(moonPearl) == 0x1
+        pictureMoonPearl.Image = player.GetItemEquipment(MoonPearlAddress) == 0x1
             ? Moon_Pearl
             : (Image)D_Moon_Pearl;
 
         var aflags = player.GetAbilityFlags(); // Grab the ability flags from this save slot
 
-        pictureBoots.Image = GetBit(aflags, 0x4) && player.GetItemEquipment(pegasusBoots) > 0x0
+        pictureBoots.Image = GetBit(aflags, 0x4) && player.GetItemEquipment(PegasusBootsAddress) > 0x0
             ? Pegasus_Boots
             : (Image)D_Pegasus_Boots;
 
-        pictureZorasFlippers.Image = GetBit(aflags, 0x1) && player.GetItemEquipment(zorasFlippers) > 0x0
+        pictureZorasFlippers.Image = GetBit(aflags, 0x1) && player.GetItemEquipment(ZorasFlippersAddress) > 0x0
             ? Zora_s_Flippers
             : (Image)D_Zora_s_Flippers;
 
@@ -587,21 +608,21 @@ public partial class MainForm : Form
 
         // Update the picture so it represents what the inventory bottle should actually have
         var _inventoryBottleFill = 0;
-        if (player.GetItemEquipment(bottle1Contents) > 0)
+        if (player.GetItemEquipment(Bottle1ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle1Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle1ContentsAddress);
         }
-        else if (player.GetItemEquipment(bottle2Contents) > 0)
+        else if (player.GetItemEquipment(Bottle2ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle2Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle2ContentsAddress);
         }
-        else if (player.GetItemEquipment(bottle3Contents) > 0)
+        else if (player.GetItemEquipment(Bottle3ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle3Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle3ContentsAddress);
         }
-        else if (player.GetItemEquipment(bottle4Contents) > 0)
+        else if (player.GetItemEquipment(Bottle4ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle4Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle4ContentsAddress);
         }
         else
         {
@@ -621,7 +642,7 @@ public partial class MainForm : Form
         pictureBottles.Image = bottleContentsImg[bottleContents[_inventoryBottleFill - 1]];
 
         // Fill the 1st bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
-        var fillContents = player.GetItemEquipment(bottle1Contents);
+        var fillContents = player.GetItemEquipment(Bottle1ContentsAddress);
         if (fillContents == 1)
         {
             fillContents = 9;
@@ -636,12 +657,12 @@ public partial class MainForm : Form
         {
             comboBoxBottle1.SelectedIndex = fillContents - 1;
         }
+
         // Update the picture so it represents what the 1st bottle actually has
         pictureBottle1.Image = bottleContentsImg[bottleContents[fillContents - 1]];
 
-
         // Fill the 2nd bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
-        fillContents = player.GetItemEquipment(bottle2Contents);
+        fillContents = player.GetItemEquipment(Bottle2ContentsAddress);
         if (fillContents == 1)
         {
             fillContents = 9;
@@ -656,12 +677,12 @@ public partial class MainForm : Form
         {
             comboBoxBottle2.SelectedIndex = fillContents - 1;
         }
+
         // Update the picture so it represents what the 2nd bottle actually has
         pictureBottle2.Image = bottleContentsImg[bottleContents[fillContents - 1]];
 
-
         // Fill the 3rd bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
-        fillContents = player.GetItemEquipment(bottle3Contents);
+        fillContents = player.GetItemEquipment(Bottle3ContentsAddress);
         if (fillContents == 1)
         {
             fillContents = 9;
@@ -676,13 +697,12 @@ public partial class MainForm : Form
         {
             comboBoxBottle3.SelectedIndex = fillContents - 1;
         }
+
         // Update the picture so it represents what the 3rd bottle actually has
         pictureBottle3.Image = bottleContentsImg[bottleContents[fillContents - 1]];
 
-
-
         // Fill the 4th bottle with the value the file has; Remap to actual game values so they match the dropdown list, too
-        fillContents = player.GetItemEquipment(bottle4Contents);
+        fillContents = player.GetItemEquipment(Bottle4ContentsAddress);
         if (fillContents == 1)
         {
             fillContents = 9;
@@ -697,52 +717,53 @@ public partial class MainForm : Form
         {
             comboBoxBottle4.SelectedIndex = fillContents - 1;
         }
+
         // Update the picture so it represents what the 4th bottle actually has
         pictureBottle4.Image = bottleContentsImg[bottleContents[fillContents - 1]];
 
         // Update the pendants
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureGreenPendant.Image = !GetBit(_pendants, greenPendant)
+        pictureGreenPendant.Image = !GetBit(_pendants, GreenPendantAddress)
             ? Clear_Pendant
             : (Image)Green_Pendant;
 
-        pictureBluePendant.Image = !GetBit(_pendants, bluePendant)
+        pictureBluePendant.Image = !GetBit(_pendants, BluePendantAddress)
             ? Clear_Pendant
             : (Image)Blue_Pendant;
 
-        pictureRedPendant.Image = !GetBit(_pendants, redPendant)
+        pictureRedPendant.Image = !GetBit(_pendants, RedPendantAddress)
             ? Clear_Pendant
             : (Image)Red_Pendant;
 
         // Update the crystals
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalPoD.Image = !GetBit(_crystals, crystalPoD)
+        pictureCrystalPoD.Image = !GetBit(_crystals, CrystalPoD)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        pictureCrystalSP.Image = !GetBit(_crystals, crystalSP)
+        pictureCrystalSP.Image = !GetBit(_crystals, CrystalSPAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        pictureCrystalSW.Image = !GetBit(_crystals, crystalSW)
+        pictureCrystalSW.Image = !GetBit(_crystals, CrystalSWAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        pictureCrystalTT.Image = !GetBit(_crystals, crystalTT)
+        pictureCrystalTT.Image = !GetBit(_crystals, CrystalTTAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        pictureCrystalIP.Image = !GetBit(_crystals, crystalIP)
+        pictureCrystalIP.Image = !GetBit(_crystals, CrystalIPAddress)
             ? Clear_Crystal
             : (Image)Red_Crystal;
 
-        pictureCrystalMM.Image = !GetBit(_crystals, crystalMM)
+        pictureCrystalMM.Image = !GetBit(_crystals, CrystalMMAddress)
             ? Clear_Crystal
             : (Image)Red_Crystal;
 
-        pictureCrystalTR.Image = !GetBit(_crystals, crystalTR)
+        pictureCrystalTR.Image = !GetBit(_crystals, CrystalTRAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
@@ -751,7 +772,7 @@ public partial class MainForm : Form
 
         void CheckBowAndArrows()
         {
-            var (option, image) = player.GetItemEquipment(bow) switch
+            var (option, image) = player.GetItemEquipment(BowAddress) switch
             {
                 0x1 => (bowOption1, Bow),
                 0x2 => (bowOption2, Bow_and_Arrow),
@@ -765,7 +786,7 @@ public partial class MainForm : Form
 
         void CheckBoomerang()
         {
-            var (option, image) = player.GetItemEquipment(boomerang) switch
+            var (option, image) = player.GetItemEquipment(BoomerangAddress) switch
             {
                 0x1 => (radioButtonBlueBoomerang, Boomerang),
                 0x2 => (radioButtonRedBoomerang, Magical_Boomerang),
@@ -777,7 +798,7 @@ public partial class MainForm : Form
 
         void CheckShovelAndFlute()
         {
-            var (option, image) = player.GetItemEquipment(shovelFlute) switch
+            var (option, image) = player.GetItemEquipment(ShovelFluteAddress) switch
             {
                 0x1 => (radioButtonShovel, Shovel),
                 0x2 => (radioButtonFlute, Flute),
@@ -790,7 +811,7 @@ public partial class MainForm : Form
 
         void CheckGloves()
         {
-            var (option, image) = player.GetItemEquipment(gloves) switch
+            var (option, image) = player.GetItemEquipment(GlovesAddress) switch
             {
                 0x1 => (radioButtonPowerGloves, Power_Glove),
                 0x2 => (radioButtonTitansMitts, Titan_s_Mitt),
@@ -802,7 +823,7 @@ public partial class MainForm : Form
 
         void CheckMushroomPowder()
         {
-            var (option, image) = player.GetItemEquipment(mushroomPowder) switch
+            var (option, image) = player.GetItemEquipment(MushroomPowderAddress) switch
             {
                 0x1 => (radioButtonMushroom, Mushroom),
                 0x2 => (radioButtonPowder, Magic_Powder),
@@ -814,7 +835,7 @@ public partial class MainForm : Form
 
         void CheckSword()
         {
-            var (option, image) = player.GetItemEquipment(sword) switch
+            var (option, image) = player.GetItemEquipment(SwordAddress) switch
             {
                 0x1 => (radioButtonFighterSword, Fighter_s_Sword),
                 0x2 => (radioButtonMasterSword, Master_Sword),
@@ -828,7 +849,7 @@ public partial class MainForm : Form
 
         void CheckShield()
         {
-            var (option, image) = player.GetItemEquipment(shield) switch
+            var (option, image) = player.GetItemEquipment(ShieldAddress) switch
             {
                 0x1 => (radioButtonBlueShield, Fighter_s_Shield),
                 0x2 => (radioButtonHerosShield, Red_Shield),
@@ -841,7 +862,7 @@ public partial class MainForm : Form
 
         void CheckArmor()
         {
-            var (option, image) = player.GetItemEquipment(armor) switch
+            var (option, image) = player.GetItemEquipment(ArmorAddress) switch
             {
                 0x1 => (radioButtonBlueMail, Blue_Tunic),
                 0x2 => (radioButtonRedMail, Red_Tunic),
@@ -855,19 +876,13 @@ public partial class MainForm : Form
     private void pictureBow_Click(object sender, EventArgs e) =>
         HideAllGroupBoxesExcept(groupBoxBowConfig);
 
-    private SaveSlot GetSaveSlot() => radioFile2.Checked
-        ? SRAM.GetSaveSlot(2)
-        : radioFile3.Checked
-            ? SRAM.GetSaveSlot(3)
-            : SRAM.GetSaveSlot(1);
-
     private void bowRadio(object sender, EventArgs e)
     {
         if (sender is not RadioButton { Checked: true } btn)
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(bowOptionNone) => (0x0, D_Bow), // Give No Bow
@@ -877,16 +892,15 @@ public partial class MainForm : Form
             nameof(bowOption4) => (0x4, Bow_and_Light_Arrow), // Give Bow & Silver Arrows
             _ => (0, null)
         };
-        player.SetHasItemEquipment(bow, (byte)flag);
+        player.SetHasItemEquipment(BowAddress, (byte)flag);
         pictureBow.Image = image;
     }
 
     private void numericUpDownRupeeCounter_ValueChanged(object sender, EventArgs e)
     {
-        var savslot = GetSaveSlot();
-        var player = savslot.GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var val = (ushort)numericUpDownRupeeCounter.Value;
-        player.SetRupees(val);
+        player.SetRupeesValue(val > 999 ? (ushort)999 : val);
     }
 
     private void fileRadio(object sender, EventArgs e)
@@ -899,7 +913,7 @@ public partial class MainForm : Form
         var savslot = GetSaveSlot();
         var player = savslot.GetPlayer();
         UpdatePlayerName();
-        numericUpDownRupeeCounter.Value = player.GetRupeeValue();
+        numericUpDownRupeeCounter.Value = player.GetRupeesValue();
         UpdateAllConfigurables(savslot);
         helperText.Text = !savslot.SaveIsValid()
             ? $"Save slot {savslot} is empty or invalid."
@@ -1079,8 +1093,8 @@ public partial class MainForm : Form
 
     private void numericUpDownArrowsHeld_ValueChanged(object sender, EventArgs e)
     {
-        var player = GetSaveSlot().GetPlayer();
-        player.SetHasItemEquipment(arrowCount, (byte)numericUpDownArrowsHeld.Value); // Set the new arrow count value
+        var player = GetCurrentSlotPlayer();
+        player.SetHasItemEquipment(ArrowCountAddress, (byte)numericUpDownArrowsHeld.Value); // Set the new arrow count value
     }
 
     private void pictureBox1_Click(object sender, EventArgs e) =>
@@ -1109,7 +1123,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoBoomerang) => (0x0, D_Boomerang), // Give No Boomerang
@@ -1117,16 +1131,16 @@ public partial class MainForm : Form
             nameof(radioButtonRedBoomerang) => (0x2, Magical_Boomerang), // Give Red Boomerang
             _ => (0, null)
         };
-        player.SetHasItemEquipment(boomerang, (byte)flag);
+        player.SetHasItemEquipment(BoomerangAddress, (byte)flag);
         pictureBoomerang.Image = image;
     }
 
     private void pictureHookshot_Click(object sender, EventArgs e) =>
-        ToggleItem(hookshot, 0x1, pictureHookshot, Hookshot, D_Hookshot);
+        ToggleItem(HookshotAddress, 0x1, pictureHookshot, Hookshot, D_Hookshot);
 
     private void ToggleItem(int addr, int enabledVal, PictureBox picObj, Bitmap imgOn, Bitmap imgOff)
     {
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         if (player.GetItemEquipment(addr) == enabledVal)
         {
             player.SetHasItemEquipment(addr, 0x0); // Give the item if we don't already have it
@@ -1141,8 +1155,8 @@ public partial class MainForm : Form
 
     private void numericUpDownBombsHeld_ValueChanged(object sender, EventArgs e)
     {
-        var player = GetSaveSlot().GetPlayer();
-        player.SetHasItemEquipment(bombCount, (byte)numericUpDownBombsHeld.Value); // Set the new bomb count value
+        var player = GetCurrentSlotPlayer();
+        player.SetHasItemEquipment(BombCountAddress, (byte)numericUpDownBombsHeld.Value); // Set the new bomb count value
 
         // Update the UI picture if necessary
         pictureBombs.Image = numericUpDownBombsHeld.Value <= 0 ? D_Bomb : (Image)Bomb;
@@ -1158,7 +1172,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoMushPowd) => (0x0, D_Mushroom), // Give Neither Mushroom nor Powder
@@ -1166,7 +1180,7 @@ public partial class MainForm : Form
             nameof(radioButtonPowder) => (0x2, Magic_Powder), // Give Magic Powder
             _ => (0, null)
         };
-        player.SetHasItemEquipment(mushroomPowder, (byte)flag);
+        player.SetHasItemEquipment(MushroomPowderAddress, (byte)flag);
         pictureMushPowd.Image = image;
     }
 
@@ -1176,7 +1190,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoSword) => (0x0, D_Fighter_s_Sword), // Give No Sword
@@ -1186,7 +1200,7 @@ public partial class MainForm : Form
             nameof(radioButtonGoldenSword) => (0x4, Golden_Sword), // Give Golden Sword
             _ => (0, null)
         };
-        player.SetHasItemEquipment(sword, (byte)flag);
+        player.SetHasItemEquipment(SwordAddress, (byte)flag);
         pictureSword.Image = image;
     }
 
@@ -1198,7 +1212,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoShield) => (0x0, D_Fighter_s_Shield), // Give No Shield
@@ -1207,7 +1221,7 @@ public partial class MainForm : Form
             nameof(radioButtonMirrorShield) => (0x3, Mirror_Shield), // Give Mirror Shield
             _ => (0, null)
         };
-        player.SetHasItemEquipment(shield, (byte)flag);
+        player.SetHasItemEquipment(ShieldAddress, (byte)flag);
         pictureShield.Image = image;
     }
 
@@ -1221,7 +1235,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonGreenMail) => (0x0, Green_Tunic), // Give Green Mail
@@ -1229,33 +1243,33 @@ public partial class MainForm : Form
             nameof(radioButtonRedMail) => (0x2, Red_Tunic), // Give Red Mail
             _ => (0, null)
         };
-        player.SetHasItemEquipment(armor, (byte)flag);
+        player.SetHasItemEquipment(ArmorAddress, (byte)flag);
         pictureMail.Image = image;
     }
 
     private void CheckForBottles()
     {
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         // Update the picture so it represents what the inventory bottle should actually have
         int _inventoryBottleFill;
-        if (player.GetItemEquipment(bottle1Contents) > 0)
+        if (player.GetItemEquipment(Bottle1ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle1Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle1ContentsAddress);
             player.SetSelectedBottle(1);
         }
-        else if (player.GetItemEquipment(bottle2Contents) > 0)
+        else if (player.GetItemEquipment(Bottle2ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle2Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle2ContentsAddress);
             player.SetSelectedBottle(2);
         }
-        else if (player.GetItemEquipment(bottle3Contents) > 0)
+        else if (player.GetItemEquipment(Bottle3ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle3Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle3ContentsAddress);
             player.SetSelectedBottle(3);
         }
-        else if (player.GetItemEquipment(bottle4Contents) > 0)
+        else if (player.GetItemEquipment(Bottle4ContentsAddress) > 0)
         {
-            _inventoryBottleFill = player.GetItemEquipment(bottle4Contents);
+            _inventoryBottleFill = player.GetItemEquipment(Bottle4ContentsAddress);
             player.SetSelectedBottle(4);
         }
         else
@@ -1285,8 +1299,8 @@ public partial class MainForm : Form
         // Update the picture so it represents what the bottle actually has
         pictureBottle1.Image = bottleContentsImg[fillContents];
 
-        var player = GetSaveSlot().GetPlayer();
-        player.SetHasItemEquipment(bottle1Contents, (byte)fillContents);
+        var player = GetCurrentSlotPlayer();
+        player.SetHasItemEquipment(Bottle1ContentsAddress, (byte)fillContents);
         CheckForBottles();
     }
 
@@ -1300,8 +1314,8 @@ public partial class MainForm : Form
         // Update the picture so it represents what the bottle actually has
         pictureBottle2.Image = bottleContentsImg[fillContents];
 
-        var player = GetSaveSlot().GetPlayer();
-        player.SetHasItemEquipment(bottle2Contents, (byte)fillContents);
+        var player = GetCurrentSlotPlayer();
+        player.SetHasItemEquipment(Bottle2ContentsAddress, (byte)fillContents);
         CheckForBottles();
     }
 
@@ -1313,8 +1327,8 @@ public partial class MainForm : Form
         // Update the picture so it represents what the bottle actually has
         pictureBottle3.Image = bottleContentsImg[fillContents];
 
-        var player = GetSaveSlot().GetPlayer();
-        player.SetHasItemEquipment(bottle3Contents, (byte)fillContents);
+        var player = GetCurrentSlotPlayer();
+        player.SetHasItemEquipment(Bottle3ContentsAddress, (byte)fillContents);
         CheckForBottles();
     }
 
@@ -1326,48 +1340,48 @@ public partial class MainForm : Form
         // Update the picture so it represents what the bottle actually has
         pictureBottle4.Image = bottleContentsImg[fillContents];
 
-        var player = GetSaveSlot().GetPlayer();
-        player.SetHasItemEquipment(bottle4Contents, (byte)fillContents);
+        var player = GetCurrentSlotPlayer();
+        player.SetHasItemEquipment(Bottle4ContentsAddress, (byte)fillContents);
         CheckForBottles();
     }
 
     private void pictureBoots_Click(object sender, EventArgs e)
     {
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var flags = player.GetAbilityFlags();
-        if (player.GetItemEquipment(pegasusBoots) == 1)
+        if (player.GetItemEquipment(PegasusBootsAddress) == 1)
         {
             pictureBoots.Image = D_Pegasus_Boots;
             flags &= 0xFB; // To turn it off, bitwise and with b11111011
-            player.SetHasItemEquipment(pegasusBoots, 0x0);
-            player.SetHasItemEquipment(abilityFlags, flags);
+            player.SetHasItemEquipment(PegasusBootsAddress, 0x0);
+            player.SetHasItemEquipment(AbilityFlagsAddress, flags);
         }
         else
         {
             pictureBoots.Image = Pegasus_Boots;
             flags |= 0x4; // Turn it on, bitwise or with b00000100
-            player.SetHasItemEquipment(pegasusBoots, 0x1);
-            player.SetHasItemEquipment(abilityFlags, flags);
+            player.SetHasItemEquipment(PegasusBootsAddress, 0x1);
+            player.SetHasItemEquipment(AbilityFlagsAddress, flags);
         }
     }
 
     private void pictureZorasFlippers_Click(object sender, EventArgs e)
     {
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var flags = player.GetAbilityFlags();
-        if (player.GetItemEquipment(zorasFlippers) == 1)
+        if (player.GetItemEquipment(ZorasFlippersAddress) == 1)
         {
             pictureZorasFlippers.Image = D_Zora_s_Flippers;
             flags &= 0xFD; // To turn it off, bitwise and with b11111101
-            player.SetHasItemEquipment(zorasFlippers, 0x0);
-            player.SetHasItemEquipment(abilityFlags, flags);
+            player.SetHasItemEquipment(ZorasFlippersAddress, 0x0);
+            player.SetHasItemEquipment(AbilityFlagsAddress, flags);
         }
         else
         {
             pictureZorasFlippers.Image = Zora_s_Flippers;
             flags |= 0x2; // Turn it on, bitwise or with b00000010
-            player.SetHasItemEquipment(zorasFlippers, 0x1);
-            player.SetHasItemEquipment(abilityFlags, flags);
+            player.SetHasItemEquipment(ZorasFlippersAddress, 0x1);
+            player.SetHasItemEquipment(AbilityFlagsAddress, flags);
         }
     }
 
@@ -1378,46 +1392,46 @@ public partial class MainForm : Form
     }
 
     private void pictureMagicMirror_Click(object sender, EventArgs e) =>
-        ToggleItem(magicMirror, 0x2, pictureMagicMirror, Magic_Mirror, D_Magic_Mirror);
+        ToggleItem(MagicMirrorAddress, 0x2, pictureMagicMirror, Magic_Mirror, D_Magic_Mirror);
 
     private void pictureFireRod_Click(object sender, EventArgs e) =>
-        ToggleItem(fireRod, 0x1, pictureFireRod, Fire_Rod, D_Fire_Rod);
+        ToggleItem(FireRodAddress, 0x1, pictureFireRod, Fire_Rod, D_Fire_Rod);
 
     private void pictureIceRod_Click(object sender, EventArgs e) =>
-        ToggleItem(iceRod, 0x1, pictureIceRod, Ice_Rod, D_Ice_Rod);
+        ToggleItem(IceRodAddress, 0x1, pictureIceRod, Ice_Rod, D_Ice_Rod);
 
     private void pictureBombos_Click(object sender, EventArgs e) =>
-        ToggleItem(bombosMedallion, 0x1, pictureBombos, Bombos, D_Bombos);
+        ToggleItem(BombosMedallionAddress, 0x1, pictureBombos, Bombos, D_Bombos);
 
     private void pictureEther_Click(object sender, EventArgs e) =>
-        ToggleItem(etherMedallion, 0x1, pictureEther, Ether, D_Ether);
+        ToggleItem(EtherMedallionAddress, 0x1, pictureEther, Ether, D_Ether);
 
     private void pictureQuake_Click(object sender, EventArgs e) =>
-        ToggleItem(quakeMedallion, 0x1, pictureQuake, Quake, D_Quake);
+        ToggleItem(QuakeMedallionAddress, 0x1, pictureQuake, Quake, D_Quake);
 
     private void pictureLamp_Click(object sender, EventArgs e) =>
-        ToggleItem(lamp, 0x1, pictureLamp, Lamp, D_Lamp);
+        ToggleItem(LampAddress, 0x1, pictureLamp, Lamp, D_Lamp);
 
     private void pictureMagicHammer_Click(object sender, EventArgs e) =>
-        ToggleItem(magicHammer, 0x1, pictureMagicHammer, Magic_Hammer, D_Magic_Hammer);
+        ToggleItem(MagicHammerAddress, 0x1, pictureMagicHammer, Magic_Hammer, D_Magic_Hammer);
 
     private void pictureBugCatchingNet_Click(object sender, EventArgs e) =>
-        ToggleItem(bugNet, 0x1, pictureBugCatchingNet, Bug_Catching_Net, D_Bug_Catching_Net);
+        ToggleItem(BugNetAddress, 0x1, pictureBugCatchingNet, Bug_Catching_Net, D_Bug_Catching_Net);
 
     private void pictureBookOfMudora_Click(object sender, EventArgs e) =>
-        ToggleItem(book, 0x1, pictureBookOfMudora, Book_of_Mudora, D_Book_of_Mudora);
+        ToggleItem(BookAddress, 0x1, pictureBookOfMudora, Book_of_Mudora, D_Book_of_Mudora);
 
     private void pictureCaneOfSomaria_Click(object sender, EventArgs e) =>
-        ToggleItem(caneOfSomaria, 0x1, pictureCaneOfSomaria, Cane_of_Somaria, D_Cane_of_Somaria);
+        ToggleItem(CaneOfSomariaAddress, 0x1, pictureCaneOfSomaria, Cane_of_Somaria, D_Cane_of_Somaria);
 
     private void pictureCaneOfByrna_Click(object sender, EventArgs e) =>
-        ToggleItem(caneOfByrna, 0x1, pictureCaneOfByrna, Cane_of_Byrna, D_Cane_of_Byrna);
+        ToggleItem(CaneOfByrnaAddress, 0x1, pictureCaneOfByrna, Cane_of_Byrna, D_Cane_of_Byrna);
 
     private void pictureMagicCape_Click(object sender, EventArgs e) =>
-        ToggleItem(magicCape, 0x1, pictureMagicCape, Magic_Cape, D_Magic_Cape);
+        ToggleItem(MagicCapeAddress, 0x1, pictureMagicCape, Magic_Cape, D_Magic_Cape);
 
     private void pictureMoonPearl_Click(object sender, EventArgs e) =>
-        ToggleItem(moonPearl, 0x1, pictureMoonPearl, Moon_Pearl, D_Moon_Pearl);
+        ToggleItem(MoonPearlAddress, 0x1, pictureMoonPearl, Moon_Pearl, D_Moon_Pearl);
 
     private void numericUpDownHeartContainers_ValueChanged(object sender, EventArgs e)
     {
@@ -1443,7 +1457,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoShovelOrFlute) => (0x0, D_Shovel), // Give neither Shovel nor Flute
@@ -1452,7 +1466,7 @@ public partial class MainForm : Form
             nameof(radioButtonFluteAndBird) => (0x3, Flute), // Give Flute and Bird
             _ => (0, null)
         };
-        player.SetHasItemEquipment(shovelFlute, (byte)flag);
+        player.SetHasItemEquipment(ShovelFluteAddress, (byte)flag);
         pictureShovelFlute.Image = image;
     }
 
@@ -1462,7 +1476,7 @@ public partial class MainForm : Form
         {
             return;
         }
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var (flag, image) = btn.Name switch
         {
             nameof(radioButtonNoGloves) => (0x0, D_Power_Glove), // Give neither Power Glove nor Titan's Mitts
@@ -1470,7 +1484,7 @@ public partial class MainForm : Form
             nameof(radioButtonTitansMitts) => (0x2, Titan_s_Mitt), // Give Titan's Mitts
             _ => (0, null)
         };
-        player.SetHasItemEquipment(gloves, (byte)flag);
+        player.SetHasItemEquipment(GlovesAddress, (byte)flag);
         picturePowerGlove.Image = image;
     }
 
@@ -1490,7 +1504,7 @@ public partial class MainForm : Form
 
     private void pictureHeartPieces_MouseClick(object sender, MouseEventArgs e)
     {
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var playerCurrHearts = player.GetHeartContainers();
         var playerCurrHeartPieces = player.GetHeartPieces();
         switch (e.Button)
@@ -1547,119 +1561,115 @@ public partial class MainForm : Form
     {
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureGreenPendant.Image = GetBit(_pendants, greenPendant)
+        pictureGreenPendant.Image = GetBit(_pendants, GreenPendantAddress)
             ? Clear_Pendant
             : (Image)Green_Pendant;
 
-        ToggleCrystalPendant(false, greenPendant);
+        ToggleCrystalPendant(false, GreenPendantAddress);
     }
 
     private void pictureBluePendant_Click(object sender, EventArgs e)
     {
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureBluePendant.Image = GetBit(_pendants, bluePendant)
+        pictureBluePendant.Image = GetBit(_pendants, BluePendantAddress)
             ? Clear_Pendant
             : (Image)Blue_Pendant;
 
-        ToggleCrystalPendant(false, bluePendant);
+        ToggleCrystalPendant(false, BluePendantAddress);
     }
 
     private void pictureRedPendant_Click(object sender, EventArgs e)
     {
         var _pendants = GetSaveSlot().GetPendants();
 
-        pictureRedPendant.Image = GetBit(_pendants, redPendant)
+        pictureRedPendant.Image = GetBit(_pendants, RedPendantAddress)
             ? Clear_Pendant
             : (Image)Red_Pendant;
 
-        ToggleCrystalPendant(false, redPendant);
+        ToggleCrystalPendant(false, RedPendantAddress);
     }
 
     private void pictureCrystalPoD_Click(object sender, EventArgs e)
     {
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalPoD.Image = GetBit(_crystals, crystalPoD)
+        pictureCrystalPoD.Image = GetBit(_crystals, CrystalPoD)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        ToggleCrystalPendant(true, crystalPoD);
+        ToggleCrystalPendant(true, CrystalPoD);
     }
 
     private void pictureCrystalSP_Click(object sender, EventArgs e)
     {
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalSP.Image = GetBit(_crystals, crystalSP)
+        pictureCrystalSP.Image = GetBit(_crystals, CrystalSPAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        ToggleCrystalPendant(true, crystalSP);
+        ToggleCrystalPendant(true, CrystalSPAddress);
     }
 
     private void pictureCrystalSW_Click(object sender, EventArgs e)
     {
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalSW.Image = GetBit(_crystals, crystalSW)
+        pictureCrystalSW.Image = GetBit(_crystals, CrystalSWAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        ToggleCrystalPendant(true, crystalSW);
+        ToggleCrystalPendant(true, CrystalSWAddress);
     }
 
     private void pictureCrystalTT_Click(object sender, EventArgs e)
     {
-
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalTT.Image = GetBit(_crystals, crystalTT)
+        pictureCrystalTT.Image = GetBit(_crystals, CrystalTTAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        ToggleCrystalPendant(true, crystalTT);
+        ToggleCrystalPendant(true, CrystalTTAddress);
     }
 
     private void pictureCrystalIP_Click(object sender, EventArgs e)
     {
-
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalIP.Image = GetBit(_crystals, crystalIP)
+        pictureCrystalIP.Image = GetBit(_crystals, CrystalIPAddress)
             ? Clear_Crystal
             : (Image)Red_Crystal;
 
-        ToggleCrystalPendant(true, crystalIP);
+        ToggleCrystalPendant(true, CrystalIPAddress);
     }
 
     private void pictureCrystalMM_Click(object sender, EventArgs e)
     {
-
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalMM.Image = GetBit(_crystals, crystalMM)
+        pictureCrystalMM.Image = GetBit(_crystals, CrystalMMAddress)
             ? Clear_Crystal
             : (Image)Red_Crystal;
 
-        ToggleCrystalPendant(true, crystalMM);
+        ToggleCrystalPendant(true, CrystalMMAddress);
     }
 
     private void pictureCrystalTR_Click(object sender, EventArgs e)
     {
-
         var _crystals = GetSaveSlot().GetCrystals();
 
-        pictureCrystalTR.Image = GetBit(_crystals, crystalTR)
+        pictureCrystalTR.Image = GetBit(_crystals, CrystalTRAddress)
             ? Clear_Crystal
             : (Image)Blue_Crystal;
 
-        ToggleCrystalPendant(true, crystalTR);
+        ToggleCrystalPendant(true, CrystalTRAddress);
     }
 
     private void pictureBoxMagicBar_Click(object sender, EventArgs e)
     {
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         var currMagicUpgrade = player.GetCurrMagicUpgrade();
 
         var (magicBarImage, magicUpgrade, magicBarTextVisible) = currMagicUpgrade switch
@@ -1679,7 +1689,7 @@ public partial class MainForm : Form
     private void numericUpDownBombUpgrades_ValueChanged(object sender, EventArgs e)
     {
         // Get the player
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         player.SetCurrBombUpgrades((int)numericUpDownBombUpgrades.Value);
 
         // Update Max bombs
@@ -1696,7 +1706,7 @@ public partial class MainForm : Form
     private void numericUpDownArrowUpgrades_ValueChanged(object sender, EventArgs e)
     {
         // Get the player
-        var player = GetSaveSlot().GetPlayer();
+        var player = GetCurrentSlotPlayer();
         player.SetCurrArrowUpgrades((int)numericUpDownArrowUpgrades.Value);
 
         // Update Max arrows

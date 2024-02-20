@@ -20,13 +20,13 @@ public class Link
     public Link(byte[] itemsAndEquipmentInput)
     {
         itemsAndEquipment = [.. itemsAndEquipmentInput];
-        abilityFlags = itemsAndEquipment[0x39];
-        heartPieces = itemsAndEquipment[0x2B];
-        heartContainers = itemsAndEquipment[0x2C];
-        currMagic = itemsAndEquipment[0x2E];
-        currBombUpgrades = itemsAndEquipment[0x30];
-        bombsHeld = itemsAndEquipment[0x3];
-        selectedBottle = itemsAndEquipment[0xF];
+        abilityFlags = itemsAndEquipment[AbilityFlagsAddress];
+        heartPieces = itemsAndEquipment[HeartPiecesAddress];
+        heartContainers = itemsAndEquipment[MaxHeartsAddress];
+        currMagic = itemsAndEquipment[MagicPowerAddress];
+        currBombUpgrades = itemsAndEquipment[BombUpgradesAddress];
+        bombsHeld = itemsAndEquipment[BombCountAddress];
+        selectedBottle = itemsAndEquipment[BottleAddress];
 
         var _bombsMax = currBombUpgrades switch
         {
@@ -45,8 +45,8 @@ public class Link
             bombsHeld = _bombsMax;
         }
 
-        currArrowUpgrades = itemsAndEquipment[0x31];
-        arrowsHeld = itemsAndEquipment[0x37];
+        currArrowUpgrades = itemsAndEquipment[ArrowUpgradesAddress];
+        arrowsHeld = itemsAndEquipment[ArrowCountAddress];
 
         var _arrowsMax = currArrowUpgrades switch
         {
@@ -65,7 +65,7 @@ public class Link
             arrowsHeld = _arrowsMax;
         }
 
-        currMagicUpgrade = itemsAndEquipment[0x3B];
+        currMagicUpgrade = itemsAndEquipment[MagicUpgradesAddress];
     }
 
     public byte[] GetItemsAndEquipmentArray() => itemsAndEquipment;
@@ -87,13 +87,13 @@ public class Link
     public void SetCurrArrowUpgrades(int _val)
     {
         currArrowUpgrades = _val;
-        itemsAndEquipment[0x31] = (byte)_val;
+        itemsAndEquipment[ArrowUpgradesAddress] = (byte)_val;
     }
 
     public void SetCurrBombUpgrades(int _val)
     {
         currBombUpgrades = _val;
-        itemsAndEquipment[0x30] = (byte)_val;
+        itemsAndEquipment[BombUpgradesAddress] = (byte)_val;
     }
 
     public void SetHasItemEquipment(int addr, byte val) => itemsAndEquipment[addr] = val;
@@ -101,33 +101,33 @@ public class Link
     public void SetHeartContainers(int val)
     {
         heartContainers = val;
-        itemsAndEquipment[0x2C] = (byte)val; // Max HP
-        itemsAndEquipment[0x2D] = (byte)val; // Curr HP
+        itemsAndEquipment[MaxHeartsAddress] = (byte)val; // Max HP
+        itemsAndEquipment[CurrHeartsAddress] = (byte)val; // Curr HP
     }
 
     public void SetMagic(int val)
     {
         currMagic = val;
-        itemsAndEquipment[0x2E] = (byte)val; // Max MP
-        itemsAndEquipment[0x33] = 0;// (byte)val; // MP left to fill
+        itemsAndEquipment[MagicPowerAddress] = (byte)val; // Max MP
+        itemsAndEquipment[MagicLeftToFillAddress] = 0;// (byte)val; // MP left to fill
     }
 
     public void SetMagicUpgrade(int val)
     {
         currMagicUpgrade = val;
-        itemsAndEquipment[0x3B] = (byte)val; // Set the Magic Upgrade value
+        itemsAndEquipment[MagicUpgradesAddress] = (byte)val; // Set the Magic Upgrade value
     }
 
     public void IncrementHeartPieces()
     {
         heartPieces++;
-        itemsAndEquipment[0x2B] = (byte)(heartPieces % 4);
+        itemsAndEquipment[HeartPiecesAddress] = (byte)(heartPieces % 4);
     }
 
     public void DecrementHeartPieces()
     {
         heartPieces--;
-        itemsAndEquipment[0x2B] = (byte)(heartPieces % 4);
+        itemsAndEquipment[HeartPiecesAddress] = (byte)(heartPieces % 4);
     }
 
     public int GetHeartPieces() => heartPieces;
@@ -138,24 +138,14 @@ public class Link
 
     public int GetCurrMagicUpgrade() => currMagicUpgrade;
 
-    public void SetRupees(int val)
+    public void SetRupeesValue(ushort val)
     {
-        var bytes = new byte[2];
-        bytes[0] = (byte)(val >> 8); // 0x00
-        bytes[1] = (byte)val; // 0x10
-
-        //var result = (bytes[0] << 8) | bytes[1];
-
-        // Set actual rupee value
-        itemsAndEquipment[0x20] = bytes[1];
-        itemsAndEquipment[0x21] = bytes[0];
-
-        // Set rupee "lag counter" value
-        itemsAndEquipment[0x22] = bytes[1];
-        itemsAndEquipment[0x23] = bytes[0];
+        var byteArray = BitConverter.GetBytes(val);
+        byteArray.CopyTo(itemsAndEquipment, RupeesAddress);
     }
 
-    public int GetRupeeValue() => itemsAndEquipment[0x23] << 8 | itemsAndEquipment[0x22];
+    public ushort GetRupeesValue() =>
+        BitConverter.ToUInt16(itemsAndEquipment, RupeesAddress);
 
     public int GetItemEquipment(int addr) => itemsAndEquipment[addr];
 }
