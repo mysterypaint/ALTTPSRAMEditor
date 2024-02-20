@@ -900,7 +900,7 @@ public partial class MainForm : Form
     {
         var player = GetCurrentSlotPlayer();
         var val = (ushort)numericUpDownRupeeCounter.Value;
-        player.SetRupeesValue(val);
+        player.SetRupeesValue(val > 999 ? (ushort)999 : val);
     }
 
     private void fileRadio(object sender, EventArgs e)

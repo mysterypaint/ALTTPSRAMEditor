@@ -518,11 +518,7 @@
             // numericUpDownRupeeCounter
             // 
             this.numericUpDownRupeeCounter.Location = new System.Drawing.Point(6, 112);
-            this.numericUpDownRupeeCounter.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
+            this.numericUpDownRupeeCounter.Maximum = 999;
             this.numericUpDownRupeeCounter.Name = "numericUpDownRupeeCounter";
             this.numericUpDownRupeeCounter.Size = new System.Drawing.Size(51, 20);
             this.numericUpDownRupeeCounter.TabIndex = 23;
